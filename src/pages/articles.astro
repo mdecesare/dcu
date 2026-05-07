@@ -1,0 +1,91 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const allArticles = await getCollection('articles');
+const sorted = allArticles.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const topicLabel: Record<string, string> = {
+  'power': 'Power',
+  'cooling': 'Cooling',
+  'ai-readiness': 'AI Readiness',
+  'digital-twins': 'Digital Twins',
+  'operations': 'Operations',
+  'strategy': 'Strategy',
+};
+---
+<Base title="Articles" description="All articles from DataCenterUpdate.">
+
+  <div class="page-header">
+    <h1>Articles</h1>
+    <p>Vendor-neutral infrastructure analysis — no comments, no sponsored content.</p>
+  </div>
+
+  <div class="list">
+    {sorted.map(article => (
+      <a href={`/articles/${article.slug}`} class="article-row">
+        <div class="article-left">
+          <div class="tag">{topicLabel[article.data.topic] || article.data.topic}</div>
+          <div class="article-title">{article.data.title}</div>
+          <div class="article-summary">{article.data.summary}</div>
+        </div>
+        <div class="article-right">
+          <div class="type">{article.data.type}</div>
+          <div class="meta">{article.data.readtime} min read</div>
+          <div class="meta">{new Date(article.data.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</div>
+        </div>
+      </a>
+    ))}
+    {sorted.length === 0 && (
+      <div class="empty">Articles coming soon.</div>
+    )}
+  </div>
+
+</Base>
+
+<style>
+  .page-header {
+    padding: 2rem 2rem 1.5rem;
+    border-bottom: 0.5px solid var(--color-border);
+  }
+  .page-header h1 {
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+    margin-bottom: 0.35rem;
+  }
+  .page-header p { font-size: 13px; color: var(--color-muted); }
+  .list { display: flex; flex-direction: column; }
+  .article-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    padding: 1.25rem 2rem;
+    border-bottom: 0.5px solid var(--color-border);
+    transition: background 0.15s;
+  }
+  .article-row:hover { background: var(--color-hero-bg); }
+  .article-left { flex: 1; }
+  .tag {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-amber);
+    margin-bottom: 0.3rem;
+  }
+  .article-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--color-text);
+    line-height: 1.35;
+    margin-bottom: 0.3rem;
+  }
+  .article-summary { font-size: 13px; color: var(--color-muted); line-height: 1.5; }
+  .article-right { text-align: right; min-width: 90px; }
+  .type { font-size: 11px; font-weight: 500; color: var(--color-text); margin-bottom: 0.2rem; }
+  .meta { font-size: 11px; color: var(--color-meta); }
+  .empty { padding: 3rem 2rem; font-size: 14px; color: var(--color-meta); font-style: italic; }
+</style>

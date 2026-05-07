@@ -1,0 +1,100 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const allArticles = await getCollection('articles');
+const sorted = allArticles.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const topics = [
+  { id: 'power', label: 'Power', group: 'Core Infrastructure', desc: 'Capacity planning, power density, stranded capacity, and what your facility can actually deliver.' },
+  { id: 'cooling', label: 'Cooling', group: 'Core Infrastructure', desc: 'Air, liquid, rear-door, direct-to-chip — what each approach actually requires before you commit.' },
+  { id: 'ai-readiness', label: 'AI Readiness', group: 'Core Infrastructure', desc: 'What GPU and HPC workloads demand from your infrastructure, and how to assess if you are ready.' },
+  { id: 'digital-twins', label: 'Digital Twins', group: 'Operations & Strategy', desc: 'Where digital twins add real value, where they are oversold, and what they cost to do properly.' },
+  { id: 'operations', label: 'Operations', group: 'Operations & Strategy', desc: 'Staffing, processes, and organizational readiness — the constraints that hardware decisions ignore.' },
+  { id: 'strategy', label: 'Strategy', group: 'Operations & Strategy', desc: 'Build vs buy, colo vs owned, modernize vs migrate — the framework decisions that shape everything else.' },
+];
+---
+<Base title="Topics" description="Browse DataCenterUpdate articles by topic.">
+
+  <div class="page-header">
+    <h1>Topics</h1>
+    <p>Six areas of focus — all practical, all vendor-neutral.</p>
+  </div>
+
+  {['Core Infrastructure', 'Operations & Strategy'].map(group => (
+    <div class="group">
+      <div class="group-label">{group}</div>
+      {topics.filter(t => t.group === group).map(topic => {
+        const articles = sorted.filter(a => a.data.topic === topic.id);
+        return (
+          <div class="topic-block" id={topic.id}>
+            <div class="topic-header">
+              <div class="topic-name">{topic.label}</div>
+              <div class="topic-desc">{topic.desc}</div>
+            </div>
+            {articles.length > 0 ? (
+              <div class="topic-articles">
+                {articles.slice(0, 3).map(article => (
+                  <a href={`/articles/${article.slug}`} class="topic-article-row">
+                    <span class="topic-article-title">{article.data.title}</span>
+                    <span class="topic-article-meta">{article.data.type} · {article.data.readtime} min read</span>
+                  </a>
+                ))}
+                {articles.length > 3 && (
+                  <a href="/articles" class="see-all">See all {articles.length} articles &rarr;</a>
+                )}
+              </div>
+            ) : (
+              <div class="topic-empty">Articles coming soon.</div>
+            )}
+          </div>
+        );
+      })}
+    </div>
+  ))}
+
+</Base>
+
+<style>
+  .page-header {
+    padding: 2rem 2rem 1.5rem;
+    border-bottom: 0.5px solid var(--color-border);
+  }
+  .page-header h1 { font-size: 22px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 0.35rem; }
+  .page-header p { font-size: 13px; color: var(--color-muted); }
+  .group { border-bottom: 0.5px solid var(--color-border); }
+  .group-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-amber);
+    padding: 0.875rem 2rem 0;
+  }
+  .topic-block {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    border-top: 0.5px solid var(--color-border);
+    margin-top: 0.5rem;
+  }
+  .topic-block:first-of-type { border-top: none; margin-top: 0; }
+  .topic-header { padding: 1.25rem 2rem; border-right: 0.5px solid var(--color-border); }
+  .topic-name { font-size: 15px; font-weight: 600; color: var(--color-text); margin-bottom: 0.4rem; }
+  .topic-desc { font-size: 12px; color: var(--color-muted); line-height: 1.55; }
+  .topic-articles { padding: 0.75rem 1.5rem; }
+  .topic-article-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 0.6rem 0;
+    border-bottom: 0.5px solid var(--color-border);
+  }
+  .topic-article-row:last-of-type { border-bottom: none; }
+  .topic-article-row:hover .topic-article-title { color: var(--color-amber); }
+  .topic-article-title { font-size: 13px; font-weight: 500; color: var(--color-text); line-height: 1.35; }
+  .topic-article-meta { font-size: 11px; color: var(--color-meta); white-space: nowrap; }
+  .topic-empty { padding: 1.25rem 1.5rem; font-size: 13px; color: var(--color-meta); font-style: italic; }
+  .see-all { display: block; font-size: 12px; color: var(--color-amber); margin-top: 0.5rem; }
+  .see-all:hover { text-decoration: underline; }
+</style>

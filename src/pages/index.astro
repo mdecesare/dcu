@@ -1,0 +1,183 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const allArticles = await getCollection('articles');
+const sorted = allArticles.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const featured = sorted.find(a => a.data.featured) || sorted[0];
+
+const topicLabel: Record<string, string> = {
+  'power': 'Power',
+  'cooling': 'Cooling',
+  'ai-readiness': 'AI Readiness',
+  'digital-twins': 'Digital Twins',
+  'operations': 'Operations',
+  'strategy': 'Strategy',
+};
+
+const row1Topics = ['power', 'cooling', 'ai-readiness'];
+const row2Topics = ['digital-twins', 'operations', 'strategy'];
+
+function latestForTopic(topic: string) {
+  return sorted.filter(a => a.data.topic === topic && a.slug !== featured?.slug)[0];
+}
+---
+<Base title="DataCenterUpdate" description="Practical infrastructure insight for enterprise data center owners.">
+
+  <section class="hero">
+    <h1>Practical infrastructure insight for enterprise data center owners</h1>
+    <p>Helping IT leaders, facility directors, and operations teams understand what AI and HPC infrastructure decisions really require — before serious money gets spent.</p>
+  </section>
+
+  {featured && (
+    <section class="featured">
+      <div class="featured-label">Featured</div>
+      <a href={`/articles/${featured.slug}`} class="featured-title">{featured.data.title}</a>
+      <p class="featured-desc">{featured.data.summary}</p>
+      <div class="featured-meta">{featured.data.type} · {featured.data.readtime} min read</div>
+    </section>
+  )}
+
+  <div class="row-label">Core Infrastructure</div>
+  <div class="grid">
+    {row1Topics.map(topic => {
+      const article = latestForTopic(topic);
+      return (
+        <div class="card">
+          <div class="card-tag">{topicLabel[topic]}</div>
+          {article ? (
+            <>
+              <a href={`/articles/${article.slug}`} class="card-title">{article.data.title}</a>
+              <div class="card-meta">{article.data.type} · {article.data.readtime} min read</div>
+            </>
+          ) : (
+            <>
+              <div class="card-title card-empty">Coming soon</div>
+              <div class="card-meta">&nbsp;</div>
+            </>
+          )}
+        </div>
+      );
+    })}
+  </div>
+
+  <div class="row-label">Operations & Strategy</div>
+  <div class="grid grid-last">
+    {row2Topics.map(topic => {
+      const article = latestForTopic(topic);
+      return (
+        <div class="card">
+          <div class="card-tag">{topicLabel[topic]}</div>
+          {article ? (
+            <>
+              <a href={`/articles/${article.slug}`} class="card-title">{article.data.title}</a>
+              <div class="card-meta">{article.data.type} · {article.data.readtime} min read</div>
+            </>
+          ) : (
+            <>
+              <div class="card-title card-empty">Coming soon</div>
+              <div class="card-meta">&nbsp;</div>
+            </>
+          )}
+        </div>
+      );
+    })}
+  </div>
+
+</Base>
+
+<style>
+  .hero {
+    padding: 2.5rem 2rem;
+    background: var(--color-hero-bg);
+    border-bottom: 0.5px solid var(--color-border);
+  }
+  .hero h1 {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+    max-width: 560px;
+    margin-bottom: 0.75rem;
+  }
+  .hero p {
+    font-size: 14px;
+    color: #5a4a35;
+    max-width: 480px;
+    line-height: 1.65;
+  }
+  .featured {
+    padding: 1.5rem 2rem;
+    border-bottom: 0.5px solid var(--color-border);
+  }
+  .featured-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-amber);
+    margin-bottom: 0.5rem;
+  }
+  .featured-title {
+    display: block;
+    font-size: 19px;
+    font-weight: 600;
+    color: var(--color-text);
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.4rem;
+  }
+  .featured-title:hover { color: var(--color-amber); }
+  .featured-desc {
+    font-size: 13px;
+    color: var(--color-muted);
+    line-height: 1.6;
+    margin-bottom: 0.4rem;
+  }
+  .featured-meta {
+    font-size: 11px;
+    color: var(--color-meta);
+  }
+  .row-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-amber);
+    padding: 0.875rem 2rem 0;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    border-bottom: 0.5px solid var(--color-border);
+  }
+  .grid-last { border-bottom: none; }
+  .card {
+    padding: 0.875rem 1.5rem;
+    border-right: 0.5px solid var(--color-border);
+  }
+  .card:last-child { border-right: none; }
+  .card-tag {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-amber);
+    margin-bottom: 0.35rem;
+  }
+  .card-title {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-text);
+    line-height: 1.4;
+    margin-bottom: 0.35rem;
+  }
+  a.card-title:hover { color: var(--color-amber); }
+  .card-empty { color: var(--color-meta); font-weight: 400; font-style: italic; }
+  .card-meta {
+    font-size: 11px;
+    color: var(--color-meta);
+  }
+</style>

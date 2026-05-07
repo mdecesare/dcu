@@ -1,0 +1,78 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="About" description="About DataCenterUpdate and Mike DeCesare.">
+
+  <div class="about">
+    <h1>About</h1>
+
+    <div class="body">
+      <p>
+        DataCenterUpdate is an independent, vendor-neutral publication focused on practical infrastructure insight for enterprise data center owners and operators. The topics here — power, cooling, AI readiness, operations, and strategy — are chosen because they represent the decisions that matter most right now, before serious capital gets committed. There are no sponsored posts, no advertorial content, and no vendor relationships that influence what gets written.
+      </p>
+      <p>
+        The site is written by <a href="https://www.linkedin.com/in/mikedecesare" target="_blank" rel="noopener">Mike DeCesare</a>, who has spent more than 30 years working inside enterprise data centers — assessing them, designing them, operating them, and helping organizations understand what they actually have versus what they think they have. That experience is the lens through which every article here is written.
+      </p>
+    </div>
+
+    <div class="related">
+      <div class="related-label">Related</div>
+      <a href="https://datacenter911.com" target="_blank" rel="noopener" class="related-link">
+        <div class="related-name">DataCenter911</div>
+        <div class="related-desc">AI infrastructure readiness assessment tool for enterprise data center operators.</div>
+      </a>
+    </div>
+  </div>
+
+</Base>
+
+<style>
+  .about {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 3rem 2rem 5rem;
+  }
+  h1 {
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 0.5px solid var(--color-border);
+  }
+  .body p {
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--color-text);
+    margin-bottom: 1.25rem;
+  }
+  .body a {
+    color: var(--color-text);
+    border-bottom: 0.5px solid var(--color-amber);
+  }
+  .body a:hover { color: var(--color-amber); }
+  .related {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 0.5px solid var(--color-border);
+  }
+  .related-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-amber);
+    margin-bottom: 0.75rem;
+  }
+  .related-link {
+    display: block;
+    padding: 0.875rem 1rem;
+    border: 0.5px solid var(--color-border);
+    border-radius: 6px;
+    transition: border-color 0.15s;
+  }
+  .related-link:hover { border-color: var(--color-amber); }
+  .related-name { font-size: 14px; font-weight: 500; color: var(--color-text); margin-bottom: 0.25rem; }
+  .related-desc { font-size: 12px; color: var(--color-muted); }
+</style>
