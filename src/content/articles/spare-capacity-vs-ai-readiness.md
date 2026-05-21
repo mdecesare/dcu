@@ -1,5 +1,5 @@
 ---
-title: Spare capacity is not the same as AI readiness
+title: The Difference Between Spare Capacity and Usable Capacity
 date: 2026-05-07
 topic: power
 type: Explainer
