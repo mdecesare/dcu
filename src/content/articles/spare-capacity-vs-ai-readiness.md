@@ -4,7 +4,7 @@ date: 2026-05-07
 topic: power
 type: Explainer
 readtime: 6
-featured: true
+featured: false
 summary: Spare capacity on paper is not the same as usable capacity in the room.
   For AI and HPC workloads, the real question is whether capacity exists at the
   right density, in the right location, with the right infrastructure around it.
