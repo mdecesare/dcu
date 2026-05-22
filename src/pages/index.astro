@@ -15,11 +15,20 @@ const topicLabel: Record<string, string> = {
   'strategy': 'Strategy',
 };
 
+const topicIcon: Record<string, string> = {
+  'power': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>`,
+  'cooling': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/></svg>`,
+  'ai-readiness': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="2" x2="9" y2="4"/><line x1="15" y1="2" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="22"/><line x1="15" y1="20" x2="15" y2="22"/><line x1="2" y1="9" x2="4" y2="9"/><line x1="2" y1="15" x2="4" y2="15"/><line x1="20" y1="9" x2="22" y2="9"/><line x1="20" y1="15" x2="22" y2="15"/></svg>`,
+  'digital-twins': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="12" r="5"/><circle cx="16" cy="12" r="5"/></svg>`,
+  'operations': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="9" y1="7" x2="15" y2="7"/><line x1="9" y1="11" x2="15" y2="11"/><line x1="9" y1="15" x2="13" y2="15"/></svg>`,
+  'strategy': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/><line x1="5" y1="19" x2="19" y2="19"/></svg>`,
+};
+
 const row1Topics = ['power', 'cooling', 'ai-readiness'];
 const row2Topics = ['digital-twins', 'operations', 'strategy'];
 
 function latestForTopic(topic: string) {
-  return sorted.filter(a => a.data.topic === topic && a.slug !== featured?.slug)[0];
+  return sorted.filter(a => a.data.topic === topic)[0];
 }
 ---
 <Base title="DataCenterUpdate" description="Practical infrastructure insight for enterprise data center owners.">
@@ -31,7 +40,12 @@ function latestForTopic(topic: string) {
 
   {featured && (
     <section class="featured">
-      <div class="featured-label">Featured</div>
+      <div class="featured-label">
+        <span class="feat-icon-circle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </span>
+        <span class="feat-label-text">Featured</span>
+      </div>
       <a href={`/articles/${featured.slug}`} class="featured-title">{featured.data.title}</a>
       <p class="featured-desc">{featured.data.summary}</p>
       <div class="featured-meta">{featured.data.type} · {featured.data.readtime} min read</div>
@@ -44,7 +58,10 @@ function latestForTopic(topic: string) {
       const article = latestForTopic(topic);
       return (
         <div class="card">
-          <div class="card-tag">{topicLabel[topic]}</div>
+          <div class="card-tag">
+            <span class="tag-icon" set:html={topicIcon[topic]} />
+            <span class="tag-text">{topicLabel[topic]}</span>
+          </div>
           {article ? (
             <>
               <a href={`/articles/${article.slug}`} class="card-title">{article.data.title}</a>
@@ -67,7 +84,10 @@ function latestForTopic(topic: string) {
       const article = latestForTopic(topic);
       return (
         <div class="card">
-          <div class="card-tag">{topicLabel[topic]}</div>
+          <div class="card-tag">
+            <span class="tag-icon" set:html={topicIcon[topic]} />
+            <span class="tag-text">{topicLabel[topic]}</span>
+          </div>
           {article ? (
             <>
               <a href={`/articles/${article.slug}`} class="card-title">{article.data.title}</a>
@@ -112,12 +132,27 @@ function latestForTopic(topic: string) {
     border-bottom: 0.5px solid var(--color-border);
   }
   .featured-label {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-bottom: 0.5rem;
+  }
+  .feat-icon-circle {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--color-amber);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .feat-label-text {
     font-size: 11px;
     font-weight: 500;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--color-amber);
-    margin-bottom: 0.5rem;
   }
   .featured-title {
     display: block;
@@ -159,12 +194,26 @@ function latestForTopic(topic: string) {
   }
   .card:last-child { border-right: none; }
   .card-tag {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 0.4rem;
+  }
+  .tag-icon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    color: var(--color-amber);
+    display: flex;
+    align-items: center;
+  }
+  .tag-icon svg { width: 16px; height: 16px; }
+  .tag-text {
     font-size: 10px;
     font-weight: 600;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--color-amber);
-    margin-bottom: 0.35rem;
   }
   .card-title {
     display: block;
