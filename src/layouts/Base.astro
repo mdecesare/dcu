@@ -1,6 +1,17 @@
 ---
 import '../styles/global.css';
-const { title = 'DataCenterUpdate', description = 'Practical infrastructure insight for enterprise data center owners.' } = Astro.props;
+const { title = 'DataCenterUpdate', description = 'Enterprise data center market intelligence.' } = Astro.props;
+
+const navItems = [
+  { href: '/', label: 'Home' },
+  { href: '/procurement', label: 'Procurement' },
+  { href: '/regulation', label: 'Regulation' },
+  { href: '/methodology', label: 'Methodology' },
+  { href: '/about', label: 'About' },
+];
+
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isActive = (href: string) => href === '/' ? path === '/' : path === href || path.startsWith(href + '/');
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -8,63 +19,75 @@ const { title = 'DataCenterUpdate', description = 'Practical infrastructure insi
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content={description} />
-  <title>{title} | DataCenterUpdate</title>
-  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <title>{title === 'DataCenterUpdate' ? title : `${title} | DataCenterUpdate`}</title>
 </head>
 <body>
 
-<header>
-  <a href="/" class="logo">
-    <span class="logo-dc">DataCenter</span>
-    <span class="logo-up">Update</span>
-  </a>
-  <nav>
-    <a href="/articles">Articles</a>
-    <a href="/topics">Topics</a>
-    <a href="/about">About</a>
-  </nav>
+<header class="mast">
+  <div class="wrap mast-in">
+    <a href="/" class="brand">
+      <span class="mark">DataCenter<em>Update</em></span>
+      <span class="tag">Enterprise data center market intelligence</span>
+    </a>
+  </div>
 </header>
+
+<nav aria-label="Main">
+  <div class="wrap nav-in">
+    {navItems.map(item => (
+      <a href={item.href} class={isActive(item.href) ? 'on' : undefined} aria-current={isActive(item.href) ? 'page' : undefined}>{item.label}</a>
+    ))}
+  </div>
+</nav>
 
 <main>
   <slot />
 </main>
 
 <footer>
-  <span>AI/HPC infrastructure insight for enterprise data centers | Published by <a href="https://www.linkedin.com/in/michaeldecesare/" target="_blank" rel="noopener">Mike DeCesare</a></span>
-  <span>datacenterupdate.com</span>
+  <div class="wrap f-in">
+    <div>
+      <strong>DataCenterUpdate</strong>
+      Enterprise data center market intelligence
+    </div>
+    <div class="f-right">
+      <div class="f-links">
+        <a href="/methodology">Methodology</a>
+        <a href="/about">About</a>
+        <a href="/articles">Background</a>
+      </div>
+      <div>Independent. Source-transparent.</div>
+    </div>
+  </div>
 </footer>
 
 </body>
 </html>
 
 <style>
-  header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem 2rem;
-    border-bottom: 0.5px solid var(--color-border);
-    background: var(--color-bg);
+  .mast { background: var(--card); border-bottom: 1px solid var(--line); }
+  .mast-in { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 15px 16px; }
+  .brand { display: block; }
+  .brand:hover { text-decoration: none; }
+  .mark { display: block; font-size: 27px; font-weight: 700; letter-spacing: -.6px; color: var(--navy); line-height: 1.08; }
+  .mark em { font-style: normal; color: var(--blue); }
+  .tag { display: block; font-size: 12.5px; color: var(--ink-2); margin-top: 1px; }
+
+  nav { background: var(--navy); overflow-x: auto; }
+  .nav-in { display: flex; white-space: nowrap; min-width: min-content; }
+  nav a { padding: 13px 17px; font-size: 14.5px; color: #a9c0d8; font-weight: 500; border-bottom: 3px solid transparent; }
+  nav a:first-child { margin-left: -17px; }
+  nav a.on, nav a:hover { color: #fff; border-bottom-color: var(--blue); }
+
+  footer { background: var(--navy-dk); color: #8ba3bc; padding: 24px 0; font-size: 13px; margin-top: 40px; }
+  .f-in { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  footer strong { color: #fff; font-weight: 600; display: block; font-size: 16px; margin-bottom: 2px; }
+  .f-right { display: flex; flex-direction: column; gap: 6px; }
+  .f-links { display: flex; gap: 16px; flex-wrap: wrap; }
+  .f-links a { color: #c9d8e8; }
+  .f-links a:hover { color: #fff; text-decoration: underline; }
+
+  @media (max-width: 480px) {
+    .mark { font-size: 23px; }
   }
-  .logo { display: flex; flex-direction: column; line-height: 1; gap: 4px; text-decoration: none; }
-  .logo-dc { font-size: 22px; font-weight: 600; letter-spacing: -0.02em; color: var(--color-text); }
-  .logo-up { font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--color-amber); }
-  nav { display: flex; gap: 1.75rem; }
-  nav a { font-size: 13px; color: var(--color-muted); transition: color 0.15s; }
-  nav a:hover { color: var(--color-text); }
-  footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    border-top: 0.5px solid var(--color-border);
-    font-size: 12px;
-    color: var(--color-meta);
-    background: var(--color-bg);
-  }
-  footer a {
-    border-bottom: 0.5px solid var(--color-amber);
-    color: var(--color-meta);
-  }
-  footer a:hover { color: var(--color-text); }
 </style>

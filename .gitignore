@@ -8,3 +8,6 @@ dist/
 # Local settings and secrets
 .env
 .DS_Store
+
+# Local preview settings for Claude
+.claude/
