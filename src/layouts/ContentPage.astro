@@ -1,0 +1,39 @@
+---
+import Base from './Base.astro';
+const { title, description } = Astro.props;
+---
+<Base title={title} description={description}>
+  <section class="page-head">
+    <div class="wrap">
+      <h1>{title}</h1>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <article class="panel prose">
+      <slot />
+    </article>
+  </div>
+</Base>
+
+<style>
+  .page-head {
+    background: linear-gradient(180deg, var(--navy) 0%, var(--navy-dk) 100%);
+    color: #fff;
+    padding: 34px 0 38px;
+  }
+  .page-head h1 { font-size: 30px; line-height: 1.2; font-weight: 600; letter-spacing: -.4px; }
+  .panel {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    box-shadow: var(--sh);
+    padding: 24px 19px;
+    margin-top: 24px;
+    max-width: 780px;
+  }
+  @media (min-width: 640px) {
+    .page-head h1 { font-size: 36px; }
+    .panel { padding: 32px 36px; }
+  }
+</style>

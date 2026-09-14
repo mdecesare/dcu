@@ -13,4 +13,13 @@ const articles = defineCollection({
   }),
 });
 
-export const collections = { articles };
+// Standalone text pages: Methodology, About
+const pages = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+  }),
+});
+
+export const collections = { articles, pages };
