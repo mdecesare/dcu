@@ -1,0 +1,10 @@
+# Build tools downloaded by npm install
+node_modules/
+
+# Generated output from npm run build
+dist/
+.astro/
+
+# Local settings and secrets
+.env
+.DS_Store
