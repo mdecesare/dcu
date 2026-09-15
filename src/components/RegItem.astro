@@ -2,6 +2,7 @@
 // One Regulatory Watch item as a list entry (used on /regulation, reusable on the homepage).
 import type { CollectionEntry } from 'astro:content';
 import SourceMark from './SourceMark.astro';
+import { smartQuotes } from '../lib/typography';
 
 interface Props {
   item: CollectionEntry<'regulation'>;
@@ -25,9 +26,9 @@ const Heading = headingLevel;
     </span>
     <span class="reg-dt">{status}</span>
   </div>
-  <Heading class="reg-h"><a href={href}>{headline}</a></Heading>
-  <p class="reg-sum">{summary}</p>
-  <p class="cite"><SourceMark type={sourceType} />{citation}</p>
+  <Heading class="reg-h"><a href={href}>{smartQuotes(headline)}</a></Heading>
+  <p class="reg-sum">{smartQuotes(summary)}</p>
+  <p class="cite"><SourceMark type={sourceType} />{smartQuotes(citation)}</p>
 </article>
 
 <style>

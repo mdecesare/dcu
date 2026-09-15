@@ -1,0 +1,27 @@
+// ─────────────────────────────────────────────────────────────────────────────
+//  DataCenterUpdate — site settings
+//
+//  To change a setting: edit the value after the colon, save the file, and
+//  rebuild/publish the site. Use true or false (lowercase, no quotes).
+// ─────────────────────────────────────────────────────────────────────────────
+
+export const siteSettings = {
+  // Homepage "Power & resilience" panel and its "At a glance" card.
+  // Also needs at least one item file in src/content/power/ — if the folder is
+  // empty, the panel stays hidden even when this is true.
+  showPowerAndResilience: false,
+
+  // Homepage "What we're watching" panel.
+  // Also needs at least one item file in src/content/watching/.
+  showWhatWereWatching: false,
+
+  // Homepage newsletter signup band.
+  // Stays hidden until a newsletter service is chosen AND its signup form
+  // address is pasted into subscribeFormUrl below.
+  showSubscribe: false,
+  subscribeFormUrl: '',
+
+  // Procurement Pulse sections shown on the homepage, in this order.
+  // Each name must match a ## heading in the latest Pulse edition exactly.
+  homepageProcurementSections: ['Transformers', 'Generators', 'Medium-voltage switchgear'],
+};

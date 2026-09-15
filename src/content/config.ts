@@ -56,4 +56,17 @@ const regulation = defineCollection({
   }),
 });
 
-export const collections = { articles, pages, procurement, regulation };
+// Short homepage items for "Power & resilience" and "What we're watching".
+// One file per item. Shown only when switched on in src/site-settings.ts.
+// See _how-to-add-an-item.md in each folder.
+const briefItem = z.object({
+  title: z.string(),
+  summary: z.string(),
+  citation: z.string().optional(),
+  sourceType: z.enum(['R', 'P', 'V', 'G']).optional(),
+  order: z.number(),
+});
+const power = defineCollection({ type: 'content', schema: briefItem });
+const watching = defineCollection({ type: 'content', schema: briefItem });
+
+export const collections = { articles, pages, procurement, regulation, power, watching };
