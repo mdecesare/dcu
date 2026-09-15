@@ -5,9 +5,9 @@ description: "DataCenterUpdate is an independent market-intelligence publication
 
 DataCenterUpdate is an independent market-intelligence publication focused on the infrastructure decisions behind enterprise data centers.
 
-Much of the attention in the data-center market goes to hyperscale development, real estate, cloud providers, and large AI campuses. Those markets matter, but they are not the whole industry.
+Much of the attention in the data center market goes to hyperscale development, real estate, cloud providers, and large AI campuses. Those markets matter, but they are not the whole industry.
 
-Many enterprises still own, operate, expand, modernize, or make strategic decisions about critical infrastructure of their own — banks, hospitals, universities, pharmaceutical companies, manufacturers, government organizations, and other businesses where data-center infrastructure remains essential.
+Many enterprises still own, operate, expand, modernize, or make strategic decisions about critical infrastructure of their own — banks, hospitals, universities, pharmaceutical companies, manufacturers, government organizations, and other businesses where data center infrastructure remains essential.
 
 Those teams often face a different set of questions.
 
@@ -38,7 +38,7 @@ DCU focuses on changing information that can affect enterprise infrastructure de
 
 The emphasis is on information that can affect decisions, schedules, budgets, or risk.
 
-We are not trying to publish every data-center headline. We would rather explain a handful of meaningful developments clearly than reproduce a daily stream of announcements with little context.
+We are not trying to publish every data center headline. We would rather explain a handful of meaningful developments clearly than reproduce a daily stream of announcements with little context.
 
 ## Built around the source
 
@@ -54,7 +54,7 @@ Our sourcing and verification approach is explained in more detail in the [Metho
 
 ## Independence
 
-DataCenterUpdate is independently owned and operated. Its founder works professionally in the data-center industry.
+DataCenterUpdate is independently owned and operated. Its founder works professionally in the data center industry.
 
 That experience helps shape the questions DCU asks and the issues it considers important.
 
@@ -66,4 +66,4 @@ DataCenterUpdate is starting small.
 
 The initial focus is procurement, regulation, power, and infrastructure analysis. Over time, the goal is to build a deeper historical record of how equipment markets, permitting, utility policy, and regional constraints change.
 
-The ambition is simple: help enterprise data-center professionals understand what changed, why it matters, and what they should look at next.
+The ambition is simple: help enterprise data center professionals understand what changed, why it matters, and what they should look at next.

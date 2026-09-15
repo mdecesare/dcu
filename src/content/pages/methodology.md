@@ -1,9 +1,9 @@
 ---
 title: Methodology
-description: "DataCenterUpdate provides source-transparent intelligence for people making enterprise data-center infrastructure decisions in the United States."
+description: "DataCenterUpdate provides source-transparent intelligence for people making enterprise data center infrastructure decisions in the United States."
 ---
 
-DataCenterUpdate provides source-transparent intelligence for people making enterprise data-center infrastructure decisions in the United States.
+DataCenterUpdate provides source-transparent intelligence for people making enterprise data center infrastructure decisions in the United States.
 
 We focus on information that can affect cost, schedule, risk, and infrastructure choices — including equipment lead times, regulatory changes, power and utility developments, and related market conditions.
 
@@ -89,6 +89,6 @@ Questions, corrections, and supporting source material can be sent to:
 
 ## Disclosure
 
-DataCenterUpdate is independently owned and operated. Its founder works professionally in the data-center industry.
+DataCenterUpdate is independently owned and operated. Its founder works professionally in the data center industry.
 
 DCU does not sell the equipment it covers.
