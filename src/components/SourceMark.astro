@@ -1,0 +1,13 @@
+---
+// Coloured source-type marker for use in page templates.
+// Markdown content gets the same marker automatically from **R**, **P**, **V**, **G**.
+import { SOURCE_TYPES, sourceTypeHref } from '../lib/source-types.mjs';
+
+interface Props {
+  type: 'R' | 'P' | 'V' | 'G';
+}
+
+const { type } = Astro.props;
+const { name } = SOURCE_TYPES[type];
+---
+<a class={`cls c-${type.toLowerCase()}`} href={sourceTypeHref(type)} title={`${name} source — what this means`}><span aria-hidden="true">{type}</span><span class="sr-only">{name} source. </span></a>

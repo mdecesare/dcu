@@ -1,0 +1,46 @@
+---
+// One Regulatory Watch item as a list entry (used on /regulation, reusable on the homepage).
+import type { CollectionEntry } from 'astro:content';
+import SourceMark from './SourceMark.astro';
+
+interface Props {
+  item: CollectionEntry<'regulation'>;
+  headingLevel?: 'h2' | 'h3';
+}
+
+const { item, headingLevel = 'h2' } = Astro.props;
+const { headline, jurisdiction, jurisdictionType, status, summary, citation, sourceType } = item.data;
+const href = `/regulation/${item.slug}`;
+const Heading = headingLevel;
+---
+<article class="reg">
+  <div class="reg-top">
+    <span class="reg-st">
+      {jurisdictionType === 'federal' ? (
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3a15 15 0 010 18M12 3a15 15 0 000 18" /></svg>
+      ) : (
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-5.5 7-11a7 7 0 10-14 0c0 5.5 7 11 7 11z" /><circle cx="12" cy="10" r="2.5" /></svg>
+      )}
+      {jurisdiction}
+    </span>
+    <span class="reg-dt">{status}</span>
+  </div>
+  <Heading class="reg-h"><a href={href}>{headline}</a></Heading>
+  <p class="reg-sum">{summary}</p>
+  <p class="cite"><SourceMark type={sourceType} />{citation}</p>
+</article>
+
+<style>
+  .reg { border-bottom: 1px solid var(--line-2); padding: 16px 0; }
+  .reg:first-child { padding-top: 0; }
+  .reg:last-child { border-bottom: 0; padding-bottom: 0; }
+  .reg-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 6px; }
+  .reg-st { display: flex; align-items: center; gap: 7px; font-size: 14.5px; font-weight: 600; }
+  .ico { width: 15px; height: 15px; stroke: var(--ink-3); fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+  .reg-dt { font-size: 12px; color: var(--ink-2); white-space: nowrap; background: #f2f5f8; padding: 2px 8px; border-radius: 3px; }
+  .reg-h { font-size: 16px; line-height: 1.35; font-weight: 600; margin-bottom: 5px; }
+  .reg-h a { color: var(--blue-dk); }
+  .reg-h a:hover { text-decoration: underline; }
+  .reg-sum { font-size: 14px; color: var(--ink-2); line-height: 1.55; }
+  .cite { display: flex; align-items: center; flex-wrap: wrap; font-size: 12.5px; color: var(--ink-2); margin-top: 7px; }
+</style>

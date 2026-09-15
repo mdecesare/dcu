@@ -64,6 +64,28 @@ img { max-width: 100%; display: block; }
   overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
 }
 
+/* ---------- Page heading band and white panels ---------- */
+.page-head {
+  background: linear-gradient(180deg, var(--navy) 0%, var(--navy-dk) 100%);
+  color: #fff;
+  padding: 34px 0 38px;
+}
+.page-head h1 { font-size: 30px; line-height: 1.2; font-weight: 600; letter-spacing: -.4px; max-width: 32ch; }
+.page-head .lede { color: #bfd2e5; font-size: 16px; margin-top: 10px; max-width: 60ch; }
+.panel {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: var(--sh);
+  padding: 24px 19px;
+  margin-top: 24px;
+}
+.panel-reading { max-width: 780px; }
+@media (min-width: 640px) {
+  .page-head h1 { font-size: 36px; }
+  .panel { padding: 30px 34px; }
+}
+
 /* ---------- Source-type markers (R, P, V, G) ---------- */
 .cls {
   display: inline-flex; align-items: center; justify-content: center;
@@ -103,3 +125,17 @@ a.cls:hover { text-decoration: none; box-shadow: 0 0 0 3px var(--blue-lt); }
 .prose .source-def:target { border-color: var(--blue); box-shadow: 0 0 0 3px var(--blue-lt); }
 .source-def-name { display: flex; align-items: center; gap: 9px; font-size: 16px; font-weight: 600; color: var(--ink); margin-bottom: 3px; }
 .source-def-name .cls { width: 22px; height: 22px; font-size: 12px; margin: 0; }
+
+/* Regulatory Watch items */
+.prose .reg-facts {
+  background: #f6f9fc; border: 1px solid var(--line); border-radius: 7px;
+  padding: 11px 15px; font-size: 15px; color: var(--ink-2);
+}
+.prose .reg-facts strong { color: var(--ink); }
+.prose .reg-source {
+  margin-top: 2em; background: #f6f9fc; border: 1px solid var(--line); border-radius: 7px;
+  padding: 2px 16px 12px; font-size: 15px;
+}
+.prose .reg-source h2 { border-top: 0; padding-top: 0; margin: .8em 0 .4em; font-size: 16px; }
+.prose .reg-source p { margin-bottom: .5em; }
+.prose .back-link { margin-top: 2em; padding-top: 1em; border-top: 1px solid var(--line-2); font-size: 15px; }

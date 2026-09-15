@@ -35,4 +35,25 @@ const procurement = defineCollection({
   }),
 });
 
-export const collections = { articles, pages, procurement };
+// Regulatory Watch items. The file name is the address:
+// virginia-tier4.md -> /regulation/virginia-tier4
+//   headline  short title used on lists (full `title` is used on the item's own page)
+//   summary   one-paragraph summary used on lists
+//   citation  primary source shown on lists, next to its source-type marker
+//   order     position on the list: 1 is first
+const regulation = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    headline: z.string(),
+    jurisdiction: z.string(),
+    jurisdictionType: z.enum(['state', 'federal']),
+    status: z.string(),
+    summary: z.string(),
+    citation: z.string(),
+    sourceType: z.enum(['R', 'P', 'V', 'G']).default('G'),
+    order: z.number(),
+  }),
+});
+
+export const collections = { articles, pages, procurement, regulation };
