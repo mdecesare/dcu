@@ -7,3 +7,9 @@
   to = "https://datacenterupdate.com/:splat"
   status = 301
   force = true
+
+# The old Topics page now sends visitors to the Background articles list
+[[redirects]]
+  from = "/topics"
+  to = "/articles"
+  status = 301

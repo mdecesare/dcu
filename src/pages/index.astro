@@ -54,7 +54,9 @@ const eyeIcon = '<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><ci
 const checkIcon = '<path d="M20 6L9 17l-5-5"/>';
 const arrowIcon = '<path d="M5 12h14M13 6l6 6-6 6"/>';
 ---
-<Base title="DataCenterUpdate" description="Enterprise data center market intelligence: equipment lead times, regulation and power developments, with the source behind every number.">
+<Base title="DataCenterUpdate" description={showPower
+  ? 'Enterprise data center market intelligence: equipment lead times, regulation and power developments, with the source behind every number.'
+  : 'Enterprise data center market intelligence: equipment lead times and regulation, with the source behind every number.'}>
 
   <!-- Hero -->
   <section class="hero">
@@ -65,7 +67,9 @@ const arrowIcon = '<path d="M5 12h14M13 6l6 6-6 6"/>';
           Independent &middot; source-transparent
         </p>
         <h1>What's changing in the enterprise data center market?</h1>
-        <p class="lede">Equipment lead times, regulation, and power developments that affect your next project — with the source and the equipment class behind every number.</p>
+        <p class="lede">{showPower
+          ? 'Equipment lead times, regulation, and power developments that affect your next project — with the source and the equipment class behind every number.'
+          : 'Equipment lead times and regulation that affect your next project — with the source and the equipment class behind every number.'}</p>
         <div class="hero-btns">
           <a class="btn" href="/procurement">See the latest</a>
           <a class="btn btn-ghost" href="/methodology">How we source this</a>

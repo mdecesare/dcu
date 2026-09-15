@@ -21,6 +21,12 @@ export const siteSettings = {
   showSubscribe: false,
   subscribeFormUrl: '',
 
+  // Email addresses allowed to be clickable links anywhere on the site.
+  // Leave an address out until its inbox is confirmed to deliver — it then shows
+  // as plain text. Example once confirmed:
+  //   confirmedEmailAddresses: ['corrections@datacenterupdate.com', 'hello@datacenterupdate.com'],
+  confirmedEmailAddresses: [] as string[],
+
   // Procurement Pulse sections shown on the homepage, in this order.
   // Each name must match a ## heading in the latest Pulse edition exactly.
   homepageProcurementSections: ['Transformers', 'Generators', 'Medium-voltage switchgear'],
