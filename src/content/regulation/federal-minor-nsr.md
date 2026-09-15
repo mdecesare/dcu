@@ -1,10 +1,10 @@
 ---
 title: "Federal: EPA proposes giving states discretion over minor NSR public participation"
-headline: "EPA proposes state discretion over minor NSR public participation"
+headline: "EPA proposes giving states discretion over minor NSR public participation"
 jurisdiction: "Federal"
 jurisdictionType: federal
 status: "Proposed"
-summary: "Would remove the federal minimum requirement and leave public participation decisions to state and local agencies. Comments closed 21 August. The proposal has not been finalized and does not change state requirements on its own."
+summary: "EPA has proposed removing the federal minimum public participation requirement for minor New Source Review permitting and leaving those decisions to state and local agencies. The comment period closed 21 August 2026. It has not been finalized. If finalized, the rule removes a federal floor. It does not change any state's requirements on its own. Nothing has changed for any permit applicant."
 citation: "91 FR 41591 · Docket EPA-HQ-OAR-2025-1212"
 sourceType: G
 order: 3

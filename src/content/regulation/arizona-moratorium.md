@@ -1,10 +1,10 @@
 ---
 title: "Arizona: three-year moratorium on new data center tax incentive applications"
-headline: "Three-year moratorium on new data center incentive applications"
+headline: "Three-year moratorium on new data center tax incentive applications"
 jurisdiction: "Arizona"
 jurisdictionType: state
 status: "Enacted"
-summary: "The Arizona Commerce Authority may not accept applications for a new computer data center from 1 July 2026 through 30 June 2029. Existing certifications remain in effect."
+summary: "HB 4168 bars the Arizona Commerce Authority from accepting applications for a new computer data center from 1 July 2026 through 30 June 2029, and provides that no new computer data center can qualify for the tax relief under A.R.S. § 41-1519 during that period. Arizona's general effective date for 2026 session legislation is 12 September 2026, but the moratorium provision applies retroactively to 1 July 2026. Existing certifications remain in effect absent specified revocation."
 citation: "Arizona HB 4168, Chapter 140 · A.R.S. § 41-1519"
 sourceType: G
 order: 2
