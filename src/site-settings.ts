@@ -25,7 +25,8 @@ export const siteSettings = {
   // Leave an address out until its inbox is confirmed to deliver — it then shows
   // as plain text. Example once confirmed:
   //   confirmedEmailAddresses: ['corrections@datacenterupdate.com', 'hello@datacenterupdate.com'],
-  confirmedEmailAddresses: [] as string[],
+  // Confirmed 2026-09-15: both tested from an outside account, forwarding to the DCU inbox.
+  confirmedEmailAddresses: ['hello@datacenterupdate.com', 'corrections@datacenterupdate.com'] as string[],
 
   // Procurement Pulse sections shown on the homepage, in this order.
   // Each name must match a ## heading in the latest Pulse edition exactly.
