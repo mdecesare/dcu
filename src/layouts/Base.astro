@@ -93,4 +93,12 @@ const isActive = (href: string) => href === '/' ? path === '/' : path === href |
   @media (max-width: 480px) {
     .mark { font-size: 23px; }
   }
+
+  /* Phones: the five menu items wrap onto two lines so none are hidden off-screen */
+  @media (max-width: 639px) {
+    nav { overflow-x: visible; }
+    .nav-in { flex-wrap: wrap; white-space: normal; min-width: 0; padding: 0 4px; }
+    nav a { padding: 10px 12px; white-space: nowrap; }
+    nav a:first-child { margin-left: 0; }
+  }
 </style>
