@@ -18,8 +18,8 @@ export const siteSettings = {
   // Homepage newsletter signup band.
   // Stays hidden until a newsletter service is chosen AND its signup form
   // address is pasted into subscribeFormUrl below.
-  showSubscribe: false,
-  subscribeFormUrl: '',
+  showSubscribe: true,
+  subscribeFormUrl: 'https://buttondown.com/api/emails/embed-subscribe/DataCenterUpdate',
 
   // Email addresses allowed to be clickable links anywhere on the site.
   // Leave an address out until its inbox is confirmed to deliver — it then shows
