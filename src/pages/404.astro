@@ -1,0 +1,52 @@
+---
+// Shown by Netlify for any address that doesn't exist (built as dist/404.html).
+import Base from '../layouts/Base.astro';
+import NextSteps from '../components/NextSteps.astro';
+import { Image } from 'astro:assets';
+import serverRoom from '../assets/404-server-room.png';
+---
+<Base title="Page not found" description="The page you requested could not be found.">
+  <section class="page-head">
+    <div class="wrap">
+      <h1>Page not found</h1>
+      <p class="lede">The page you requested couldn't be found. It may have moved, or the address may be mistyped.</p>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="panel nf">
+      <!-- Links come first in the page so they are the first thing on phones -->
+      <div class="nf-ways">
+        <NextSteps label="Where to go instead" />
+      </div>
+
+      <figure class="nf-figure">
+        <Image
+          src={serverRoom}
+          alt="Illustration: a small robot peeks around a computer monitor in a data center aisle. The screen reads “404 — This page wandered off into the server room.”"
+          widths={[480, 800, 1200]}
+          sizes="(min-width: 820px) 600px, calc(100vw - 72px)"
+          format="webp"
+          quality={80}
+          loading="eager"
+        />
+        <figcaption>This illustration was made with AI and has two spelling mistakes. We left them in: a good reminder to check before you trust. Can you spot both?</figcaption>
+      </figure>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .nf { display: grid; gap: 20px; max-width: 1000px; }
+
+  .nf-figure img { display: block; width: 100%; height: auto; border-radius: 6px; border: 1px solid var(--line); }
+  figcaption { font-size: 13.5px; color: var(--ink-2); margin-top: 8px; }
+
+  /* Wider screens: illustration on the left, links on the right, both visible at once */
+  @media (min-width: 820px) {
+    .nf { grid-template-columns: minmax(0, 1.7fr) minmax(230px, 1fr); align-items: start; }
+    .nf-figure { grid-column: 1; grid-row: 1; }
+    .nf-ways { grid-column: 2; grid-row: 1; }
+    .nf-ways :global(.ways a) { flex-direction: column; gap: 2px; }
+  }
+</style>

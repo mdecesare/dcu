@@ -1,84 +1,28 @@
 ---
-import Base from '../layouts/Base.astro';
+import ContentPage from '../layouts/ContentPage.astro';
+import { getEntry } from 'astro:content';
+import { siteSettings } from '../site-settings';
+
+const entry = await getEntry('pages', 'about');
+if (!entry) throw new Error('Missing src/content/pages/about.md');
+const { Content } = await entry.render();
+
+// Closing line. "Subscribe" only appears once a newsletter form is live;
+// the address only becomes a link once listed in confirmedEmailAddresses.
+const sourceAddress = 'hello@datacenterupdate.com';
+const addressConfirmed = siteSettings.confirmedEmailAddresses.map((a) => a.toLowerCase()).includes(sourceAddress);
+const subscribeLive = siteSettings.showSubscribe && siteSettings.subscribeFormUrl.trim() !== '';
 ---
-<Base title="About" description="About DataCenterUpdate and Mike DeCesare.">
+<ContentPage title={entry.data.title} description={entry.data.description}>
+  <Content />
 
-  <div class="about">
-    <h1>About</h1>
+  <hr />
 
-    <div class="body">
-      <p>
-        DataCenterUpdate is an independent, vendor-neutral publication focused on the practical infrastructure questions facing enterprise data center owners and operators.
-      </p>
-      <p>
-        The topics here — power, cooling, AI readiness, digital twins, operations, and strategy — are chosen because they shape the decisions that matter before serious capital gets committed.
-      </p>
-      <p>
-        DataCenterUpdate does not publish sponsored posts or advertorial content. Vendor references, when included, are used for context — not promotion.
-      </p>
-      <p>
-        The site is written by <a href="https://www.linkedin.com/in/michaeldecesare/" target="_blank" rel="noopener">Mike DeCesare</a>, who has spent more than 30 years working around enterprise data center design, documentation, planning, and infrastructure discussions. That experience shapes the lens of this site: practical, skeptical of hype, and focused on what existing facilities can actually support.
-      </p>
-    </div>
-
-    <div class="related">
-      <div class="related-label">Related</div>
-      <a href="https://datacenter911.com" target="_blank" rel="noopener" class="related-link">
-        <div class="related-name">DataCenter911</div>
-        <div class="related-desc">AI infrastructure readiness assessment tool for enterprise data center operators.</div>
-      </a>
-    </div>
-  </div>
-
-</Base>
-
-<style>
-  .about {
-    max-width: 640px;
-    margin: 0 auto;
-    padding: 3rem 2rem 5rem;
-  }
-  h1 {
-    font-size: 22px;
-    font-weight: 600;
-    letter-spacing: -0.02em;
-    color: var(--color-text);
-    margin-bottom: 2rem;
-    padding-bottom: 1rem;
-    border-bottom: 0.5px solid var(--color-border);
-  }
-  .body p {
-    font-size: 16px;
-    line-height: 1.75;
-    color: var(--color-text);
-    margin-bottom: 1.25rem;
-  }
-  .body a {
-    color: var(--color-text);
-    border-bottom: 0.5px solid var(--color-amber);
-  }
-  .body a:hover { color: var(--color-amber); }
-  .related {
-    margin-top: 3rem;
-    padding-top: 1.5rem;
-    border-top: 0.5px solid var(--color-border);
-  }
-  .related-label {
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--color-amber);
-    margin-bottom: 0.75rem;
-  }
-  .related-link {
-    display: block;
-    padding: 0.875rem 1rem;
-    border: 0.5px solid var(--color-border);
-    border-radius: 6px;
-    transition: border-color 0.15s;
-  }
-  .related-link:hover { border-color: var(--color-amber); }
-  .related-name { font-size: 14px; font-weight: 500; color: var(--color-text); margin-bottom: 0.25rem; }
-  .related-desc { font-size: 12px; color: var(--color-muted); }
-</style>
+  <p class="about-cta">
+    {subscribeLive
+      ? <Fragment><a href="/#subscribe"><strong>Subscribe for important DCU updates</strong></a>, or <strong>send us a source</strong></Fragment>
+      : <strong>Send us a source</strong>}
+    {' '}— a filing, dataset, or development you think we should be watching:{' '}
+    {addressConfirmed ? <a href={`mailto:${sourceAddress}`}>{sourceAddress}</a> : sourceAddress}
+  </p>
+</ContentPage>

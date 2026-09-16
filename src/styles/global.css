@@ -1,20 +1,143 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap');
-
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --font: 'IBM Plex Sans', sans-serif;
-  --color-text:     #1c2b3a;
-  --color-muted:    #4a5a6a;
-  --color-meta:     #546070;
-  --color-border:   #e8e6e0;
-  --color-bg:       #fafaf8;
-  --color-bg-white: #ffffff;
-  --color-amber:    #BA7517;
-  --color-hero-bg:  #FAEEDA;
+  /* Palette — from the concept mockup */
+  --navy:    #0b2440;
+  --navy-mid:#14395e;
+  --navy-dk: #071a2e;
+  --blue:    #1565c0;
+  --blue-dk: #0d47a1;
+  --blue-lt: #e8f0fa;
+  --page:    #f2f5f9;
+  --card:    #ffffff;
+  --ink:     #14202c;
+  --ink-2:   #52606e;
+  --ink-3:   #8a95a3;
+  --line:    #e2e8ef;
+  --line-2:  #eef2f6;
+  --amber:   #a97a06;
+  --amber-bg:#fdf7e6;
+  --amber-ln:#f0e3bf;
+  --green:   #2c6e3f;
+  --green-bg:#e9f4ec;
+  --red:     #b23b32;
+  --red-bg:  #fdedeb;
+  --sh: 0 1px 2px rgba(16,32,48,.05), 0 2px 8px rgba(16,32,48,.05);
+
+  /* Source-type marker colours: R, P, V, G */
+  --src-r: #3f7a52;
+  --src-p: #2d5f8f;
+  --src-v: #8a6d3b;
+  --src-g: #5a5470;
+
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  /* Older names still used by pages not yet rebuilt. Mapped onto the new
+     palette so nothing shows amber. Remove once every page is rebuilt. */
+  --color-text:     var(--ink);
+  --color-muted:    var(--ink-2);
+  --color-meta:     var(--ink-2);
+  --color-border:   var(--line);
+  --color-bg:       var(--page);
+  --color-bg-white: var(--card);
+  --color-amber:    var(--blue);
+  --color-hero-bg:  var(--blue-lt);
 }
 
-html { font-family: var(--font); background: var(--color-bg); color: var(--color-text); }
-body { min-height: 100vh; }
+html {
+  font-family: var(--font);
+  background: var(--page);
+  color: var(--ink);
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+}
+body { min-height: 100vh; display: flex; flex-direction: column; font-size: 16px; line-height: 1.55; }
+main { flex: 1; }
 a { color: inherit; text-decoration: none; }
+a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
 img { max-width: 100%; display: block; }
+
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px; }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+
+/* ---------- Page heading band and white panels ---------- */
+.page-head {
+  background: linear-gradient(180deg, var(--navy) 0%, var(--navy-dk) 100%);
+  color: #fff;
+  padding: 34px 0 38px;
+}
+.page-head h1 { font-size: 30px; line-height: 1.2; font-weight: 600; letter-spacing: -.4px; max-width: 32ch; }
+.page-head .lede { color: #bfd2e5; font-size: 16px; margin-top: 10px; max-width: 60ch; }
+.panel {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: var(--sh);
+  padding: 24px 19px;
+  margin-top: 24px;
+}
+.panel-reading { max-width: 780px; }
+@media (min-width: 640px) {
+  .page-head h1 { font-size: 36px; }
+  .panel { padding: 30px 34px; }
+}
+
+/* ---------- Source-type markers (R, P, V, G) ---------- */
+.cls {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 15px; height: 15px; border-radius: 50%;
+  font-size: 9.5px; font-weight: 700; line-height: 1; letter-spacing: 0;
+  color: #fff; flex: none; vertical-align: 1px; margin-right: 5px;
+  text-decoration: none;
+}
+a.cls:hover { text-decoration: none; box-shadow: 0 0 0 3px var(--blue-lt); }
+.c-r { background: var(--src-r); }
+.c-p { background: var(--src-p); }
+.c-v { background: var(--src-v); }
+.c-g { background: var(--src-g); }
+
+/* ---------- Long-form text from markdown (Methodology, About, reports) ---------- */
+.prose { font-size: 16.5px; line-height: 1.7; color: var(--ink); }
+.prose > :first-child,
+.prose > .article-body > :first-child { margin-top: 0; }
+.prose > .article-body > h2:first-child { padding-top: 0; border-top: 0; }
+.prose p, .prose ul, .prose ol, .prose table { margin: 0 0 1em; }
+.prose h2 {
+  font-size: 21px; line-height: 1.3; font-weight: 600; letter-spacing: -.25px; color: var(--navy);
+  margin: 1.9em 0 .6em; padding-top: 1.3em; border-top: 1px solid var(--line-2);
+}
+.prose h3 { font-size: 17px; font-weight: 600; margin: 1.5em 0 .5em; }
+.prose ul, .prose ol { padding-left: 1.4em; }
+.prose li { margin-bottom: .35em; }
+.prose strong { font-weight: 600; }
+.prose a:not(.cls) { color: var(--blue); text-decoration: underline; text-underline-offset: 2px; }
+.prose a:not(.cls):hover { color: var(--blue-dk); }
+.prose hr { border: 0; border-top: 1px solid var(--line); margin: 2em 0; }
+.prose h2, .prose [id] { scroll-margin-top: 16px; }
+
+/* Source-type definitions on the Methodology page */
+.prose .source-def {
+  background: #f6f9fc; border: 1px solid var(--line); border-radius: 7px;
+  padding: 12px 15px; margin: 0 0 10px; font-size: 15px; color: var(--ink-2);
+}
+.prose .source-def:target { border-color: var(--blue); box-shadow: 0 0 0 3px var(--blue-lt); }
+.source-def-name { display: flex; align-items: center; gap: 9px; font-size: 16px; font-weight: 600; color: var(--ink); margin-bottom: 3px; }
+.source-def-name .cls { width: 22px; height: 22px; font-size: 12px; margin: 0; }
+
+/* Regulatory Watch items */
+.prose .reg-facts {
+  background: #f6f9fc; border: 1px solid var(--line); border-radius: 7px;
+  padding: 11px 15px; font-size: 15px; color: var(--ink-2);
+}
+.prose .reg-facts strong { color: var(--ink); }
+.prose .reg-source {
+  margin-top: 2em; background: #f6f9fc; border: 1px solid var(--line); border-radius: 7px;
+  padding: 2px 16px 12px; font-size: 15px;
+}
+.prose .reg-source h2 { border-top: 0; padding-top: 0; margin: .8em 0 .4em; font-size: 16px; }
+.prose .reg-source p { margin-bottom: .5em; }
+.prose .back-link { margin-top: 2em; padding-top: 1em; border-top: 1px solid var(--line-2); font-size: 15px; }

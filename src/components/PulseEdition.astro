@@ -1,0 +1,149 @@
+---
+import Base from '../layouts/Base.astro';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  entry: CollectionEntry<'procurement'>;
+  latest: CollectionEntry<'procurement'>;
+}
+
+const { entry, latest } = Astro.props;
+const { Content, headings } = await entry.render();
+
+const isLatest = entry.slug === latest.slug;
+const permalink = `/procurement/${entry.slug}`;
+const sections = headings.filter((h) => h.depth === 2);
+---
+<Base title={entry.data.title} description={entry.data.description} canonical={permalink}>
+
+  <section class="pulse-head">
+    <div class="wrap">
+      <p class="kicker">{isLatest ? 'Latest edition' : 'Past edition'}</p>
+      <h1>{entry.data.title}</h1>
+      <p class="standfirst">{entry.data.standfirst}</p>
+    </div>
+  </section>
+
+  {!isLatest && (
+    <div class="wrap">
+      <p class="newer">A newer edition is available: <a href={`/procurement/${latest.slug}`}>{latest.data.title}</a></p>
+    </div>
+  )}
+
+  <div class="wrap pulse-grid">
+    <aside class="pulse-side">
+      <details class="toc toc-mobile">
+        <summary>In this edition</summary>
+        <ul>{sections.map((s) => <li><a href={`#${s.slug}`}>{s.text}</a></li>)}</ul>
+        <p class="permalink">Permanent link: <a href={permalink}>{permalink}</a></p>
+      </details>
+
+      <nav class="toc toc-desktop" aria-label="In this edition">
+        <p class="toc-title">In this edition</p>
+        <ul>{sections.map((s) => <li><a href={`#${s.slug}`}>{s.text}</a></li>)}</ul>
+        <p class="permalink">Permanent link to this edition<br /><a href={permalink}>{permalink}</a></p>
+      </nav>
+    </aside>
+
+    <div class="pulse">
+      <Content />
+    </div>
+  </div>
+
+</Base>
+
+<style>
+  .pulse-head { background: linear-gradient(180deg, var(--navy) 0%, var(--navy-dk) 100%); color: #fff; padding: 32px 0 36px; }
+  .kicker { font-size: 12px; letter-spacing: .09em; text-transform: uppercase; color: #8fb6de; font-weight: 600; margin-bottom: 10px; }
+  .pulse-head h1 { font-size: 28px; line-height: 1.2; font-weight: 600; letter-spacing: -.4px; margin-bottom: 12px; max-width: 24ch; }
+  .standfirst { color: #bfd2e5; font-size: 15px; max-width: 70ch; }
+
+  .newer { margin-top: 20px; background: var(--amber-bg); border: 1px solid var(--amber-ln); border-radius: 7px; padding: 11px 15px; font-size: 14.5px; color: #6b5200; }
+  .newer a { color: var(--blue-dk); font-weight: 600; text-decoration: underline; }
+
+  .pulse-grid { display: grid; gap: 16px; margin-top: 20px; }
+  .pulse-side { min-width: 0; }
+  .pulse { min-width: 0; }
+
+  .toc { background: var(--card); border: 1px solid var(--line); border-radius: 8px; box-shadow: var(--sh); font-size: 14px; }
+  .toc ul { list-style: none; }
+  .toc li a { display: block; padding: 5px 0; color: var(--blue-dk); }
+  .toc li a:hover { text-decoration: underline; }
+  .permalink { font-size: 12.5px; color: var(--ink-2); border-top: 1px solid var(--line-2); margin-top: 10px; padding-top: 10px; overflow-wrap: anywhere; }
+  .permalink a { color: var(--blue); }
+
+  .toc-mobile { padding: 0 15px; }
+  .toc-mobile summary { cursor: pointer; padding: 12px 0; font-weight: 600; color: var(--ink); }
+  .toc-mobile[open] { padding-bottom: 12px; }
+  .toc-desktop { display: none; }
+
+  @media (min-width: 640px) {
+    .pulse-head h1 { font-size: 34px; }
+  }
+  @media (min-width: 1040px) {
+    .pulse-grid { grid-template-columns: minmax(0, 1fr) 250px; gap: 24px; margin-top: 24px; }
+    .pulse-side { grid-column: 2; grid-row: 1; align-self: start; position: sticky; top: 16px; }
+    .pulse { grid-column: 1; grid-row: 1; }
+    .toc-mobile { display: none; }
+    .toc-desktop { display: block; padding: 16px 18px; }
+    .toc-title { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2); font-weight: 600; margin-bottom: 6px; }
+  }
+</style>
+
+<style is:global>
+  /* Content of an edition, laid out by src/plugins/rehype-procurement-layout.mjs */
+  .pulse { font-size: 15.5px; line-height: 1.6; color: var(--ink); }
+  .pulse a:not(.cls) { color: var(--blue); text-decoration: underline; text-underline-offset: 2px; }
+  .pulse strong { font-weight: 600; }
+  .pulse h2 { scroll-margin-top: 16px; }
+
+  .pulse-intro,
+  .pulse-section { background: var(--card); border: 1px solid var(--line); border-radius: 8px; box-shadow: var(--sh); margin-bottom: 18px; overflow: hidden; }
+
+  /* Intro: how to read the page */
+  .pulse-intro { padding: 16px 18px; color: var(--ink-2); }
+  .pulse-intro p + p { margin-top: 10px; }
+  .pulse-legend { display: block; background: #f6f9fc; border: 1px solid var(--line); border-radius: 6px; padding: 9px 12px; font-size: 14px; color: var(--ink); }
+
+  /* Section header */
+  .pulse-section > h2 { font-size: 17px; font-weight: 600; letter-spacing: -.15px; color: var(--ink); background: #f6f9fc; border-bottom: 1px solid var(--line); padding: 12px 18px; }
+  .pulse-body { padding: 4px 18px 16px; }
+
+  /* Equipment rows: class + source on the left, figure on the right. All three always visible. */
+  .pulse-table { display: block; width: 100%; border-collapse: collapse; }
+  .pulse-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
+  .pulse-table tbody { display: block; }
+  .pulse-table tr {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas: "class figure" "source figure";
+    column-gap: 16px; row-gap: 2px; align-items: center;
+    padding: 10px 0; border-bottom: 1px solid var(--line-2);
+  }
+  .pulse-table td { display: block; padding: 0; text-align: left !important; }
+  .pulse-table .col-class { grid-area: class; font-size: 14.5px; color: var(--ink); overflow-wrap: anywhere; }
+  .pulse-table .col-source { grid-area: source; font-size: 12.5px; color: var(--ink-2); }
+  .pulse-table .col-figure { grid-area: figure; font-size: 15.5px; font-weight: 600; white-space: nowrap; text-align: right !important; font-variant-numeric: tabular-nums; }
+
+  /* Very narrow screens: stack class, figure, source */
+  @media (max-width: 359px) {
+    .pulse-table tr { grid-template-columns: 1fr; grid-template-areas: "class" "figure" "source"; }
+    .pulse-table .col-figure { text-align: left !important; }
+  }
+
+  /* DCU interpretation — visibly separate from the sourced rows */
+  .dcu-note { margin-top: 14px; background: #f6f9fc; border-left: 3px solid var(--blue); border-radius: 0 5px 5px 0; padding: 10px 14px; font-size: 14px; color: var(--ink-2); }
+  .dcu-note strong:first-child { color: var(--blue-dk); }
+  .pulse-aside { margin-top: 10px; font-size: 13px; color: var(--ink-2); }
+  .pulse-coverage { margin-top: 12px; font-size: 13.5px; color: var(--ink-2); }
+
+  /* Findings */
+  .pulse-findings .pulse-body { padding-top: 14px; }
+  .pulse-findings p + p { margin-top: 12px; }
+
+  /* Methodology and limits — available, but quieter than the data */
+  .pulse-limits { background: #f6f9fc; box-shadow: none; }
+  .pulse-limits > h2 { font-size: 15px; background: transparent; }
+  .pulse-limits .pulse-body { padding-top: 12px; font-size: 14px; color: var(--ink-2); }
+  .pulse-limits p + p { margin-top: 10px; }
+</style>

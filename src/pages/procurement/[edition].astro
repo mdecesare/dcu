@@ -1,0 +1,16 @@
+---
+// Permanent address for each edition, e.g. /procurement/q3-2026
+import PulseEdition from '../../components/PulseEdition.astro';
+import { getEditions } from '../../lib/procurement';
+
+export async function getStaticPaths() {
+  const editions = await getEditions();
+  return editions.map((entry) => ({
+    params: { edition: entry.slug },
+    props: { entry, latest: editions[0] },
+  }));
+}
+
+const { entry, latest } = Astro.props;
+---
+<PulseEdition entry={entry} latest={latest} />

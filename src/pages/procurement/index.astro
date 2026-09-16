@@ -1,0 +1,8 @@
+---
+// /procurement always shows the newest edition.
+import PulseEdition from '../../components/PulseEdition.astro';
+import { getEditions } from '../../lib/procurement';
+
+const [latest] = await getEditions();
+---
+<PulseEdition entry={latest} latest={latest} />

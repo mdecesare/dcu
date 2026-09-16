@@ -1,0 +1,21 @@
+---
+import Base from '../../layouts/Base.astro';
+import RegItem from '../../components/RegItem.astro';
+import { getRegulationItems } from '../../lib/regulation';
+
+const items = await getRegulationItems();
+---
+<Base title="Regulatory Watch" description="Developments affecting where and how data centers get built.">
+  <section class="page-head">
+    <div class="wrap">
+      <h1>Regulatory Watch</h1>
+      <p class="lede">Developments affecting where and how data centers get built.</p>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="panel panel-reading">
+      {items.map((item) => <RegItem item={item} />)}
+    </div>
+  </div>
+</Base>

@@ -1,0 +1,55 @@
+---
+// Where Buttondown sends readers right after they submit the signup form.
+// Set in Buttondown as the subscription redirect URL: https://datacenterupdate.com/subscribe/check-email
+import Base from '../../layouts/Base.astro';
+import { Image } from 'astro:assets';
+import checkEmail from '../../assets/subscribe-check-email.png';
+---
+<Base title="Check your inbox" description="Confirm your DataCenterUpdate subscription." noindex>
+  <section class="page-head">
+    <div class="wrap">
+      <h1>Check your inbox</h1>
+      <p class="lede">You’re one click away from the enterprise data center updates that matter.</p>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="panel sub-status">
+      <div class="sub-text">
+        <p class="sub-body">We sent a confirmation email to the address you entered. Click the link in that email to finish subscribing.</p>
+        <p class="sub-help">If it doesn’t show up in a minute or two, check spam, promotions, or clutter. Sometimes even good data takes the scenic route.</p>
+        <p class="sub-links">
+          <a href="/">Back to DataCenterUpdate</a>
+          <span aria-hidden="true">·</span>
+          <a href="/#subscribe">Entered the wrong address? Sign up again</a>
+        </p>
+      </div>
+
+      <figure class="sub-figure">
+        <Image
+          src={checkEmail}
+          alt="A robot in a server room checking a monitor for a new message."
+          widths={[480, 800, 1200]}
+          sizes="(min-width: 820px) 560px, calc(100vw - 72px)"
+          format="webp"
+          quality={80}
+          loading="eager"
+        />
+      </figure>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .sub-status { display: grid; gap: 20px; max-width: 1000px; }
+  .sub-body { font-size: 17px; line-height: 1.6; color: var(--ink); }
+  .sub-help { font-size: 14.5px; line-height: 1.6; color: var(--ink-2); margin-top: 12px; }
+  .sub-links { display: flex; flex-wrap: wrap; gap: 6px 10px; font-size: 14.5px; margin-top: 18px; color: var(--ink-3); }
+  .sub-links a { color: var(--blue); text-decoration: underline; text-underline-offset: 2px; }
+  .sub-links a:hover { color: var(--blue-dk); }
+  .sub-figure img { display: block; width: 100%; height: auto; border-radius: 6px; border: 1px solid var(--line); }
+
+  @media (min-width: 820px) {
+    .sub-status { grid-template-columns: minmax(260px, 1fr) minmax(0, 1.4fr); align-items: center; gap: 28px; }
+  }
+</style>

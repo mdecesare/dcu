@@ -1,0 +1,25 @@
+---
+// One short "Power & resilience" or "What we're watching" item on the homepage.
+import type { CollectionEntry } from 'astro:content';
+import SourceMark from './SourceMark.astro';
+import { smartQuotes } from '../lib/typography';
+
+interface Props {
+  item: CollectionEntry<'power'> | CollectionEntry<'watching'>;
+}
+
+const { title, summary, citation, sourceType } = Astro.props.item.data;
+---
+<article class="brief">
+  <h3>{smartQuotes(title)}</h3>
+  <p class="brief-sum">{smartQuotes(summary)}</p>
+  {citation && <p class="cite">{sourceType && <SourceMark type={sourceType} />}{smartQuotes(citation)}</p>}
+</article>
+
+<style>
+  .brief { border-top: 1px solid var(--line-2); padding-top: 13px; margin-top: 13px; }
+  .brief:first-of-type { border-top: 0; padding-top: 0; margin-top: 0; }
+  h3 { font-size: 15px; line-height: 1.35; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+  .brief-sum { font-size: 13.5px; color: var(--ink-2); }
+  .cite { display: flex; align-items: center; flex-wrap: wrap; font-size: 12.5px; color: var(--ink-2); margin-top: 6px; }
+</style>

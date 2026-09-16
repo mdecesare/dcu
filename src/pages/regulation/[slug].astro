@@ -1,0 +1,35 @@
+---
+import ContentPage from '../../layouts/ContentPage.astro';
+import { getRegulationItems } from '../../lib/regulation';
+
+export async function getStaticPaths() {
+  const items = await getRegulationItems();
+  return items.map((item) => ({ params: { slug: item.slug }, props: { item } }));
+}
+
+const { item } = Astro.props;
+const { Content } = await item.render();
+const { title, summary, jurisdiction, status } = item.data;
+---
+<ContentPage title={title} description={summary}>
+  <p slot="kicker" class="reg-kicker">
+    <span>Regulatory Watch · {jurisdiction}</span>
+    <span class="status-chip">{status}</span>
+  </p>
+
+  <Content />
+
+  <p class="back-link"><a href="/regulation">&larr; All regulatory items</a></p>
+</ContentPage>
+
+<style>
+  .reg-kicker {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 12px;
+    font-size: 12px; letter-spacing: .09em; text-transform: uppercase; color: #8fb6de; font-weight: 600;
+  }
+  .status-chip {
+    font-size: 12.5px; letter-spacing: 0; text-transform: none; color: #fff;
+    background: rgba(255, 255, 255, .12); border: 1px solid rgba(255, 255, 255, .28);
+    padding: 2px 9px; border-radius: 3px;
+  }
+</style>

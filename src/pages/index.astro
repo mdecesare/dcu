@@ -1,232 +1,344 @@
 ---
 import Base from '../layouts/Base.astro';
+import SourceMark from '../components/SourceMark.astro';
+import RegItem from '../components/RegItem.astro';
+import BriefItem from '../components/BriefItem.astro';
 import { getCollection } from 'astro:content';
+import { siteSettings } from '../site-settings';
+import { getEditions } from '../lib/procurement';
+import { getRegulationItems } from '../lib/regulation';
+import { parsePulseSections } from '../lib/pulse-sections';
+import { SOURCE_TYPES } from '../lib/source-types.mjs';
 
-const allArticles = await getCollection('articles');
-const sorted = allArticles.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
-const featured = sorted.find(a => a.data.featured) || sorted[0];
+// Procurement Pulse: sections come straight from the latest edition's markdown.
+const [latest] = await getEditions();
+const { headings } = await latest.render();
+const pulseSections = parsePulseSections(latest.body);
+const equipmentClassCount = pulseSections.filter((s) => s.rows.length > 0).length;
 
-const topicLabel: Record<string, string> = {
-  'power': 'Power',
-  'cooling': 'Cooling',
-  'ai-readiness': 'AI Readiness',
-  'digital-twins': 'Digital Twins',
-  'operations': 'Operations',
-  'strategy': 'Strategy',
+const equipment = siteSettings.homepageProcurementSections.map((title) => {
+  const section = pulseSections.find((s) => s.title === title);
+  if (!section || section.rows.length === 0) {
+    throw new Error(
+      `src/site-settings.ts lists "${title}" in homepageProcurementSections, but the latest Procurement Pulse ` +
+      `(src/content/procurement/${latest.id}) has no "## ${title}" section with rows.`
+    );
+  }
+  const slug = headings.find((h) => h.depth === 2 && h.text === title)?.slug;
+  return { ...section, href: slug ? `/procurement#${slug}` : '/procurement' };
+});
+
+// Regulatory Watch, Power & resilience, What we're watching
+const regItems = await getRegulationItems();
+const byOrder = (a: { data: { order: number } }, b: { data: { order: number } }) => a.data.order - b.data.order;
+const powerItems = (await getCollection('power')).sort(byOrder);
+const watchingItems = (await getCollection('watching')).sort(byOrder);
+
+const showPower = siteSettings.showPowerAndResilience && powerItems.length > 0;
+const showWatching = siteSettings.showWhatWereWatching && watchingItems.length > 0;
+const showSubscribe = siteSettings.showSubscribe && siteSettings.subscribeFormUrl.trim() !== '';
+const glanceCards = 2 + (showPower ? 1 : 0);
+const lowerPanels = (showPower ? 1 : 0) + (showWatching ? 1 : 0);
+
+const equipmentIcon: Record<string, string> = {
+  'Transformers': '<rect x="4" y="8" width="16" height="12" rx="2"/><path d="M8 8V5a4 4 0 018 0v3"/>',
+  'Medium-voltage switchgear': '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M9 4v16"/>',
+  'Low-voltage switchgear': '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M9 4v16"/>',
+  'Generators': '<rect x="2" y="7" width="20" height="10" rx="2"/><path d="M6 7V5M18 7V5M6 12h4M14 12h4"/>',
+  'UPS': '<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M11 16h2"/>',
 };
-
-const topicIcon: Record<string, string> = {
-  'power': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>`,
-  'cooling': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/></svg>`,
-  'ai-readiness': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="2" x2="9" y2="4"/><line x1="15" y1="2" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="22"/><line x1="15" y1="20" x2="15" y2="22"/><line x1="2" y1="9" x2="4" y2="9"/><line x1="2" y1="15" x2="4" y2="15"/><line x1="20" y1="9" x2="22" y2="9"/><line x1="20" y1="15" x2="22" y2="15"/></svg>`,
-  'digital-twins': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="12" r="5"/><circle cx="16" cy="12" r="5"/></svg>`,
-  'operations': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="9" y1="7" x2="15" y2="7"/><line x1="9" y1="11" x2="15" y2="11"/><line x1="9" y1="15" x2="13" y2="15"/></svg>`,
-  'strategy': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/><line x1="5" y1="19" x2="19" y2="19"/></svg>`,
-};
-
-const row1Topics = ['power', 'cooling', 'ai-readiness'];
-const row2Topics = ['digital-twins', 'operations', 'strategy'];
-
-function latestForTopic(topic: string) {
-  return sorted.filter(a => a.data.topic === topic)[0];
-}
+const boxIcon = '<path d="M21 16V8l-9-5-9 5v8l9 5z"/><path d="M3.3 7.5L12 12.5l8.7-5"/><path d="M12 12.5V22"/>';
+const docIcon = '<path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/>';
+const boltIcon = '<path d="M13 2L4.5 13H12l-1 9 8.5-11H12z"/>';
+const eyeIcon = '<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/>';
+const checkIcon = '<path d="M20 6L9 17l-5-5"/>';
+const arrowIcon = '<path d="M5 12h14M13 6l6 6-6 6"/>';
 ---
-<Base title="DataCenterUpdate" description="Practical infrastructure insight for enterprise data center owners.">
+<Base title="DataCenterUpdate" description={showPower
+  ? 'Enterprise data center market intelligence: equipment lead times, regulation and power developments, with the source behind every number.'
+  : 'Enterprise data center market intelligence: equipment lead times and regulation, with the source behind every number.'}>
 
+  <!-- Hero -->
   <section class="hero">
-    <h1>Practical AI/HPC infrastructure insight for enterprise data centers</h1>
-    <p>Helping IT, facilities, and infrastructure leaders understand what existing facilities can actually support before they build, upgrade, or migrate.</p>
+    <div class="wrap hero-grid">
+      <div>
+        <p class="kicker">
+          <svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.4 6.9H21l-5.4 4.2 2 6.9-5.6-4.3-5.6 4.3 2-6.9L3 8.9h6.6z" /></svg>
+          Independent &middot; source-transparent
+        </p>
+        <h1>What's changing in the enterprise data center market?</h1>
+        <p class="lede">{showPower
+          ? 'Equipment lead times, regulation, and power developments that affect your next project — with the source and the equipment class behind every number.'
+          : 'Equipment lead times and regulation that affect your next project — with the source and the equipment class behind every number.'}</p>
+        <div class="hero-btns">
+          <a class="btn" href="/procurement">See the latest</a>
+          <a class="btn btn-ghost" href="/methodology">How we source this</a>
+        </div>
+      </div>
+      <div class="claims">
+        <h2>Why another data center site?</h2>
+        <ul>
+          <li><svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true" set:html={checkIcon} /><span><b>Enterprise scale.</b> Most published figures describe hyperscale campuses.</span></li>
+          <li><svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true" set:html={checkIcon} /><span><b>Source shown.</b> Who said it, when, and what they measured.</span></li>
+          <li><svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true" set:html={checkIcon} /><span><b>Original sources.</b> Primary records wherever available.</span></li>
+          <li><svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true" set:html={checkIcon} /><span><b>Independent.</b> DCU does not sell the equipment it covers.</span></li>
+        </ul>
+      </div>
+    </div>
   </section>
 
-  {featured && (
-    <section class="featured">
-      <div class="featured-label">
-        <span class="feat-icon-circle">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        </span>
-        <span class="feat-label-text">Featured</span>
+  <!-- At a glance -->
+  <section class="band">
+    <div class="wrap">
+      <h2>At a glance</h2>
+      <div class="glance" style={`--cards:${glanceCards}`}>
+        <div class="gc">
+          <p class="gc-h"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" set:html={boxIcon} /><span>Equipment lead times</span></p>
+          <p>{latest.data.edition} &middot; {latest.data.standfirst}</p>
+          <a href="/procurement">Procurement Pulse <svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true" set:html={arrowIcon} /></a>
+        </div>
+        <div class="gc">
+          <p class="gc-h"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" set:html={docIcon} /><span>Regulation</span></p>
+          <p>{regItems.map((item) => `${item.data.jurisdiction}: ${item.data.status}`).join(' · ')}</p>
+          <a href="/regulation">Regulatory Watch <svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true" set:html={arrowIcon} /></a>
+        </div>
+        {showPower && (
+          <div class="gc">
+            <p class="gc-h"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" set:html={boltIcon} /><span>Power &amp; resilience</span></p>
+            <p>{powerItems.slice(0, 2).map((item) => item.data.title).join(' · ')}</p>
+            <a href="#power">Power &amp; resilience <svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true" set:html={arrowIcon} /></a>
+          </div>
+        )}
       </div>
-      <a href={`/articles/${featured.slug}`} class="featured-title">{featured.data.title}</a>
-      <p class="featured-desc">{featured.data.summary}</p>
-      <div class="featured-meta">{featured.data.type} · {featured.data.readtime} min read</div>
+    </div>
+  </section>
+
+  <div class="wrap home-main">
+    <div class="cols">
+
+      <!-- Procurement Pulse -->
+      <section class="panel" id="procurement">
+        <div class="panel-h">
+          <svg class="ico ico-l" viewBox="0 0 24 24" aria-hidden="true" set:html={boxIcon} />
+          <h2>Procurement pulse</h2>
+        </div>
+        <p class="sub">{latest.data.edition} &middot; {latest.data.standfirst}. We show what each source says and what it measured, rather than averaging them into one number.</p>
+
+        {equipment.map((section) => (
+          <div class="eq">
+            <div class="eq-h">
+              <h3>
+                <svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true" set:html={equipmentIcon[section.title] ?? boxIcon} />
+                <a href={section.href}>{section.title}</a>
+              </h3>
+            </div>
+            <div class="eq-b">
+              <table class="rows" role="table">
+                <thead role="rowgroup"><tr role="row"><th role="columnheader">Class</th><th role="columnheader">Lead time</th><th role="columnheader">Source</th></tr></thead>
+                <tbody role="rowgroup">
+                  {section.rows.map((row) => (
+                    <tr role="row">
+                      <td role="cell" class="col-class">{row.cls}</td>
+                      <td role="cell" class="col-figure">{row.figure}</td>
+                      <td role="cell" class="col-source"><SourceMark type={row.sourceType} />{row.source}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              {section.notesHtml.map((note) => <p class="take" set:html={note} />)}
+            </div>
+          </div>
+        ))}
+
+        <p class="more"><a href="/procurement">See all {equipmentClassCount} equipment classes in the full edition <svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true" set:html={arrowIcon} /></a></p>
+
+        <div class="why">
+          <svg class="ico ico-l" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 22h4" /><path d="M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z" /></svg>
+          <div>
+            <h3>How to read these numbers</h3>
+            <p>Every figure keeps its source, its date, and the population it measures. We never average across source types, and we never average across equipment classes.</p>
+            <ul class="legend">
+              {(Object.keys(SOURCE_TYPES) as Array<'R' | 'P' | 'V' | 'G'>).map((letter) => (
+                <li><SourceMark type={letter} /><span><strong>{SOURCE_TYPES[letter].name}</strong> — {SOURCE_TYPES[letter].legend}</span></li>
+              ))}
+            </ul>
+            <p class="why-link"><a href="/methodology">Full methodology</a></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Regulatory Watch -->
+      <section class="panel" id="regulation">
+        <div class="panel-h">
+          <svg class="ico ico-l" viewBox="0 0 24 24" aria-hidden="true" set:html={docIcon} />
+          <h2>Regulatory watch</h2>
+        </div>
+        <p class="sub">Developments affecting where and how data centers get built.</p>
+        {regItems.map((item) => <RegItem item={item} headingLevel="h3" />)}
+        <p class="more more-reg"><a href="/regulation">All regulatory items <svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true" set:html={arrowIcon} /></a></p>
+      </section>
+
+    </div>
+
+    <!-- Power & resilience and What we're watching: switched in src/site-settings.ts -->
+    {lowerPanels > 0 && (
+      <div class="lower" style={`--cols:${lowerPanels}`}>
+        {showPower && (
+          <section class="panel" id="power">
+            <div class="panel-h">
+              <svg class="ico ico-l" viewBox="0 0 24 24" aria-hidden="true" set:html={boltIcon} />
+              <h2>Power &amp; resilience</h2>
+            </div>
+            <p class="sub">What your realistic options are.</p>
+            {powerItems.map((item) => <BriefItem item={item} />)}
+          </section>
+        )}
+        {showWatching && (
+          <section class="panel" id="watching">
+            <div class="panel-h">
+              <svg class="ico ico-l" viewBox="0 0 24 24" aria-hidden="true" set:html={eyeIcon} />
+              <h2>What we're watching</h2>
+            </div>
+            <p class="sub">Developments worth monitoring but not yet mature enough to publish as findings.</p>
+            {watchingItems.map((item) => <BriefItem item={item} />)}
+          </section>
+        )}
+      </div>
+    )}
+  </div>
+
+  <!-- Newsletter signup: switched in src/site-settings.ts -->
+  {showSubscribe && (
+    <section class="sub-band" id="subscribe">
+      <div class="wrap sub-in">
+        <div class="sub-t">
+          <svg class="ico ico-l" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7l9 6 9-6" /><rect x="3" y="5" width="18" height="14" rx="2" /></svg>
+          <div>
+            <h2>The important changes, when they matter.</h2>
+            <p>{showPower ? 'Regulation, procurement, and power. Sourced and verified.' : 'Regulation and procurement. Sourced and verified.'}</p>
+          </div>
+        </div>
+        <form class="form" action={siteSettings.subscribeFormUrl} method="post">
+          <input type="email" name="email" placeholder="you@company.com" aria-label="Email address" autocomplete="email" required />
+          <input type="hidden" name="embed" value="1" />
+          <button class="btn" type="submit">Subscribe</button>
+        </form>
+      </div>
     </section>
   )}
-
-  <div class="row-label">Core Infrastructure</div>
-  <div class="grid">
-    {row1Topics.map(topic => {
-      const article = latestForTopic(topic);
-      return (
-        <div class="card">
-          <div class="card-tag">
-            <span class="tag-icon" set:html={topicIcon[topic]} />
-            <span class="tag-text">{topicLabel[topic]}</span>
-          </div>
-          {article ? (
-            <>
-              <a href={`/articles/${article.slug}`} class="card-title">{article.data.title}</a>
-              <div class="card-meta">{article.data.type} · {article.data.readtime} min read</div>
-            </>
-          ) : (
-            <>
-              <div class="card-title card-empty">Coming soon</div>
-              <div class="card-meta">&nbsp;</div>
-            </>
-          )}
-        </div>
-      );
-    })}
-  </div>
-
-  <div class="row-label">Operations & Strategy</div>
-  <div class="grid grid-last">
-    {row2Topics.map(topic => {
-      const article = latestForTopic(topic);
-      return (
-        <div class="card">
-          <div class="card-tag">
-            <span class="tag-icon" set:html={topicIcon[topic]} />
-            <span class="tag-text">{topicLabel[topic]}</span>
-          </div>
-          {article ? (
-            <>
-              <a href={`/articles/${article.slug}`} class="card-title">{article.data.title}</a>
-              <div class="card-meta">{article.data.type} · {article.data.readtime} min read</div>
-            </>
-          ) : (
-            <>
-              <div class="card-title card-empty">Coming soon</div>
-              <div class="card-meta">&nbsp;</div>
-            </>
-          )}
-        </div>
-      );
-    })}
-  </div>
 
 </Base>
 
 <style>
-  .hero {
-    padding: 2.5rem 2rem;
-    background: var(--color-hero-bg);
-    border-bottom: 0.5px solid var(--color-border);
+  .ico { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+  .ico-s { width: 15px; height: 15px; }
+  .ico-l { width: 25px; height: 25px; }
+
+  .btn { display: inline-flex; align-items: center; gap: 7px; background: var(--blue); color: #fff; font-size: 14px; font-weight: 600; padding: 10px 18px; border-radius: 5px; border: 0; cursor: pointer; font-family: inherit; }
+  .btn:hover { background: var(--blue-dk); }
+  .btn-ghost { background: rgba(255, 255, 255, .06); border: 1px solid rgba(255, 255, 255, .45); }
+  .btn-ghost:hover { background: rgba(255, 255, 255, .16); }
+
+  /* Hero */
+  .hero { background: linear-gradient(180deg, var(--navy) 0%, var(--navy-dk) 100%); color: #fff; padding: 40px 0 46px; }
+  .hero-grid { display: grid; gap: 30px; }
+  .kicker { display: inline-flex; align-items: center; gap: 7px; font-size: 12px; letter-spacing: .09em; color: #8fb6de; text-transform: uppercase; margin-bottom: 12px; font-weight: 600; }
+  .hero h1 { font-size: 31px; line-height: 1.2; margin-bottom: 15px; font-weight: 600; max-width: 19ch; letter-spacing: -.4px; }
+  .lede { color: #bfd2e5; max-width: 56ch; margin-bottom: 24px; font-size: 16.5px; }
+  .hero-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+  .claims { background: rgba(255, 255, 255, .055); border: 1px solid rgba(255, 255, 255, .13); border-radius: 8px; padding: 19px 21px; }
+  .claims h2 { font-size: 16px; margin-bottom: 12px; font-weight: 600; }
+  .claims ul { list-style: none; }
+  .claims li { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; color: #cfe0ef; padding: 6px 0; }
+  .claims li svg { color: #5da9f0; margin-top: 3px; }
+  .claims li b { color: #fff; font-weight: 600; }
+
+  /* At a glance */
+  .band { background: var(--page); border-bottom: 1px solid var(--line); padding: 26px 0; }
+  .band h2 { font-size: 20px; margin-bottom: 16px; font-weight: 600; letter-spacing: -.2px; }
+  .glance { display: grid; gap: 12px; grid-template-columns: 1fr; }
+  .gc { border: 1px solid var(--line); border-radius: 8px; padding: 16px 17px; background: var(--card); box-shadow: var(--sh); }
+  .gc-h { display: flex; gap: 9px; align-items: center; margin-bottom: 7px; font-size: 14.5px; font-weight: 600; }
+  .gc-h svg { color: var(--blue); }
+  .gc p:not(.gc-h) { font-size: 13.5px; color: var(--ink-2); margin-bottom: 9px; }
+  .gc a, .more a { font-size: 13.5px; font-weight: 600; color: var(--blue); display: inline-flex; align-items: center; gap: 5px; }
+  .gc a:hover, .more a:hover { text-decoration: underline; }
+
+  /* Main panels */
+  .home-main { padding-top: 24px; }
+  .cols { display: grid; gap: 20px; grid-template-columns: minmax(0, 1fr); }
+  .cols .panel, .lower .panel { margin-top: 0; min-width: 0; }
+  .panel-h { display: flex; gap: 10px; align-items: center; margin-bottom: 5px; }
+  .panel-h svg { color: var(--blue); }
+  .panel-h h2 { font-size: 21px; font-weight: 600; letter-spacing: -.25px; }
+  .sub { font-size: 14px; color: var(--ink-2); margin-bottom: 18px; }
+
+  /* Equipment blocks */
+  .eq { border: 1px solid var(--line); border-radius: 7px; margin-bottom: 14px; overflow: hidden; }
+  .eq-h { background: #f6f9fc; padding: 11px 15px; border-bottom: 1px solid var(--line); }
+  .eq-h h3 { display: flex; align-items: center; gap: 8px; font-size: 15.5px; font-weight: 600; }
+  .eq-h h3 a:hover { text-decoration: underline; }
+  .eq-h svg { color: var(--ink-3); }
+  .eq-b { padding: 4px 15px 13px; }
+
+  /* Rows: class + source on the left, figure on the right. All three always visible. */
+  .rows { display: block; width: 100%; border-collapse: collapse; }
+  .rows thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; }
+  .rows tbody { display: block; }
+  .rows tr { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "class figure" "source figure"; column-gap: 16px; row-gap: 2px; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--line-2); }
+  .rows td { display: block; padding: 0; text-align: left; }
+  .col-class { grid-area: class; font-size: 14px; color: var(--ink); overflow-wrap: anywhere; }
+  .col-source { grid-area: source; display: flex; align-items: center; flex-wrap: wrap; font-size: 12.5px; color: var(--ink-2); }
+  .col-figure { grid-area: figure; font-size: 15px; font-weight: 600; white-space: nowrap; text-align: right !important; font-variant-numeric: tabular-nums; }
+  @media (max-width: 359px) {
+    .rows tr { grid-template-columns: 1fr; grid-template-areas: "class" "figure" "source"; }
+    .col-figure { text-align: left !important; }
   }
-  .hero h1 {
-    font-size: 24px;
-    font-weight: 600;
-    line-height: 1.25;
-    letter-spacing: -0.02em;
-    color: var(--color-text);
-    max-width: 560px;
-    margin-bottom: 0.75rem;
+
+  /* DCU note — interpretation, below the sourced rows */
+  .take { background: #f6f9fc; border-left: 3px solid var(--blue); border-radius: 0 5px 5px 0; padding: 10px 14px; margin-top: 12px; font-size: 13.5px; color: var(--ink-2); }
+  .take :global(strong) { color: var(--blue-dk); font-weight: 600; }
+  .take :global(a) { color: var(--blue); text-decoration: underline; }
+
+  .more { margin: 4px 0 18px; }
+  .more-reg { margin: 16px 0 0; }
+
+  /* How to read these numbers */
+  .why { display: flex; gap: 12px; background: var(--amber-bg); border: 1px solid var(--amber-ln); border-radius: 7px; padding: 15px 17px; }
+  .why > svg { color: var(--amber); margin-top: 2px; }
+  .why h3 { font-size: 15px; margin-bottom: 6px; font-weight: 600; color: #6b5200; }
+  .why p { font-size: 13.5px; color: #7a6220; }
+  .legend { list-style: none; display: grid; gap: 6px; font-size: 13px; color: var(--ink-2); margin: 10px 0; }
+  .legend li { display: flex; align-items: flex-start; }
+  .legend li :global(.cls) { margin-top: 3px; }
+  .legend strong { color: var(--ink); font-weight: 600; }
+  .why-link a { color: #8a6a08; font-weight: 600; text-decoration: underline; }
+
+  /* Lower panels */
+  .lower { display: grid; gap: 20px; margin-top: 20px; grid-template-columns: minmax(0, 1fr); }
+
+  /* Subscribe band */
+  .sub-band { background: linear-gradient(180deg, var(--navy-mid), var(--navy)); color: #fff; margin-top: 26px; padding: 34px 0; }
+  .sub-in { display: grid; gap: 20px; align-items: center; }
+  .sub-t { display: flex; gap: 14px; align-items: flex-start; }
+  .sub-t svg { color: #5da9f0; margin-top: 3px; }
+  .sub-band h2 { font-size: 21px; margin-bottom: 5px; font-weight: 600; }
+  .sub-band p { color: #bfd2e5; font-size: 14px; }
+  .form { display: flex; gap: 9px; flex-wrap: wrap; }
+  .form input { flex: 1 1 210px; padding: 12px 14px; border: 1px solid #3d5c7c; border-radius: 5px; font-size: 16px; background: #fff; color: var(--ink); min-width: 0; font-family: inherit; }
+
+  @media (min-width: 640px) {
+    .hero h1 { font-size: 36px; }
+    .glance { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
-  .hero p {
-    font-size: 14px;
-    color: #5a4a35;
-    max-width: 480px;
-    line-height: 1.65;
+  @media (min-width: 900px) {
+    .hero h1 { font-size: 40px; }
+    .hero-grid { grid-template-columns: 1.5fr 1fr; align-items: center; }
+    .glance { grid-template-columns: repeat(var(--cards), minmax(0, 1fr)); }
+    .lower { grid-template-columns: repeat(var(--cols), minmax(0, 1fr)); }
+    .sub-in { grid-template-columns: 1.3fr 1fr; }
   }
-  .featured {
-    padding: 1.5rem 2rem;
-    border-bottom: 0.5px solid var(--color-border);
-  }
-  .featured-label {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    margin-bottom: 0.5rem;
-  }
-  .feat-icon-circle {
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    background: var(--color-amber);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-  .feat-label-text {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--color-amber);
-  }
-  .featured-title {
-    display: block;
-    font-size: 19px;
-    font-weight: 600;
-    color: var(--color-text);
-    line-height: 1.3;
-    letter-spacing: -0.01em;
-    margin-bottom: 0.4rem;
-  }
-  .featured-title:hover { color: var(--color-amber); }
-  .featured-desc {
-    font-size: 13px;
-    color: var(--color-muted);
-    line-height: 1.6;
-    margin-bottom: 0.4rem;
-  }
-  .featured-meta {
-    font-size: 11px;
-    color: var(--color-meta);
-  }
-  .row-label {
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--color-amber);
-    padding: 0.875rem 2rem 0;
-  }
-  .grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    border-bottom: 0.5px solid var(--color-border);
-  }
-  .grid-last { border-bottom: none; }
-  .card {
-    padding: 0.875rem 1.5rem;
-    border-right: 0.5px solid var(--color-border);
-  }
-  .card:last-child { border-right: none; }
-  .card-tag {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    margin-bottom: 0.4rem;
-  }
-  .tag-icon {
-    width: 16px;
-    height: 16px;
-    flex-shrink: 0;
-    color: var(--color-amber);
-    display: flex;
-    align-items: center;
-  }
-  .tag-icon svg { width: 16px; height: 16px; }
-  .tag-text {
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--color-amber);
-  }
-  .card-title {
-    display: block;
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--color-text);
-    line-height: 1.4;
-    margin-bottom: 0.35rem;
-  }
-  a.card-title:hover { color: var(--color-amber); }
-  .card-empty { color: var(--color-meta); font-weight: 400; font-style: italic; }
-  .card-meta {
-    font-size: 11px;
-    color: var(--color-meta);
+  @media (min-width: 1040px) {
+    .cols { grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); align-items: start; }
   }
 </style>
