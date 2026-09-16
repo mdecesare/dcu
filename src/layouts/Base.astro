@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-const { title = 'DataCenterUpdate', description = 'Enterprise data center market intelligence.', canonical } = Astro.props;
+const { title = 'DataCenterUpdate', description = 'Enterprise data center market intelligence.', canonical, noindex = false } = Astro.props;
 
 const navItems = [
   { href: '/', label: 'Home' },
@@ -21,6 +21,7 @@ const isActive = (href: string) => href === '/' ? path === '/' : path === href |
   <meta name="description" content={description} />
   <title>{title === 'DataCenterUpdate' ? title : `${title} | DataCenterUpdate`}</title>
   {canonical && <link rel="canonical" href={new URL(canonical, Astro.site).href} />}
+  {noindex && <meta name="robots" content="noindex" />}
   <link rel="icon" href="/favicon.ico" sizes="16x16 32x32" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 </head>

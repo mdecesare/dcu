@@ -1,0 +1,49 @@
+---
+// Where Buttondown sends readers after they click the confirmation link.
+// Set in Buttondown as the subscription confirmation redirect URL: https://datacenterupdate.com/subscribe/confirmed
+import Base from '../../layouts/Base.astro';
+import NextSteps from '../../components/NextSteps.astro';
+import { Image } from 'astro:assets';
+import confirmed from '../../assets/subscribe-confirmed.png';
+---
+<Base title="You’re in" description="Your DataCenterUpdate subscription is confirmed." noindex>
+  <section class="page-head">
+    <div class="wrap">
+      <h1>You’re in</h1>
+      <p class="lede">Welcome to DataCenterUpdate.</p>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="panel sub-status">
+      <div class="sub-text">
+        <p class="sub-body">You’re now subscribed. We’ll send concise updates on enterprise data center regulation, procurement, and other developments when they matter.</p>
+        <p class="sub-help">You can return to the site or browse the archive at any time.</p>
+        <NextSteps label="Start reading" />
+      </div>
+
+      <figure class="sub-figure">
+        <Image
+          src={confirmed}
+          alt="A cheerful robot celebrating a successful subscription in a server room."
+          widths={[480, 800, 1200]}
+          sizes="(min-width: 820px) 560px, calc(100vw - 72px)"
+          format="webp"
+          quality={80}
+          loading="eager"
+        />
+      </figure>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .sub-status { display: grid; gap: 20px; max-width: 1000px; }
+  .sub-body { font-size: 17px; line-height: 1.6; color: var(--ink); }
+  .sub-help { font-size: 14.5px; line-height: 1.6; color: var(--ink-2); margin: 12px 0 16px; }
+  .sub-figure img { display: block; width: 100%; height: auto; border-radius: 6px; border: 1px solid var(--line); }
+
+  @media (min-width: 820px) {
+    .sub-status { grid-template-columns: minmax(260px, 1fr) minmax(0, 1.4fr); align-items: center; gap: 28px; }
+  }
+</style>

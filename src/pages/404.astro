@@ -1,14 +1,9 @@
 ---
 // Shown by Netlify for any address that doesn't exist (built as dist/404.html).
 import Base from '../layouts/Base.astro';
+import NextSteps from '../components/NextSteps.astro';
 import { Image } from 'astro:assets';
 import serverRoom from '../assets/404-server-room.png';
-
-const destinations = [
-  { href: '/', label: 'Home', note: 'The latest at a glance' },
-  { href: '/procurement', label: 'Procurement', note: 'Procurement Pulse lead times' },
-  { href: '/regulation', label: 'Regulation', note: 'Regulatory Watch' },
-];
 ---
 <Base title="Page not found" description="The page you requested could not be found.">
   <section class="page-head">
@@ -21,13 +16,9 @@ const destinations = [
   <div class="wrap">
     <div class="panel nf">
       <!-- Links come first in the page so they are the first thing on phones -->
-      <nav class="nf-ways" aria-label="Where to go instead">
-        <ul class="ways">
-          {destinations.map((d) => (
-            <li><a href={d.href}><strong>{d.label}</strong><span>{d.note}</span></a></li>
-          ))}
-        </ul>
-      </nav>
+      <div class="nf-ways">
+        <NextSteps label="Where to go instead" />
+      </div>
 
       <figure class="nf-figure">
         <Image
@@ -51,17 +42,11 @@ const destinations = [
   .nf-figure img { display: block; width: 100%; height: auto; border-radius: 6px; border: 1px solid var(--line); }
   figcaption { font-size: 13.5px; color: var(--ink-2); margin-top: 8px; }
 
-  .ways { list-style: none; display: grid; gap: 10px; }
-  .ways a { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; align-items: baseline; padding: 13px 16px; border: 1px solid var(--line); border-radius: 7px; background: #f6f9fc; }
-  .ways a:hover { border-color: var(--blue); background: var(--blue-lt); }
-  .ways strong { color: var(--blue-dk); font-size: 16px; font-weight: 600; }
-  .ways span { color: var(--ink-2); font-size: 14px; }
-
   /* Wider screens: illustration on the left, links on the right, both visible at once */
   @media (min-width: 820px) {
     .nf { grid-template-columns: minmax(0, 1.7fr) minmax(230px, 1fr); align-items: start; }
     .nf-figure { grid-column: 1; grid-row: 1; }
     .nf-ways { grid-column: 2; grid-row: 1; }
-    .ways a { flex-direction: column; gap: 2px; }
+    .nf-ways :global(.ways a) { flex-direction: column; gap: 2px; }
   }
 </style>

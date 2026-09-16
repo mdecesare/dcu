@@ -1,0 +1,30 @@
+---
+// Plain "where to go next" links back into DCU content.
+// Used on the 404 page and the subscription confirmation page.
+interface Props {
+  label?: string;
+}
+
+const { label = 'Where to go next' } = Astro.props;
+
+const destinations = [
+  { href: '/', label: 'Home', note: 'The latest at a glance' },
+  { href: '/procurement', label: 'Procurement', note: 'Procurement Pulse lead times' },
+  { href: '/regulation', label: 'Regulation', note: 'Regulatory Watch' },
+];
+---
+<nav aria-label={label}>
+  <ul class="ways">
+    {destinations.map((d) => (
+      <li><a href={d.href}><strong>{d.label}</strong><span>{d.note}</span></a></li>
+    ))}
+  </ul>
+</nav>
+
+<style>
+  .ways { list-style: none; display: grid; gap: 10px; }
+  .ways a { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; align-items: baseline; padding: 13px 16px; border: 1px solid var(--line); border-radius: 7px; background: #f6f9fc; }
+  .ways a:hover { border-color: var(--blue); background: var(--blue-lt); }
+  .ways strong { color: var(--blue-dk); font-size: 16px; font-weight: 600; }
+  .ways span { color: var(--ink-2); font-size: 14px; }
+</style>
