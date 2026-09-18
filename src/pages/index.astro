@@ -7,7 +7,7 @@ import { getCollection } from 'astro:content';
 import { siteSettings } from '../site-settings';
 import { getEditions } from '../lib/procurement';
 import { getRegulationItems } from '../lib/regulation';
-import { parsePulseSections } from '../lib/pulse-sections';
+import { parsePulseSections, parsePulseDisclosures } from '../lib/pulse-sections';
 import { SOURCE_TYPES } from '../lib/source-types.mjs';
 
 // Procurement Pulse: sections come straight from the latest edition's markdown.
@@ -27,6 +27,9 @@ const equipment = siteSettings.homepageProcurementSections.map((title) => {
   const slug = headings.find((h) => h.depth === 2 && h.text === title)?.slug;
   return { ...section, href: slug ? `/procurement#${slug}` : '/procurement' };
 });
+// Source disclosures (e.g. how JLL's chart values were read) travel with that source's rows.
+const disclosures = parsePulseDisclosures(latest.body).filter((d) =>
+  equipment.some((section) => section.rows.some((row) => row.source.startsWith(d.source))));
 
 // Regulatory Watch, Power & resilience, What we're watching
 const regItems = await getRegulationItems();
@@ -149,6 +152,8 @@ const arrowIcon = '<path d="M5 12h14M13 6l6 6-6 6"/>';
             </div>
           </div>
         ))}
+
+        {disclosures.map((d) => <p class="disclose" set:html={d.html} />)}
 
         <p class="more"><a href="/procurement">See all {equipmentClassCount} equipment classes in the full edition <svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true" set:html={arrowIcon} /></a></p>
 
@@ -300,6 +305,8 @@ const arrowIcon = '<path d="M5 12h14M13 6l6 6-6 6"/>';
   .take :global(strong) { color: var(--blue-dk); font-weight: 600; }
   .take :global(a) { color: var(--blue); text-decoration: underline; }
 
+  .disclose { font-size: 13px; line-height: 1.5; color: var(--ink-2); margin: 2px 0 12px; }
+  .disclose :global(strong) { color: var(--ink); font-weight: 600; }
   .more { margin: 4px 0 18px; }
   .more-reg { margin: 16px 0 0; }
 

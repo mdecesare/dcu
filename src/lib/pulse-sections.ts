@@ -85,3 +85,22 @@ export function parsePulseSections(markdown: string): PulseSection[] {
   flushNote();
   return sections;
 }
+
+export interface PulseDisclosure {
+  source: string;
+  html: string;
+}
+
+/**
+ * Source disclosures: a paragraph starting "**About the <Source> figures.**", kept word for word.
+ * The homepage repeats it whenever it shows rows from that source.
+ */
+export function parsePulseDisclosures(markdown: string): PulseDisclosure[] {
+  const out: PulseDisclosure[] = [];
+  for (const para of markdown.split(/\r?\n\s*\r?\n/)) {
+    const text = para.split(/\r?\n/).map((l) => l.trim()).join(' ').trim();
+    const m = text.match(/^\*\*About the (.+?) figures\.\*\*/);
+    if (m) out.push({ source: m[1], html: inlineMarkdown(text) });
+  }
+  return out;
+}
