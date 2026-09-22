@@ -8,10 +8,9 @@ own working files.
 
 ## What it does
 
-DCU maintains archived copies of public source material — government records, agency filings,
-statutes, and published research — together with the monitoring records behind the intelligence DCU
-publishes. DCU Backups copies that material into DCU's own Google Drive account and verifies that
-each stored copy is complete and readable.
+DCU maintains copies of the source documents supporting the intelligence it publishes, together with
+its monitoring records. DCU Backups copies that material into DCU's own Google Drive account and
+verifies that each stored copy is complete and readable.
 
 ## Google Drive access
 

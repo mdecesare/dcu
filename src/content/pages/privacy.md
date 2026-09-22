@@ -92,8 +92,8 @@ The tool uses the Google Drive permission **drive.file**. That permission allows
 create, upload, download, verify, and manage the backup files it creates in DCU's own Google Drive
 account. It does not request access to unrelated files in that Drive account.
 
-The backups contain archived public source material and DCU's monitoring records. They do not
-contain our newsletter subscriber list or reader analytics.
+The backups contain copies of the source documents supporting DCU's published intelligence and DCU's
+monitoring records. They do not contain our newsletter subscriber list or reader analytics.
 
 Information obtained through Google APIs is used only to create and verify DCU's backups. It is not
 sold, used for advertising, or used to train artificial-intelligence or machine-learning models.
