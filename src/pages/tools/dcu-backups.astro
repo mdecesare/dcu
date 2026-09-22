@@ -1,0 +1,14 @@
+---
+// Public description of the DCU Backups tool. This is the page given to Google as the
+// application home page for the OAuth client, so it must stay publicly reachable and
+// must keep its links to /privacy and /terms. Not in the main navigation by design.
+import ContentPage from '../../layouts/ContentPage.astro';
+import { getEntry } from 'astro:content';
+
+const entry = await getEntry('pages', 'dcu-backups');
+if (!entry) throw new Error('Missing src/content/pages/dcu-backups.md');
+const { Content } = await entry.render();
+---
+<ContentPage title={entry.data.title} description={entry.data.description}>
+  <Content />
+</ContentPage>

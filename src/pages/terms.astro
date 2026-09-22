@@ -1,0 +1,18 @@
+---
+import ContentPage from '../layouts/ContentPage.astro';
+import { getEntry } from 'astro:content';
+import { formatDate } from '../lib/dates';
+
+const entry = await getEntry('pages', 'terms');
+if (!entry) throw new Error('Missing src/content/pages/terms.md');
+const { Content } = await entry.render();
+const { updated } = entry.data;
+---
+<ContentPage title={entry.data.title} description={entry.data.description}>
+  {updated && <p class="policy-date">Last updated: {formatDate(updated)}</p>}
+  <Content />
+</ContentPage>
+
+<style>
+  .policy-date { font-size: 13px; color: var(--ink-2); margin: 0 0 1.5em; }
+</style>
