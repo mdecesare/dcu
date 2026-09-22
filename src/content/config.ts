@@ -13,12 +13,15 @@ const articles = defineCollection({
   }),
 });
 
-// Standalone text pages: Methodology, About
+// Standalone text pages: Methodology, About, Privacy Policy, Terms of Use, DCU Backups.
+// `updated` prints as "Last updated" on the policy pages. Set it to the date the page
+// actually goes live. Pages without it, such as Methodology and About, show no date.
 const pages = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
     description: z.string(),
+    updated: z.coerce.date().optional(),
   }),
 });
 

@@ -1,197 +1,118 @@
 ---
 title: Privacy Policy
-description: "What DataCenterUpdate collects, why, who else is involved, and how to have your information removed."
+description: "What DataCenterUpdate collects through its website and newsletter, how that information is used, and the choices available to you."
+updated: 2026-09-22
 ---
 
-**Last updated: 22 September 2026**
+DataCenterUpdate ("DCU," "we," "us," or "our") publishes market intelligence for people working with
+enterprise data center infrastructure. This policy explains what information we collect through
+datacenterupdate.com and our newsletter, how we use it, who processes it on our behalf, and the
+choices available to you.
 
-DataCenterUpdate ("DCU") is an independent market-intelligence publication. This policy explains
-what information the site and its newsletter actually collect, what happens to it, and how to have
-it removed.
+## Information we collect
 
-It is written to describe what DCU does today, not what it may do later. If something changes, this
-page changes with it.
+**Newsletter subscription.** If you subscribe, you provide your email address. The signup form
+submits directly to Buttondown, the service that delivers our newsletter. Buttondown sends a
+confirmation message, and a subscription becomes active only after you confirm it.
 
-DataCenterUpdate is independently owned and operated. Its founder works professionally in the data
-center industry.
+**Information you send us.** If you write to one of our published addresses, we receive your message
+and whatever information you choose to include, such as your name, your organization, or source
+material. Messages sent to our published addresses are routed to and stored in a Google-hosted
+mailbox.
 
-## The short version
+**Technical information processed for hosting.** The site is hosted by Netlify. To deliver pages,
+Netlify processes standard request and device information — including IP address, browser type, and
+the page requested — as needed to host, deliver, and secure the site.
 
-- The website sets **no cookies** and runs **no analytics, tracking pixels, or advertising**. There
-  is no JavaScript on the published pages at all.
-- You can read every page without giving us anything.
-- The only information we ask for is an **email address**, and only if you choose to subscribe to
-  the newsletter.
-- We do not sell, rent, or trade your information.
-- Two service providers are involved: **Netlify**, which hosts the site, and **Buttondown**, which
-  runs the newsletter.
-- The **DCU Backups** tool described near the end of this page is an internal tool used only by
-  DCU's owner. It never involves readers, and readers are never asked to authorize anything.
+## How we use information
 
-## What we collect
+We use the information described above to:
 
-### If you subscribe to the newsletter
+- send the newsletter to subscribers who have requested it;
+- respond to correspondence, including corrections and source material;
+- review and correct published material, and inform our editorial coverage;
+- operate, secure, and maintain the site and our records; and
+- comply with applicable legal obligations.
 
-The signup form asks for one thing: your email address. When you submit it, the form posts directly
-to **Buttondown**, the service that runs the DCU newsletter.
+We do not sell, rent, or trade personal information, and we do not use it for advertising.
 
-Buttondown sends you a confirmation email, and you are only subscribed once you click the link in
-it. If you never click, the address stays unconfirmed and no newsletter is sent to it.
+## Cookies and tracking
 
-Your address is used to send you the DataCenterUpdate newsletter. It is not used for anything else,
-and it is not shared with advertisers or other publishers.
+The published pages of datacenterupdate.com do not set first-party cookies and do not include
+advertising, analytics, or visitor-tracking scripts.
 
-Buttondown stores the subscriber list on our behalf and handles it under
-[its own privacy policy](https://buttondown.com/legal/privacy). DCU does not use Buttondown's optional
-open-tracking or click-tracking features, so we do not build a record of which emails you opened or
-which links you followed.
+Third-party sites you reach from ours operate under their own policies and may use cookies. This
+includes Buttondown, which your browser is directed to when you submit the signup form.
 
-### If you email us
+## Service providers
 
-Messages sent to our published addresses — including corrections and source tips — arrive in DCU's
-email account and stay there, the way ordinary correspondence does. We use them to reply, to check
-and correct what we publish, and to decide what is worth covering.
+We use service providers to operate DCU. Each handles information under its own privacy policy:
 
-If you send us a correction or a source, we may publish or describe the underlying information. We
-do not publish your name, email address, or the fact that you contacted us unless you ask us to or
-clearly intend it.
+- **[Buttondown](https://buttondown.com/legal/privacy)** processes subscription and email-delivery
+  information for the newsletter.
+- **[Netlify](https://www.netlify.com/privacy/)** processes standard request and device information
+  required to host, deliver, and secure the site.
+- **[Google](https://policies.google.com/privacy)** provides the mailbox that receives messages sent
+  to our published addresses, and the Drive account used by DCU Backups, described below.
 
-### When you simply read the site
+We may also disclose information where required by law or where necessary to protect our rights or
+the security of our systems.
 
-The site is hosted by **Netlify**. To deliver a page, Netlify's servers necessarily receive the
-request, which includes your IP address, your browser's user-agent string, and the address of the
-page you asked for. That is how the web works, and it happens before any DCU code is involved.
-Netlify handles this information under
-[its own privacy policy](https://www.netlify.com/privacy/).
+## Retention
 
-DCU does not run Netlify's optional analytics product, and receives no visitor-level reports,
-dashboards, or logs from it.
+We retain subscriber information while a subscription remains active, and for a reasonable period
+afterward for administrative and recordkeeping purposes. Correspondence is retained as a business
+record for as long as it remains relevant to our work. Backup files are retained as described under
+DCU Backups below.
 
-DCU itself collects nothing when you read a page. There is no analytics service, no tracking pixel,
-no advertising network, no embedded video, no social-media widget, no comment system, and no
-externally hosted font or script.
+## Your choices and requests
 
-## Cookies and browser storage
+Every newsletter includes an unsubscribe link. Unsubscribing removes your address from active
+delivery. It does not necessarily erase every record containing that address, since a record may be
+kept to honor the unsubscribe request itself or to meet operational and legal requirements.
 
-**DataCenterUpdate sets no cookies.** It does not use local storage, session storage, or any similar
-technology to store information in your browser, and it does not fingerprint your device.
+You may request access to, correction of, or deletion of personal information we hold by writing to
+hello@datacenterupdate.com. We will respond as promptly as is practical, subject to information that
+must reasonably be retained for operational, security, or legal purposes.
 
-There is one exception worth knowing about, and it is not on our pages: when you submit the
-newsletter form, your browser goes to Buttondown, and Buttondown may set its own cookies on its own
-pages under its own policy. The same is true of any third-party site you reach by following a link
-from ours.
-
-Because we set no cookies, there is no cookie banner to click.
-
-## Who else is involved
-
-- **[Netlify](https://www.netlify.com/privacy/)** hosts and delivers the website. It sees ordinary
-  web-request information, such as your IP address and browser type.
-- **[Buttondown](https://buttondown.com/legal/privacy)** runs the email newsletter. It sees
-  subscriber email addresses and delivery information.
-- **[Google Drive](https://policies.google.com/privacy)** stores DCU's internal backups, described
-  below. It holds only the backup files the DCU Backups tool creates in DCU's own Drive account —
-  no reader or subscriber information.
-
-These are the only third parties that handle information connected to DCU's operations. We do not
-sell, rent, or trade information to anyone, and we do not share it for advertising.
-
-We may disclose information if the law requires it, and we would rather say that plainly than
-pretend it could never happen.
-
-## How long we keep things
-
-Your newsletter subscription lasts until you end it. If you unsubscribe, your address is removed
-from the active subscriber list.
-
-Email correspondence is kept in our mailbox while it remains useful, in the same way any working
-inbox is kept. We have not set a fixed deletion schedule for it, and we would rather tell you that
-than publish a retention period we do not actually enforce.
-
-## Your choices
-
-- **Unsubscribe at any time.** Every newsletter has an unsubscribe link, and it takes one click.
-- **Ask us to delete your email address.** Write to hello@datacenterupdate.com and we will remove
-  you from the subscriber list and confirm it.
-- **Ask us to delete your correspondence.** Write to the same address and tell us what to delete.
-- **Ask what we hold.** Write to us and we will tell you what is associated with your address, which
-  in practice is the address itself and when it subscribed.
-
-We do not require you to create an account, and there is no account to close.
+DCU does not require you to create an account, and there is no account to close.
 
 ## Children
 
-DataCenterUpdate is written for professionals working with data center infrastructure. It is not
-directed at children, and we do not knowingly collect information from them.
+The site is intended for professional audiences. It is not directed to children, and we do not
+knowingly collect personal information from them.
 
-## DCU Backups (an internal tool — not part of this website)
+## DCU Backups and Google API data
 
-**DCU Backups is used only by DataCenterUpdate's owner.** It is not part of the website, and it has
-nothing to do with reading DCU or subscribing to the newsletter. **Website visitors and newsletter
-subscribers are never asked to authorize Google Drive access, and nothing you do on this site
-involves your Google account.** This section exists because Google requires an application that
-requests Drive access to explain, in a published privacy policy, exactly what it does.
+DCU Backups is an internal tool operated by DCU. It is not offered to readers or subscribers, and it
+never asks website visitors or newsletter subscribers for access to their Google accounts. A short
+description of the tool is available at [DCU Backups](/tools/dcu-backups).
 
-DCU maintains its own working files: archived copies of public source documents — government
-records, agency filings, statutes, published research — together with the records its internal
-source-monitoring tool keeps about when those sources were last checked. Those files are the
-evidence behind what DCU publishes, so they are backed up off the owner's computer.
+The tool uses the Google Drive permission **drive.file**. That permission allows it to regularly
+create, upload, download, verify, and manage the backup files it creates in DCU's own Google Drive
+account. It does not request access to unrelated files in that Drive account.
 
-**What the tool is authorized to do.** DCU Backups asks for a single Google Drive permission, the
-one Google identifies as `https://www.googleapis.com/auth/drive.file`.
+The backups contain archived public source material and DCU's monitoring records. They do not
+contain our newsletter subscriber list or reader analytics.
 
-Google describes this as per-file access. It allows an application to work only with files and
-folders **that the application itself creates**, or that the account holder explicitly opens with
-it. It does **not** allow the application to read, list, download, or change anything else in the
-Google Drive account. DCU Backups does not request full-Drive access, and it cannot see the rest of
-the Drive.
+Information obtained through Google APIs is used only to create and verify DCU's backups. It is not
+sold, used for advertising, or used to train artificial-intelligence or machine-learning models.
+Credentials used to operate the tool are stored locally and are not included in the backup archives.
+Backup files are retained for recovery and recordkeeping purposes until deleted by the account
+owner. Authorization may be revoked at any time through
+[Google Account permissions](https://myaccount.google.com/permissions).
 
-**What it actually does with that access.** Once each weekday, and whenever it is run by hand, the
-tool:
-
-1. Packages DCU's working files into a single dated archive with a checksum for every file,
-2. Uploads that archive into a folder it creates in DCU's own Google Drive account,
-3. Downloads the uploaded copy straight back and checks it, file by file, against those checksums,
-   so that a backup is only recorded as successful if the copy actually in Google Drive is complete
-   and undamaged.
-
-It reads and writes nothing else. It does not use Google data for any other purpose.
-
-**What the backups contain.** Archived copies of public source documents and DCU's own monitoring
-records. **They contain no reader, subscriber, or website-visitor information** — no email
-addresses, no subscriber list, no server logs, and no website analytics, because DCU does not hold
-such records in the first place.
-
-**Where the backups are stored.** In DCU's own Google Drive account, which is controlled by DCU's
-owner, and on the owner's computer. Google stores the files under
-[Google's privacy policy](https://policies.google.com/privacy). Earlier backups are kept rather than
-overwritten, so the record can be checked later.
-
-**The authorization itself.** The access token that lets the tool upload is stored in a
-configuration file on the owner's computer. It is never published on this website, never included in
-a backup, and never shared with anyone.
-
-**Limited use.** DCU's use of information received from Google APIs adheres to the
+DCU's use of information received from Google APIs adheres to the
 [Google API Services User Data Policy](https://developers.google.com/terms/api-services-user-data-policy),
-including the Limited Use requirements. Data obtained through this authorization is used only to
-operate and verify DCU's backups. It is never used for advertising, never sold or transferred to
-data brokers, and never used to train artificial-intelligence or machine-learning models.
-
-**How the authorization can be revoked.** DCU's owner can withdraw the tool's access at any time at
-[Google Account permissions](https://myaccount.google.com/permissions), by selecting DCU Backups and
-removing its access. Doing so immediately stops any further uploads. Backup files already in Google
-Drive stay there until they are deleted from Drive, and the account holder can delete them at any
-time.
+including the Limited Use requirements.
 
 ## Changes to this policy
 
-If DCU's practices change — a new service provider, a different way of handling email, anything that
-affects what is described here — this page is updated and the date at the top changes with it.
+We may update this policy as DCU's practices change. The date shown at the top of this page
+indicates when it was last revised.
 
 ## Contact
 
-Questions about this policy, requests to delete information, or anything else about privacy:
+Privacy questions and requests: hello@datacenterupdate.com
 
-hello@datacenterupdate.com
-
-Corrections to what we publish: corrections@datacenterupdate.com
+Corrections to published material: corrections@datacenterupdate.com
