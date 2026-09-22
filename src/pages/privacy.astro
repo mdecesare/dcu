@@ -1,0 +1,24 @@
+---
+import ContentPage from '../layouts/ContentPage.astro';
+import { getEntry } from 'astro:content';
+
+const entry = await getEntry('pages', 'privacy');
+if (!entry) throw new Error('Missing src/content/pages/privacy.md');
+const { Content } = await entry.render();
+---
+<ContentPage title={entry.data.title} description={entry.data.description}>
+  <Content />
+</ContentPage>
+
+{/* The Google Drive scope string is the only inline code on the site. Left alone it
+    runs past the edge of a phone screen, so it is allowed to wrap. */}
+<style is:global>
+  .prose code {
+    font-size: .93em;
+    background: var(--page);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    padding: 1px 5px;
+    overflow-wrap: anywhere;
+  }
+</style>
