@@ -28,7 +28,14 @@ export const siteSettings = {
   // Confirmed 2026-09-15: both tested from an outside account, forwarding to the DCU inbox.
   confirmedEmailAddresses: ['hello@datacenterupdate.com', 'corrections@datacenterupdate.com'] as string[],
 
-  // Procurement Pulse sections shown on the homepage, in this order.
-  // Each name must match a ## heading in the latest Pulse edition exactly.
-  homepageProcurementSections: ['Transformers', 'Generators', 'Medium-voltage switchgear'],
+  // The few figures the homepage shows, in this order. Each one must match a row in the
+  // latest Procurement Pulse edition exactly: `section` is a ## heading, `class` is the
+  // text in that row's Class column. The build fails with a list of the available classes
+  // if either is wrong, so the homepage can never quietly show a figure that no longer
+  // exists. Keep this short — the homepage is a front door, not a copy of the edition.
+  homepageFigures: [
+    { section: 'Transformers', class: 'Substation, 5–25 MVA' },
+    { section: 'Generators', class: '1,500–2,000 kW diesel' },
+    { section: 'Medium-voltage switchgear', class: 'Standard configurations' },
+  ],
 };
