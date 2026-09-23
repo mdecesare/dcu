@@ -51,10 +51,13 @@ or equivalent for NOx, a diesel oxidation catalyst or equivalent for carbon
 monoxide, and a diesel particulate filter or equivalent for particulate matter.
 The phrase "or equivalent" appears in each.
 
-Separately, DEQ guidance describes that same suite as the presumptive BACT
-approach for emergency and non-emergency diesel gen-sets at data centers. The
-guidance and the statute point at the same technologies; the statute sets the
-limit, and the guidance describes how DEQ expects it to be met.
+The statute itself does not use the term BACT. Separately, [DEQ Guidance Memo
+APG-576](https://townhall.virginia.gov/L/ViewGDoc.cfm?gdid=5121), whose revised version took effect
+9 April 2026, addresses presumptive best available control technology for
+emergency and non-emergency diesel engine-generator sets at data center
+stationary sources. Statute and guidance point at the same technologies but do
+different work: the statute fixes the limit DEQ may issue a permit at, and the
+guidance describes how DEQ expects that limit to be met.
 
 ## Why an enterprise data center owner should care
 
