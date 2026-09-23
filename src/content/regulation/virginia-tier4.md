@@ -29,10 +29,15 @@ not itself create a permit requirement — it governs permits that are already
 required, where the application is submitted on or after 1 July 2026. A project
 that needs no air permit is outside it.
 
-On exemptions: Virginia has a [size-based minor NSR exemption](https://law.lis.virginia.gov/admincode/title9/agency5/chapter80/section1105/) for qualifying emergency diesel generators below an aggregate
-1,675 brake horsepower, roughly 1,125 kW, across the application. That is not a hard permitting line. A project
-above that threshold may still qualify for an exemption based on uncontrolled
-emissions.
+On exemptions: Virginia's [minor NSR permit exemptions](https://law.lis.virginia.gov/admincode/title9/agency5/chapter80/section1105/) list,
+among other categories, diesel engines with an aggregate rated brake horsepower
+of less than 1,675, and diesel engines powering electrical generators with an
+aggregate rated electrical output of less than 1,125 kW — in each case subject to
+the regulation's other conditions. A project above those size thresholds is not
+automatically outside the exemptions: the regulation also provides a separate
+route that turns on uncontrolled emission rates rather than size, with its own
+conditions. Neither route is automatic, and which applies depends on the
+application.
 
 ## What the law actually requires
 
@@ -83,8 +88,8 @@ Both are open questions we are working on.
 
 ## Primary source
 
-**G** [Va. Code § 10.1-1322.6](https://law.lis.virginia.gov/vacode/title10.1/chapter13/section10.1-1322.6/) — enacted as HB 507, 2026 Acts of the
-General Assembly. Virginia Law Portal.
+**G** [Va. Code § 10.1-1322.6](https://law.lis.virginia.gov/vacode/title10.1/chapter13/section10.1-1322.6/) — enacted as [HB 507, 2026 Acts of
+Assembly, Chapter 397](https://lis.blob.core.windows.net/files/1217630.PDF) (PDF). Virginia Law Portal.
 
 Supporting: permit exemption thresholds at [9VAC5-80-1105](https://law.lis.virginia.gov/admincode/title9/agency5/chapter80/section1105/).
 Virginia DEQ air permitting guidance, deq.virginia.gov.
