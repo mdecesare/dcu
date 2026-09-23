@@ -57,5 +57,4 @@ public record streams DCU monitors.
 ## Primary source
 
 **G** [91 FR 41591](https://www.federalregister.gov/documents/2026/07/07/2026-13667/minor-new-source-review-program-air-permitting-public-participation-requirements-for-state), 7 July 2026 — also as the [official Federal Register
-PDF](https://www.govinfo.gov/content/pkg/FR-2026-07-07/pdf/2026-13667.pdf). Docket EPA-HQ-OAR-2025-1212, RIN 2060-AV67. *No direct link to the
-Regulations.gov docket page: DCU has not verified that URL.*
+PDF](https://www.govinfo.gov/content/pkg/FR-2026-07-07/pdf/2026-13667.pdf). Docket EPA-HQ-OAR-2025-1212, RIN 2060-AV67.
