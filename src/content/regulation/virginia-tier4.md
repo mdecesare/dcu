@@ -84,8 +84,9 @@ Both are open questions we are working on.
 
 ## Primary source
 
-**G** Va. Code § 10.1-1322.6 — enacted as HB 507, 2026 Acts of the General
-Assembly. Virginia Law Portal.
+**G** [Va. Code § 10.1-1322.6](https://law.lis.virginia.gov/vacode/title10.1/chapter13/section10.1-1322.6/) — enacted as HB 507, 2026 Acts of the
+General Assembly. Virginia Law Portal.
 
 Supporting: Virginia DEQ air permitting guidance and permit exemption
-thresholds, deq.virginia.gov.
+thresholds, deq.virginia.gov. *No direct link: DCU has not located an official
+URL for the HB 507 act text or for the specific DEQ guidance document.*

@@ -10,6 +10,15 @@ const navItems = [
   { href: '/about', label: 'About' },
 ];
 
+// The footer repeats the main navigation and adds the two policy pages.
+// Background (/articles) is deliberately not in either: the pages and their URLs
+// stay live, they are simply no longer surfaced in navigation.
+const footerItems = [
+  ...navItems,
+  { href: '/privacy', label: 'Privacy' },
+  { href: '/terms', label: 'Terms' },
+];
+
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 const isActive = (href: string) => href === '/' ? path === '/' : path === href || path.startsWith(href + '/');
 ---
@@ -56,11 +65,7 @@ const isActive = (href: string) => href === '/' ? path === '/' : path === href |
     </div>
     <div class="f-right">
       <div class="f-links">
-        <a href="/methodology">Methodology</a>
-        <a href="/about">About</a>
-        <a href="/articles">Background</a>
-        <a href="/privacy">Privacy</a>
-        <a href="/terms">Terms</a>
+        {footerItems.map(item => <a href={item.href}>{item.label}</a>)}
       </div>
       <div>Independent. Source-transparent.</div>
     </div>

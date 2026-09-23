@@ -75,5 +75,6 @@ reviewed the legislative record for what prompted the moratorium.
 
 ## Primary source
 
-**G** Arizona HB 4168, Chapter 140, 2026 session. A.R.S. § 41-1519 (Computer
-Data Center program). Arizona State Legislature.
+**G** [Arizona HB 4168, Chapter 140, 2026 session](https://www.azleg.gov/legtext/57leg/2R/laws/0140.pdf) (PDF) — the chaptered
+text carrying the moratorium dates. [A.R.S. § 41-1519](https://www.azleg.gov/ars/41/01519.htm) (Computer Data
+Center program). Arizona State Legislature.

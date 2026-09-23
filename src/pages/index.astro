@@ -1,7 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
 import SourceMark from '../components/SourceMark.astro';
-import RegItem from '../components/RegItem.astro';
 import BriefItem from '../components/BriefItem.astro';
 import { getCollection } from 'astro:content';
 import { siteSettings } from '../site-settings';
@@ -9,29 +8,40 @@ import { getEditions } from '../lib/procurement';
 import { getRegulationItems } from '../lib/regulation';
 import { parsePulseSections, parsePulseDisclosures } from '../lib/pulse-sections';
 import { SOURCE_TYPES } from '../lib/source-types.mjs';
+import { smartQuotes } from '../lib/typography';
 
-// Procurement Pulse: sections come straight from the latest edition's markdown.
+// The homepage is a front door, not a second copy of the Procurement page: it shows a few
+// figures chosen in src/site-settings.ts and links to the editions that hold the rest.
 const [latest] = await getEditions();
-const { headings } = await latest.render();
 const pulseSections = parsePulseSections(latest.body);
 const equipmentClassCount = pulseSections.filter((s) => s.rows.length > 0).length;
 
-const equipment = siteSettings.homepageProcurementSections.map((title) => {
+const figures = siteSettings.homepageFigures.map(({ section: title, class: cls }) => {
   const section = pulseSections.find((s) => s.title === title);
-  if (!section || section.rows.length === 0) {
+  if (!section) {
     throw new Error(
-      `src/site-settings.ts lists "${title}" in homepageProcurementSections, but the latest Procurement Pulse ` +
-      `(src/content/procurement/${latest.id}) has no "## ${title}" section with rows.`
+      `src/site-settings.ts homepageFigures lists section "${title}", but the latest Procurement Pulse ` +
+      `(src/content/procurement/${latest.id}) has no "## ${title}" section.`
     );
   }
-  const slug = headings.find((h) => h.depth === 2 && h.text === title)?.slug;
-  return { ...section, href: slug ? `/procurement#${slug}` : '/procurement' };
+  const row = section.rows.find((r) => r.cls === cls);
+  if (!row) {
+    throw new Error(
+      `src/site-settings.ts homepageFigures asks for "${cls}" under "## ${title}", which the latest ` +
+      `Procurement Pulse does not have. Available classes: ${section.rows.map((r) => `"${r.cls}"`).join(', ')}.`
+    );
+  }
+  return { ...row, section: title };
 });
-// Source disclosures (e.g. how JLL's chart values were read) travel with that source's rows.
-const disclosures = parsePulseDisclosures(latest.body).filter((d) =>
-  equipment.some((section) => section.rows.some((row) => row.source.startsWith(d.source))));
 
-// Regulatory Watch, Power & resilience, What we're watching
+// A source disclosure (how JLL's chart values were read, say) travels with that source's
+// figures: if a featured figure comes from that source, the caveat comes with it.
+const disclosures = parsePulseDisclosures(latest.body).filter((d) =>
+  figures.some((figure) => figure.source.startsWith(d.source)));
+
+// The standfirst carries counts and then compilation dates; the front door shows the counts.
+const counts = latest.data.standfirst.split('·').slice(0, 3).join('·').trim();
+
 const regItems = await getRegulationItems();
 const byOrder = (a: { data: { order: number } }, b: { data: { order: number } }) => a.data.order - b.data.order;
 const powerItems = (await getCollection('power')).sort(byOrder);
@@ -40,16 +50,8 @@ const watchingItems = (await getCollection('watching')).sort(byOrder);
 const showPower = siteSettings.showPowerAndResilience && powerItems.length > 0;
 const showWatching = siteSettings.showWhatWereWatching && watchingItems.length > 0;
 const showSubscribe = siteSettings.showSubscribe && siteSettings.subscribeFormUrl.trim() !== '';
-const glanceCards = 2 + (showPower ? 1 : 0);
 const lowerPanels = (showPower ? 1 : 0) + (showWatching ? 1 : 0);
 
-const equipmentIcon: Record<string, string> = {
-  'Transformers': '<rect x="4" y="8" width="16" height="12" rx="2"/><path d="M8 8V5a4 4 0 018 0v3"/>',
-  'Medium-voltage switchgear': '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M9 4v16"/>',
-  'Low-voltage switchgear': '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M9 4v16"/>',
-  'Generators': '<rect x="2" y="7" width="20" height="10" rx="2"/><path d="M6 7V5M18 7V5M6 12h4M14 12h4"/>',
-  'UPS': '<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M11 16h2"/>',
-};
 const boxIcon = '<path d="M21 16V8l-9-5-9 5v8l9 5z"/><path d="M3.3 7.5L12 12.5l8.7-5"/><path d="M12 12.5V22"/>';
 const docIcon = '<path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/>';
 const boltIcon = '<path d="M13 2L4.5 13H12l-1 9 8.5-11H12z"/>';
@@ -90,103 +92,84 @@ const arrowIcon = '<path d="M5 12h14M13 6l6 6-6 6"/>';
     </div>
   </section>
 
-  <!-- At a glance -->
+  <!-- Front door: a few sourced figures, the current developments, and the way through to both -->
   <section class="band">
     <div class="wrap">
-      <h2>At a glance</h2>
-      <div class="glance" style={`--cards:${glanceCards}`}>
-        <div class="gc">
-          <p class="gc-h"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" set:html={boxIcon} /><span>Equipment lead times</span></p>
-          <p>{latest.data.edition} &middot; {latest.data.standfirst}</p>
-          <a href="/procurement">Procurement Pulse <svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true" set:html={arrowIcon} /></a>
-        </div>
-        <div class="gc">
-          <p class="gc-h"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" set:html={docIcon} /><span>Regulation</span></p>
-          <p>{regItems.map((item) => `${item.data.jurisdiction}: ${item.data.status}`).join(' · ')}</p>
-          <a href="/regulation">Regulatory Watch <svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true" set:html={arrowIcon} /></a>
-        </div>
-        {showPower && (
-          <div class="gc">
-            <p class="gc-h"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" set:html={boltIcon} /><span>Power &amp; resilience</span></p>
-            <p>{powerItems.slice(0, 2).map((item) => item.data.title).join(' · ')}</p>
-            <a href="#power">Power &amp; resilience <svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true" set:html={arrowIcon} /></a>
+      <div class="front">
+
+        <article class="fc">
+          <div class="fc-h">
+            <svg class="ico ico-l" viewBox="0 0 24 24" aria-hidden="true" set:html={boxIcon} />
+            <div>
+              <h2>Equipment lead times</h2>
+              <p class="fc-sub">{latest.data.edition} &middot; {counts}</p>
+            </div>
           </div>
-        )}
+
+          <ul class="figs">
+            {figures.map((figure) => (
+              <li>
+                <div class="fig-l">
+                  <span class="fig-cls">{figure.cls}</span>
+                  <span class="fig-src"><SourceMark type={figure.sourceType} /><span set:html={figure.sourceHtml} /></span>
+                  <span class="fig-sec">{figure.section}</span>
+                </div>
+                <span class="fig-n">{figure.figure}</span>
+              </li>
+            ))}
+          </ul>
+
+          {disclosures.map((d) => <p class="fc-note" set:html={d.html} />)}
+          <p class="fc-note">Ranges differ by equipment class and by who measured them. DCU never averages
+            across either, so the full edition shows every figure with its own scope.</p>
+
+          <p class="fc-go"><a href="/procurement">Procurement Pulse &mdash; all {equipmentClassCount} equipment
+            classes <svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true" set:html={arrowIcon} /></a></p>
+        </article>
+
+        <article class="fc">
+          <div class="fc-h">
+            <svg class="ico ico-l" viewBox="0 0 24 24" aria-hidden="true" set:html={docIcon} />
+            <div>
+              <h2>Regulation</h2>
+              <p class="fc-sub">Developments affecting where and how data centers get built</p>
+            </div>
+          </div>
+
+          <ul class="regs">
+            {regItems.map((item) => (
+              <li>
+                <div class="reg-l">
+                  <span class="reg-j">{item.data.jurisdiction}</span>
+                  <a href={`/regulation/${item.slug}`}>{smartQuotes(item.data.headline)}</a>
+                </div>
+                <span class="reg-s">{item.data.status}</span>
+              </li>
+            ))}
+          </ul>
+
+          <p class="fc-go"><a href="/regulation">Regulatory Watch &mdash; every item in
+            full <svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true" set:html={arrowIcon} /></a></p>
+        </article>
+
       </div>
     </div>
   </section>
 
-  <div class="wrap home-main">
-    <div class="cols">
+  <!-- How to read a DCU figure: the source marks used above, in one line -->
+  <section class="wrap strip">
+    <p class="strip-t">Every figure keeps its source, its date, and the population it measured.</p>
+    <ul class="strip-legend">
+      {(Object.keys(SOURCE_TYPES) as Array<'R' | 'P' | 'V' | 'G'>).map((letter) => (
+        <li><SourceMark type={letter} /><span>{SOURCE_TYPES[letter].name}</span></li>
+      ))}
+    </ul>
+    <p class="strip-go"><a href="/methodology">How we source and verify <svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true" set:html={arrowIcon} /></a></p>
+  </section>
 
-      <!-- Procurement Pulse -->
-      <section class="panel" id="procurement">
-        <div class="panel-h">
-          <svg class="ico ico-l" viewBox="0 0 24 24" aria-hidden="true" set:html={boxIcon} />
-          <h2>Procurement pulse</h2>
-        </div>
-        <p class="sub">{latest.data.edition} &middot; {latest.data.standfirst}. We show what each source says and what it measured, rather than averaging them into one number.</p>
-
-        {equipment.map((section) => (
-          <div class="eq">
-            <div class="eq-h">
-              <h3>
-                <svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true" set:html={equipmentIcon[section.title] ?? boxIcon} />
-                <a href={section.href}>{section.title}</a>
-              </h3>
-            </div>
-            <div class="eq-b">
-              <table class="rows" role="table">
-                <thead role="rowgroup"><tr role="row"><th role="columnheader">Class</th><th role="columnheader">Lead time</th><th role="columnheader">Source</th></tr></thead>
-                <tbody role="rowgroup">
-                  {section.rows.map((row) => (
-                    <tr role="row">
-                      <td role="cell" class="col-class">{row.cls}</td>
-                      <td role="cell" class="col-figure">{row.figure}</td>
-                      <td role="cell" class="col-source"><SourceMark type={row.sourceType} />{row.source}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-              {section.notesHtml.map((note) => <p class="take" set:html={note} />)}
-            </div>
-          </div>
-        ))}
-
-        {disclosures.map((d) => <p class="disclose" set:html={d.html} />)}
-
-        <p class="more"><a href="/procurement">See all {equipmentClassCount} equipment classes in the full edition <svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true" set:html={arrowIcon} /></a></p>
-
-        <div class="why">
-          <svg class="ico ico-l" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 22h4" /><path d="M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z" /></svg>
-          <div>
-            <h3>How to read these numbers</h3>
-            <p>Every figure keeps its source, its date, and the population it measures. We never average across source types, and we never average across equipment classes.</p>
-            <ul class="legend">
-              {(Object.keys(SOURCE_TYPES) as Array<'R' | 'P' | 'V' | 'G'>).map((letter) => (
-                <li><SourceMark type={letter} /><span><strong>{SOURCE_TYPES[letter].name}</strong> — {SOURCE_TYPES[letter].legend}</span></li>
-              ))}
-            </ul>
-            <p class="why-link"><a href="/methodology">Full methodology</a></p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Regulatory Watch -->
-      <section class="panel" id="regulation">
-        <div class="panel-h">
-          <svg class="ico ico-l" viewBox="0 0 24 24" aria-hidden="true" set:html={docIcon} />
-          <h2>Regulatory watch</h2>
-        </div>
-        <p class="sub">Developments affecting where and how data centers get built.</p>
-        {regItems.map((item) => <RegItem item={item} headingLevel="h3" />)}
-        <p class="more more-reg"><a href="/regulation">All regulatory items <svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true" set:html={arrowIcon} /></a></p>
-      </section>
-
-    </div>
-
-    <!-- Power & resilience and What we're watching: switched in src/site-settings.ts -->
-    {lowerPanels > 0 && (
+  <!-- Power & resilience and What we're watching: switched in src/site-settings.ts -->
+  {lowerPanels > 0 && (
+    <div class="wrap">
       <div class="lower" style={`--cols:${lowerPanels}`}>
         {showPower && (
           <section class="panel" id="power">
@@ -209,8 +192,8 @@ const arrowIcon = '<path d="M5 12h14M13 6l6 6-6 6"/>';
           </section>
         )}
       </div>
-    )}
-  </div>
+    </div>
+  )}
 
   <!-- Newsletter signup: switched in src/site-settings.ts -->
   {showSubscribe && (
@@ -258,71 +241,56 @@ const arrowIcon = '<path d="M5 12h14M13 6l6 6-6 6"/>';
   .claims li svg { color: #5da9f0; margin-top: 3px; }
   .claims li b { color: #fff; font-weight: 600; }
 
-  /* At a glance */
+  /* Front door: two cards of equal weight */
   .band { background: var(--page); border-bottom: 1px solid var(--line); padding: 26px 0; }
-  .band h2 { font-size: 20px; margin-bottom: 16px; font-weight: 600; letter-spacing: -.2px; }
-  .glance { display: grid; gap: 12px; grid-template-columns: 1fr; }
-  .gc { border: 1px solid var(--line); border-radius: 8px; padding: 16px 17px; background: var(--card); box-shadow: var(--sh); }
-  .gc-h { display: flex; gap: 9px; align-items: center; margin-bottom: 7px; font-size: 14.5px; font-weight: 600; }
-  .gc-h svg { color: var(--blue); }
-  .gc p:not(.gc-h) { font-size: 13.5px; color: var(--ink-2); margin-bottom: 9px; }
-  .gc a, .more a { font-size: 13.5px; font-weight: 600; color: var(--blue); display: inline-flex; align-items: center; gap: 5px; }
-  .gc a:hover, .more a:hover { text-decoration: underline; }
+  .front { display: grid; gap: 16px; grid-template-columns: minmax(0, 1fr); align-items: stretch; }
+  .fc { background: var(--card); border: 1px solid var(--line); border-radius: 8px; box-shadow: var(--sh); padding: 18px 19px 16px; display: flex; flex-direction: column; }
+  .fc-h { display: flex; gap: 11px; align-items: flex-start; margin-bottom: 14px; }
+  .fc-h svg { color: var(--blue); margin-top: 1px; }
+  .fc-h h2 { font-size: 18px; font-weight: 600; letter-spacing: -.2px; }
+  .fc-sub { font-size: 13px; color: var(--ink-2); margin-top: 2px; }
 
-  /* Main panels */
-  .home-main { padding-top: 24px; }
-  .cols { display: grid; gap: 20px; grid-template-columns: minmax(0, 1fr); }
-  .cols .panel, .lower .panel { margin-top: 0; min-width: 0; }
+  /* Figures: class and source on the left, the number on the right */
+  .figs, .regs { list-style: none; }
+  .figs li { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 14px; align-items: center; padding: 11px 0; border-bottom: 1px solid var(--line-2); }
+  .figs li:first-child, .regs li:first-child { padding-top: 0; }
+  .fig-l { min-width: 0; }
+  .fig-cls { display: block; font-size: 14.5px; color: var(--ink); overflow-wrap: anywhere; }
+  .fig-src { display: flex; align-items: center; flex-wrap: wrap; font-size: 12.5px; color: var(--ink-2); margin-top: 2px; }
+  .fig-src :global(a) { color: var(--blue); text-decoration: underline; text-underline-offset: 2px; }
+  .fig-sec { display: block; font-size: 11.5px; color: var(--ink-3); text-transform: uppercase; letter-spacing: .06em; margin-top: 3px; }
+  .fig-n { font-size: 16px; font-weight: 600; white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+  /* Regulation: jurisdiction and headline on the left, status on the right */
+  .regs li { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 14px; align-items: center; padding: 11px 0; border-bottom: 1px solid var(--line-2); }
+  .reg-l { min-width: 0; }
+  .reg-j { display: block; font-size: 11.5px; color: var(--ink-3); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 2px; }
+  .reg-l a { font-size: 14.5px; color: var(--ink); }
+  .reg-l a:hover { color: var(--blue); text-decoration: underline; }
+  .reg-s { font-size: 12px; font-weight: 600; color: var(--ink-2); background: var(--page); border: 1px solid var(--line); border-radius: 20px; padding: 3px 10px; white-space: nowrap; }
+
+  .fc-note { font-size: 12.5px; line-height: 1.55; color: var(--ink-2); margin-top: 12px; }
+  .fc-note :global(strong) { color: var(--ink); font-weight: 600; }
+  .fc-note :global(a) { color: var(--blue); text-decoration: underline; }
+  .fc-go { margin-top: auto; padding-top: 14px; }
+  .fc-go a { font-size: 13.5px; font-weight: 600; color: var(--blue); display: inline-flex; align-items: center; gap: 5px; }
+  .fc-go a:hover { text-decoration: underline; }
+
+  /* Source-type strip */
+  .strip { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; padding-top: 18px; padding-bottom: 4px; }
+  .strip-t { font-size: 13.5px; color: var(--ink-2); }
+  .strip-legend { list-style: none; display: flex; flex-wrap: wrap; gap: 8px 14px; }
+  .strip-legend li { display: flex; align-items: center; font-size: 12.5px; color: var(--ink-2); }
+  .strip-go a { font-size: 13.5px; font-weight: 600; color: var(--blue); display: inline-flex; align-items: center; gap: 5px; }
+  .strip-go a:hover { text-decoration: underline; }
+
+  /* Lower panels (off unless switched on in site-settings) */
+  .lower { display: grid; gap: 20px; margin-top: 20px; grid-template-columns: minmax(0, 1fr); }
+  .lower .panel { margin-top: 0; min-width: 0; }
   .panel-h { display: flex; gap: 10px; align-items: center; margin-bottom: 5px; }
   .panel-h svg { color: var(--blue); }
   .panel-h h2 { font-size: 21px; font-weight: 600; letter-spacing: -.25px; }
   .sub { font-size: 14px; color: var(--ink-2); margin-bottom: 18px; }
-
-  /* Equipment blocks */
-  .eq { border: 1px solid var(--line); border-radius: 7px; margin-bottom: 14px; overflow: hidden; }
-  .eq-h { background: #f6f9fc; padding: 11px 15px; border-bottom: 1px solid var(--line); }
-  .eq-h h3 { display: flex; align-items: center; gap: 8px; font-size: 15.5px; font-weight: 600; }
-  .eq-h h3 a:hover { text-decoration: underline; }
-  .eq-h svg { color: var(--ink-3); }
-  .eq-b { padding: 4px 15px 13px; }
-
-  /* Rows: class + source on the left, figure on the right. All three always visible. */
-  .rows { display: block; width: 100%; border-collapse: collapse; }
-  .rows thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; }
-  .rows tbody { display: block; }
-  .rows tr { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "class figure" "source figure"; column-gap: 16px; row-gap: 2px; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--line-2); }
-  .rows td { display: block; padding: 0; text-align: left; }
-  .col-class { grid-area: class; font-size: 14px; color: var(--ink); overflow-wrap: anywhere; }
-  .col-source { grid-area: source; display: flex; align-items: center; flex-wrap: wrap; font-size: 12.5px; color: var(--ink-2); }
-  .col-figure { grid-area: figure; font-size: 15px; font-weight: 600; white-space: nowrap; text-align: right !important; font-variant-numeric: tabular-nums; }
-  @media (max-width: 359px) {
-    .rows tr { grid-template-columns: 1fr; grid-template-areas: "class" "figure" "source"; }
-    .col-figure { text-align: left !important; }
-  }
-
-  /* DCU note — interpretation, below the sourced rows */
-  .take { background: #f6f9fc; border-left: 3px solid var(--blue); border-radius: 0 5px 5px 0; padding: 10px 14px; margin-top: 12px; font-size: 13.5px; color: var(--ink-2); }
-  .take :global(strong) { color: var(--blue-dk); font-weight: 600; }
-  .take :global(a) { color: var(--blue); text-decoration: underline; }
-
-  .disclose { font-size: 13px; line-height: 1.5; color: var(--ink-2); margin: 2px 0 12px; }
-  .disclose :global(strong) { color: var(--ink); font-weight: 600; }
-  .more { margin: 4px 0 18px; }
-  .more-reg { margin: 16px 0 0; }
-
-  /* How to read these numbers */
-  .why { display: flex; gap: 12px; background: var(--amber-bg); border: 1px solid var(--amber-ln); border-radius: 7px; padding: 15px 17px; }
-  .why > svg { color: var(--amber); margin-top: 2px; }
-  .why h3 { font-size: 15px; margin-bottom: 6px; font-weight: 600; color: #6b5200; }
-  .why p { font-size: 13.5px; color: #7a6220; }
-  .legend { list-style: none; display: grid; gap: 6px; font-size: 13px; color: var(--ink-2); margin: 10px 0; }
-  .legend li { display: flex; align-items: flex-start; }
-  .legend li :global(.cls) { margin-top: 3px; }
-  .legend strong { color: var(--ink); font-weight: 600; }
-  .why-link a { color: #8a6a08; font-weight: 600; text-decoration: underline; }
-
-  /* Lower panels */
-  .lower { display: grid; gap: 20px; margin-top: 20px; grid-template-columns: minmax(0, 1fr); }
 
   /* Subscribe band */
   .sub-band { background: linear-gradient(180deg, var(--navy-mid), var(--navy)); color: #fff; margin-top: 26px; padding: 34px 0; }
@@ -336,16 +304,12 @@ const arrowIcon = '<path d="M5 12h14M13 6l6 6-6 6"/>';
 
   @media (min-width: 640px) {
     .hero h1 { font-size: 36px; }
-    .glance { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
   @media (min-width: 900px) {
     .hero h1 { font-size: 40px; }
     .hero-grid { grid-template-columns: 1.5fr 1fr; align-items: center; }
-    .glance { grid-template-columns: repeat(var(--cards), minmax(0, 1fr)); }
+    .front { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
     .lower { grid-template-columns: repeat(var(--cols), minmax(0, 1fr)); }
     .sub-in { grid-template-columns: 1.3fr 1fr; }
-  }
-  @media (min-width: 1040px) {
-    .cols { grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); align-items: start; }
   }
 </style>

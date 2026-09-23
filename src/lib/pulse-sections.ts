@@ -13,7 +13,10 @@ export interface PulseRow {
   cls: string;
   figure: string;
   sourceType: SourceLetter;
+  /** Source label as plain text, with any link reduced to its wording. */
   source: string;
+  /** Same label as HTML, so a link to the original source survives. */
+  sourceHtml: string;
 }
 
 export interface PulseSection {
@@ -79,7 +82,14 @@ export function parsePulseSections(markdown: string): PulseSection[] {
       if (!source) {
         throw new Error(`Procurement Pulse row "${cells[cols.cls]}" under "## ${current.title}" has no **R**, **P**, **V** or **G** source letter.`);
       }
-      current.rows.push({ cls: cells[cols.cls], figure: cells[cols.figure], sourceType: source[1] as SourceLetter, source: source[2] });
+      const label = source[2];
+      current.rows.push({
+        cls: cells[cols.cls],
+        figure: cells[cols.figure],
+        sourceType: source[1] as SourceLetter,
+        source: label.replace(/\[([^\]]+)\]\([^)\s]+\)/g, '$1'),
+        sourceHtml: inlineMarkdown(label),
+      });
     }
   }
   flushNote();
