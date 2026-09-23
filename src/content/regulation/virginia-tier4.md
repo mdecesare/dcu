@@ -55,9 +55,8 @@ The statute itself does not use the term BACT. Separately, [DEQ Guidance Memo
 APG-576](https://townhall.virginia.gov/L/ViewGDoc.cfm?gdid=5121), whose revised version took effect
 9 April 2026, addresses presumptive best available control technology for
 emergency and non-emergency diesel engine-generator sets at data center
-stationary sources. Statute and guidance point at the same technologies but do
-different work: the statute fixes the limit DEQ may issue a permit at, and the
-guidance describes how DEQ expects that limit to be met.
+stationary sources. The statute sets the permit limit; DEQ's guidance addresses
+presumptive BACT for these generator sets.
 
 ## Why an enterprise data center owner should care
 
