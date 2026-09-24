@@ -33,7 +33,7 @@ const count = eiaPrices.sectors.Commercial.statesCounted;
         <ul class="stats">
           <li><span class="stat-n">{pjm.shortfallMw} MW</span><span class="stat-l">below PJM's reliability requirement (unforced capacity). Previous auction: {pjm.priorShortfallMw} MW.</span></li>
           <li><span class="stat-n">{pjm.totalReserveMargin}</span><span class="stat-l">estimated total reserve margin, against a {pjm.targetReserveMargin} target</span></li>
-          <li><span class="stat-n">{pjm.clearingPrice}</span><span class="stat-l">per MW-day, the auction's price cap</span></li>
+          <li><span class="stat-n">{pjm.clearingPrice}</span><span class="stat-l">per MW-day: the 2028/29 wholesale auction clearing price, at the cap. A market result, not a facility bill.</span></li>
         </ul>
 
         <p>PJM runs this auction to secure enough generation, and demand that can be reduced, for a future year.
@@ -47,11 +47,12 @@ const count = eiaPrices.sectors.Commercial.statesCounted;
           own resources. {pjm.auctionReserveMargin} counts the auction alone. Both are below the {pjm.targetReserveMargin}
           target, which PJM sets to hold the expected loss of load to one day in ten years.</p>
 
-        <p>This is the second auction in a row to clear more than one percentage point below that target. Under
-          PJM's current rules, a third would require a separate backstop auction. PJM says it is working on changes
-          to those rules.</p>
+        <p>This is the second auction in a row to clear more than one percentage point below that target. PJM's
+          report says its current tariff provides for a separate Reliability Backstop Auction if three consecutive
+          auctions do so. The report describes changes to those backstop rules as work in PJM's stakeholder process,
+          not as approved rules.</p>
 
-        <h3>Clearing price, $ per MW-day</h3>
+        <h3>Wholesale auction clearing price, $ per MW-day</h3>
         <div class="tbl-wrap wide-only">
           <table class="tbl">
             <thead><tr>{pjm.priceHistory.map((p) => <th scope="col">{p.year}</th>)}</tr></thead>
@@ -62,29 +63,38 @@ const count = eiaPrices.sectors.Commercial.statesCounted;
           <thead><tr><th scope="col" class="l">Delivery year</th><th scope="col">$ per MW-day</th></tr></thead>
           <tbody>{pjm.priceHistory.map((p) => <tr><th scope="row" class="l">{p.year}</th><td>{p.price}</td></tr>)}</tbody>
         </table>
-        <p class="small">Region-wide prices for each delivery year, as listed in PJM's 2028/29 report. The 2027/28 and
-          2028/29 auctions both cleared at their price caps.</p>
+        <p class="small">Region-wide wholesale clearing prices for each delivery year, as listed in PJM's 2028/29 report.
+          The 2027/28 and 2028/29 auctions both cleared at their price caps. These are market results, not facility
+          bills: PJM notes that its auction totals do not equal the cost to customers, because load whose supply is
+          hedged is not exposed to the clearing price.</p>
 
-        <div class="arith">
-          <p><strong>{pjm.perMwYear} per MW-year is arithmetic, not a bill estimate.</strong> It is the 2028/29
-            wholesale clearing price ({pjm.clearingPrice} per MW-day of unforced capacity) multiplied by 365 days.
-            PJM notes that its auction totals do not equal the cost to customers, because customers whose supply is
-            hedged are not exposed to the clearing price. What a facility pays depends on its capacity obligation
-            and its supply arrangement.</p>
-        </div>
-
-        <div class="ask">
+        <div class="ask" id="capacity-question">
           <p class="ask-q">The question for an existing facility in PJM:<br />
-            <strong>How is my capacity obligation determined, and could managing load at the relevant peak times affect it?</strong></p>
-          <p>The answer depends on how you buy power: default service from your utility, a contract with a competitive
-            supplier, or a utility that supplies its own capacity. It also depends on how your contract treats capacity
-            cost: passed through, fixed, or bundled into the price. Your utility or supplier can tell you how the
-            obligation is set, whether particular peak hours matter, when it is recalculated, and whether a change
-            would reach your bill.</p>
+            <strong>What is our peak load contribution, how is it calculated in our utility zone, and how do capacity
+            charges reach our bill under our supply arrangement?</strong></p>
+          <p>PJM's capacity manual separates two things. Your local utility assigns each customer a <em>peak load
+            contribution</em>: a share of the zone's weather-normalized peak from the previous summer, set before each
+            delivery year. The capacity <em>obligation</em> belongs to whoever serves your load, your utility or your
+            supplier: it is the sum of its customers' peak load contributions, scaled by zonal and PJM-wide factors.
+            Neither is the same as your facility's rated MW.</p>
+          <p>How peak load contributions are calculated varies by utility zone. How capacity charges reach your bill
+            depends on how you buy power: default service from your utility, a contract with a competitive supplier
+            (with capacity cost passed through, fixed, or bundled into the price), or a utility that supplies its own
+            capacity. Your utility or supplier can tell you which applies.</p>
         </div>
+
+        <p class="small">This page does not suggest running backup generators to manage peaks. Any operation outside an
+          emergency depends on the facility's air permit and the limits that apply to it; see our
+          <a href="/regulation">Regulation coverage</a>.</p>
+
+        <p class="small correction"><strong>Correction, 24 September 2026.</strong> We removed a per-MW-year figure
+          calculated from the auction clearing price, which could be read as a facility cost, and rewrote the facility
+          question to separate a customer's peak load contribution from its supplier's capacity obligation. We also
+          described PJM's backstop rule changes as proposals.</p>
 
         <p class="src"><SourceMark type="O" /><span>PJM Interconnection, <a href={pjm.reportUrl}>{pjm.reportTitle}</a> (PDF),
-          {pjm.reportDate}, pages 3&ndash;5.</span></p>
+          {pjm.reportDate}, pages 3&ndash;5; and <a href={pjm.manualUrl}>{pjm.manualTitle}</a> (PDF), {pjm.manualRevision},
+          sections 7.4&ndash;7.5.</span></p>
       </section>
 
       <!-- Signal 2: EIA commercial and industrial averages -->
@@ -188,8 +198,10 @@ const count = eiaPrices.sectors.Commercial.statesCounted;
   .wide-only { display: none; }
   .small { font-size: 13.5px; line-height: 1.55; color: var(--ink-2); }
 
-  .arith, .note { background: var(--amber-bg); border: 1px solid var(--amber-ln); border-radius: 6px; padding: 12px 15px; margin: 1.1em 0; font-size: 14.5px; line-height: 1.6; }
-  .arith p, .note p { margin: 0; }
+  .note { background: var(--amber-bg); border: 1px solid var(--amber-ln); border-radius: 6px; padding: 12px 15px; margin: 1.1em 0; font-size: 14.5px; line-height: 1.6; }
+  .note p { margin: 0; }
+  .correction { border-top: 1px solid var(--line-2); padding-top: .8em; }
+  .correction strong { color: var(--ink); }
   .ask { border-left: 3px solid var(--blue); background: var(--blue-lt); border-radius: 0 6px 6px 0; padding: 13px 16px; margin: 1.1em 0; font-size: 15px; line-height: 1.6; }
   .ask p:last-child { margin: 0; }
   .ask-q { color: var(--ink-2); }

@@ -29,8 +29,11 @@ export const pjm = {
     { year: '2027/28', price: '$333.44' },
     { year: '2028/29', price: '$325.00' },
   ],
-  // Arithmetic only: $325.00 x 365 days. Never shown on the homepage.
-  perMwYear: '$118,625',
+  // PJM Manual 18, sections 7.4-7.5 (pp. 169-170): peak load contributions vs scaled LSE obligations.
+  // Record: dcu-intelligence docs/source-records/pjm-2028-2029-bra-report.md
+  manualTitle: 'PJM Manual 18: PJM Capacity Market',
+  manualRevision: 'Revision 62, effective 17 December 2025',
+  manualUrl: 'https://www.pjm.com/-/media/DotCom/documents/manuals/m18.pdf',
 };
 
 export type Sector = 'Commercial' | 'Industrial';
