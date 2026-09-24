@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import RegItem from '../../components/RegItem.astro';
+import ThisWeek from '../../components/ThisWeek.astro';
 import { getRegulationItems } from '../../lib/regulation';
 
 const items = await getRegulationItems();
@@ -14,6 +15,7 @@ const items = await getRegulationItems();
   </section>
 
   <div class="wrap">
+    <ThisWeek section="regulation" />
     <div class="panel panel-reading">
       {items.map((item) => <RegItem item={item} />)}
     </div>

@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import SourceMark from '../components/SourceMark.astro';
 import BriefItem from '../components/BriefItem.astro';
+import WeekStrip from '../components/WeekStrip.astro';
 import { getCollection } from 'astro:content';
 import { siteSettings } from '../site-settings';
 import { getEditions } from '../lib/procurement';
@@ -92,6 +93,9 @@ const arrowIcon = '<path d="M5 12h14M13 6l6 6-6 6"/>';
     </div>
   </section>
 
+  <!-- This week: counts of editorial items per section, from src/content/changes -->
+  <WeekStrip />
+
   <!-- Front door: a few sourced figures, the current developments, and the way through to both -->
   <section class="band">
     <div class="wrap">
@@ -165,7 +169,7 @@ const arrowIcon = '<path d="M5 12h14M13 6l6 6-6 6"/>';
             <li>
               <div class="fig-l">
                 <span class="fig-cls">Capacity below PJM's reliability requirement</span>
-                <span class="fig-src"><SourceMark type="G" /><a href={pjm.reportUrl}>PJM auction results</a>, {pjm.reportDate}</span>
+                <span class="fig-src"><SourceMark type="O" /><a href={pjm.reportUrl}>PJM auction results</a>, {pjm.reportDate}</span>
                 <span class="fig-sec">PJM {pjm.deliveryYear} &middot; incl. Virginia and Ohio</span>
               </div>
               <span class="fig-n">{pjm.shortfallMw} MW</span>
@@ -173,7 +177,7 @@ const arrowIcon = '<path d="M5 12h14M13 6l6 6-6 6"/>';
             <li>
               <div class="fig-l">
                 <span class="fig-cls">Estimated reserve margin, against a {pjm.targetReserveMargin} target</span>
-                <span class="fig-src"><SourceMark type="G" /><a href={pjm.reportUrl}>PJM auction results</a>, {pjm.reportDate}</span>
+                <span class="fig-src"><SourceMark type="O" /><a href={pjm.reportUrl}>PJM auction results</a>, {pjm.reportDate}</span>
                 <span class="fig-sec">PJM {pjm.deliveryYear}</span>
               </div>
               <span class="fig-n">{pjm.totalReserveMargin}</span>
@@ -204,7 +208,7 @@ const arrowIcon = '<path d="M5 12h14M13 6l6 6-6 6"/>';
   <section class="wrap strip">
     <p class="strip-t">Every figure keeps its source, its date, and the population it measured.</p>
     <ul class="strip-legend">
-      {(Object.keys(SOURCE_TYPES) as Array<'R' | 'P' | 'V' | 'G'>).map((letter) => (
+      {(Object.keys(SOURCE_TYPES) as Array<'R' | 'P' | 'V' | 'G' | 'O'>).map((letter) => (
         <li><SourceMark type={letter} /><span>{SOURCE_TYPES[letter].name}</span></li>
       ))}
     </ul>

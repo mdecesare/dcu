@@ -1,0 +1,21 @@
+# How to add a "What changed this week" entry
+#
+# This guide is ignored by the site because its file name starts with an underscore.
+#
+# One .yaml file per entry, for example 2026-09-28-power-pjm-capacity.yaml:
+#
+#   date: 2026-09-28          # the Eastern-time date the change went live on the public site
+#   section: power            # procurement, regulation or power
+#   kind: new                 # new, update or correction
+#   title: "PJM 2028/29 capacity auction: 6,831 MW below the reliability requirement"
+#   href: /power#pjm-capacity # where the change is on the site
+#
+# The homepage "This week" strip counts these entries for the current Monday-Sunday week
+# (Eastern time), and each section page lists them under "What changed this week".
+#
+# Count only meaningful editorial items:
+#   new         a new edition, item or signal published
+#   update      a changed status, figure or finding in something already published
+#   correction  a published figure or claim corrected
+#
+# Do NOT add entries for copy edits, link or formatting fixes, watcher checks, backups or commits.

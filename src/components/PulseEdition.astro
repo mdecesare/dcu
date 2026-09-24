@@ -24,6 +24,8 @@ const sections = headings.filter((h) => h.depth === 2);
     </div>
   </section>
 
+  <div class="wrap"><slot name="top" /></div>
+
   {!isLatest && (
     <div class="wrap">
       <p class="newer">A newer edition is available: <a href={`/procurement/${latest.slug}`}>{latest.data.title}</a></p>

@@ -54,7 +54,7 @@ const regulation = defineCollection({
     status: z.string(),
     summary: z.string(),
     citation: z.string(),
-    sourceType: z.enum(['R', 'P', 'V', 'G']).default('G'),
+    sourceType: z.enum(['R', 'P', 'V', 'G', 'O']).default('G'),
     order: z.number(),
   }),
 });
@@ -66,10 +66,24 @@ const briefItem = z.object({
   title: z.string(),
   summary: z.string(),
   citation: z.string().optional(),
-  sourceType: z.enum(['R', 'P', 'V', 'G']).optional(),
+  sourceType: z.enum(['R', 'P', 'V', 'G', 'O']).optional(),
   order: z.number(),
 });
 const power = defineCollection({ type: 'content', schema: briefItem });
 const watching = defineCollection({ type: 'content', schema: briefItem });
 
-export const collections = { articles, pages, procurement, regulation, power, watching };
+// "What changed this week" entries: one YAML file per meaningful editorial item.
+// Counted on the homepage strip and listed at the top of each section page.
+// See _how-to-add-an-entry.yaml in the folder for what counts and what does not.
+const changes = defineCollection({
+  type: 'data',
+  schema: z.object({
+    date: z.coerce.date(),
+    section: z.enum(['procurement', 'regulation', 'power']),
+    kind: z.enum(['new', 'update', 'correction']),
+    title: z.string(),
+    href: z.string().startsWith('/'),
+  }),
+});
+
+export const collections = { articles, pages, procurement, regulation, power, watching, changes };

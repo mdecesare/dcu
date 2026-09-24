@@ -2,6 +2,7 @@
 // /power: two signals for enterprise facilities already running. Figures live in src/lib/power.ts.
 import Base from '../../layouts/Base.astro';
 import SourceMark from '../../components/SourceMark.astro';
+import ThisWeek from '../../components/ThisWeek.astro';
 import { pjm, eiaPrices, eiaStates, eiaReleased, pct, cents } from '../../lib/power';
 
 const sectors = ['Commercial', 'Industrial'] as const;
@@ -20,6 +21,7 @@ const count = eiaPrices.sectors.Commercial.statesCounted;
   </section>
 
   <div class="wrap">
+    <ThisWeek section="power" />
     <div class="panel panel-reading prose">
 
       <!-- Signal 1: PJM capacity and reserves -->
@@ -81,7 +83,7 @@ const count = eiaPrices.sectors.Commercial.statesCounted;
             would reach your bill.</p>
         </div>
 
-        <p class="src"><SourceMark type="G" /><span>PJM Interconnection, <a href={pjm.reportUrl}>{pjm.reportTitle}</a> (PDF),
+        <p class="src"><SourceMark type="O" /><span>PJM Interconnection, <a href={pjm.reportUrl}>{pjm.reportTitle}</a> (PDF),
           {pjm.reportDate}, pages 3&ndash;5.</span></p>
       </section>
 

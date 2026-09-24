@@ -24,11 +24,12 @@
   --red-bg:  #fdedeb;
   --sh: 0 1px 2px rgba(16,32,48,.05), 0 2px 8px rgba(16,32,48,.05);
 
-  /* Source-type marker colours: R, P, V, G */
+  /* Source-type marker colours: R, P, V, G, O */
   --src-r: #3f7a52;
   --src-p: #2d5f8f;
   --src-v: #8a6d3b;
   --src-g: #5a5470;
+  --src-o: #1f6f7a;
 
   --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 
@@ -86,7 +87,7 @@ img { max-width: 100%; display: block; }
   .panel { padding: 30px 34px; }
 }
 
-/* ---------- Source-type markers (R, P, V, G) ---------- */
+/* ---------- Source-type markers (R, P, V, G, O) ---------- */
 .cls {
   display: inline-flex; align-items: center; justify-content: center;
   width: 15px; height: 15px; border-radius: 50%;
@@ -99,6 +100,7 @@ a.cls:hover { text-decoration: none; box-shadow: 0 0 0 3px var(--blue-lt); }
 .c-p { background: var(--src-p); }
 .c-v { background: var(--src-v); }
 .c-g { background: var(--src-g); }
+.c-o { background: var(--src-o); }
 
 /* ---------- Long-form text from markdown (Methodology, About, reports) ---------- */
 .prose { font-size: 16.5px; line-height: 1.7; color: var(--ink); }

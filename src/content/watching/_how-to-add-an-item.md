@@ -13,7 +13,7 @@ Start the file with a block like this (the lines of three dashes are required):
     order: 1
     ---
 
-- `citation` and `sourceType` are optional. `sourceType` is R, P, V or G.
+- `citation` and `sourceType` are optional. `sourceType` is R, P, V, G or O.
 - `order` sets the position in the panel: 1 is first.
 - Anything written below the block is not shown on the homepage.
 

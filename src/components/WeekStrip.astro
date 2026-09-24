@@ -1,0 +1,66 @@
+---
+// Homepage "This week" strip: how many meaningful editorial items each section published
+// in the current Monday-Sunday week (Eastern time). Entries live in src/content/changes.
+import { getChanges, easternWeek, weekLabel, inWeek, changeDate, SECTION_LABELS, type Section } from '../lib/changes';
+
+const week = easternWeek();
+const all = await getChanges();
+const sections = (['procurement', 'regulation', 'power'] as Section[]).map((section) => {
+  const entries = all.filter((c) => c.data.section === section);
+  return {
+    section,
+    label: SECTION_LABELS[section],
+    count: entries.filter((c) => inWeek(c, week)).length,
+    dates: entries.map(changeDate).join(' '),
+  };
+});
+---
+<section class="wk" aria-labelledby="wk-title">
+  <div class="wrap wk-in">
+    <div class="wk-t">
+      <h2 id="wk-title">This week</h2>
+      <p><span data-week-label>{weekLabel(week)}</span><span class="wk-sep"> · </span><span class="wk-def">New or changed editorial items, Monday to Sunday, Eastern time</span></p>
+    </div>
+    <ul class="wk-list">
+      {sections.map((s) => (
+        <li>
+          <a href={`/${s.section}#this-week`}>
+            <span class="wk-n" data-week-count={s.dates}>{s.count}</span>
+            <span class="wk-l"><span class="wk-s">{s.label}</span><span class="wk-go">What changed</span></span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<script>
+  import '../scripts/this-week';
+</script>
+
+<style>
+  /* A slim band joined to the hero: status, not content, so it reads differently from the cards below */
+  .wk { background: var(--navy-dk); border-top: 1px solid rgba(255, 255, 255, .1); color: #fff; }
+  .wk-in { display: grid; gap: 10px; padding-top: 14px; padding-bottom: 14px; }
+  .wk-t h2 { font-size: 12px; letter-spacing: .09em; text-transform: uppercase; color: #8fb6de; font-weight: 600; }
+  .wk-t p { font-size: 13px; color: #bfd2e5; margin-top: 2px; }
+  .wk-def { color: #8ba3bc; }
+  .wk-list { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .wk-list a { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border: 1px solid rgba(255, 255, 255, .14); border-radius: 6px; color: #fff; min-width: 0; }
+  .wk-list a:hover { border-color: rgba(255, 255, 255, .45); background: rgba(255, 255, 255, .05); text-decoration: none; }
+  .wk-n { font-size: 28px; font-weight: 600; line-height: 1; font-variant-numeric: tabular-nums; min-width: 1ch; }
+  .wk-l { display: flex; flex-direction: column; min-width: 0; }
+  .wk-s { font-size: 13.5px; font-weight: 600; overflow-wrap: anywhere; }
+  .wk-go { font-size: 12px; color: #8fb6de; }
+  .wk-list a:hover .wk-go { text-decoration: underline; }
+
+  @media (max-width: 479px) {
+    .wk-sep { display: none; }
+    .wk-def { display: block; }
+    .wk-list a { flex-direction: column; align-items: flex-start; gap: 4px; }
+  }
+  @media (min-width: 900px) {
+    .wk-in { grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); align-items: center; gap: 24px; }
+    .wk-n { font-size: 32px; }
+  }
+</style>
