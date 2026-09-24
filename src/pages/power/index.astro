@@ -3,14 +3,8 @@
 import Base from '../../layouts/Base.astro';
 import SourceMark from '../../components/SourceMark.astro';
 import ThisWeek from '../../components/ThisWeek.astro';
-import { pjm, eiaPrices, eiaStates, eiaReleased, pct, cents } from '../../lib/power';
-
-const sectors = ['Commercial', 'Industrial'] as const;
-const rows = [
-  ...eiaStates.map((name) => ({ name, national: false, cells: sectors.map((s) => eiaPrices.sectors[s].states[name]) })),
-  { name: 'U.S. average', national: true, cells: sectors.map((s) => ({ ...eiaPrices.sectors[s].us, rank_by_change: null })) },
-];
-const count = eiaPrices.sectors.Commercial.statesCounted;
+import PowerPrices from '../../components/PowerPrices.astro';
+import { pjm } from '../../lib/power';
 ---
 <Base title="Power" description="Grid supply and electricity cost for enterprise data centers already in operation, with the source behind every figure.">
   <section class="page-head">
@@ -93,80 +87,14 @@ const count = eiaPrices.sectors.Commercial.statesCounted;
           sections 7.4&ndash;7.5.</span></p>
       </section>
 
-      <!-- Signal 2: EIA commercial and industrial averages -->
-      <section class="signal" id="electricity-prices">
-        <p class="sig-k">Electricity cost &middot; updated monthly</p>
-        <h2>Average electricity prices, {eiaPrices.periodCurrent}</h2>
-        <p class="facts"><strong>Data through:</strong> {eiaPrices.dataThrough} &middot; <strong>Released:</strong> {eiaReleased}
-          &middot; <strong>Status:</strong> preliminary</p>
-
-        <div class="tbl-wrap wide-only">
-          <table class="tbl tbl-eia">
-            <thead>
-              <tr>
-                <th scope="col" rowspan="2" class="l">Cents per kWh</th>
-                <th scope="colgroup" colspan="3">Commercial</th>
-                <th scope="colgroup" colspan="3">Industrial</th>
-              </tr>
-              <tr>
-                <th scope="col">2026</th><th scope="col">vs 2025</th><th scope="col">Rank</th>
-                <th scope="col">2026</th><th scope="col">vs 2025</th><th scope="col">Rank</th>
-              </tr>
-            </thead>
-            <tbody>
-              {rows.map((r) => (
-                <tr class={r.national ? 'nat' : undefined}>
-                  <th scope="row" class="l">{r.name}</th>
-                  {r.cells.map((c) => (
-                    <>
-                      <td>{cents(c.current)}</td>
-                      <td>{pct(c.change_pct)}</td>
-                      <td>{c.rank_by_change ?? '—'}</td>
-                    </>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        {sectors.map((sector, i) => (
-          <table class="tbl narrow-only tbl-sector">
-            <caption>{sector} customers, cents per kWh</caption>
-            <thead><tr><th scope="col" class="l">State</th><th scope="col">2026</th><th scope="col">vs 2025</th><th scope="col">Rank</th></tr></thead>
-            <tbody>
-              {rows.map((r) => (
-                <tr class={r.national ? 'nat' : undefined}>
-                  <th scope="row" class="l">{r.name}</th>
-                  <td>{cents(r.cells[i].current)}</td>
-                  <td>{pct(r.cells[i].change_pct)}</td>
-                  <td>{r.cells[i].rank_by_change ?? '—'}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        ))}
-        <p class="small">Change compares {eiaPrices.periodCurrent} with {eiaPrices.periodPrior}. Rank is by size of
-          change among {count} jurisdictions (the 50 states and DC), where 1 is the largest increase. Across all {count},
-          the median change was {pct(eiaPrices.sectors.Commercial.medianStateChangePct)} for commercial customers and
-          {pct(eiaPrices.sectors.Industrial.medianStateChangePct)} for industrial. The four states shown are DCU's
-          launch coverage, not a selection by result.</p>
-
-        <div class="note">
-          <p><strong>Not your facility's tariff.</strong> These are statewide averages across all commercial or all
-            industrial customers, as estimated by EIA. They are not the rate any one facility pays, and they do not
-            explain why prices moved. Depending on the utility, a 1&ndash;10 MW site may be billed on a commercial or
-            an industrial rate schedule, which is why both are shown.</p>
-        </div>
-
-        <p class="src"><SourceMark type="G" /><span>U.S. Energy Information Administration, <a href={eiaPrices.url}>{eiaPrices.publication},
-          {eiaPrices.table}</a>, data for {eiaPrices.dataThrough}, released {eiaReleased}. Preliminary estimates, revised in later editions.</span></p>
-      </section>
+      <!-- Signal 2: Power prices by state (EIA) -->
+      <PowerPrices />
 
     </div>
   </div>
 </Base>
 
-<style>
+<style is:global>
   .signal + .signal { margin-top: 2.2em; padding-top: 1.6em; border-top: 1px solid var(--line); }
   .sig-k { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; margin-bottom: .3em !important; }
   .signal h2 { font-size: 22px; line-height: 1.3; margin: 0 0 .5em; padding: 0; border: 0; }

@@ -10,7 +10,7 @@ import { getRegulationItems } from '../lib/regulation';
 import { parsePulseSections, parsePulseDisclosures } from '../lib/pulse-sections';
 import { SOURCE_TYPES } from '../lib/source-types.mjs';
 import { smartQuotes } from '../lib/typography';
-import { pjm, eiaPrices, pct } from '../lib/power';
+import { pjm, eiaPrices, eiaYtdLabel, eiaTableUrls, pct } from '../lib/power';
 
 // The homepage is a front door, not a second copy of the Procurement page: it shows a few
 // figures chosen in src/site-settings.ts and links to the editions that hold the rest.
@@ -60,7 +60,7 @@ const boltIcon = '<path d="M13 2L4.5 13H12l-1 9 8.5-11H12z"/>';
 const eyeIcon = '<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/>';
 const checkIcon = '<path d="M20 6L9 17l-5-5"/>';
 // One concise national comparison for the homepage. If the two sectors ever differ, both are shown.
-const [comChange, indChange] = (['Commercial', 'Industrial'] as const).map((s) => eiaPrices.sectors[s].us.change_pct);
+const [comChange, indChange] = (['commercial', 'industrial'] as const).map((s) => eiaPrices.us.ytd[s].change_pct);
 const homeEiaChange = comChange === indChange ? pct(comChange) : `${pct(comChange)} / ${pct(indChange)}`;
 const arrowIcon = '<path d="M5 12h14M13 6l6 6-6 6"/>';
 ---
@@ -185,8 +185,8 @@ const arrowIcon = '<path d="M5 12h14M13 6l6 6-6 6"/>';
             <li>
               <div class="fig-l">
                 <span class="fig-cls">U.S. average electricity price, commercial and industrial, vs a year earlier</span>
-                <span class="fig-src"><SourceMark type="G" /><a href={eiaPrices.url}>EIA</a>, preliminary, data through {eiaPrices.dataThrough}</span>
-                <span class="fig-sec">{eiaPrices.periodCurrent}</span>
+                <span class="fig-src"><SourceMark type="G" /><a href={eiaTableUrls.ytd}>EIA</a>, preliminary, data through {eiaPrices.source.data_month}</span>
+                <span class="fig-sec">{eiaYtdLabel}</span>
               </div>
               <span class="fig-n">{homeEiaChange}</span>
             </li>
