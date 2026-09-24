@@ -1,6 +1,7 @@
 ---
 // Homepage "This week" strip: how many meaningful editorial items each section published
 // in the current Monday-Sunday week (Eastern time). Entries live in src/content/changes.
+// One box per section; add a section to the list below and the grid rebalances itself.
 import { getChanges, easternWeek, weekLabel, inWeek, changeDate, SECTION_LABELS, type Section } from '../lib/changes';
 
 const week = easternWeek();
@@ -14,19 +15,25 @@ const sections = (['procurement', 'regulation', 'power'] as Section[]).map((sect
     dates: entries.map(changeDate).join(' '),
   };
 });
+
+// Even rows on wide screens, at most five boxes per row: 3 -> 3, 6 -> 3+3, 8 -> 4+4, 10 -> 5+5.
+const n = sections.length;
+const cols = Math.ceil(n / Math.ceil(n / 5));
 ---
 <section class="wk" aria-labelledby="wk-title">
-  <div class="wrap wk-in">
-    <div class="wk-t">
-      <h2 id="wk-title">This week</h2>
-      <p><span data-week-label>{weekLabel(week)}</span><span class="wk-sep"> · </span><span class="wk-def">New or changed editorial items, Monday to Sunday, Eastern time</span></p>
-    </div>
-    <ul class="wk-list">
+  <div class="wrap">
+    <p class="wk-h">
+      <span class="wk-tt" id="wk-title">This week</span>
+      <span class="wk-d" data-week-label>{weekLabel(week)}</span>
+      <span class="wk-def">New or changed editorial items &middot; Monday to Sunday, Eastern time</span>
+    </p>
+    <ul class={`wk-g${n === 3 ? ' wk-3' : ''}`} style={`--cols:${cols}`}>
       {sections.map((s) => (
         <li>
           <a href={`/${s.section}#this-week`}>
             <span class="wk-n" data-week-count={s.dates}>{s.count}</span>
-            <span class="wk-l"><span class="wk-s">{s.label}</span><span class="wk-go">What changed</span></span>
+            <span class="wk-l">{s.label}</span>
+            <span class="wk-go">What changed<span class="wk-arr" aria-hidden="true"> &rarr;</span></span>
           </a>
         </li>
       ))}
@@ -39,28 +46,29 @@ const sections = (['procurement', 'regulation', 'power'] as Section[]).map((sect
 </script>
 
 <style>
-  /* A slim band joined to the hero: status, not content, so it reads differently from the cards below */
-  .wk { background: var(--navy-dk); border-top: 1px solid rgba(255, 255, 255, .1); color: #fff; }
-  .wk-in { display: grid; gap: 10px; padding-top: 14px; padding-bottom: 14px; }
-  .wk-t h2 { font-size: 12px; letter-spacing: .09em; text-transform: uppercase; color: #8fb6de; font-weight: 600; }
-  .wk-t p { font-size: 13px; color: #bfd2e5; margin-top: 2px; }
-  .wk-def { color: #8ba3bc; }
-  .wk-list { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
-  .wk-list a { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border: 1px solid rgba(255, 255, 255, .14); border-radius: 6px; color: #fff; min-width: 0; }
-  .wk-list a:hover { border-color: rgba(255, 255, 255, .45); background: rgba(255, 255, 255, .05); text-decoration: none; }
-  .wk-n { font-size: 28px; font-weight: 600; line-height: 1; font-variant-numeric: tabular-nums; min-width: 1ch; }
-  .wk-l { display: flex; flex-direction: column; min-width: 0; }
-  .wk-s { font-size: 13.5px; font-weight: 600; overflow-wrap: anywhere; }
-  .wk-go { font-size: 12px; color: #8fb6de; }
-  .wk-list a:hover .wk-go { text-decoration: underline; }
+  /* A navy band joined to the hero: status, not content, so it reads differently from the white cards below */
+  .wk { background: var(--navy-dk); border-top: 1px solid rgba(255, 255, 255, .1); color: #fff; padding: 22px 0 26px; }
+  .wk-h { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; margin-bottom: 14px; }
+  .wk-tt { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; color: #8fb6de; }
+  .wk-d { font-size: 14px; font-weight: 600; }
+  .wk-def { font-size: 13px; color: #8ba3bc; }
 
-  @media (max-width: 479px) {
-    .wk-sep { display: none; }
-    .wk-def { display: block; }
-    .wk-list a { flex-direction: column; align-items: flex-start; gap: 4px; }
-  }
-  @media (min-width: 900px) {
-    .wk-in { grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); align-items: center; gap: 24px; }
-    .wk-n { font-size: 32px; }
+  .wk-g { list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .wk-g.wk-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .wk-g a { display: flex; flex-direction: column; height: 100%; background: rgba(255, 255, 255, .035); border: 1px solid rgba(255, 255, 255, .14); border-radius: 10px; padding: 12px 10px 10px; color: #fff; min-width: 0; }
+  .wk-g a:hover { border-color: rgba(255, 255, 255, .45); background: rgba(255, 255, 255, .07); text-decoration: none; }
+  .wk-n { font-size: 38px; font-weight: 700; line-height: 1; letter-spacing: -1px; font-variant-numeric: tabular-nums; }
+  .wk-l { margin-top: 10px; font-size: 10.5px; letter-spacing: .03em; text-transform: uppercase; color: #bfd2e5; font-weight: 600; }
+  .wk-go { margin-top: 6px; font-size: 12px; color: #5da9f0; }
+  .wk-arr { display: none; }
+  .wk-g a:hover .wk-go { text-decoration: underline; }
+
+  @media (min-width: 640px) {
+    .wk-g { grid-template-columns: repeat(var(--cols), minmax(0, 1fr)); gap: 14px; }
+    .wk-g a { padding: 18px 20px 16px; }
+    .wk-n { font-size: 52px; }
+    .wk-l { font-size: 12.5px; letter-spacing: .12em; }
+    .wk-go { margin-top: 8px; font-size: 13px; }
+    .wk-arr { display: inline; }
   }
 </style>
