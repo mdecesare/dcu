@@ -26,10 +26,14 @@ const within = (d: string) => d >= week.start && d <= week.end;
 
 document.querySelectorAll<HTMLElement>('[data-week-label]').forEach((el) => { el.textContent = label(week); });
 
-// Homepage strip: each count holds the dates of every entry in its section.
+// Homepage strip: each count holds the dates of every entry in its section, and the link
+// wording follows the count ("See updates" when there are any, "View section" when there are none).
 document.querySelectorAll<HTMLElement>('[data-week-count]').forEach((el) => {
   const dates = (el.dataset.weekCount || '').split(' ').filter(Boolean);
-  el.textContent = String(dates.filter(within).length);
+  const count = dates.filter(within).length;
+  el.textContent = String(count);
+  const link = el.closest('a')?.querySelector<HTMLElement>('[data-week-link]');
+  if (link) link.textContent = count > 0 ? 'See updates' : 'View section';
 });
 
 // Section pages: show only this week's entries, or the empty message.

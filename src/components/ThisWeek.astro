@@ -2,7 +2,7 @@
 // "What changed this week" at the top of a section page. Lists that section's entries from
 // src/content/changes for the current Monday-Sunday week (Eastern time); older entries stay
 // in the page hidden so the browser can recount if the page was built in an earlier week.
-import { getChanges, easternWeek, weekLabel, inWeek, changeDate, type Section } from '../lib/changes';
+import { getChanges, easternWeek, weekLabel, inWeek, changeDate, SECTION_LABELS, type Section } from '../lib/changes';
 
 interface Props { section: Section }
 const { section } = Astro.props;
@@ -28,7 +28,7 @@ const day = (c: (typeof entries)[number]) =>
       </li>
     ))}
   </ul>
-  <p class="tw-empty" data-week-empty hidden={shown > 0}>Nothing new or changed in this section this week. The current content follows.</p>
+  <p class="tw-empty" data-week-empty hidden={shown > 0}><strong>No editorial updates to {SECTION_LABELS[section]} this week.</strong> The regular page content follows below.</p>
 </section>
 
 <script>
@@ -48,5 +48,6 @@ const day = (c: (typeof entries)[number]) =>
   .tw-correction { color: var(--red); }
   .tw a { color: var(--blue-dk); }
   .tw a:hover { text-decoration: underline; }
-  .tw-empty { font-size: 13.5px; color: var(--ink-2); margin-top: 6px; }
+  .tw-empty { font-size: 14px; color: var(--ink-2); margin-top: 6px; }
+  .tw-empty strong { color: var(--ink); font-weight: 600; }
 </style>

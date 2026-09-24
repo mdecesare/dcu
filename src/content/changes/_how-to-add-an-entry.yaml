@@ -5,6 +5,7 @@
 # One .yaml file per entry, for example 2026-09-28-power-pjm-capacity.yaml:
 #
 #   date: 2026-09-28          # the Eastern-time date the change went live on the public site
+#                             # (add the entry in the same change that publishes the item, never before)
 #   section: power            # procurement, regulation or power
 #   kind: new                 # new, update or correction
 #   title: "PJM 2028/29 capacity auction: 6,831 MW below the reliability requirement"
@@ -13,9 +14,13 @@
 # The homepage "This week" strip counts these entries for the current Monday-Sunday week
 # (Eastern time), and each section page lists them under "What changed this week".
 #
-# Count only meaningful editorial items:
+# One entry per distinct item actually published on the site. Count only meaningful editorial items:
 #   new         a new edition, item or signal published
 #   update      a changed status, figure or finding in something already published
 #   correction  a published figure or claim corrected
 #
-# Do NOT add entries for copy edits, link or formatting fixes, watcher checks, backups or commits.
+# Do NOT add entries for minor copy edits, link or formatting fixes, watcher checks, backups,
+# research or source records that are not published, drafts, or commits.
+#
+# The homepage count and the section list both read these files, so they always agree.
+# The build stops if two entries describe the same item.

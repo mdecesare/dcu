@@ -33,7 +33,7 @@ const cols = Math.ceil(n / Math.ceil(n / 5));
           <a href={`/${s.section}#this-week`}>
             <span class="wk-n" data-week-count={s.dates}>{s.count}</span>
             <span class="wk-l">{s.label}</span>
-            <span class="wk-go">What changed<span class="wk-arr" aria-hidden="true"> &rarr;</span></span>
+            <span class="wk-go"><span data-week-link>{s.count > 0 ? 'See updates' : 'View section'}</span><span aria-hidden="true"> &rarr;</span></span>
           </a>
         </li>
       ))}
@@ -60,7 +60,6 @@ const cols = Math.ceil(n / Math.ceil(n / 5));
   .wk-n { font-size: 38px; font-weight: 700; line-height: 1; letter-spacing: -1px; font-variant-numeric: tabular-nums; }
   .wk-l { margin-top: 10px; font-size: 10.5px; letter-spacing: .03em; text-transform: uppercase; color: #bfd2e5; font-weight: 600; }
   .wk-go { margin-top: 6px; font-size: 12px; color: #5da9f0; }
-  .wk-arr { display: none; }
   .wk-g a:hover .wk-go { text-decoration: underline; }
 
   @media (min-width: 640px) {
@@ -69,6 +68,5 @@ const cols = Math.ceil(n / Math.ceil(n / 5));
     .wk-n { font-size: 52px; }
     .wk-l { font-size: 12.5px; letter-spacing: .12em; }
     .wk-go { margin-top: 8px; font-size: 13px; }
-    .wk-arr { display: inline; }
   }
 </style>

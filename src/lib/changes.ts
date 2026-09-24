@@ -40,8 +40,24 @@ export const changeDate = (c: Change) => iso(c.data.date);
 export const inWeek = (c: Change, week: { start: string; end: string }) =>
   changeDate(c) >= week.start && changeDate(c) <= week.end;
 
+// The homepage counts and the section lists both come from this one function, so they are
+// always the same items. The build stops if two entries describe the same item, so a count
+// can never include a duplicate.
 export async function getChanges(section?: Section) {
   const all = await getCollection('changes');
+  const seen = new Map<string, string>();
+  for (const c of all) {
+    for (const key of [`${c.data.section}|${c.data.title.trim().toLowerCase()}`, `${c.data.section}|${changeDate(c)}|${c.data.href}`]) {
+      const other = seen.get(key);
+      if (other) {
+        throw new Error(
+          `src/content/changes: ${c.id} and ${other} look like the same item (same section and title, ` +
+          `or same section, date and link). Each published item should have exactly one entry.`
+        );
+      }
+      seen.set(key, c.id);
+    }
+  }
   return all
     .filter((c) => !section || c.data.section === section)
     .sort((a, b) => changeDate(b).localeCompare(changeDate(a)));
