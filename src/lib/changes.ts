@@ -60,5 +60,6 @@ export async function getChanges(section?: Section) {
   }
   return all
     .filter((c) => !section || c.data.section === section)
-    .sort((a, b) => changeDate(b).localeCompare(changeDate(a)));
+    // Newest first; items published the same day keep their file-name order (number the files to set it).
+    .sort((a, b) => changeDate(b).localeCompare(changeDate(a)) || a.id.localeCompare(b.id));
 }
