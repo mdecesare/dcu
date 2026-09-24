@@ -53,7 +53,9 @@
         "change_pct": 6.1
       }
     },
-    "interpretation": "Across the United States, the average commercial price in June 2026 was 14.19¢ per kWh, up 4.8% from June 2025. The industrial average was 9.17¢, up 3.0%. Year to date (January–June), the commercial average was up 6.1% and the industrial average up 6.1% on the same months of 2025."
+    "takeaway": {
+      "ytd": "Year to date (January–June): commercial +6.1%, industrial +6.1%"
+    }
   },
   "states": [
     {
@@ -91,7 +93,11 @@
           "change_pct": 2.0
         }
       },
-      "interpretation": "In Alabama, the average commercial price in June 2026 was 14.67¢ per kWh, up 1.0% from June 2025, a smaller rise than the U.S. commercial average (+4.8%). The industrial average was 7.92¢, down 3.4% from June 2025, while the U.S. industrial average rose 3.0%. Year to date (January–June), the commercial average was up 2.3% and the industrial average up 2.0% on the same months of 2025."
+      "takeaway": {
+        "commercial": "smaller rise than the U.S. (+4.8%)",
+        "industrial": "fell while the U.S. rose (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +2.3%, industrial +2.0%; U.S. +6.1% and +6.1%"
+      }
     },
     {
       "code": "AK",
@@ -128,7 +134,11 @@
           "change_pct": 19.0
         }
       },
-      "interpretation": "In Alaska, the average commercial price in June 2026 was 23.42¢ per kWh, up 2.0% from June 2025, a smaller rise than the U.S. commercial average (+4.8%). The industrial average was 21.02¢, up 3.7% from June 2025, a larger rise than the U.S. industrial average (+3.0%). Year to date (January–June), the commercial average was up 2.9% and the industrial average up 19.0% on the same months of 2025."
+      "takeaway": {
+        "commercial": "smaller rise than the U.S. (+4.8%)",
+        "industrial": "larger rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +2.9%, industrial +19.0%; U.S. +6.1% and +6.1%"
+      }
     },
     {
       "code": "AZ",
@@ -165,7 +175,11 @@
           "change_pct": -8.6
         }
       },
-      "interpretation": "In Arizona, the average commercial price in June 2026 was 12.47¢ per kWh, down 3.6% from June 2025, while the U.S. commercial average rose 4.8%. The industrial average was 7.73¢, down 6.4% from June 2025, while the U.S. industrial average rose 3.0%. Year to date (January–June), the commercial average was down 3.8% and the industrial average down 8.6% on the same months of 2025."
+      "takeaway": {
+        "commercial": "fell while the U.S. rose (+4.8%)",
+        "industrial": "fell while the U.S. rose (+3.0%)",
+        "ytd": "Year to date (January–June): commercial −3.8%, industrial −8.6%; U.S. +6.1% and +6.1%"
+      }
     },
     {
       "code": "AR",
@@ -202,7 +216,11 @@
           "change_pct": 1.8
         }
       },
-      "interpretation": "In Arkansas, the average commercial price in June 2026 was 11.54¢ per kWh, up 5.9% from June 2025, a larger rise than the U.S. commercial average (+4.8%). The industrial average was 7.08¢, up 2.5% from June 2025, about the same as the U.S. industrial average (+3.0%). Year to date (January–June), the commercial average was up 7.5% and the industrial average up 1.8% on the same months of 2025."
+      "takeaway": {
+        "commercial": "larger rise than the U.S. (+4.8%)",
+        "industrial": "about the same as the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +7.5%, industrial +1.8%; U.S. +6.1% and +6.1%"
+      }
     },
     {
       "code": "CA",
@@ -239,7 +257,11 @@
           "change_pct": 0.3
         }
       },
-      "interpretation": "In California, the average commercial price in June 2026 was 27.33¢ per kWh, up 1.9% from June 2025, a smaller rise than the U.S. commercial average (+4.8%). The industrial average was 20.74¢, down 6.3% from June 2025, while the U.S. industrial average rose 3.0%. Year to date (January–June), the commercial average was up 4.7% and the industrial average up 0.3% on the same months of 2025."
+      "takeaway": {
+        "commercial": "smaller rise than the U.S. (+4.8%)",
+        "industrial": "fell while the U.S. rose (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +4.7%, industrial +0.3%; U.S. +6.1% and +6.1%"
+      }
     },
     {
       "code": "CO",
@@ -276,7 +298,11 @@
           "change_pct": 8.5
         }
       },
-      "interpretation": "In Colorado, the average commercial price in June 2026 was 14.19¢ per kWh, up 5.2% from June 2025, about the same as the U.S. commercial average (+4.8%). The industrial average was 10.23¢, up 6.1% from June 2025, a larger rise than the U.S. industrial average (+3.0%). Year to date (January–June), the commercial average was up 10.1% and the industrial average up 8.5% on the same months of 2025."
+      "takeaway": {
+        "commercial": "about the same as the U.S. (+4.8%)",
+        "industrial": "larger rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +10.1%, industrial +8.5%; U.S. +6.1% and +6.1%"
+      }
     },
     {
       "code": "CT",
@@ -313,7 +339,11 @@
           "change_pct": -2.9
         }
       },
-      "interpretation": "In Connecticut, the average commercial price in June 2026 was 19.62¢ per kWh, down 7.9% from June 2025, while the U.S. commercial average rose 4.8%. That was the largest decrease among the 50 states and DC. The industrial average was 16.70¢, down 12.2% from June 2025, while the U.S. industrial average rose 3.0%. That was the 2nd largest decrease among the 50 states and DC. Year to date (January–June), the commercial average was down 5.8% and the industrial average down 2.9% on the same months of 2025."
+      "takeaway": {
+        "commercial": "fell while the U.S. rose (+4.8%)",
+        "industrial": "fell while the U.S. rose (+3.0%)",
+        "ytd": "Year to date (January–June): commercial −5.8%, industrial −2.9%; U.S. +6.1% and +6.1%"
+      }
     },
     {
       "code": "DE",
@@ -350,7 +380,11 @@
           "change_pct": 24.9
         }
       },
-      "interpretation": "In Delaware, the average commercial price in June 2026 was 14.40¢ per kWh, up 15.6% from June 2025, a larger rise than the U.S. commercial average (+4.8%). The industrial average was 12.24¢, up 33.8% from June 2025, a larger rise than the U.S. industrial average (+3.0%). That was the 2nd largest increase among the 50 states and DC. Year to date (January–June), the commercial average was up 10.8% and the industrial average up 24.9% on the same months of 2025."
+      "takeaway": {
+        "commercial": "larger rise than the U.S. (+4.8%)",
+        "industrial": "larger rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +10.8%, industrial +24.9%; U.S. +6.1% and +6.1%"
+      }
     },
     {
       "code": "DC",
@@ -387,7 +421,11 @@
           "change_pct": 37.0
         }
       },
-      "interpretation": "In District of Columbia, the average commercial price in June 2026 was 23.38¢ per kWh, up 14.8% from June 2025, a larger rise than the U.S. commercial average (+4.8%). The industrial average was 16.21¢, up 6.8% from June 2025, a larger rise than the U.S. industrial average (+3.0%). Year to date (January–June), the commercial average was up 19.0% and the industrial average up 37.0% on the same months of 2025."
+      "takeaway": {
+        "commercial": "larger rise than the U.S. (+4.8%)",
+        "industrial": "larger rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +19.0%, industrial +37.0%; U.S. +6.1% and +6.1%"
+      }
     },
     {
       "code": "FL",
@@ -424,7 +462,11 @@
           "change_pct": 5.4
         }
       },
-      "interpretation": "In Florida, the average commercial price in June 2026 was 11.47¢ per kWh, up 0.7% from June 2025, a smaller rise than the U.S. commercial average (+4.8%). The industrial average was 9.12¢, up 3.3% from June 2025, about the same as the U.S. industrial average (+3.0%). Year to date (January–June), the commercial average was up 3.9% and the industrial average up 5.4% on the same months of 2025."
+      "takeaway": {
+        "commercial": "smaller rise than the U.S. (+4.8%)",
+        "industrial": "about the same as the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +3.9%, industrial +5.4%; U.S. +6.1% and +6.1%"
+      }
     },
     {
       "code": "GA",
@@ -461,7 +503,11 @@
           "change_pct": -0.5
         }
       },
-      "interpretation": "In Georgia, the average commercial price in June 2026 was 11.91¢ per kWh, down 2.1% from June 2025, while the U.S. commercial average rose 4.8%. The industrial average was 8.86¢, down 4.2% from June 2025, while the U.S. industrial average rose 3.0%. Year to date (January–June), the commercial average was down 0.3% and the industrial average down 0.5% on the same months of 2025."
+      "takeaway": {
+        "commercial": "fell while the U.S. rose (+4.8%)",
+        "industrial": "fell while the U.S. rose (+3.0%)",
+        "ytd": "Year to date (January–June): commercial −0.3%, industrial −0.5%; U.S. +6.1% and +6.1%"
+      }
     },
     {
       "code": "HI",
@@ -498,7 +544,11 @@
           "change_pct": 16.9
         }
       },
-      "interpretation": "In Hawaii, the average commercial price in June 2026 was 48.05¢ per kWh, up 35.2% from June 2025, a larger rise than the U.S. commercial average (+4.8%). That was the largest increase among the 50 states and DC. The industrial average was 43.37¢, up 42.3% from June 2025, a larger rise than the U.S. industrial average (+3.0%). That was the largest increase among the 50 states and DC. Year to date (January–June), the commercial average was up 13.9% and the industrial average up 16.9% on the same months of 2025."
+      "takeaway": {
+        "commercial": "larger rise than the U.S. (+4.8%)",
+        "industrial": "larger rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +13.9%, industrial +16.9%; U.S. +6.1% and +6.1%"
+      }
     },
     {
       "code": "ID",
@@ -535,7 +585,11 @@
           "change_pct": -1.5
         }
       },
-      "interpretation": "In Idaho, the average commercial price in June 2026 was 9.92¢ per kWh, up 10.2% from June 2025, a larger rise than the U.S. commercial average (+4.8%). The industrial average was 10.23¢, up 2.9% from June 2025, about the same as the U.S. industrial average (+3.0%). Year to date (January–June), the commercial average was up 4.2% and the industrial average down 1.5% on the same months of 2025."
+      "takeaway": {
+        "commercial": "larger rise than the U.S. (+4.8%)",
+        "industrial": "about the same as the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +4.2%, industrial −1.5%; U.S. +6.1% and +6.1%"
+      }
     },
     {
       "code": "IL",
@@ -572,7 +626,11 @@
           "change_pct": 1.2
         }
       },
-      "interpretation": "In Illinois, the average commercial price in June 2026 was 14.53¢ per kWh, up 13.1% from June 2025, a larger rise than the U.S. commercial average (+4.8%). The industrial average was 10.65¢, up 10.4% from June 2025, a larger rise than the U.S. industrial average (+3.0%). Year to date (January–June), the commercial average was up 8.6% and the industrial average up 1.2% on the same months of 2025."
+      "takeaway": {
+        "commercial": "larger rise than the U.S. (+4.8%)",
+        "industrial": "larger rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +8.6%, industrial +1.2%; U.S. +6.1% and +6.1%"
+      }
     },
     {
       "code": "IN",
@@ -609,7 +667,11 @@
           "change_pct": 5.3
         }
       },
-      "interpretation": "In Indiana, the average commercial price in June 2026 was 14.15¢ per kWh, up 3.5% from June 2025, a smaller rise than the U.S. commercial average (+4.8%). The industrial average was 9.00¢, up 3.6% from June 2025, a larger rise than the U.S. industrial average (+3.0%). Year to date (January–June), the commercial average was up 2.0% and the industrial average up 5.3% on the same months of 2025."
+      "takeaway": {
+        "commercial": "smaller rise than the U.S. (+4.8%)",
+        "industrial": "larger rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +2.0%, industrial +5.3%; U.S. +6.1% and +6.1%"
+      }
     },
     {
       "code": "IA",
@@ -646,7 +708,11 @@
           "change_pct": 3.6
         }
       },
-      "interpretation": "In Iowa, the average commercial price in June 2026 was 12.79¢ per kWh, up 1.8% from June 2025, a smaller rise than the U.S. commercial average (+4.8%). The industrial average was 8.48¢, up 2.3% from June 2025, a smaller rise than the U.S. industrial average (+3.0%). Year to date (January–June), the commercial average was up 3.8% and the industrial average up 3.6% on the same months of 2025."
+      "takeaway": {
+        "commercial": "smaller rise than the U.S. (+4.8%)",
+        "industrial": "smaller rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +3.8%, industrial +3.6%; U.S. +6.1% and +6.1%"
+      }
     },
     {
       "code": "KS",
@@ -683,7 +749,11 @@
           "change_pct": 4.4
         }
       },
-      "interpretation": "In Kansas, the average commercial price in June 2026 was 12.27¢ per kWh, up 1.4% from June 2025, a smaller rise than the U.S. commercial average (+4.8%). The industrial average was 8.21¢, up 0.2% from June 2025, a smaller rise than the U.S. industrial average (+3.0%). Year to date (January–June), the commercial average was up 4.6% and the industrial average up 4.4% on the same months of 2025."
+      "takeaway": {
+        "commercial": "smaller rise than the U.S. (+4.8%)",
+        "industrial": "smaller rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +4.6%, industrial +4.4%; U.S. +6.1% and +6.1%"
+      }
     },
     {
       "code": "KY",
@@ -720,7 +790,11 @@
           "change_pct": 7.9
         }
       },
-      "interpretation": "In Kentucky, the average commercial price in June 2026 was 12.40¢ per kWh, up 5.4% from June 2025, a larger rise than the U.S. commercial average (+4.8%). The industrial average was 7.15¢, up 0.3% from June 2025, a smaller rise than the U.S. industrial average (+3.0%). Year to date (January–June), the commercial average was up 8.4% and the industrial average up 7.9% on the same months of 2025."
+      "takeaway": {
+        "commercial": "larger rise than the U.S. (+4.8%)",
+        "industrial": "smaller rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +8.4%, industrial +7.9%; U.S. +6.1% and +6.1%"
+      }
     },
     {
       "code": "LA",
@@ -757,7 +831,11 @@
           "change_pct": 7.5
         }
       },
-      "interpretation": "In Louisiana, the average commercial price in June 2026 was 11.64¢ per kWh, up 4.2% from June 2025, a smaller rise than the U.S. commercial average (+4.8%). The industrial average was 6.69¢, up 4.2% from June 2025, a larger rise than the U.S. industrial average (+3.0%). Year to date (January–June), the commercial average was up 6.3% and the industrial average up 7.5% on the same months of 2025."
+      "takeaway": {
+        "commercial": "smaller rise than the U.S. (+4.8%)",
+        "industrial": "larger rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +6.3%, industrial +7.5%; U.S. +6.1% and +6.1%"
+      }
     },
     {
       "code": "ME",
@@ -794,7 +872,11 @@
           "change_pct": 5.9
         }
       },
-      "interpretation": "In Maine, the average commercial price in June 2026 was 22.24¢ per kWh, up 5.5% from June 2025, a larger rise than the U.S. commercial average (+4.8%). The industrial average was 14.21¢, up 0.1% from June 2025, a smaller rise than the U.S. industrial average (+3.0%). Year to date (January–June), the commercial average was up 12.2% and the industrial average up 5.9% on the same months of 2025."
+      "takeaway": {
+        "commercial": "larger rise than the U.S. (+4.8%)",
+        "industrial": "smaller rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +12.2%, industrial +5.9%; U.S. +6.1% and +6.1%"
+      }
     },
     {
       "code": "MD",
@@ -831,7 +913,11 @@
           "change_pct": 25.9
         }
       },
-      "interpretation": "In Maryland, the average commercial price in June 2026 was 16.84¢ per kWh, up 13.6% from June 2025, a larger rise than the U.S. commercial average (+4.8%). The industrial average was 13.51¢, down 7.0% from June 2025, while the U.S. industrial average rose 3.0%. Year to date (January–June), the commercial average was up 21.3% and the industrial average up 25.9% on the same months of 2025."
+      "takeaway": {
+        "commercial": "larger rise than the U.S. (+4.8%)",
+        "industrial": "fell while the U.S. rose (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +21.3%, industrial +25.9%; U.S. +6.1% and +6.1%"
+      }
     },
     {
       "code": "MA",
@@ -868,7 +954,11 @@
           "change_pct": 2.5
         }
       },
-      "interpretation": "In Massachusetts, the average commercial price in June 2026 was 24.52¢ per kWh, up 6.7% from June 2025, a larger rise than the U.S. commercial average (+4.8%). The industrial average was 18.97¢, down 4.1% from June 2025, while the U.S. industrial average rose 3.0%. Year to date (January–June), the commercial average was up 7.7% and the industrial average up 2.5% on the same months of 2025."
+      "takeaway": {
+        "commercial": "larger rise than the U.S. (+4.8%)",
+        "industrial": "fell while the U.S. rose (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +7.7%, industrial +2.5%; U.S. +6.1% and +6.1%"
+      }
     },
     {
       "code": "MI",
@@ -905,7 +995,11 @@
           "change_pct": 7.4
         }
       },
-      "interpretation": "In Michigan, the average commercial price in June 2026 was 16.63¢ per kWh, up 11.3% from June 2025, a larger rise than the U.S. commercial average (+4.8%). The industrial average was 9.24¢, up 5.2% from June 2025, a larger rise than the U.S. industrial average (+3.0%). Year to date (January–June), the commercial average was up 8.2% and the industrial average up 7.4% on the same months of 2025."
+      "takeaway": {
+        "commercial": "larger rise than the U.S. (+4.8%)",
+        "industrial": "larger rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +8.2%, industrial +7.4%; U.S. +6.1% and +6.1%"
+      }
     },
     {
       "code": "MN",
@@ -942,7 +1036,11 @@
           "change_pct": 5.4
         }
       },
-      "interpretation": "In Minnesota, the average commercial price in June 2026 was 13.68¢ per kWh, up 1.0% from June 2025, a smaller rise than the U.S. commercial average (+4.8%). The industrial average was 10.23¢, up 4.4% from June 2025, a larger rise than the U.S. industrial average (+3.0%). Year to date (January–June), the commercial average was up 2.2% and the industrial average up 5.4% on the same months of 2025."
+      "takeaway": {
+        "commercial": "smaller rise than the U.S. (+4.8%)",
+        "industrial": "larger rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +2.2%, industrial +5.4%; U.S. +6.1% and +6.1%"
+      }
     },
     {
       "code": "MS",
@@ -979,7 +1077,11 @@
           "change_pct": 5.1
         }
       },
-      "interpretation": "In Mississippi, the average commercial price in June 2026 was 13.83¢ per kWh, up 6.4% from June 2025, a larger rise than the U.S. commercial average (+4.8%). The industrial average was 8.29¢, up 9.4% from June 2025, a larger rise than the U.S. industrial average (+3.0%). Year to date (January–June), the commercial average was up 8.8% and the industrial average up 5.1% on the same months of 2025."
+      "takeaway": {
+        "commercial": "larger rise than the U.S. (+4.8%)",
+        "industrial": "larger rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +8.8%, industrial +5.1%; U.S. +6.1% and +6.1%"
+      }
     },
     {
       "code": "MO",
@@ -1016,7 +1118,11 @@
           "change_pct": 4.0
         }
       },
-      "interpretation": "In Missouri, the average commercial price in June 2026 was 12.71¢ per kWh, up 2.3% from June 2025, a smaller rise than the U.S. commercial average (+4.8%). The industrial average was 9.84¢, up 0.1% from June 2025, a smaller rise than the U.S. industrial average (+3.0%). Year to date (January–June), the commercial average was up 5.2% and the industrial average up 4.0% on the same months of 2025."
+      "takeaway": {
+        "commercial": "smaller rise than the U.S. (+4.8%)",
+        "industrial": "smaller rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +5.2%, industrial +4.0%; U.S. +6.1% and +6.1%"
+      }
     },
     {
       "code": "MT",
@@ -1053,7 +1159,11 @@
           "change_pct": -3.6
         }
       },
-      "interpretation": "In Montana, the average commercial price in June 2026 was 13.48¢ per kWh, up 2.4% from June 2025, a smaller rise than the U.S. commercial average (+4.8%). The industrial average was 6.68¢, down 10.9% from June 2025, while the U.S. industrial average rose 3.0%. That was the 3rd largest decrease among the 50 states and DC. Year to date (January–June), the commercial average was up 11.2% and the industrial average down 3.6% on the same months of 2025."
+      "takeaway": {
+        "commercial": "smaller rise than the U.S. (+4.8%)",
+        "industrial": "fell while the U.S. rose (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +11.2%, industrial −3.6%; U.S. +6.1% and +6.1%"
+      }
     },
     {
       "code": "NE",
@@ -1090,7 +1200,11 @@
           "change_pct": 4.6
         }
       },
-      "interpretation": "In Nebraska, the average commercial price in June 2026 was 8.82¢ per kWh, down 4.9% from June 2025, while the U.S. commercial average rose 4.8%. That was the 3rd largest decrease among the 50 states and DC. The industrial average was 9.64¢, up 12.4% from June 2025, a larger rise than the U.S. industrial average (+3.0%). Year to date (January–June), the commercial average was up 4.0% and the industrial average up 4.6% on the same months of 2025."
+      "takeaway": {
+        "commercial": "fell while the U.S. rose (+4.8%)",
+        "industrial": "larger rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +4.0%, industrial +4.6%; U.S. +6.1% and +6.1%"
+      }
     },
     {
       "code": "NV",
@@ -1127,7 +1241,11 @@
           "change_pct": 10.1
         }
       },
-      "interpretation": "In Nevada, the average commercial price in June 2026 was 9.83¢ per kWh, up 11.8% from June 2025, a larger rise than the U.S. commercial average (+4.8%). The industrial average was 10.16¢, up 7.4% from June 2025, a larger rise than the U.S. industrial average (+3.0%). Year to date (January–June), the commercial average was up 1.8% and the industrial average up 10.1% on the same months of 2025."
+      "takeaway": {
+        "commercial": "larger rise than the U.S. (+4.8%)",
+        "industrial": "larger rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +1.8%, industrial +10.1%; U.S. +6.1% and +6.1%"
+      }
     },
     {
       "code": "NH",
@@ -1164,7 +1282,11 @@
           "change_pct": 7.7
         }
       },
-      "interpretation": "In New Hampshire, the average commercial price in June 2026 was 21.22¢ per kWh, up 9.3% from June 2025, a larger rise than the U.S. commercial average (+4.8%). The industrial average was 17.47¢, up 9.3% from June 2025, a larger rise than the U.S. industrial average (+3.0%). Year to date (January–June), the commercial average was up 8.8% and the industrial average up 7.7% on the same months of 2025."
+      "takeaway": {
+        "commercial": "larger rise than the U.S. (+4.8%)",
+        "industrial": "larger rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +8.8%, industrial +7.7%; U.S. +6.1% and +6.1%"
+      }
     },
     {
       "code": "NJ",
@@ -1201,7 +1323,11 @@
           "change_pct": 12.2
         }
       },
-      "interpretation": "In New Jersey, the average commercial price in June 2026 was 18.47¢ per kWh, up 2.6% from June 2025, a smaller rise than the U.S. commercial average (+4.8%). The industrial average was 15.65¢, up 1.6% from June 2025, a smaller rise than the U.S. industrial average (+3.0%). Year to date (January–June), the commercial average was up 9.2% and the industrial average up 12.2% on the same months of 2025."
+      "takeaway": {
+        "commercial": "smaller rise than the U.S. (+4.8%)",
+        "industrial": "smaller rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +9.2%, industrial +12.2%; U.S. +6.1% and +6.1%"
+      }
     },
     {
       "code": "NM",
@@ -1238,7 +1364,11 @@
           "change_pct": -10.9
         }
       },
-      "interpretation": "In New Mexico, the average commercial price in June 2026 was 10.82¢ per kWh, down 6.0% from June 2025, while the U.S. commercial average rose 4.8%. That was the 2nd largest decrease among the 50 states and DC. The industrial average was 4.62¢, down 21.7% from June 2025, while the U.S. industrial average rose 3.0%. That was the largest decrease among the 50 states and DC. Year to date (January–June), the commercial average was down 3.2% and the industrial average down 10.9% on the same months of 2025."
+      "takeaway": {
+        "commercial": "fell while the U.S. rose (+4.8%)",
+        "industrial": "fell while the U.S. rose (+3.0%)",
+        "ytd": "Year to date (January–June): commercial −3.2%, industrial −10.9%; U.S. +6.1% and +6.1%"
+      }
     },
     {
       "code": "NY",
@@ -1275,7 +1405,11 @@
           "change_pct": 7.0
         }
       },
-      "interpretation": "In New York, the average commercial price in June 2026 was 23.56¢ per kWh, up 7.1% from June 2025, a larger rise than the U.S. commercial average (+4.8%). The industrial average was 10.17¢, up 10.4% from June 2025, a larger rise than the U.S. industrial average (+3.0%). Year to date (January–June), the commercial average was up 10.9% and the industrial average up 7.0% on the same months of 2025."
+      "takeaway": {
+        "commercial": "larger rise than the U.S. (+4.8%)",
+        "industrial": "larger rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +10.9%, industrial +7.0%; U.S. +6.1% and +6.1%"
+      }
     },
     {
       "code": "NC",
@@ -1312,7 +1446,11 @@
           "change_pct": 0.3
         }
       },
-      "interpretation": "In North Carolina, the average commercial price in June 2026 was 10.51¢ per kWh, up 7.2% from June 2025, a larger rise than the U.S. commercial average (+4.8%). The industrial average was 7.87¢, up 1.3% from June 2025, a smaller rise than the U.S. industrial average (+3.0%). Year to date (January–June), the commercial average was up 3.3% and the industrial average up 0.3% on the same months of 2025."
+      "takeaway": {
+        "commercial": "larger rise than the U.S. (+4.8%)",
+        "industrial": "smaller rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +3.3%, industrial +0.3%; U.S. +6.1% and +6.1%"
+      }
     },
     {
       "code": "ND",
@@ -1349,7 +1487,11 @@
           "change_pct": 9.7
         }
       },
-      "interpretation": "In North Dakota, the average commercial price in June 2026 was 8.02¢ per kWh, down 0.2% from June 2025, while the U.S. commercial average rose 4.8%. The industrial average was 8.32¢, up 8.1% from June 2025, a larger rise than the U.S. industrial average (+3.0%). Year to date (January–June), the commercial average was up 2.8% and the industrial average up 9.7% on the same months of 2025."
+      "takeaway": {
+        "commercial": "fell while the U.S. rose (+4.8%)",
+        "industrial": "larger rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +2.8%, industrial +9.7%; U.S. +6.1% and +6.1%"
+      }
     },
     {
       "code": "OH",
@@ -1386,7 +1528,11 @@
           "change_pct": 27.6
         }
       },
-      "interpretation": "In Ohio, the average commercial price in June 2026 was 13.77¢ per kWh, up 21.5% from June 2025, a larger rise than the U.S. commercial average (+4.8%). That was the 2nd largest increase among the 50 states and DC. The industrial average was 9.89¢, up 14.2% from June 2025, a larger rise than the U.S. industrial average (+3.0%). Year to date (January–June), the commercial average was up 24.5% and the industrial average up 27.6% on the same months of 2025."
+      "takeaway": {
+        "commercial": "larger rise than the U.S. (+4.8%)",
+        "industrial": "larger rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +24.5%, industrial +27.6%; U.S. +6.1% and +6.1%"
+      }
     },
     {
       "code": "OK",
@@ -1423,7 +1569,11 @@
           "change_pct": 9.5
         }
       },
-      "interpretation": "In Oklahoma, the average commercial price in June 2026 was 9.90¢ per kWh, up 1.2% from June 2025, a smaller rise than the U.S. commercial average (+4.8%). The industrial average was 7.37¢, up 12.2% from June 2025, a larger rise than the U.S. industrial average (+3.0%). Year to date (January–June), the commercial average was up 2.1% and the industrial average up 9.5% on the same months of 2025."
+      "takeaway": {
+        "commercial": "smaller rise than the U.S. (+4.8%)",
+        "industrial": "larger rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +2.1%, industrial +9.5%; U.S. +6.1% and +6.1%"
+      }
     },
     {
       "code": "OR",
@@ -1460,7 +1610,11 @@
           "change_pct": 0.5
         }
       },
-      "interpretation": "In Oregon, the average commercial price in June 2026 was 10.59¢ per kWh, down 2.8% from June 2025, while the U.S. commercial average rose 4.8%. The industrial average was 8.83¢, up 3.4% from June 2025, about the same as the U.S. industrial average (+3.0%). Year to date (January–June), the commercial average was down 0.2% and the industrial average up 0.5% on the same months of 2025."
+      "takeaway": {
+        "commercial": "fell while the U.S. rose (+4.8%)",
+        "industrial": "about the same as the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial −0.2%, industrial +0.5%; U.S. +6.1% and +6.1%"
+      }
     },
     {
       "code": "PA",
@@ -1497,7 +1651,11 @@
           "change_pct": 23.0
         }
       },
-      "interpretation": "In Pennsylvania, the average commercial price in June 2026 was 13.33¢ per kWh, up 7.8% from June 2025, a larger rise than the U.S. commercial average (+4.8%). The industrial average was 10.10¢, up 8.5% from June 2025, a larger rise than the U.S. industrial average (+3.0%). Year to date (January–June), the commercial average was up 16.4% and the industrial average up 23.0% on the same months of 2025."
+      "takeaway": {
+        "commercial": "larger rise than the U.S. (+4.8%)",
+        "industrial": "larger rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +16.4%, industrial +23.0%; U.S. +6.1% and +6.1%"
+      }
     },
     {
       "code": "RI",
@@ -1534,7 +1692,11 @@
           "change_pct": -2.1
         }
       },
-      "interpretation": "In Rhode Island, the average commercial price in June 2026 was 22.70¢ per kWh, up 2.5% from June 2025, a smaller rise than the U.S. commercial average (+4.8%). The industrial average was 22.91¢, up 23.1% from June 2025, a larger rise than the U.S. industrial average (+3.0%). That was the 3rd largest increase among the 50 states and DC. Year to date (January–June), the commercial average was down 1.0% and the industrial average down 2.1% on the same months of 2025."
+      "takeaway": {
+        "commercial": "smaller rise than the U.S. (+4.8%)",
+        "industrial": "larger rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial −1.0%, industrial −2.1%; U.S. +6.1% and +6.1%"
+      }
     },
     {
       "code": "SC",
@@ -1571,7 +1733,11 @@
           "change_pct": 12.3
         }
       },
-      "interpretation": "In South Carolina, the average commercial price in June 2026 was 11.62¢ per kWh, up 5.1% from June 2025, about the same as the U.S. commercial average (+4.8%). The industrial average was 7.55¢, up 4.6% from June 2025, a larger rise than the U.S. industrial average (+3.0%). Year to date (January–June), the commercial average was up 8.3% and the industrial average up 12.3% on the same months of 2025."
+      "takeaway": {
+        "commercial": "about the same as the U.S. (+4.8%)",
+        "industrial": "larger rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +8.3%, industrial +12.3%; U.S. +6.1% and +6.1%"
+      }
     },
     {
       "code": "SD",
@@ -1608,7 +1774,11 @@
           "change_pct": 9.7
         }
       },
-      "interpretation": "In South Dakota, the average commercial price in June 2026 was 11.35¢ per kWh, up 0.6% from June 2025, a smaller rise than the U.S. commercial average (+4.8%). The industrial average was 9.44¢, up 7.6% from June 2025, a larger rise than the U.S. industrial average (+3.0%). Year to date (January–June), the commercial average was up 8.1% and the industrial average up 9.7% on the same months of 2025."
+      "takeaway": {
+        "commercial": "smaller rise than the U.S. (+4.8%)",
+        "industrial": "larger rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +8.1%, industrial +9.7%; U.S. +6.1% and +6.1%"
+      }
     },
     {
       "code": "TN",
@@ -1645,7 +1815,11 @@
           "change_pct": -0.4
         }
       },
-      "interpretation": "In Tennessee, the average commercial price in June 2026 was 13.94¢ per kWh, up 4.1% from June 2025, a smaller rise than the U.S. commercial average (+4.8%). The industrial average was 6.87¢, down 4.8% from June 2025, while the U.S. industrial average rose 3.0%. Year to date (January–June), the commercial average was up 5.1% and the industrial average down 0.4% on the same months of 2025."
+      "takeaway": {
+        "commercial": "smaller rise than the U.S. (+4.8%)",
+        "industrial": "fell while the U.S. rose (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +5.1%, industrial −0.4%; U.S. +6.1% and +6.1%"
+      }
     },
     {
       "code": "TX",
@@ -1682,7 +1856,11 @@
           "change_pct": 3.1
         }
       },
-      "interpretation": "In Texas, the average commercial price in June 2026 was 8.66¢ per kWh, up 2.9% from June 2025, a smaller rise than the U.S. commercial average (+4.8%). The industrial average was 6.58¢, up 3.5% from June 2025, about the same as the U.S. industrial average (+3.0%). Year to date (January–June), the commercial average was up 0.4% and the industrial average up 3.1% on the same months of 2025."
+      "takeaway": {
+        "commercial": "smaller rise than the U.S. (+4.8%)",
+        "industrial": "about the same as the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +0.4%, industrial +3.1%; U.S. +6.1% and +6.1%"
+      }
     },
     {
       "code": "UT",
@@ -1719,7 +1897,11 @@
           "change_pct": 6.0
         }
       },
-      "interpretation": "In Utah, the average commercial price in June 2026 was 10.99¢ per kWh, up 4.1% from June 2025, a smaller rise than the U.S. commercial average (+4.8%). The industrial average was 9.22¢, up 8.7% from June 2025, a larger rise than the U.S. industrial average (+3.0%). Year to date (January–June), the commercial average was up 5.8% and the industrial average up 6.0% on the same months of 2025."
+      "takeaway": {
+        "commercial": "smaller rise than the U.S. (+4.8%)",
+        "industrial": "larger rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +5.8%, industrial +6.0%; U.S. +6.1% and +6.1%"
+      }
     },
     {
       "code": "VT",
@@ -1756,7 +1938,11 @@
           "change_pct": 5.3
         }
       },
-      "interpretation": "In Vermont, the average commercial price in June 2026 was 21.22¢ per kWh, up 6.8% from June 2025, a larger rise than the U.S. commercial average (+4.8%). The industrial average was 12.90¢, up 3.7% from June 2025, a larger rise than the U.S. industrial average (+3.0%). Year to date (January–June), the commercial average was up 7.0% and the industrial average up 5.3% on the same months of 2025."
+      "takeaway": {
+        "commercial": "larger rise than the U.S. (+4.8%)",
+        "industrial": "larger rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +7.0%, industrial +5.3%; U.S. +6.1% and +6.1%"
+      }
     },
     {
       "code": "VA",
@@ -1793,7 +1979,11 @@
           "change_pct": 9.8
         }
       },
-      "interpretation": "In Virginia, the average commercial price in June 2026 was 10.99¢ per kWh, up 16.5% from June 2025, a larger rise than the U.S. commercial average (+4.8%). That was the 3rd largest increase among the 50 states and DC. The industrial average was 9.31¢, down 0.9% from June 2025, while the U.S. industrial average rose 3.0%. Year to date (January–June), the commercial average was up 22.8% and the industrial average up 9.8% on the same months of 2025."
+      "takeaway": {
+        "commercial": "larger rise than the U.S. (+4.8%)",
+        "industrial": "fell while the U.S. rose (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +22.8%, industrial +9.8%; U.S. +6.1% and +6.1%"
+      }
     },
     {
       "code": "WA",
@@ -1830,7 +2020,11 @@
           "change_pct": 4.7
         }
       },
-      "interpretation": "In Washington, the average commercial price in June 2026 was 11.77¢ per kWh, up 9.8% from June 2025, a larger rise than the U.S. commercial average (+4.8%). The industrial average was 7.20¢, up 5.9% from June 2025, a larger rise than the U.S. industrial average (+3.0%). Year to date (January–June), the commercial average was up 11.1% and the industrial average up 4.7% on the same months of 2025."
+      "takeaway": {
+        "commercial": "larger rise than the U.S. (+4.8%)",
+        "industrial": "larger rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +11.1%, industrial +4.7%; U.S. +6.1% and +6.1%"
+      }
     },
     {
       "code": "WV",
@@ -1867,7 +2061,11 @@
           "change_pct": 5.9
         }
       },
-      "interpretation": "In West Virginia, the average commercial price in June 2026 was 11.09¢ per kWh, down 3.5% from June 2025, while the U.S. commercial average rose 4.8%. The industrial average was 7.95¢, down 4.8% from June 2025, while the U.S. industrial average rose 3.0%. Year to date (January–June), the commercial average was down 1.5% and the industrial average up 5.9% on the same months of 2025."
+      "takeaway": {
+        "commercial": "fell while the U.S. rose (+4.8%)",
+        "industrial": "fell while the U.S. rose (+3.0%)",
+        "ytd": "Year to date (January–June): commercial −1.5%, industrial +5.9%; U.S. +6.1% and +6.1%"
+      }
     },
     {
       "code": "WI",
@@ -1904,7 +2102,11 @@
           "change_pct": 5.4
         }
       },
-      "interpretation": "In Wisconsin, the average commercial price in June 2026 was 14.05¢ per kWh, up 5.2% from June 2025, about the same as the U.S. commercial average (+4.8%). The industrial average was 9.95¢, up 3.4% from June 2025, about the same as the U.S. industrial average (+3.0%). Year to date (January–June), the commercial average was up 5.0% and the industrial average up 5.4% on the same months of 2025."
+      "takeaway": {
+        "commercial": "about the same as the U.S. (+4.8%)",
+        "industrial": "about the same as the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +5.0%, industrial +5.4%; U.S. +6.1% and +6.1%"
+      }
     },
     {
       "code": "WY",
@@ -1941,7 +2143,11 @@
           "change_pct": 2.2
         }
       },
-      "interpretation": "In Wyoming, the average commercial price in June 2026 was 10.01¢ per kWh, up 2.2% from June 2025, a smaller rise than the U.S. commercial average (+4.8%). The industrial average was 8.75¢, down 0.6% from June 2025, while the U.S. industrial average rose 3.0%. Year to date (January–June), the commercial average was up 2.8% and the industrial average up 2.2% on the same months of 2025."
+      "takeaway": {
+        "commercial": "smaller rise than the U.S. (+4.8%)",
+        "industrial": "fell while the U.S. rose (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +2.8%, industrial +2.2%; U.S. +6.1% and +6.1%"
+      }
     }
   ],
   "movements": {

@@ -3,7 +3,7 @@
 // src/data/eia-state-prices.json (generated in dcu-intelligence); this component only lays it out.
 // The page is built showing the U.S.; the reader's chosen state replaces it in the browser.
 import SourceMark from './SourceMark.astro';
-import { eiaPrices, eiaReleased, eiaYtdLabel, eiaTableUrls, pct, cents } from '../lib/power';
+import { eiaPrices, eiaReleased, eiaTableUrls, pct, cents } from '../lib/power';
 
 const { source, us, states, movements, count } = eiaPrices;
 const sectors = ['commercial', 'industrial'] as const;
@@ -25,33 +25,21 @@ const label = { commercial: 'Commercial', industrial: 'Industrial' };
   </div>
 
   <div class="pp-card" aria-live="polite">
-    <p class="pp-title" data-pp="title">United States, {source.current_label} compared with {source.prior_label}</p>
-    <div class="pp-cols">
+    <p class="pp-title"><strong data-pp="name">United States</strong> &middot; {source.current_label} compared with
+      {source.prior_label} &middot; <span class="pp-pre">preliminary</span></p>
+    <ul class="pp-lines">
       {sectors.map((sector) => (
-        <div class="pp-col">
-          <p class="pp-sector">{label[sector]} average</p>
-          <p class="pp-change" data-pp={`${sector}-change`}>{pct(us[sector].change_pct)}</p>
-          <p class="pp-price"><span data-pp={`${sector}-current`}>{cents(us[sector].current)}</span> per kWh
-            <span class="pp-was">(<span data-pp={`${sector}-prior`}>{cents(us[sector].prior)}</span> in {source.prior_label})</span></p>
-          <p class="pp-us" data-pp={`${sector}-vs`} hidden>U.S. {sector}: <span data-pp={`${sector}-us`}>{pct(us[sector].change_pct)}</span></p>
-          <p class="pp-rank" data-pp={`${sector}-rank`} hidden></p>
-        </div>
+        <li>
+          <span class="pp-k">{label[sector]}</span>
+          <span class="pp-n" data-pp={`${sector}-change`}>{pct(us[sector].change_pct)}</span>
+          <span class="pp-v" data-pp={`${sector}-verdict`} hidden></span>
+          <span class="pp-d" data-pp={`${sector}-detail`}>{cents(us[sector].current)} per kWh, from {cents(us[sector].prior)}</span>
+        </li>
       ))}
-    </div>
-    <p class="pp-ytd">Year to date ({eiaYtdLabel}):
-      commercial <strong data-pp="ytd-commercial">{pct(us.ytd.commercial.change_pct)}</strong>,
-      industrial <strong data-pp="ytd-industrial">{pct(us.ytd.industrial.change_pct)}</strong>
-      <span data-pp="ytd-us" hidden>(U.S.: {pct(us.ytd.commercial.change_pct)} commercial, {pct(us.ytd.industrial.change_pct)} industrial)</span></p>
-    <p class="pp-interp" data-pp="interpretation">{us.interpretation}</p>
-  </div>
-
-  <div class="note">
-    <p><strong>What these averages are, and are not.</strong> EIA's figures are the average revenue per kilowatt-hour
-      across all of a state's commercial customers, and separately across all its industrial customers. They are
-      not a facility's rate or bill, and they show what changed, not why. Utilities place customers in EIA's
-      commercial or industrial category by type of business or by usage under their rate schedules, so a data center
-      may be counted in either. What an operator should compare is its own rate class and supply contract, and how
-      those changed over the same months.</p>
+      <li class="pp-y" data-pp="ytd">{us.takeaway.ytd}</li>
+    </ul>
+    <p class="pp-warn">These are statewide (or national) averages for all commercial or all industrial customers. They are not any
+      facility's price or bill: compare your own rate class and supply contract.</p>
   </div>
 
   <h3>Largest measured movements, {source.current_label} compared with {source.prior_label}</h3>
@@ -101,7 +89,7 @@ const label = { commercial: 'Commercial', industrial: 'Industrial' };
     data for {source.data_month}, released {eiaReleased}. Preliminary estimates, revised in later editions.
     Ranks are among {count} jurisdictions: the 50 states and DC.</span></p>
 
-  <script type="application/json" id="pp-data" set:html={JSON.stringify({ us, states, count, prior: source.prior_label, current: source.current_label })} />
+  <script type="application/json" id="pp-data" set:html={JSON.stringify({ us, states })} />
 </section>
 
 <script>
@@ -110,10 +98,10 @@ const label = { commercial: 'Commercial', industrial: 'Industrial' };
   type Sector = 'commercial' | 'industrial';
   type Figures = { current: number; prior: number; change_pct: number; rank_label?: string };
   type Place = { code?: string; name?: string; commercial: Figures; industrial: Figures;
-    ytd: { commercial: Figures; industrial: Figures }; interpretation: string };
+    takeaway: { commercial?: string; industrial?: string; ytd: string } };
 
   const data = JSON.parse(document.getElementById('pp-data')!.textContent || '{}') as
-    { us: Place; states: Place[]; count: number; prior: string; current: string };
+    { us: Place; states: Place[] };
   const select = document.getElementById('pp-state') as HTMLSelectElement;
   const field = (name: string) => document.querySelector<HTMLElement>(`[data-pp="${name}"]`)!;
   const byCode = new Map(data.states.map((s) => [s.code, s]));
@@ -124,21 +112,17 @@ const label = { commercial: 'Commercial', industrial: 'Industrial' };
     const isUS = !place;
     const p: Place = place ?? data.us;
     select.value = isUS ? 'US' : code;
-    field('title').textContent = `${isUS ? 'United States' : p.name}, ${data.current} compared with ${data.prior}`;
+    field('name').textContent = isUS ? 'United States' : p.name!;
     (['commercial', 'industrial'] as Sector[]).forEach((sector) => {
       const f = p[sector];
       field(`${sector}-change`).textContent = pct(f.change_pct);
-      field(`${sector}-current`).textContent = cents(f.current);
-      field(`${sector}-prior`).textContent = cents(f.prior);
-      field(`${sector}-us`).textContent = pct(data.us[sector].change_pct);
-      field(`${sector}-vs`).hidden = isUS;
-      const rank = field(`${sector}-rank`);
-      rank.hidden = isUS;
-      if (!isUS) rank.textContent = f.rank_label ?? '';
-      field(`ytd-${sector}`).textContent = pct(p.ytd[sector].change_pct);
+      const verdict = field(`${sector}-verdict`);
+      verdict.hidden = isUS;
+      verdict.textContent = isUS ? '' : p.takeaway[sector] ?? '';
+      field(`${sector}-detail`).textContent =
+        `${cents(f.current)} per kWh, from ${cents(f.prior)}${isUS ? '' : ` · ${f.rank_label}`}`;
     });
-    field('ytd-us').hidden = isUS;
-    field('interpretation').textContent = p.interpretation;
+    field('ytd').textContent = p.takeaway.ytd;
     if (remember) {
       try { localStorage.setItem(KEY, select.value); } catch { /* private mode: nothing to remember */ }
       const url = new URL(location.href);
@@ -165,20 +149,22 @@ const label = { commercial: 'Commercial', industrial: 'Industrial' };
   .pp-pick label { font-size: 14px; font-weight: 600; }
   .pp-pick select { font: inherit; font-size: 15px; padding: 7px 10px; border: 1px solid #b9c6d4; border-radius: 6px; background: #fff; color: var(--ink); min-width: 220px; max-width: 100%; }
 
-  .pp-card { border: 1px solid var(--line); border-radius: 8px; padding: 16px 18px; background: var(--card); }
-  .pp-title { font-size: 16px; font-weight: 600; margin: 0 0 .7em !important; }
-  .pp-cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-  .pp-col { border: 1px solid var(--line-2); border-radius: 6px; padding: 12px 14px; background: var(--page); }
-  .pp-col p { margin: 0 !important; }
-  .pp-sector { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2); font-weight: 700; }
-  .pp-change { font-size: 34px; font-weight: 700; line-height: 1.1; letter-spacing: -.5px; font-variant-numeric: tabular-nums; margin-top: 4px !important; }
-  .pp-price { font-size: 14px; line-height: 1.45; margin-top: 4px !important; font-variant-numeric: tabular-nums; }
-  .pp-was { color: var(--ink-2); }
-  .pp-us, .pp-rank { font-size: 13px; color: var(--ink-2); margin-top: 3px !important; }
-  .pp-ytd { font-size: 14px; margin: .9em 0 0 !important; }
-  .pp-ytd span { color: var(--ink-2); }
-  .pp-interp { font-size: 15px; line-height: 1.6; margin: .7em 0 0 !important; padding-top: .7em; border-top: 1px solid var(--line-2); }
+  .pp-card { border: 1px solid var(--line); border-radius: 8px; padding: 14px 18px 12px; background: var(--card); }
+  .pp-title { font-size: 15px; margin: 0 0 .5em !important; color: var(--ink-2); }
+  .pp-title strong { color: var(--ink); font-size: 17px; }
+  .pp-pre { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; font-weight: 600; color: var(--amber); }
+  .pp-lines { list-style: none; padding: 0 !important; margin: 0 !important; }
+  .pp-lines li { display: grid; grid-template-columns: 7em 5.2em minmax(0, 1fr); column-gap: 10px; align-items: baseline;
+    padding: 8px 0; border-top: 1px solid var(--line-2); margin: 0; }
+  .pp-k { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2); font-weight: 700; }
+  .pp-n { font-size: 24px; font-weight: 700; letter-spacing: -.3px; font-variant-numeric: tabular-nums; }
+  .pp-v { font-size: 15px; }
+  .pp-d { grid-column: 2 / -1; font-size: 13px; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+  .pp-lines li.pp-y { display: block; font-size: 14px; }
+  .pp-warn { font-size: 13.5px; line-height: 1.5; color: var(--ink); background: var(--amber-bg); border: 1px solid var(--amber-ln);
+    border-radius: 5px; padding: 8px 11px; margin: .5em 0 0 !important; }
 
+  .pp-sector { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2); font-weight: 700; margin: 0 !important; }
   .pp-moves { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
   .pp-moves ol { list-style: none; padding: 0 !important; margin: 0 0 .6em !important; }
   .pp-moves li { display: flex; justify-content: space-between; gap: 8px; padding: 4px 0; border-bottom: 1px solid var(--line-2); font-size: 14px; margin: 0; font-variant-numeric: tabular-nums; }
@@ -192,9 +178,10 @@ const label = { commercial: 'Commercial', industrial: 'Industrial' };
 
   @media (max-width: 479px) {
     .pp-card { padding: 12px; }
-    .pp-cols { gap: 8px; }
-    .pp-col { padding: 10px; }
-    .pp-change { font-size: 28px; }
+    .pp-lines li { grid-template-columns: auto minmax(0, 1fr); }
+    .pp-k { grid-column: 1 / -1; }
+    .pp-n { font-size: 22px; }
+    .pp-d { grid-column: 1 / -1; }
     .pp-moves { grid-template-columns: 1fr; gap: 4px; }
     .pp-pick select { width: 100%; }
   }
