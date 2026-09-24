@@ -1,0 +1,72 @@
+---
+// Homepage "This week" strip: how many meaningful editorial items each section published
+// in the current Monday-Sunday week (Eastern time). Entries live in src/content/changes.
+// One box per section; add a section to the list below and the grid rebalances itself.
+import { getChanges, easternWeek, weekLabel, inWeek, changeDate, SECTION_LABELS, type Section } from '../lib/changes';
+
+const week = easternWeek();
+const all = await getChanges();
+const sections = (['procurement', 'regulation', 'power'] as Section[]).map((section) => {
+  const entries = all.filter((c) => c.data.section === section);
+  return {
+    section,
+    label: SECTION_LABELS[section],
+    count: entries.filter((c) => inWeek(c, week)).length,
+    dates: entries.map(changeDate).join(' '),
+  };
+});
+
+// Even rows on wide screens, at most five boxes per row: 3 -> 3, 6 -> 3+3, 8 -> 4+4, 10 -> 5+5.
+const n = sections.length;
+const cols = Math.ceil(n / Math.ceil(n / 5));
+---
+<section class="wk" aria-labelledby="wk-title">
+  <div class="wrap">
+    <p class="wk-h">
+      <span class="wk-tt" id="wk-title">This week</span>
+      <span class="wk-d" data-week-label>{weekLabel(week)}</span>
+      <span class="wk-def">New or changed editorial items &middot; Monday to Sunday, Eastern time</span>
+    </p>
+    <ul class={`wk-g${n === 3 ? ' wk-3' : ''}`} style={`--cols:${cols}`}>
+      {sections.map((s) => (
+        <li>
+          <a href={`/${s.section}#this-week`}>
+            <span class="wk-n" data-week-count={s.dates}>{s.count}</span>
+            <span class="wk-l">{s.label}</span>
+            <span class="wk-go"><span data-week-link>{s.count > 0 ? 'See updates' : 'View section'}</span><span aria-hidden="true"> &rarr;</span></span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<script>
+  import '../scripts/this-week';
+</script>
+
+<style>
+  /* A navy band joined to the hero: status, not content, so it reads differently from the white cards below */
+  .wk { background: var(--navy-dk); border-top: 1px solid rgba(255, 255, 255, .1); color: #fff; padding: 22px 0 26px; }
+  .wk-h { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; margin-bottom: 14px; }
+  .wk-tt { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; color: #8fb6de; }
+  .wk-d { font-size: 14px; font-weight: 600; }
+  .wk-def { font-size: 13px; color: #8ba3bc; }
+
+  .wk-g { list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .wk-g.wk-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .wk-g a { display: flex; flex-direction: column; height: 100%; background: rgba(255, 255, 255, .035); border: 1px solid rgba(255, 255, 255, .14); border-radius: 10px; padding: 12px 10px 10px; color: #fff; min-width: 0; }
+  .wk-g a:hover { border-color: rgba(255, 255, 255, .45); background: rgba(255, 255, 255, .07); text-decoration: none; }
+  .wk-n { font-size: 38px; font-weight: 700; line-height: 1; letter-spacing: -1px; font-variant-numeric: tabular-nums; }
+  .wk-l { margin-top: 10px; font-size: 10.5px; letter-spacing: .03em; text-transform: uppercase; color: #bfd2e5; font-weight: 600; }
+  .wk-go { margin-top: 6px; font-size: 12px; color: #5da9f0; }
+  .wk-g a:hover .wk-go { text-decoration: underline; }
+
+  @media (min-width: 640px) {
+    .wk-g { grid-template-columns: repeat(var(--cols), minmax(0, 1fr)); gap: 14px; }
+    .wk-g a { padding: 18px 20px 16px; }
+    .wk-n { font-size: 52px; }
+    .wk-l { font-size: 12.5px; letter-spacing: .12em; }
+    .wk-go { margin-top: 8px; font-size: 13px; }
+  }
+</style>

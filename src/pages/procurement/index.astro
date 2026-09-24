@@ -2,7 +2,10 @@
 // /procurement always shows the newest edition.
 import PulseEdition from '../../components/PulseEdition.astro';
 import { getEditions } from '../../lib/procurement';
+import ThisWeek from '../../components/ThisWeek.astro';
 
 const [latest] = await getEditions();
 ---
-<PulseEdition entry={latest} latest={latest} />
+<PulseEdition entry={latest} latest={latest}>
+  <ThisWeek section="procurement" slot="top" />
+</PulseEdition>

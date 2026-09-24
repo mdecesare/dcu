@@ -37,6 +37,9 @@ Manufacturers, distributors, dealers, marketplaces, or other organizations that 
 **G — Government**
 Government agencies, regulators, legislatures, and other official public bodies. These sources are authoritative for what an official law, rule, permit, filing, or agency action says.
 
+**O — Grid operator**
+Regional transmission organizations and independent system operators, such as PJM, that plan and operate the high-voltage grid and run wholesale electricity markets under federal regulatory oversight. They are not government bodies. These sources are authoritative for what their own market results, planning parameters, and rules say.
+
 These classifications describe **what kind of source something is, not how trustworthy it is.**
 
 Different sources have different perspectives, methodologies, visibility, and commercial or institutional interests. The purpose of the classification is to make that context visible, not to rank one type of source above another.
