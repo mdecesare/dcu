@@ -1,0 +1,203 @@
+---
+// /power: two signals for enterprise facilities already running. Figures live in src/lib/power.ts.
+import Base from '../../layouts/Base.astro';
+import SourceMark from '../../components/SourceMark.astro';
+import { pjm, eiaPrices, eiaStates, eiaReleased, pct, cents } from '../../lib/power';
+
+const sectors = ['Commercial', 'Industrial'] as const;
+const rows = [
+  ...eiaStates.map((name) => ({ name, national: false, cells: sectors.map((s) => eiaPrices.sectors[s].states[name]) })),
+  { name: 'U.S. average', national: true, cells: sectors.map((s) => ({ ...eiaPrices.sectors[s].us, rank_by_change: null })) },
+];
+const count = eiaPrices.sectors.Commercial.statesCounted;
+---
+<Base title="Power" description="Grid supply and electricity cost for enterprise data centers already in operation, with the source behind every figure.">
+  <section class="page-head">
+    <div class="wrap">
+      <h1>Power</h1>
+      <p class="lede">Grid supply and electricity cost for facilities already running: what changed, what the figure measures, and the question it raises for your site.</p>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="panel panel-reading prose">
+
+      <!-- Signal 1: PJM capacity and reserves -->
+      <section class="signal" id="pjm-capacity">
+        <p class="sig-k">Grid supply &middot; PJM region, including Virginia and Ohio</p>
+        <h2>The PJM grid secured less capacity than its reliability requirement for 2028/29</h2>
+        <p class="facts"><strong>Delivery year:</strong> {pjm.deliveryYear} &middot; <strong>Auction results:</strong> {pjm.reportDate} &middot; <strong>Second auction in a row below requirement</strong></p>
+
+        <ul class="stats">
+          <li><span class="stat-n">{pjm.shortfallMw} MW</span><span class="stat-l">below PJM's reliability requirement (unforced capacity). Previous auction: {pjm.priorShortfallMw} MW.</span></li>
+          <li><span class="stat-n">{pjm.totalReserveMargin}</span><span class="stat-l">estimated total reserve margin, against a {pjm.targetReserveMargin} target</span></li>
+          <li><span class="stat-n">{pjm.clearingPrice}</span><span class="stat-l">per MW-day, the auction's price cap</span></li>
+        </ul>
+
+        <p>PJM runs this auction to secure enough generation, and demand that can be reduced, for a future year.
+          For 2028/29 it secured {pjm.procuredMw} MW of unforced capacity, a rating that discounts each resource
+          for how reliably it can deliver. That was {pjm.shortfallMw} MW short of the {pjm.requirementMw} MW
+          requirement. PJM says the shortfall "does not necessarily mean that the PJM system will be unable to
+          serve load reliably", but that it "would have to operate with slimmer reserves and greater level of risk."</p>
+
+        <p><strong>Two reserve margins appear in the report.</strong> {pjm.totalReserveMargin} is PJM's estimate for
+          the whole region, counting capacity bought in the auction and capacity that some utilities commit from their
+          own resources. {pjm.auctionReserveMargin} counts the auction alone. Both are below the {pjm.targetReserveMargin}
+          target, which PJM sets to hold the expected loss of load to one day in ten years.</p>
+
+        <p>This is the second auction in a row to clear more than one percentage point below that target. Under
+          PJM's current rules, a third would require a separate backstop auction. PJM says it is working on changes
+          to those rules.</p>
+
+        <h3>Clearing price, $ per MW-day</h3>
+        <div class="tbl-wrap wide-only">
+          <table class="tbl">
+            <thead><tr>{pjm.priceHistory.map((p) => <th scope="col">{p.year}</th>)}</tr></thead>
+            <tbody><tr>{pjm.priceHistory.map((p) => <td>{p.price}</td>)}</tr></tbody>
+          </table>
+        </div>
+        <table class="tbl narrow-only">
+          <thead><tr><th scope="col" class="l">Delivery year</th><th scope="col">$ per MW-day</th></tr></thead>
+          <tbody>{pjm.priceHistory.map((p) => <tr><th scope="row" class="l">{p.year}</th><td>{p.price}</td></tr>)}</tbody>
+        </table>
+        <p class="small">Region-wide prices for each delivery year, as listed in PJM's 2028/29 report. The 2027/28 and
+          2028/29 auctions both cleared at their price caps.</p>
+
+        <div class="arith">
+          <p><strong>{pjm.perMwYear} per MW-year is arithmetic, not a bill estimate.</strong> It is the 2028/29
+            wholesale clearing price ({pjm.clearingPrice} per MW-day of unforced capacity) multiplied by 365 days.
+            PJM notes that its auction totals do not equal the cost to customers, because customers whose supply is
+            hedged are not exposed to the clearing price. What a facility pays depends on its capacity obligation
+            and its supply arrangement.</p>
+        </div>
+
+        <div class="ask">
+          <p class="ask-q">The question for an existing facility in PJM:<br />
+            <strong>How is my capacity obligation determined, and could managing load at the relevant peak times affect it?</strong></p>
+          <p>The answer depends on how you buy power: default service from your utility, a contract with a competitive
+            supplier, or a utility that supplies its own capacity. It also depends on how your contract treats capacity
+            cost: passed through, fixed, or bundled into the price. Your utility or supplier can tell you how the
+            obligation is set, whether particular peak hours matter, when it is recalculated, and whether a change
+            would reach your bill.</p>
+        </div>
+
+        <p class="src"><SourceMark type="G" /><span>PJM Interconnection, <a href={pjm.reportUrl}>{pjm.reportTitle}</a> (PDF),
+          {pjm.reportDate}, pages 3&ndash;5.</span></p>
+      </section>
+
+      <!-- Signal 2: EIA commercial and industrial averages -->
+      <section class="signal" id="electricity-prices">
+        <p class="sig-k">Electricity cost &middot; updated monthly</p>
+        <h2>Average electricity prices, {eiaPrices.periodCurrent}</h2>
+        <p class="facts"><strong>Data through:</strong> {eiaPrices.dataThrough} &middot; <strong>Released:</strong> {eiaReleased}
+          &middot; <strong>Status:</strong> preliminary</p>
+
+        <div class="tbl-wrap wide-only">
+          <table class="tbl tbl-eia">
+            <thead>
+              <tr>
+                <th scope="col" rowspan="2" class="l">Cents per kWh</th>
+                <th scope="colgroup" colspan="3">Commercial</th>
+                <th scope="colgroup" colspan="3">Industrial</th>
+              </tr>
+              <tr>
+                <th scope="col">2026</th><th scope="col">vs 2025</th><th scope="col">Rank</th>
+                <th scope="col">2026</th><th scope="col">vs 2025</th><th scope="col">Rank</th>
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map((r) => (
+                <tr class={r.national ? 'nat' : undefined}>
+                  <th scope="row" class="l">{r.name}</th>
+                  {r.cells.map((c) => (
+                    <>
+                      <td>{cents(c.current)}</td>
+                      <td>{pct(c.change_pct)}</td>
+                      <td>{c.rank_by_change ?? '—'}</td>
+                    </>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        {sectors.map((sector, i) => (
+          <table class="tbl narrow-only tbl-sector">
+            <caption>{sector} customers, cents per kWh</caption>
+            <thead><tr><th scope="col" class="l">State</th><th scope="col">2026</th><th scope="col">vs 2025</th><th scope="col">Rank</th></tr></thead>
+            <tbody>
+              {rows.map((r) => (
+                <tr class={r.national ? 'nat' : undefined}>
+                  <th scope="row" class="l">{r.name}</th>
+                  <td>{cents(r.cells[i].current)}</td>
+                  <td>{pct(r.cells[i].change_pct)}</td>
+                  <td>{r.cells[i].rank_by_change ?? '—'}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ))}
+        <p class="small">Change compares {eiaPrices.periodCurrent} with {eiaPrices.periodPrior}. Rank is by size of
+          change among {count} jurisdictions (the 50 states and DC), where 1 is the largest increase. Across all {count},
+          the median change was {pct(eiaPrices.sectors.Commercial.medianStateChangePct)} for commercial customers and
+          {pct(eiaPrices.sectors.Industrial.medianStateChangePct)} for industrial. The four states shown are DCU's
+          launch coverage, not a selection by result.</p>
+
+        <div class="note">
+          <p><strong>Not your facility's tariff.</strong> These are statewide averages across all commercial or all
+            industrial customers, as estimated by EIA. They are not the rate any one facility pays, and they do not
+            explain why prices moved. Depending on the utility, a 1&ndash;10 MW site may be billed on a commercial or
+            an industrial rate schedule, which is why both are shown.</p>
+        </div>
+
+        <p class="src"><SourceMark type="G" /><span>U.S. Energy Information Administration, <a href={eiaPrices.url}>{eiaPrices.publication},
+          {eiaPrices.table}</a>, data for {eiaPrices.dataThrough}, released {eiaReleased}. Preliminary estimates, revised in later editions.</span></p>
+      </section>
+
+    </div>
+  </div>
+</Base>
+
+<style>
+  .signal + .signal { margin-top: 2.2em; padding-top: 1.6em; border-top: 1px solid var(--line); }
+  .sig-k { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; margin-bottom: .3em !important; }
+  .signal h2 { font-size: 22px; line-height: 1.3; margin: 0 0 .5em; padding: 0; border: 0; }
+  .signal h3 { font-size: 15px; margin: 1.4em 0 .5em; }
+  .facts { font-size: 14px; color: var(--ink-2); background: var(--page); border: 1px solid var(--line); border-radius: 5px; padding: 8px 12px; }
+  .facts strong { color: var(--ink); }
+
+  .stats { list-style: none; padding: 0 !important; display: grid; gap: 10px; grid-template-columns: minmax(0, 1fr); margin: 1.1em 0 1.2em !important; }
+  .stats li { margin: 0; border: 1px solid var(--line); border-radius: 6px; padding: 12px 14px; }
+  .stat-n { display: block; font-size: 22px; font-weight: 600; font-variant-numeric: tabular-nums; letter-spacing: -.3px; }
+  .stat-l { display: block; font-size: 13.5px; line-height: 1.45; color: var(--ink-2); margin-top: 2px; }
+
+  .tbl-wrap { overflow-x: auto; margin: 0 0 .6em; }
+  .tbl { border-collapse: collapse; width: 100%; font-size: 14.5px; font-variant-numeric: tabular-nums; margin: 0 !important; }
+  .tbl th, .tbl td { padding: 7px 10px; text-align: right; border-bottom: 1px solid var(--line-2); white-space: nowrap; }
+  .tbl thead th { font-size: 12.5px; font-weight: 600; color: var(--ink-2); border-bottom: 1px solid var(--line); }
+  .tbl .l { text-align: left; }
+  .tbl tbody th { font-weight: 500; }
+  .tbl-eia thead tr:first-child th:not(.l) { text-align: center; border-bottom: 1px solid var(--line-2); }
+  .tbl-eia tbody td:nth-child(4), .tbl-eia thead tr:last-child th:nth-child(3) { border-right: 1px solid var(--line); }
+  .tbl .nat th, .tbl .nat td { font-weight: 600; background: var(--page); }
+  .tbl caption { caption-side: top; text-align: left; font-size: 13.5px; font-weight: 600; color: var(--ink); padding: 0 0 4px; }
+  .tbl-sector + .tbl-sector { margin-top: 1em !important; }
+  .narrow-only { margin-bottom: .6em !important; }
+  .wide-only { display: none; }
+  .small { font-size: 13.5px; line-height: 1.55; color: var(--ink-2); }
+
+  .arith, .note { background: var(--amber-bg); border: 1px solid var(--amber-ln); border-radius: 6px; padding: 12px 15px; margin: 1.1em 0; font-size: 14.5px; line-height: 1.6; }
+  .arith p, .note p { margin: 0; }
+  .ask { border-left: 3px solid var(--blue); background: var(--blue-lt); border-radius: 0 6px 6px 0; padding: 13px 16px; margin: 1.1em 0; font-size: 15px; line-height: 1.6; }
+  .ask p:last-child { margin: 0; }
+  .ask-q { color: var(--ink-2); }
+  .ask-q strong { color: var(--ink); font-size: 16.5px; }
+
+  .src { display: flex; align-items: flex-start; font-size: 13.5px; color: var(--ink-2); line-height: 1.5; margin-top: 1em; }
+
+  @media (min-width: 640px) {
+    .wide-only { display: block; }
+    .narrow-only { display: none; }
+    .stats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+</style>

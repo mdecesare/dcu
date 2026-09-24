@@ -6,6 +6,7 @@ const navItems = [
   { href: '/', label: 'Home' },
   { href: '/procurement', label: 'Procurement' },
   { href: '/regulation', label: 'Regulation' },
+  { href: '/power', label: 'Power' },
   { href: '/methodology', label: 'Methodology' },
   { href: '/about', label: 'About' },
 ];
@@ -102,7 +103,7 @@ const isActive = (href: string) => href === '/' ? path === '/' : path === href |
     .mark { font-size: 23px; }
   }
 
-  /* Phones: the five menu items wrap onto two lines so none are hidden off-screen */
+  /* Phones: the six menu items wrap onto two lines so none are hidden off-screen */
   @media (max-width: 639px) {
     nav { overflow-x: visible; }
     .nav-in { flex-wrap: wrap; white-space: normal; min-width: 0; padding: 0 4px; }
