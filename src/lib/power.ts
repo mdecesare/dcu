@@ -3,10 +3,10 @@
 // PJM figures are quoted from PJM's 2028/2029 Base Residual Auction Report (14 July 2026).
 // Source record: dcu-intelligence docs/source-records/pjm-2028-2029-bra-report.md
 //
-// EIA figures come from src/data/eia-prices.json, which is generated from the archived EIA table in
-// dcu-intelligence (docs/evidence/eia-5-6-b-2026-06). When EIA publishes a newer edition, archive it
-// there, rerun the script, and replace the JSON; do not edit the numbers here by hand.
-import eia from '../data/eia-prices.json';
+// EIA figures come from src/data/eia-state-prices.json. It is generated, with every figure and each
+// state's wording, by `python -m power_prices prepare` in dcu-intelligence from the archived EIA
+// tables. On an approved update, replace the whole file; never edit numbers here or in the JSON.
+import eia from '../data/eia-state-prices.json';
 
 export const pjm = {
   reportTitle: '2028/2029 Base Residual Auction Report',
@@ -36,12 +36,17 @@ export const pjm = {
   manualUrl: 'https://www.pjm.com/-/media/DotCom/documents/manuals/m18.pdf',
 };
 
-export type Sector = 'Commercial' | 'Industrial';
 export const eiaPrices = eia;
-export const eiaStates = ['Virginia', 'Ohio', 'Texas', 'Arizona'] as const;
+export type StatePrices = (typeof eia.states)[number];
 
-const released = new Date(`${eia.released}T12:00:00Z`);
-export const eiaReleased = released.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+const fullDate = (iso: string) =>
+  new Date(`${iso}T12:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+export const eiaReleased = fullDate(eia.source.released);
+export const eiaYtdLabel = `${eia.source.periods.ytd_span} ${eia.source.periods.current.slice(0, 4)}`;
+// Readers get EIA's web tables; the proposal archives the spreadsheets behind them.
+export const eiaTableUrls = {
+  monthly: 'https://www.eia.gov/electricity/monthly/epm_table_grapher.php?t=epmt_5_6_a',
+  ytd: 'https://www.eia.gov/electricity/monthly/epm_table_grapher.php?t=epmt_5_6_b',
+};
 
-export const pct = (n: number) => `${n > 0 ? '+' : n < 0 ? '−' : ''}${Math.abs(n).toFixed(1)}%`;
-export const cents = (n: number) => `${n.toFixed(2)}¢`;
+export { pct, cents } from './format';

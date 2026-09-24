@@ -1,0 +1,2307 @@
+{
+  "source": {
+    "publisher": "U.S. Energy Information Administration",
+    "publication": "Electric Power Monthly",
+    "data_month": "June 2026",
+    "released": "2026-08-26",
+    "preliminary": true,
+    "periods": {
+      "current": "2026-06",
+      "prior": "2025-06",
+      "ytd_span": "January–June"
+    },
+    "current_label": "June 2026",
+    "prior_label": "June 2025",
+    "tables": {
+      "monthly": {
+        "table": "Table 5.6.A",
+        "url": "https://www.eia.gov/electricity/monthly/xls/table_5_06_a.xlsx",
+        "sha256": "ccb6392e962fc39687e245db4dedc26c9569a3cfb93728beae8fe27b955cdda8"
+      },
+      "ytd": {
+        "table": "Table 5.6.B",
+        "url": "https://www.eia.gov/electricity/monthly/xls/table_5_06_b.xlsx",
+        "sha256": "1484752a7e23033de730fce33b86ac9ba1a09831bd8e96315d1d2cdb83f701d5"
+      }
+    }
+  },
+  "count": 51,
+  "us": {
+    "commercial": {
+      "current": 14.19,
+      "prior": 13.54,
+      "change_cents": 0.65,
+      "change_pct": 4.8
+    },
+    "industrial": {
+      "current": 9.17,
+      "prior": 8.9,
+      "change_cents": 0.27,
+      "change_pct": 3.0
+    },
+    "ytd": {
+      "commercial": {
+        "current": 13.86,
+        "prior": 13.06,
+        "change_cents": 0.8,
+        "change_pct": 6.1
+      },
+      "industrial": {
+        "current": 8.89,
+        "prior": 8.38,
+        "change_cents": 0.51,
+        "change_pct": 6.1
+      }
+    },
+    "takeaway": {
+      "ytd": "Year to date (January–June): commercial +6.1%, industrial +6.1%"
+    }
+  },
+  "states": [
+    {
+      "code": "AL",
+      "name": "Alabama",
+      "commercial": {
+        "current": 14.67,
+        "prior": 14.53,
+        "change_cents": 0.14,
+        "change_pct": 1.0,
+        "rank_by_change": 40,
+        "rank_by_decrease": 11,
+        "rank_label": "40th largest increase of 51"
+      },
+      "industrial": {
+        "current": 7.92,
+        "prior": 8.2,
+        "change_cents": -0.28,
+        "change_pct": -3.4,
+        "rank_by_change": 41,
+        "rank_by_decrease": 11,
+        "rank_label": "11th largest decrease of 51"
+      },
+      "ytd": {
+        "commercial": {
+          "current": 14.79,
+          "prior": 14.46,
+          "change_cents": 0.33,
+          "change_pct": 2.3
+        },
+        "industrial": {
+          "current": 7.84,
+          "prior": 7.69,
+          "change_cents": 0.15,
+          "change_pct": 2.0
+        }
+      },
+      "takeaway": {
+        "commercial": "smaller rise than the U.S. (+4.8%)",
+        "industrial": "fell while the U.S. rose (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +2.3%, industrial +2.0%; U.S. +6.1% and +6.1%"
+      }
+    },
+    {
+      "code": "AK",
+      "name": "Alaska",
+      "commercial": {
+        "current": 23.42,
+        "prior": 22.95,
+        "change_cents": 0.47,
+        "change_pct": 2.0,
+        "rank_by_change": 35,
+        "rank_by_decrease": 17,
+        "rank_label": "35th largest increase of 51"
+      },
+      "industrial": {
+        "current": 21.02,
+        "prior": 20.27,
+        "change_cents": 0.75,
+        "change_pct": 3.7,
+        "rank_by_change": 23,
+        "rank_by_decrease": 28,
+        "rank_label": "23rd largest increase of 51"
+      },
+      "ytd": {
+        "commercial": {
+          "current": 22.81,
+          "prior": 22.17,
+          "change_cents": 0.64,
+          "change_pct": 2.9
+        },
+        "industrial": {
+          "current": 23.9,
+          "prior": 20.09,
+          "change_cents": 3.81,
+          "change_pct": 19.0
+        }
+      },
+      "takeaway": {
+        "commercial": "smaller rise than the U.S. (+4.8%)",
+        "industrial": "larger rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +2.9%, industrial +19.0%; U.S. +6.1% and +6.1%"
+      }
+    },
+    {
+      "code": "AZ",
+      "name": "Arizona",
+      "commercial": {
+        "current": 12.47,
+        "prior": 12.94,
+        "change_cents": -0.47,
+        "change_pct": -3.6,
+        "rank_by_change": 48,
+        "rank_by_decrease": 4,
+        "rank_label": "4th largest decrease of 51"
+      },
+      "industrial": {
+        "current": 7.73,
+        "prior": 8.26,
+        "change_cents": -0.53,
+        "change_pct": -6.4,
+        "rank_by_change": 47,
+        "rank_by_decrease": 5,
+        "rank_label": "5th largest decrease of 51"
+      },
+      "ytd": {
+        "commercial": {
+          "current": 11.92,
+          "prior": 12.39,
+          "change_cents": -0.47,
+          "change_pct": -3.8
+        },
+        "industrial": {
+          "current": 7.34,
+          "prior": 8.03,
+          "change_cents": -0.69,
+          "change_pct": -8.6
+        }
+      },
+      "takeaway": {
+        "commercial": "fell while the U.S. rose (+4.8%)",
+        "industrial": "fell while the U.S. rose (+3.0%)",
+        "ytd": "Year to date (January–June): commercial −3.8%, industrial −8.6%; U.S. +6.1% and +6.1%"
+      }
+    },
+    {
+      "code": "AR",
+      "name": "Arkansas",
+      "commercial": {
+        "current": 11.54,
+        "prior": 10.9,
+        "change_cents": 0.64,
+        "change_pct": 5.9,
+        "rank_by_change": 19,
+        "rank_by_decrease": 33,
+        "rank_label": "19th largest increase of 51"
+      },
+      "industrial": {
+        "current": 7.08,
+        "prior": 6.91,
+        "change_cents": 0.17,
+        "change_pct": 2.5,
+        "rank_by_change": 31,
+        "rank_by_decrease": 21,
+        "rank_label": "31st largest increase of 51"
+      },
+      "ytd": {
+        "commercial": {
+          "current": 11.46,
+          "prior": 10.66,
+          "change_cents": 0.8,
+          "change_pct": 7.5
+        },
+        "industrial": {
+          "current": 6.63,
+          "prior": 6.51,
+          "change_cents": 0.12,
+          "change_pct": 1.8
+        }
+      },
+      "takeaway": {
+        "commercial": "larger rise than the U.S. (+4.8%)",
+        "industrial": "about the same as the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +7.5%, industrial +1.8%; U.S. +6.1% and +6.1%"
+      }
+    },
+    {
+      "code": "CA",
+      "name": "California",
+      "commercial": {
+        "current": 27.33,
+        "prior": 26.83,
+        "change_cents": 0.5,
+        "change_pct": 1.9,
+        "rank_by_change": 36,
+        "rank_by_decrease": 16,
+        "rank_label": "36th largest increase of 51"
+      },
+      "industrial": {
+        "current": 20.74,
+        "prior": 22.14,
+        "change_cents": -1.4,
+        "change_pct": -6.3,
+        "rank_by_change": 46,
+        "rank_by_decrease": 6,
+        "rank_label": "6th largest decrease of 51"
+      },
+      "ytd": {
+        "commercial": {
+          "current": 25.53,
+          "prior": 24.39,
+          "change_cents": 1.14,
+          "change_pct": 4.7
+        },
+        "industrial": {
+          "current": 19.88,
+          "prior": 19.83,
+          "change_cents": 0.05,
+          "change_pct": 0.3
+        }
+      },
+      "takeaway": {
+        "commercial": "smaller rise than the U.S. (+4.8%)",
+        "industrial": "fell while the U.S. rose (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +4.7%, industrial +0.3%; U.S. +6.1% and +6.1%"
+      }
+    },
+    {
+      "code": "CO",
+      "name": "Colorado",
+      "commercial": {
+        "current": 14.19,
+        "prior": 13.49,
+        "change_cents": 0.7,
+        "change_pct": 5.2,
+        "rank_by_change": 22,
+        "rank_by_decrease": 29,
+        "rank_label": "22nd largest increase of 51"
+      },
+      "industrial": {
+        "current": 10.23,
+        "prior": 9.64,
+        "change_cents": 0.59,
+        "change_pct": 6.1,
+        "rank_by_change": 17,
+        "rank_by_decrease": 35,
+        "rank_label": "17th largest increase of 51"
+      },
+      "ytd": {
+        "commercial": {
+          "current": 13.18,
+          "prior": 11.97,
+          "change_cents": 1.21,
+          "change_pct": 10.1
+        },
+        "industrial": {
+          "current": 9.61,
+          "prior": 8.86,
+          "change_cents": 0.75,
+          "change_pct": 8.5
+        }
+      },
+      "takeaway": {
+        "commercial": "about the same as the U.S. (+4.8%)",
+        "industrial": "larger rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +10.1%, industrial +8.5%; U.S. +6.1% and +6.1%"
+      }
+    },
+    {
+      "code": "CT",
+      "name": "Connecticut",
+      "commercial": {
+        "current": 19.62,
+        "prior": 21.3,
+        "change_cents": -1.68,
+        "change_pct": -7.9,
+        "rank_by_change": 51,
+        "rank_by_decrease": 1,
+        "rank_label": "largest decrease of 51"
+      },
+      "industrial": {
+        "current": 16.7,
+        "prior": 19.03,
+        "change_cents": -2.33,
+        "change_pct": -12.2,
+        "rank_by_change": 50,
+        "rank_by_decrease": 2,
+        "rank_label": "2nd largest decrease of 51"
+      },
+      "ytd": {
+        "commercial": {
+          "current": 22.57,
+          "prior": 23.97,
+          "change_cents": -1.4,
+          "change_pct": -5.8
+        },
+        "industrial": {
+          "current": 18.71,
+          "prior": 19.26,
+          "change_cents": -0.55,
+          "change_pct": -2.9
+        }
+      },
+      "takeaway": {
+        "commercial": "fell while the U.S. rose (+4.8%)",
+        "industrial": "fell while the U.S. rose (+3.0%)",
+        "ytd": "Year to date (January–June): commercial −5.8%, industrial −2.9%; U.S. +6.1% and +6.1%"
+      }
+    },
+    {
+      "code": "DE",
+      "name": "Delaware",
+      "commercial": {
+        "current": 14.4,
+        "prior": 12.46,
+        "change_cents": 1.94,
+        "change_pct": 15.6,
+        "rank_by_change": 4,
+        "rank_by_decrease": 48,
+        "rank_label": "4th largest increase of 51"
+      },
+      "industrial": {
+        "current": 12.24,
+        "prior": 9.15,
+        "change_cents": 3.09,
+        "change_pct": 33.8,
+        "rank_by_change": 2,
+        "rank_by_decrease": 50,
+        "rank_label": "2nd largest increase of 51"
+      },
+      "ytd": {
+        "commercial": {
+          "current": 13.93,
+          "prior": 12.57,
+          "change_cents": 1.36,
+          "change_pct": 10.8
+        },
+        "industrial": {
+          "current": 11.74,
+          "prior": 9.4,
+          "change_cents": 2.34,
+          "change_pct": 24.9
+        }
+      },
+      "takeaway": {
+        "commercial": "larger rise than the U.S. (+4.8%)",
+        "industrial": "larger rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +10.8%, industrial +24.9%; U.S. +6.1% and +6.1%"
+      }
+    },
+    {
+      "code": "DC",
+      "name": "District of Columbia",
+      "commercial": {
+        "current": 23.38,
+        "prior": 20.37,
+        "change_cents": 3.01,
+        "change_pct": 14.8,
+        "rank_by_change": 5,
+        "rank_by_decrease": 47,
+        "rank_label": "5th largest increase of 51"
+      },
+      "industrial": {
+        "current": 16.21,
+        "prior": 15.18,
+        "change_cents": 1.03,
+        "change_pct": 6.8,
+        "rank_by_change": 16,
+        "rank_by_decrease": 36,
+        "rank_label": "16th largest increase of 51"
+      },
+      "ytd": {
+        "commercial": {
+          "current": 23.5,
+          "prior": 19.74,
+          "change_cents": 3.76,
+          "change_pct": 19.0
+        },
+        "industrial": {
+          "current": 19.03,
+          "prior": 13.89,
+          "change_cents": 5.14,
+          "change_pct": 37.0
+        }
+      },
+      "takeaway": {
+        "commercial": "larger rise than the U.S. (+4.8%)",
+        "industrial": "larger rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +19.0%, industrial +37.0%; U.S. +6.1% and +6.1%"
+      }
+    },
+    {
+      "code": "FL",
+      "name": "Florida",
+      "commercial": {
+        "current": 11.47,
+        "prior": 11.39,
+        "change_cents": 0.08,
+        "change_pct": 0.7,
+        "rank_by_change": 42,
+        "rank_by_decrease": 10,
+        "rank_label": "42nd largest increase of 51"
+      },
+      "industrial": {
+        "current": 9.12,
+        "prior": 8.83,
+        "change_cents": 0.29,
+        "change_pct": 3.3,
+        "rank_by_change": 29,
+        "rank_by_decrease": 23,
+        "rank_label": "29th largest increase of 51"
+      },
+      "ytd": {
+        "commercial": {
+          "current": 11.86,
+          "prior": 11.42,
+          "change_cents": 0.44,
+          "change_pct": 3.9
+        },
+        "industrial": {
+          "current": 9.22,
+          "prior": 8.75,
+          "change_cents": 0.47,
+          "change_pct": 5.4
+        }
+      },
+      "takeaway": {
+        "commercial": "smaller rise than the U.S. (+4.8%)",
+        "industrial": "about the same as the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +3.9%, industrial +5.4%; U.S. +6.1% and +6.1%"
+      }
+    },
+    {
+      "code": "GA",
+      "name": "Georgia",
+      "commercial": {
+        "current": 11.91,
+        "prior": 12.16,
+        "change_cents": -0.25,
+        "change_pct": -2.1,
+        "rank_by_change": 45,
+        "rank_by_decrease": 7,
+        "rank_label": "7th largest decrease of 51"
+      },
+      "industrial": {
+        "current": 8.86,
+        "prior": 9.25,
+        "change_cents": -0.39,
+        "change_pct": -4.2,
+        "rank_by_change": 43,
+        "rank_by_decrease": 9,
+        "rank_label": "9th largest decrease of 51"
+      },
+      "ytd": {
+        "commercial": {
+          "current": 11.52,
+          "prior": 11.56,
+          "change_cents": -0.04,
+          "change_pct": -0.3
+        },
+        "industrial": {
+          "current": 7.62,
+          "prior": 7.66,
+          "change_cents": -0.04,
+          "change_pct": -0.5
+        }
+      },
+      "takeaway": {
+        "commercial": "fell while the U.S. rose (+4.8%)",
+        "industrial": "fell while the U.S. rose (+3.0%)",
+        "ytd": "Year to date (January–June): commercial −0.3%, industrial −0.5%; U.S. +6.1% and +6.1%"
+      }
+    },
+    {
+      "code": "HI",
+      "name": "Hawaii",
+      "commercial": {
+        "current": 48.05,
+        "prior": 35.54,
+        "change_cents": 12.51,
+        "change_pct": 35.2,
+        "rank_by_change": 1,
+        "rank_by_decrease": 51,
+        "rank_label": "largest increase of 51"
+      },
+      "industrial": {
+        "current": 43.37,
+        "prior": 30.47,
+        "change_cents": 12.9,
+        "change_pct": 42.3,
+        "rank_by_change": 1,
+        "rank_by_decrease": 51,
+        "rank_label": "largest increase of 51"
+      },
+      "ytd": {
+        "commercial": {
+          "current": 41.98,
+          "prior": 36.86,
+          "change_cents": 5.12,
+          "change_pct": 13.9
+        },
+        "industrial": {
+          "current": 37.26,
+          "prior": 31.87,
+          "change_cents": 5.39,
+          "change_pct": 16.9
+        }
+      },
+      "takeaway": {
+        "commercial": "larger rise than the U.S. (+4.8%)",
+        "industrial": "larger rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +13.9%, industrial +16.9%; U.S. +6.1% and +6.1%"
+      }
+    },
+    {
+      "code": "ID",
+      "name": "Idaho",
+      "commercial": {
+        "current": 9.92,
+        "prior": 9.0,
+        "change_cents": 0.92,
+        "change_pct": 10.2,
+        "rank_by_change": 10,
+        "rank_by_decrease": 42,
+        "rank_label": "10th largest increase of 51"
+      },
+      "industrial": {
+        "current": 10.23,
+        "prior": 9.94,
+        "change_cents": 0.29,
+        "change_pct": 2.9,
+        "rank_by_change": 30,
+        "rank_by_decrease": 22,
+        "rank_label": "30th largest increase of 51"
+      },
+      "ytd": {
+        "commercial": {
+          "current": 9.57,
+          "prior": 9.18,
+          "change_cents": 0.39,
+          "change_pct": 4.2
+        },
+        "industrial": {
+          "current": 7.9,
+          "prior": 8.02,
+          "change_cents": -0.12,
+          "change_pct": -1.5
+        }
+      },
+      "takeaway": {
+        "commercial": "larger rise than the U.S. (+4.8%)",
+        "industrial": "about the same as the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +4.2%, industrial −1.5%; U.S. +6.1% and +6.1%"
+      }
+    },
+    {
+      "code": "IL",
+      "name": "Illinois",
+      "commercial": {
+        "current": 14.53,
+        "prior": 12.85,
+        "change_cents": 1.68,
+        "change_pct": 13.1,
+        "rank_by_change": 7,
+        "rank_by_decrease": 45,
+        "rank_label": "7th largest increase of 51"
+      },
+      "industrial": {
+        "current": 10.65,
+        "prior": 9.65,
+        "change_cents": 1.0,
+        "change_pct": 10.4,
+        "rank_by_change": 7,
+        "rank_by_decrease": 44,
+        "rank_label": "7th largest increase of 51"
+      },
+      "ytd": {
+        "commercial": {
+          "current": 13.7,
+          "prior": 12.61,
+          "change_cents": 1.09,
+          "change_pct": 8.6
+        },
+        "industrial": {
+          "current": 9.96,
+          "prior": 9.84,
+          "change_cents": 0.12,
+          "change_pct": 1.2
+        }
+      },
+      "takeaway": {
+        "commercial": "larger rise than the U.S. (+4.8%)",
+        "industrial": "larger rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +8.6%, industrial +1.2%; U.S. +6.1% and +6.1%"
+      }
+    },
+    {
+      "code": "IN",
+      "name": "Indiana",
+      "commercial": {
+        "current": 14.15,
+        "prior": 13.67,
+        "change_cents": 0.48,
+        "change_pct": 3.5,
+        "rank_by_change": 28,
+        "rank_by_decrease": 24,
+        "rank_label": "28th largest increase of 51"
+      },
+      "industrial": {
+        "current": 9.0,
+        "prior": 8.69,
+        "change_cents": 0.31,
+        "change_pct": 3.6,
+        "rank_by_change": 25,
+        "rank_by_decrease": 27,
+        "rank_label": "25th largest increase of 51"
+      },
+      "ytd": {
+        "commercial": {
+          "current": 14.06,
+          "prior": 13.78,
+          "change_cents": 0.28,
+          "change_pct": 2.0
+        },
+        "industrial": {
+          "current": 9.15,
+          "prior": 8.69,
+          "change_cents": 0.46,
+          "change_pct": 5.3
+        }
+      },
+      "takeaway": {
+        "commercial": "smaller rise than the U.S. (+4.8%)",
+        "industrial": "larger rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +2.0%, industrial +5.3%; U.S. +6.1% and +6.1%"
+      }
+    },
+    {
+      "code": "IA",
+      "name": "Iowa",
+      "commercial": {
+        "current": 12.79,
+        "prior": 12.57,
+        "change_cents": 0.22,
+        "change_pct": 1.8,
+        "rank_by_change": 37,
+        "rank_by_decrease": 15,
+        "rank_label": "37th largest increase of 51"
+      },
+      "industrial": {
+        "current": 8.48,
+        "prior": 8.29,
+        "change_cents": 0.19,
+        "change_pct": 2.3,
+        "rank_by_change": 32,
+        "rank_by_decrease": 20,
+        "rank_label": "32nd largest increase of 51"
+      },
+      "ytd": {
+        "commercial": {
+          "current": 10.89,
+          "prior": 10.49,
+          "change_cents": 0.4,
+          "change_pct": 3.8
+        },
+        "industrial": {
+          "current": 6.94,
+          "prior": 6.7,
+          "change_cents": 0.24,
+          "change_pct": 3.6
+        }
+      },
+      "takeaway": {
+        "commercial": "smaller rise than the U.S. (+4.8%)",
+        "industrial": "smaller rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +3.8%, industrial +3.6%; U.S. +6.1% and +6.1%"
+      }
+    },
+    {
+      "code": "KS",
+      "name": "Kansas",
+      "commercial": {
+        "current": 12.27,
+        "prior": 12.1,
+        "change_cents": 0.17,
+        "change_pct": 1.4,
+        "rank_by_change": 38,
+        "rank_by_decrease": 14,
+        "rank_label": "38th largest increase of 51"
+      },
+      "industrial": {
+        "current": 8.21,
+        "prior": 8.19,
+        "change_cents": 0.02,
+        "change_pct": 0.2,
+        "rank_by_change": 36,
+        "rank_by_decrease": 16,
+        "rank_label": "36th largest increase of 51"
+      },
+      "ytd": {
+        "commercial": {
+          "current": 11.61,
+          "prior": 11.1,
+          "change_cents": 0.51,
+          "change_pct": 4.6
+        },
+        "industrial": {
+          "current": 8.26,
+          "prior": 7.91,
+          "change_cents": 0.35,
+          "change_pct": 4.4
+        }
+      },
+      "takeaway": {
+        "commercial": "smaller rise than the U.S. (+4.8%)",
+        "industrial": "smaller rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +4.6%, industrial +4.4%; U.S. +6.1% and +6.1%"
+      }
+    },
+    {
+      "code": "KY",
+      "name": "Kentucky",
+      "commercial": {
+        "current": 12.4,
+        "prior": 11.76,
+        "change_cents": 0.64,
+        "change_pct": 5.4,
+        "rank_by_change": 21,
+        "rank_by_decrease": 31,
+        "rank_label": "21st largest increase of 51"
+      },
+      "industrial": {
+        "current": 7.15,
+        "prior": 7.13,
+        "change_cents": 0.02,
+        "change_pct": 0.3,
+        "rank_by_change": 35,
+        "rank_by_decrease": 17,
+        "rank_label": "35th largest increase of 51"
+      },
+      "ytd": {
+        "commercial": {
+          "current": 12.89,
+          "prior": 11.89,
+          "change_cents": 1.0,
+          "change_pct": 8.4
+        },
+        "industrial": {
+          "current": 7.5,
+          "prior": 6.95,
+          "change_cents": 0.55,
+          "change_pct": 7.9
+        }
+      },
+      "takeaway": {
+        "commercial": "larger rise than the U.S. (+4.8%)",
+        "industrial": "smaller rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +8.4%, industrial +7.9%; U.S. +6.1% and +6.1%"
+      }
+    },
+    {
+      "code": "LA",
+      "name": "Louisiana",
+      "commercial": {
+        "current": 11.64,
+        "prior": 11.17,
+        "change_cents": 0.47,
+        "change_pct": 4.2,
+        "rank_by_change": 25,
+        "rank_by_decrease": 27,
+        "rank_label": "25th largest increase of 51"
+      },
+      "industrial": {
+        "current": 6.69,
+        "prior": 6.42,
+        "change_cents": 0.27,
+        "change_pct": 4.2,
+        "rank_by_change": 22,
+        "rank_by_decrease": 30,
+        "rank_label": "22nd largest increase of 51"
+      },
+      "ytd": {
+        "commercial": {
+          "current": 12.07,
+          "prior": 11.35,
+          "change_cents": 0.72,
+          "change_pct": 6.3
+        },
+        "industrial": {
+          "current": 6.75,
+          "prior": 6.28,
+          "change_cents": 0.47,
+          "change_pct": 7.5
+        }
+      },
+      "takeaway": {
+        "commercial": "smaller rise than the U.S. (+4.8%)",
+        "industrial": "larger rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +6.3%, industrial +7.5%; U.S. +6.1% and +6.1%"
+      }
+    },
+    {
+      "code": "ME",
+      "name": "Maine",
+      "commercial": {
+        "current": 22.24,
+        "prior": 21.09,
+        "change_cents": 1.15,
+        "change_pct": 5.5,
+        "rank_by_change": 20,
+        "rank_by_decrease": 32,
+        "rank_label": "20th largest increase of 51"
+      },
+      "industrial": {
+        "current": 14.21,
+        "prior": 14.2,
+        "change_cents": 0.01,
+        "change_pct": 0.1,
+        "rank_by_change": 37,
+        "rank_by_decrease": 14,
+        "rank_label": "37th largest increase of 51"
+      },
+      "ytd": {
+        "commercial": {
+          "current": 23.35,
+          "prior": 20.81,
+          "change_cents": 2.54,
+          "change_pct": 12.2
+        },
+        "industrial": {
+          "current": 15.91,
+          "prior": 15.02,
+          "change_cents": 0.89,
+          "change_pct": 5.9
+        }
+      },
+      "takeaway": {
+        "commercial": "larger rise than the U.S. (+4.8%)",
+        "industrial": "smaller rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +12.2%, industrial +5.9%; U.S. +6.1% and +6.1%"
+      }
+    },
+    {
+      "code": "MD",
+      "name": "Maryland",
+      "commercial": {
+        "current": 16.84,
+        "prior": 14.82,
+        "change_cents": 2.02,
+        "change_pct": 13.6,
+        "rank_by_change": 6,
+        "rank_by_decrease": 46,
+        "rank_label": "6th largest increase of 51"
+      },
+      "industrial": {
+        "current": 13.51,
+        "prior": 14.52,
+        "change_cents": -1.01,
+        "change_pct": -7.0,
+        "rank_by_change": 48,
+        "rank_by_decrease": 4,
+        "rank_label": "4th largest decrease of 51"
+      },
+      "ytd": {
+        "commercial": {
+          "current": 17.12,
+          "prior": 14.11,
+          "change_cents": 3.01,
+          "change_pct": 21.3
+        },
+        "industrial": {
+          "current": 15.1,
+          "prior": 11.99,
+          "change_cents": 3.11,
+          "change_pct": 25.9
+        }
+      },
+      "takeaway": {
+        "commercial": "larger rise than the U.S. (+4.8%)",
+        "industrial": "fell while the U.S. rose (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +21.3%, industrial +25.9%; U.S. +6.1% and +6.1%"
+      }
+    },
+    {
+      "code": "MA",
+      "name": "Massachusetts",
+      "commercial": {
+        "current": 24.52,
+        "prior": 22.97,
+        "change_cents": 1.55,
+        "change_pct": 6.7,
+        "rank_by_change": 17,
+        "rank_by_decrease": 35,
+        "rank_label": "17th largest increase of 51"
+      },
+      "industrial": {
+        "current": 18.97,
+        "prior": 19.78,
+        "change_cents": -0.81,
+        "change_pct": -4.1,
+        "rank_by_change": 42,
+        "rank_by_decrease": 10,
+        "rank_label": "10th largest decrease of 51"
+      },
+      "ytd": {
+        "commercial": {
+          "current": 24.79,
+          "prior": 23.01,
+          "change_cents": 1.78,
+          "change_pct": 7.7
+        },
+        "industrial": {
+          "current": 19.94,
+          "prior": 19.46,
+          "change_cents": 0.48,
+          "change_pct": 2.5
+        }
+      },
+      "takeaway": {
+        "commercial": "larger rise than the U.S. (+4.8%)",
+        "industrial": "fell while the U.S. rose (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +7.7%, industrial +2.5%; U.S. +6.1% and +6.1%"
+      }
+    },
+    {
+      "code": "MI",
+      "name": "Michigan",
+      "commercial": {
+        "current": 16.63,
+        "prior": 14.94,
+        "change_cents": 1.69,
+        "change_pct": 11.3,
+        "rank_by_change": 9,
+        "rank_by_decrease": 43,
+        "rank_label": "9th largest increase of 51"
+      },
+      "industrial": {
+        "current": 9.24,
+        "prior": 8.78,
+        "change_cents": 0.46,
+        "change_pct": 5.2,
+        "rank_by_change": 19,
+        "rank_by_decrease": 33,
+        "rank_label": "19th largest increase of 51"
+      },
+      "ytd": {
+        "commercial": {
+          "current": 15.58,
+          "prior": 14.4,
+          "change_cents": 1.18,
+          "change_pct": 8.2
+        },
+        "industrial": {
+          "current": 9.24,
+          "prior": 8.6,
+          "change_cents": 0.64,
+          "change_pct": 7.4
+        }
+      },
+      "takeaway": {
+        "commercial": "larger rise than the U.S. (+4.8%)",
+        "industrial": "larger rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +8.2%, industrial +7.4%; U.S. +6.1% and +6.1%"
+      }
+    },
+    {
+      "code": "MN",
+      "name": "Minnesota",
+      "commercial": {
+        "current": 13.68,
+        "prior": 13.54,
+        "change_cents": 0.14,
+        "change_pct": 1.0,
+        "rank_by_change": 40,
+        "rank_by_decrease": 11,
+        "rank_label": "40th largest increase of 51"
+      },
+      "industrial": {
+        "current": 10.23,
+        "prior": 9.8,
+        "change_cents": 0.43,
+        "change_pct": 4.4,
+        "rank_by_change": 21,
+        "rank_by_decrease": 31,
+        "rank_label": "21st largest increase of 51"
+      },
+      "ytd": {
+        "commercial": {
+          "current": 12.27,
+          "prior": 12.0,
+          "change_cents": 0.27,
+          "change_pct": 2.2
+        },
+        "industrial": {
+          "current": 9.64,
+          "prior": 9.15,
+          "change_cents": 0.49,
+          "change_pct": 5.4
+        }
+      },
+      "takeaway": {
+        "commercial": "smaller rise than the U.S. (+4.8%)",
+        "industrial": "larger rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +2.2%, industrial +5.4%; U.S. +6.1% and +6.1%"
+      }
+    },
+    {
+      "code": "MS",
+      "name": "Mississippi",
+      "commercial": {
+        "current": 13.83,
+        "prior": 13.0,
+        "change_cents": 0.83,
+        "change_pct": 6.4,
+        "rank_by_change": 18,
+        "rank_by_decrease": 34,
+        "rank_label": "18th largest increase of 51"
+      },
+      "industrial": {
+        "current": 8.29,
+        "prior": 7.58,
+        "change_cents": 0.71,
+        "change_pct": 9.4,
+        "rank_by_change": 9,
+        "rank_by_decrease": 43,
+        "rank_label": "9th largest increase of 51"
+      },
+      "ytd": {
+        "commercial": {
+          "current": 14.2,
+          "prior": 13.05,
+          "change_cents": 1.15,
+          "change_pct": 8.8
+        },
+        "industrial": {
+          "current": 7.66,
+          "prior": 7.29,
+          "change_cents": 0.37,
+          "change_pct": 5.1
+        }
+      },
+      "takeaway": {
+        "commercial": "larger rise than the U.S. (+4.8%)",
+        "industrial": "larger rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +8.8%, industrial +5.1%; U.S. +6.1% and +6.1%"
+      }
+    },
+    {
+      "code": "MO",
+      "name": "Missouri",
+      "commercial": {
+        "current": 12.71,
+        "prior": 12.42,
+        "change_cents": 0.29,
+        "change_pct": 2.3,
+        "rank_by_change": 33,
+        "rank_by_decrease": 19,
+        "rank_label": "33rd largest increase of 51"
+      },
+      "industrial": {
+        "current": 9.84,
+        "prior": 9.83,
+        "change_cents": 0.01,
+        "change_pct": 0.1,
+        "rank_by_change": 37,
+        "rank_by_decrease": 14,
+        "rank_label": "37th largest increase of 51"
+      },
+      "ytd": {
+        "commercial": {
+          "current": 10.56,
+          "prior": 10.04,
+          "change_cents": 0.52,
+          "change_pct": 5.2
+        },
+        "industrial": {
+          "current": 8.39,
+          "prior": 8.07,
+          "change_cents": 0.32,
+          "change_pct": 4.0
+        }
+      },
+      "takeaway": {
+        "commercial": "smaller rise than the U.S. (+4.8%)",
+        "industrial": "smaller rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +5.2%, industrial +4.0%; U.S. +6.1% and +6.1%"
+      }
+    },
+    {
+      "code": "MT",
+      "name": "Montana",
+      "commercial": {
+        "current": 13.48,
+        "prior": 13.16,
+        "change_cents": 0.32,
+        "change_pct": 2.4,
+        "rank_by_change": 32,
+        "rank_by_decrease": 20,
+        "rank_label": "32nd largest increase of 51"
+      },
+      "industrial": {
+        "current": 6.68,
+        "prior": 7.5,
+        "change_cents": -0.82,
+        "change_pct": -10.9,
+        "rank_by_change": 49,
+        "rank_by_decrease": 3,
+        "rank_label": "3rd largest decrease of 51"
+      },
+      "ytd": {
+        "commercial": {
+          "current": 12.67,
+          "prior": 11.39,
+          "change_cents": 1.28,
+          "change_pct": 11.2
+        },
+        "industrial": {
+          "current": 6.67,
+          "prior": 6.92,
+          "change_cents": -0.25,
+          "change_pct": -3.6
+        }
+      },
+      "takeaway": {
+        "commercial": "smaller rise than the U.S. (+4.8%)",
+        "industrial": "fell while the U.S. rose (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +11.2%, industrial −3.6%; U.S. +6.1% and +6.1%"
+      }
+    },
+    {
+      "code": "NE",
+      "name": "Nebraska",
+      "commercial": {
+        "current": 8.82,
+        "prior": 9.27,
+        "change_cents": -0.45,
+        "change_pct": -4.9,
+        "rank_by_change": 49,
+        "rank_by_decrease": 3,
+        "rank_label": "3rd largest decrease of 51"
+      },
+      "industrial": {
+        "current": 9.64,
+        "prior": 8.58,
+        "change_cents": 1.06,
+        "change_pct": 12.4,
+        "rank_by_change": 5,
+        "rank_by_decrease": 47,
+        "rank_label": "5th largest increase of 51"
+      },
+      "ytd": {
+        "commercial": {
+          "current": 8.86,
+          "prior": 8.52,
+          "change_cents": 0.34,
+          "change_pct": 4.0
+        },
+        "industrial": {
+          "current": 8.35,
+          "prior": 7.98,
+          "change_cents": 0.37,
+          "change_pct": 4.6
+        }
+      },
+      "takeaway": {
+        "commercial": "fell while the U.S. rose (+4.8%)",
+        "industrial": "larger rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +4.0%, industrial +4.6%; U.S. +6.1% and +6.1%"
+      }
+    },
+    {
+      "code": "NV",
+      "name": "Nevada",
+      "commercial": {
+        "current": 9.83,
+        "prior": 8.79,
+        "change_cents": 1.04,
+        "change_pct": 11.8,
+        "rank_by_change": 8,
+        "rank_by_decrease": 44,
+        "rank_label": "8th largest increase of 51"
+      },
+      "industrial": {
+        "current": 10.16,
+        "prior": 9.46,
+        "change_cents": 0.7,
+        "change_pct": 7.4,
+        "rank_by_change": 15,
+        "rank_by_decrease": 37,
+        "rank_label": "15th largest increase of 51"
+      },
+      "ytd": {
+        "commercial": {
+          "current": 9.19,
+          "prior": 9.03,
+          "change_cents": 0.16,
+          "change_pct": 1.8
+        },
+        "industrial": {
+          "current": 8.09,
+          "prior": 7.35,
+          "change_cents": 0.74,
+          "change_pct": 10.1
+        }
+      },
+      "takeaway": {
+        "commercial": "larger rise than the U.S. (+4.8%)",
+        "industrial": "larger rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +1.8%, industrial +10.1%; U.S. +6.1% and +6.1%"
+      }
+    },
+    {
+      "code": "NH",
+      "name": "New Hampshire",
+      "commercial": {
+        "current": 21.22,
+        "prior": 19.41,
+        "change_cents": 1.81,
+        "change_pct": 9.3,
+        "rank_by_change": 12,
+        "rank_by_decrease": 40,
+        "rank_label": "12th largest increase of 51"
+      },
+      "industrial": {
+        "current": 17.47,
+        "prior": 15.98,
+        "change_cents": 1.49,
+        "change_pct": 9.3,
+        "rank_by_change": 10,
+        "rank_by_decrease": 42,
+        "rank_label": "10th largest increase of 51"
+      },
+      "ytd": {
+        "commercial": {
+          "current": 21.61,
+          "prior": 19.87,
+          "change_cents": 1.74,
+          "change_pct": 8.8
+        },
+        "industrial": {
+          "current": 18.22,
+          "prior": 16.91,
+          "change_cents": 1.31,
+          "change_pct": 7.7
+        }
+      },
+      "takeaway": {
+        "commercial": "larger rise than the U.S. (+4.8%)",
+        "industrial": "larger rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +8.8%, industrial +7.7%; U.S. +6.1% and +6.1%"
+      }
+    },
+    {
+      "code": "NJ",
+      "name": "New Jersey",
+      "commercial": {
+        "current": 18.47,
+        "prior": 18.01,
+        "change_cents": 0.46,
+        "change_pct": 2.6,
+        "rank_by_change": 30,
+        "rank_by_decrease": 22,
+        "rank_label": "30th largest increase of 51"
+      },
+      "industrial": {
+        "current": 15.65,
+        "prior": 15.4,
+        "change_cents": 0.25,
+        "change_pct": 1.6,
+        "rank_by_change": 33,
+        "rank_by_decrease": 19,
+        "rank_label": "33rd largest increase of 51"
+      },
+      "ytd": {
+        "commercial": {
+          "current": 17.52,
+          "prior": 16.04,
+          "change_cents": 1.48,
+          "change_pct": 9.2
+        },
+        "industrial": {
+          "current": 15.1,
+          "prior": 13.46,
+          "change_cents": 1.64,
+          "change_pct": 12.2
+        }
+      },
+      "takeaway": {
+        "commercial": "smaller rise than the U.S. (+4.8%)",
+        "industrial": "smaller rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +9.2%, industrial +12.2%; U.S. +6.1% and +6.1%"
+      }
+    },
+    {
+      "code": "NM",
+      "name": "New Mexico",
+      "commercial": {
+        "current": 10.82,
+        "prior": 11.51,
+        "change_cents": -0.69,
+        "change_pct": -6.0,
+        "rank_by_change": 50,
+        "rank_by_decrease": 2,
+        "rank_label": "2nd largest decrease of 51"
+      },
+      "industrial": {
+        "current": 4.62,
+        "prior": 5.9,
+        "change_cents": -1.28,
+        "change_pct": -21.7,
+        "rank_by_change": 51,
+        "rank_by_decrease": 1,
+        "rank_label": "largest decrease of 51"
+      },
+      "ytd": {
+        "commercial": {
+          "current": 10.51,
+          "prior": 10.86,
+          "change_cents": -0.35,
+          "change_pct": -3.2
+        },
+        "industrial": {
+          "current": 5.41,
+          "prior": 6.07,
+          "change_cents": -0.66,
+          "change_pct": -10.9
+        }
+      },
+      "takeaway": {
+        "commercial": "fell while the U.S. rose (+4.8%)",
+        "industrial": "fell while the U.S. rose (+3.0%)",
+        "ytd": "Year to date (January–June): commercial −3.2%, industrial −10.9%; U.S. +6.1% and +6.1%"
+      }
+    },
+    {
+      "code": "NY",
+      "name": "New York",
+      "commercial": {
+        "current": 23.56,
+        "prior": 22.0,
+        "change_cents": 1.56,
+        "change_pct": 7.1,
+        "rank_by_change": 15,
+        "rank_by_decrease": 37,
+        "rank_label": "15th largest increase of 51"
+      },
+      "industrial": {
+        "current": 10.17,
+        "prior": 9.21,
+        "change_cents": 0.96,
+        "change_pct": 10.4,
+        "rank_by_change": 7,
+        "rank_by_decrease": 44,
+        "rank_label": "7th largest increase of 51"
+      },
+      "ytd": {
+        "commercial": {
+          "current": 22.66,
+          "prior": 20.43,
+          "change_cents": 2.23,
+          "change_pct": 10.9
+        },
+        "industrial": {
+          "current": 10.14,
+          "prior": 9.48,
+          "change_cents": 0.66,
+          "change_pct": 7.0
+        }
+      },
+      "takeaway": {
+        "commercial": "larger rise than the U.S. (+4.8%)",
+        "industrial": "larger rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +10.9%, industrial +7.0%; U.S. +6.1% and +6.1%"
+      }
+    },
+    {
+      "code": "NC",
+      "name": "North Carolina",
+      "commercial": {
+        "current": 10.51,
+        "prior": 9.8,
+        "change_cents": 0.71,
+        "change_pct": 7.2,
+        "rank_by_change": 14,
+        "rank_by_decrease": 38,
+        "rank_label": "14th largest increase of 51"
+      },
+      "industrial": {
+        "current": 7.87,
+        "prior": 7.77,
+        "change_cents": 0.1,
+        "change_pct": 1.3,
+        "rank_by_change": 34,
+        "rank_by_decrease": 18,
+        "rank_label": "34th largest increase of 51"
+      },
+      "ytd": {
+        "commercial": {
+          "current": 10.55,
+          "prior": 10.21,
+          "change_cents": 0.34,
+          "change_pct": 3.3
+        },
+        "industrial": {
+          "current": 7.82,
+          "prior": 7.8,
+          "change_cents": 0.02,
+          "change_pct": 0.3
+        }
+      },
+      "takeaway": {
+        "commercial": "larger rise than the U.S. (+4.8%)",
+        "industrial": "smaller rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +3.3%, industrial +0.3%; U.S. +6.1% and +6.1%"
+      }
+    },
+    {
+      "code": "ND",
+      "name": "North Dakota",
+      "commercial": {
+        "current": 8.02,
+        "prior": 8.04,
+        "change_cents": -0.02,
+        "change_pct": -0.2,
+        "rank_by_change": 44,
+        "rank_by_decrease": 8,
+        "rank_label": "8th largest decrease of 51"
+      },
+      "industrial": {
+        "current": 8.32,
+        "prior": 7.7,
+        "change_cents": 0.62,
+        "change_pct": 8.1,
+        "rank_by_change": 13,
+        "rank_by_decrease": 39,
+        "rank_label": "13th largest increase of 51"
+      },
+      "ytd": {
+        "commercial": {
+          "current": 7.58,
+          "prior": 7.37,
+          "change_cents": 0.21,
+          "change_pct": 2.8
+        },
+        "industrial": {
+          "current": 8.18,
+          "prior": 7.46,
+          "change_cents": 0.72,
+          "change_pct": 9.7
+        }
+      },
+      "takeaway": {
+        "commercial": "fell while the U.S. rose (+4.8%)",
+        "industrial": "larger rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +2.8%, industrial +9.7%; U.S. +6.1% and +6.1%"
+      }
+    },
+    {
+      "code": "OH",
+      "name": "Ohio",
+      "commercial": {
+        "current": 13.77,
+        "prior": 11.33,
+        "change_cents": 2.44,
+        "change_pct": 21.5,
+        "rank_by_change": 2,
+        "rank_by_decrease": 50,
+        "rank_label": "2nd largest increase of 51"
+      },
+      "industrial": {
+        "current": 9.89,
+        "prior": 8.66,
+        "change_cents": 1.23,
+        "change_pct": 14.2,
+        "rank_by_change": 4,
+        "rank_by_decrease": 48,
+        "rank_label": "4th largest increase of 51"
+      },
+      "ytd": {
+        "commercial": {
+          "current": 13.78,
+          "prior": 11.07,
+          "change_cents": 2.71,
+          "change_pct": 24.5
+        },
+        "industrial": {
+          "current": 10.21,
+          "prior": 8.0,
+          "change_cents": 2.21,
+          "change_pct": 27.6
+        }
+      },
+      "takeaway": {
+        "commercial": "larger rise than the U.S. (+4.8%)",
+        "industrial": "larger rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +24.5%, industrial +27.6%; U.S. +6.1% and +6.1%"
+      }
+    },
+    {
+      "code": "OK",
+      "name": "Oklahoma",
+      "commercial": {
+        "current": 9.9,
+        "prior": 9.78,
+        "change_cents": 0.12,
+        "change_pct": 1.2,
+        "rank_by_change": 39,
+        "rank_by_decrease": 13,
+        "rank_label": "39th largest increase of 51"
+      },
+      "industrial": {
+        "current": 7.37,
+        "prior": 6.57,
+        "change_cents": 0.8,
+        "change_pct": 12.2,
+        "rank_by_change": 6,
+        "rank_by_decrease": 46,
+        "rank_label": "6th largest increase of 51"
+      },
+      "ytd": {
+        "commercial": {
+          "current": 8.81,
+          "prior": 8.63,
+          "change_cents": 0.18,
+          "change_pct": 2.1
+        },
+        "industrial": {
+          "current": 6.44,
+          "prior": 5.88,
+          "change_cents": 0.56,
+          "change_pct": 9.5
+        }
+      },
+      "takeaway": {
+        "commercial": "smaller rise than the U.S. (+4.8%)",
+        "industrial": "larger rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +2.1%, industrial +9.5%; U.S. +6.1% and +6.1%"
+      }
+    },
+    {
+      "code": "OR",
+      "name": "Oregon",
+      "commercial": {
+        "current": 10.59,
+        "prior": 10.89,
+        "change_cents": -0.3,
+        "change_pct": -2.8,
+        "rank_by_change": 46,
+        "rank_by_decrease": 6,
+        "rank_label": "6th largest decrease of 51"
+      },
+      "industrial": {
+        "current": 8.83,
+        "prior": 8.54,
+        "change_cents": 0.29,
+        "change_pct": 3.4,
+        "rank_by_change": 27,
+        "rank_by_decrease": 24,
+        "rank_label": "27th largest increase of 51"
+      },
+      "ytd": {
+        "commercial": {
+          "current": 10.57,
+          "prior": 10.59,
+          "change_cents": -0.02,
+          "change_pct": -0.2
+        },
+        "industrial": {
+          "current": 8.24,
+          "prior": 8.2,
+          "change_cents": 0.04,
+          "change_pct": 0.5
+        }
+      },
+      "takeaway": {
+        "commercial": "fell while the U.S. rose (+4.8%)",
+        "industrial": "about the same as the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial −0.2%, industrial +0.5%; U.S. +6.1% and +6.1%"
+      }
+    },
+    {
+      "code": "PA",
+      "name": "Pennsylvania",
+      "commercial": {
+        "current": 13.33,
+        "prior": 12.37,
+        "change_cents": 0.96,
+        "change_pct": 7.8,
+        "rank_by_change": 13,
+        "rank_by_decrease": 39,
+        "rank_label": "13th largest increase of 51"
+      },
+      "industrial": {
+        "current": 10.1,
+        "prior": 9.31,
+        "change_cents": 0.79,
+        "change_pct": 8.5,
+        "rank_by_change": 12,
+        "rank_by_decrease": 40,
+        "rank_label": "12th largest increase of 51"
+      },
+      "ytd": {
+        "commercial": {
+          "current": 13.99,
+          "prior": 12.02,
+          "change_cents": 1.97,
+          "change_pct": 16.4
+        },
+        "industrial": {
+          "current": 10.91,
+          "prior": 8.87,
+          "change_cents": 2.04,
+          "change_pct": 23.0
+        }
+      },
+      "takeaway": {
+        "commercial": "larger rise than the U.S. (+4.8%)",
+        "industrial": "larger rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +16.4%, industrial +23.0%; U.S. +6.1% and +6.1%"
+      }
+    },
+    {
+      "code": "RI",
+      "name": "Rhode Island",
+      "commercial": {
+        "current": 22.7,
+        "prior": 22.15,
+        "change_cents": 0.55,
+        "change_pct": 2.5,
+        "rank_by_change": 31,
+        "rank_by_decrease": 21,
+        "rank_label": "31st largest increase of 51"
+      },
+      "industrial": {
+        "current": 22.91,
+        "prior": 18.61,
+        "change_cents": 4.3,
+        "change_pct": 23.1,
+        "rank_by_change": 3,
+        "rank_by_decrease": 49,
+        "rank_label": "3rd largest increase of 51"
+      },
+      "ytd": {
+        "commercial": {
+          "current": 23.8,
+          "prior": 24.05,
+          "change_cents": -0.25,
+          "change_pct": -1.0
+        },
+        "industrial": {
+          "current": 21.68,
+          "prior": 22.15,
+          "change_cents": -0.47,
+          "change_pct": -2.1
+        }
+      },
+      "takeaway": {
+        "commercial": "smaller rise than the U.S. (+4.8%)",
+        "industrial": "larger rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial −1.0%, industrial −2.1%; U.S. +6.1% and +6.1%"
+      }
+    },
+    {
+      "code": "SC",
+      "name": "South Carolina",
+      "commercial": {
+        "current": 11.62,
+        "prior": 11.06,
+        "change_cents": 0.56,
+        "change_pct": 5.1,
+        "rank_by_change": 24,
+        "rank_by_decrease": 28,
+        "rank_label": "24th largest increase of 51"
+      },
+      "industrial": {
+        "current": 7.55,
+        "prior": 7.22,
+        "change_cents": 0.33,
+        "change_pct": 4.6,
+        "rank_by_change": 20,
+        "rank_by_decrease": 32,
+        "rank_label": "20th largest increase of 51"
+      },
+      "ytd": {
+        "commercial": {
+          "current": 11.93,
+          "prior": 11.02,
+          "change_cents": 0.91,
+          "change_pct": 8.3
+        },
+        "industrial": {
+          "current": 7.85,
+          "prior": 6.99,
+          "change_cents": 0.86,
+          "change_pct": 12.3
+        }
+      },
+      "takeaway": {
+        "commercial": "about the same as the U.S. (+4.8%)",
+        "industrial": "larger rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +8.3%, industrial +12.3%; U.S. +6.1% and +6.1%"
+      }
+    },
+    {
+      "code": "SD",
+      "name": "South Dakota",
+      "commercial": {
+        "current": 11.35,
+        "prior": 11.28,
+        "change_cents": 0.07,
+        "change_pct": 0.6,
+        "rank_by_change": 43,
+        "rank_by_decrease": 9,
+        "rank_label": "43rd largest increase of 51"
+      },
+      "industrial": {
+        "current": 9.44,
+        "prior": 8.77,
+        "change_cents": 0.67,
+        "change_pct": 7.6,
+        "rank_by_change": 14,
+        "rank_by_decrease": 38,
+        "rank_label": "14th largest increase of 51"
+      },
+      "ytd": {
+        "commercial": {
+          "current": 11.55,
+          "prior": 10.68,
+          "change_cents": 0.87,
+          "change_pct": 8.1
+        },
+        "industrial": {
+          "current": 9.38,
+          "prior": 8.55,
+          "change_cents": 0.83,
+          "change_pct": 9.7
+        }
+      },
+      "takeaway": {
+        "commercial": "smaller rise than the U.S. (+4.8%)",
+        "industrial": "larger rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +8.1%, industrial +9.7%; U.S. +6.1% and +6.1%"
+      }
+    },
+    {
+      "code": "TN",
+      "name": "Tennessee",
+      "commercial": {
+        "current": 13.94,
+        "prior": 13.39,
+        "change_cents": 0.55,
+        "change_pct": 4.1,
+        "rank_by_change": 26,
+        "rank_by_decrease": 25,
+        "rank_label": "26th largest increase of 51"
+      },
+      "industrial": {
+        "current": 6.87,
+        "prior": 7.22,
+        "change_cents": -0.35,
+        "change_pct": -4.8,
+        "rank_by_change": 44,
+        "rank_by_decrease": 7,
+        "rank_label": "7th largest decrease of 51"
+      },
+      "ytd": {
+        "commercial": {
+          "current": 13.7,
+          "prior": 13.03,
+          "change_cents": 0.67,
+          "change_pct": 5.1
+        },
+        "industrial": {
+          "current": 6.77,
+          "prior": 6.8,
+          "change_cents": -0.03,
+          "change_pct": -0.4
+        }
+      },
+      "takeaway": {
+        "commercial": "smaller rise than the U.S. (+4.8%)",
+        "industrial": "fell while the U.S. rose (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +5.1%, industrial −0.4%; U.S. +6.1% and +6.1%"
+      }
+    },
+    {
+      "code": "TX",
+      "name": "Texas",
+      "commercial": {
+        "current": 8.66,
+        "prior": 8.42,
+        "change_cents": 0.24,
+        "change_pct": 2.9,
+        "rank_by_change": 29,
+        "rank_by_decrease": 23,
+        "rank_label": "29th largest increase of 51"
+      },
+      "industrial": {
+        "current": 6.58,
+        "prior": 6.36,
+        "change_cents": 0.22,
+        "change_pct": 3.5,
+        "rank_by_change": 26,
+        "rank_by_decrease": 26,
+        "rank_label": "26th largest increase of 51"
+      },
+      "ytd": {
+        "commercial": {
+          "current": 8.57,
+          "prior": 8.54,
+          "change_cents": 0.03,
+          "change_pct": 0.4
+        },
+        "industrial": {
+          "current": 6.65,
+          "prior": 6.45,
+          "change_cents": 0.2,
+          "change_pct": 3.1
+        }
+      },
+      "takeaway": {
+        "commercial": "smaller rise than the U.S. (+4.8%)",
+        "industrial": "about the same as the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +0.4%, industrial +3.1%; U.S. +6.1% and +6.1%"
+      }
+    },
+    {
+      "code": "UT",
+      "name": "Utah",
+      "commercial": {
+        "current": 10.99,
+        "prior": 10.56,
+        "change_cents": 0.43,
+        "change_pct": 4.1,
+        "rank_by_change": 26,
+        "rank_by_decrease": 25,
+        "rank_label": "26th largest increase of 51"
+      },
+      "industrial": {
+        "current": 9.22,
+        "prior": 8.48,
+        "change_cents": 0.74,
+        "change_pct": 8.7,
+        "rank_by_change": 11,
+        "rank_by_decrease": 41,
+        "rank_label": "11th largest increase of 51"
+      },
+      "ytd": {
+        "commercial": {
+          "current": 10.28,
+          "prior": 9.72,
+          "change_cents": 0.56,
+          "change_pct": 5.8
+        },
+        "industrial": {
+          "current": 8.49,
+          "prior": 8.01,
+          "change_cents": 0.48,
+          "change_pct": 6.0
+        }
+      },
+      "takeaway": {
+        "commercial": "smaller rise than the U.S. (+4.8%)",
+        "industrial": "larger rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +5.8%, industrial +6.0%; U.S. +6.1% and +6.1%"
+      }
+    },
+    {
+      "code": "VT",
+      "name": "Vermont",
+      "commercial": {
+        "current": 21.22,
+        "prior": 19.87,
+        "change_cents": 1.35,
+        "change_pct": 6.8,
+        "rank_by_change": 16,
+        "rank_by_decrease": 36,
+        "rank_label": "16th largest increase of 51"
+      },
+      "industrial": {
+        "current": 12.9,
+        "prior": 12.44,
+        "change_cents": 0.46,
+        "change_pct": 3.7,
+        "rank_by_change": 23,
+        "rank_by_decrease": 28,
+        "rank_label": "23rd largest increase of 51"
+      },
+      "ytd": {
+        "commercial": {
+          "current": 20.97,
+          "prior": 19.6,
+          "change_cents": 1.37,
+          "change_pct": 7.0
+        },
+        "industrial": {
+          "current": 12.91,
+          "prior": 12.26,
+          "change_cents": 0.65,
+          "change_pct": 5.3
+        }
+      },
+      "takeaway": {
+        "commercial": "larger rise than the U.S. (+4.8%)",
+        "industrial": "larger rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +7.0%, industrial +5.3%; U.S. +6.1% and +6.1%"
+      }
+    },
+    {
+      "code": "VA",
+      "name": "Virginia",
+      "commercial": {
+        "current": 10.99,
+        "prior": 9.43,
+        "change_cents": 1.56,
+        "change_pct": 16.5,
+        "rank_by_change": 3,
+        "rank_by_decrease": 49,
+        "rank_label": "3rd largest increase of 51"
+      },
+      "industrial": {
+        "current": 9.31,
+        "prior": 9.39,
+        "change_cents": -0.08,
+        "change_pct": -0.9,
+        "rank_by_change": 40,
+        "rank_by_decrease": 12,
+        "rank_label": "12th largest decrease of 51"
+      },
+      "ytd": {
+        "commercial": {
+          "current": 11.11,
+          "prior": 9.05,
+          "change_cents": 2.06,
+          "change_pct": 22.8
+        },
+        "industrial": {
+          "current": 10.08,
+          "prior": 9.18,
+          "change_cents": 0.9,
+          "change_pct": 9.8
+        }
+      },
+      "takeaway": {
+        "commercial": "larger rise than the U.S. (+4.8%)",
+        "industrial": "fell while the U.S. rose (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +22.8%, industrial +9.8%; U.S. +6.1% and +6.1%"
+      }
+    },
+    {
+      "code": "WA",
+      "name": "Washington",
+      "commercial": {
+        "current": 11.77,
+        "prior": 10.72,
+        "change_cents": 1.05,
+        "change_pct": 9.8,
+        "rank_by_change": 11,
+        "rank_by_decrease": 41,
+        "rank_label": "11th largest increase of 51"
+      },
+      "industrial": {
+        "current": 7.2,
+        "prior": 6.8,
+        "change_cents": 0.4,
+        "change_pct": 5.9,
+        "rank_by_change": 18,
+        "rank_by_decrease": 34,
+        "rank_label": "18th largest increase of 51"
+      },
+      "ytd": {
+        "commercial": {
+          "current": 11.88,
+          "prior": 10.69,
+          "change_cents": 1.19,
+          "change_pct": 11.1
+        },
+        "industrial": {
+          "current": 7.09,
+          "prior": 6.77,
+          "change_cents": 0.32,
+          "change_pct": 4.7
+        }
+      },
+      "takeaway": {
+        "commercial": "larger rise than the U.S. (+4.8%)",
+        "industrial": "larger rise than the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +11.1%, industrial +4.7%; U.S. +6.1% and +6.1%"
+      }
+    },
+    {
+      "code": "WV",
+      "name": "West Virginia",
+      "commercial": {
+        "current": 11.09,
+        "prior": 11.49,
+        "change_cents": -0.4,
+        "change_pct": -3.5,
+        "rank_by_change": 47,
+        "rank_by_decrease": 5,
+        "rank_label": "5th largest decrease of 51"
+      },
+      "industrial": {
+        "current": 7.95,
+        "prior": 8.35,
+        "change_cents": -0.4,
+        "change_pct": -4.8,
+        "rank_by_change": 44,
+        "rank_by_decrease": 7,
+        "rank_label": "7th largest decrease of 51"
+      },
+      "ytd": {
+        "commercial": {
+          "current": 11.68,
+          "prior": 11.86,
+          "change_cents": -0.18,
+          "change_pct": -1.5
+        },
+        "industrial": {
+          "current": 8.57,
+          "prior": 8.09,
+          "change_cents": 0.48,
+          "change_pct": 5.9
+        }
+      },
+      "takeaway": {
+        "commercial": "fell while the U.S. rose (+4.8%)",
+        "industrial": "fell while the U.S. rose (+3.0%)",
+        "ytd": "Year to date (January–June): commercial −1.5%, industrial +5.9%; U.S. +6.1% and +6.1%"
+      }
+    },
+    {
+      "code": "WI",
+      "name": "Wisconsin",
+      "commercial": {
+        "current": 14.05,
+        "prior": 13.35,
+        "change_cents": 0.7,
+        "change_pct": 5.2,
+        "rank_by_change": 22,
+        "rank_by_decrease": 29,
+        "rank_label": "22nd largest increase of 51"
+      },
+      "industrial": {
+        "current": 9.95,
+        "prior": 9.62,
+        "change_cents": 0.33,
+        "change_pct": 3.4,
+        "rank_by_change": 27,
+        "rank_by_decrease": 24,
+        "rank_label": "27th largest increase of 51"
+      },
+      "ytd": {
+        "commercial": {
+          "current": 13.6,
+          "prior": 12.95,
+          "change_cents": 0.65,
+          "change_pct": 5.0
+        },
+        "industrial": {
+          "current": 9.18,
+          "prior": 8.71,
+          "change_cents": 0.47,
+          "change_pct": 5.4
+        }
+      },
+      "takeaway": {
+        "commercial": "about the same as the U.S. (+4.8%)",
+        "industrial": "about the same as the U.S. (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +5.0%, industrial +5.4%; U.S. +6.1% and +6.1%"
+      }
+    },
+    {
+      "code": "WY",
+      "name": "Wyoming",
+      "commercial": {
+        "current": 10.01,
+        "prior": 9.79,
+        "change_cents": 0.22,
+        "change_pct": 2.2,
+        "rank_by_change": 34,
+        "rank_by_decrease": 18,
+        "rank_label": "34th largest increase of 51"
+      },
+      "industrial": {
+        "current": 8.75,
+        "prior": 8.8,
+        "change_cents": -0.05,
+        "change_pct": -0.6,
+        "rank_by_change": 39,
+        "rank_by_decrease": 13,
+        "rank_label": "13th largest decrease of 51"
+      },
+      "ytd": {
+        "commercial": {
+          "current": 9.66,
+          "prior": 9.4,
+          "change_cents": 0.26,
+          "change_pct": 2.8
+        },
+        "industrial": {
+          "current": 8.81,
+          "prior": 8.62,
+          "change_cents": 0.19,
+          "change_pct": 2.2
+        }
+      },
+      "takeaway": {
+        "commercial": "smaller rise than the U.S. (+4.8%)",
+        "industrial": "fell while the U.S. rose (+3.0%)",
+        "ytd": "Year to date (January–June): commercial +2.8%, industrial +2.2%; U.S. +6.1% and +6.1%"
+      }
+    }
+  ],
+  "movements": {
+    "commercial": {
+      "increases": [
+        {
+          "code": "HI",
+          "name": "Hawaii",
+          "current": 48.05,
+          "prior": 35.54,
+          "change_pct": 35.2
+        },
+        {
+          "code": "OH",
+          "name": "Ohio",
+          "current": 13.77,
+          "prior": 11.33,
+          "change_pct": 21.5
+        },
+        {
+          "code": "VA",
+          "name": "Virginia",
+          "current": 10.99,
+          "prior": 9.43,
+          "change_pct": 16.5
+        },
+        {
+          "code": "DE",
+          "name": "Delaware",
+          "current": 14.4,
+          "prior": 12.46,
+          "change_pct": 15.6
+        },
+        {
+          "code": "DC",
+          "name": "District of Columbia",
+          "current": 23.38,
+          "prior": 20.37,
+          "change_pct": 14.8
+        }
+      ],
+      "decreases": [
+        {
+          "code": "CT",
+          "name": "Connecticut",
+          "current": 19.62,
+          "prior": 21.3,
+          "change_pct": -7.9
+        },
+        {
+          "code": "NM",
+          "name": "New Mexico",
+          "current": 10.82,
+          "prior": 11.51,
+          "change_pct": -6.0
+        },
+        {
+          "code": "NE",
+          "name": "Nebraska",
+          "current": 8.82,
+          "prior": 9.27,
+          "change_pct": -4.9
+        },
+        {
+          "code": "AZ",
+          "name": "Arizona",
+          "current": 12.47,
+          "prior": 12.94,
+          "change_pct": -3.6
+        },
+        {
+          "code": "WV",
+          "name": "West Virginia",
+          "current": 11.09,
+          "prior": 11.49,
+          "change_pct": -3.5
+        }
+      ]
+    },
+    "industrial": {
+      "increases": [
+        {
+          "code": "HI",
+          "name": "Hawaii",
+          "current": 43.37,
+          "prior": 30.47,
+          "change_pct": 42.3
+        },
+        {
+          "code": "DE",
+          "name": "Delaware",
+          "current": 12.24,
+          "prior": 9.15,
+          "change_pct": 33.8
+        },
+        {
+          "code": "RI",
+          "name": "Rhode Island",
+          "current": 22.91,
+          "prior": 18.61,
+          "change_pct": 23.1
+        },
+        {
+          "code": "OH",
+          "name": "Ohio",
+          "current": 9.89,
+          "prior": 8.66,
+          "change_pct": 14.2
+        },
+        {
+          "code": "NE",
+          "name": "Nebraska",
+          "current": 9.64,
+          "prior": 8.58,
+          "change_pct": 12.4
+        }
+      ],
+      "decreases": [
+        {
+          "code": "NM",
+          "name": "New Mexico",
+          "current": 4.62,
+          "prior": 5.9,
+          "change_pct": -21.7
+        },
+        {
+          "code": "CT",
+          "name": "Connecticut",
+          "current": 16.7,
+          "prior": 19.03,
+          "change_pct": -12.2
+        },
+        {
+          "code": "MT",
+          "name": "Montana",
+          "current": 6.68,
+          "prior": 7.5,
+          "change_pct": -10.9
+        },
+        {
+          "code": "MD",
+          "name": "Maryland",
+          "current": 13.51,
+          "prior": 14.52,
+          "change_pct": -7.0
+        },
+        {
+          "code": "AZ",
+          "name": "Arizona",
+          "current": 7.73,
+          "prior": 8.26,
+          "change_pct": -6.4
+        }
+      ]
+    }
+  }
+}
