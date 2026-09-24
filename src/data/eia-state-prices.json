@@ -54,7 +54,8 @@
       }
     },
     "takeaway": {
-      "ytd": "Year to date (January–June): commercial +6.1%, industrial +6.1%"
+      "ytd": "Year to date (January–June): commercial +6.1%, industrial +6.1%",
+      "warning": "These are national averages for all commercial or all industrial customers. They are not any facility's rate or bill: compare your own rate class and supply contract."
     }
   },
   "states": [
@@ -95,8 +96,9 @@
       },
       "takeaway": {
         "commercial": "smaller rise than the U.S. (+4.8%)",
-        "industrial": "fell while the U.S. rose (+3.0%)",
-        "ytd": "Year to date (January–June): commercial +2.3%, industrial +2.0%; U.S. +6.1% and +6.1%"
+        "industrial": "U.S. rose 3.0%",
+        "ytd": "Year to date (January–June): commercial +2.3%, industrial +2.0%; U.S. +6.1% and +6.1%",
+        "warning": "These averages cover all commercial or all industrial customers in Alabama. They are not any facility's rate or bill: compare your own rate class and supply contract."
       }
     },
     {
@@ -137,7 +139,8 @@
       "takeaway": {
         "commercial": "smaller rise than the U.S. (+4.8%)",
         "industrial": "larger rise than the U.S. (+3.0%)",
-        "ytd": "Year to date (January–June): commercial +2.9%, industrial +19.0%; U.S. +6.1% and +6.1%"
+        "ytd": "Year to date (January–June): commercial +2.9%, industrial +19.0%; U.S. +6.1% and +6.1%",
+        "warning": "These averages cover all commercial or all industrial customers in Alaska. They are not any facility's rate or bill: compare your own rate class and supply contract."
       }
     },
     {
@@ -176,9 +179,10 @@
         }
       },
       "takeaway": {
-        "commercial": "fell while the U.S. rose (+4.8%)",
-        "industrial": "fell while the U.S. rose (+3.0%)",
-        "ytd": "Year to date (January–June): commercial −3.8%, industrial −8.6%; U.S. +6.1% and +6.1%"
+        "commercial": "U.S. rose 4.8%",
+        "industrial": "U.S. rose 3.0%",
+        "ytd": "Year to date (January–June): commercial −3.8%, industrial −8.6%; U.S. +6.1% and +6.1%",
+        "warning": "These averages cover all commercial or all industrial customers in Arizona. They are not any facility's rate or bill: compare your own rate class and supply contract."
       }
     },
     {
@@ -219,7 +223,8 @@
       "takeaway": {
         "commercial": "larger rise than the U.S. (+4.8%)",
         "industrial": "about the same as the U.S. (+3.0%)",
-        "ytd": "Year to date (January–June): commercial +7.5%, industrial +1.8%; U.S. +6.1% and +6.1%"
+        "ytd": "Year to date (January–June): commercial +7.5%, industrial +1.8%; U.S. +6.1% and +6.1%",
+        "warning": "These averages cover all commercial or all industrial customers in Arkansas. They are not any facility's rate or bill: compare your own rate class and supply contract."
       }
     },
     {
@@ -259,8 +264,9 @@
       },
       "takeaway": {
         "commercial": "smaller rise than the U.S. (+4.8%)",
-        "industrial": "fell while the U.S. rose (+3.0%)",
-        "ytd": "Year to date (January–June): commercial +4.7%, industrial +0.3%; U.S. +6.1% and +6.1%"
+        "industrial": "U.S. rose 3.0%",
+        "ytd": "Year to date (January–June): commercial +4.7%, industrial +0.3%; U.S. +6.1% and +6.1%",
+        "warning": "These averages cover all commercial or all industrial customers in California. They are not any facility's rate or bill: compare your own rate class and supply contract."
       }
     },
     {
@@ -301,7 +307,8 @@
       "takeaway": {
         "commercial": "about the same as the U.S. (+4.8%)",
         "industrial": "larger rise than the U.S. (+3.0%)",
-        "ytd": "Year to date (January–June): commercial +10.1%, industrial +8.5%; U.S. +6.1% and +6.1%"
+        "ytd": "Year to date (January–June): commercial +10.1%, industrial +8.5%; U.S. +6.1% and +6.1%",
+        "warning": "These averages cover all commercial or all industrial customers in Colorado. They are not any facility's rate or bill: compare your own rate class and supply contract."
       }
     },
     {
@@ -340,9 +347,10 @@
         }
       },
       "takeaway": {
-        "commercial": "fell while the U.S. rose (+4.8%)",
-        "industrial": "fell while the U.S. rose (+3.0%)",
-        "ytd": "Year to date (January–June): commercial −5.8%, industrial −2.9%; U.S. +6.1% and +6.1%"
+        "commercial": "U.S. rose 4.8%",
+        "industrial": "U.S. rose 3.0%",
+        "ytd": "Year to date (January–June): commercial −5.8%, industrial −2.9%; U.S. +6.1% and +6.1%",
+        "warning": "These averages cover all commercial or all industrial customers in Connecticut. They are not any facility's rate or bill: compare your own rate class and supply contract."
       }
     },
     {
@@ -383,7 +391,8 @@
       "takeaway": {
         "commercial": "larger rise than the U.S. (+4.8%)",
         "industrial": "larger rise than the U.S. (+3.0%)",
-        "ytd": "Year to date (January–June): commercial +10.8%, industrial +24.9%; U.S. +6.1% and +6.1%"
+        "ytd": "Year to date (January–June): commercial +10.8%, industrial +24.9%; U.S. +6.1% and +6.1%",
+        "warning": "These averages cover all commercial or all industrial customers in Delaware. They are not any facility's rate or bill: compare your own rate class and supply contract."
       }
     },
     {
@@ -424,7 +433,8 @@
       "takeaway": {
         "commercial": "larger rise than the U.S. (+4.8%)",
         "industrial": "larger rise than the U.S. (+3.0%)",
-        "ytd": "Year to date (January–June): commercial +19.0%, industrial +37.0%; U.S. +6.1% and +6.1%"
+        "ytd": "Year to date (January–June): commercial +19.0%, industrial +37.0%; U.S. +6.1% and +6.1%",
+        "warning": "These averages cover all commercial or all industrial customers in District of Columbia. They are not any facility's rate or bill: compare your own rate class and supply contract."
       }
     },
     {
@@ -465,7 +475,8 @@
       "takeaway": {
         "commercial": "smaller rise than the U.S. (+4.8%)",
         "industrial": "about the same as the U.S. (+3.0%)",
-        "ytd": "Year to date (January–June): commercial +3.9%, industrial +5.4%; U.S. +6.1% and +6.1%"
+        "ytd": "Year to date (January–June): commercial +3.9%, industrial +5.4%; U.S. +6.1% and +6.1%",
+        "warning": "These averages cover all commercial or all industrial customers in Florida. They are not any facility's rate or bill: compare your own rate class and supply contract."
       }
     },
     {
@@ -504,9 +515,10 @@
         }
       },
       "takeaway": {
-        "commercial": "fell while the U.S. rose (+4.8%)",
-        "industrial": "fell while the U.S. rose (+3.0%)",
-        "ytd": "Year to date (January–June): commercial −0.3%, industrial −0.5%; U.S. +6.1% and +6.1%"
+        "commercial": "U.S. rose 4.8%",
+        "industrial": "U.S. rose 3.0%",
+        "ytd": "Year to date (January–June): commercial −0.3%, industrial −0.5%; U.S. +6.1% and +6.1%",
+        "warning": "These averages cover all commercial or all industrial customers in Georgia. They are not any facility's rate or bill: compare your own rate class and supply contract."
       }
     },
     {
@@ -547,7 +559,8 @@
       "takeaway": {
         "commercial": "larger rise than the U.S. (+4.8%)",
         "industrial": "larger rise than the U.S. (+3.0%)",
-        "ytd": "Year to date (January–June): commercial +13.9%, industrial +16.9%; U.S. +6.1% and +6.1%"
+        "ytd": "Year to date (January–June): commercial +13.9%, industrial +16.9%; U.S. +6.1% and +6.1%",
+        "warning": "These averages cover all commercial or all industrial customers in Hawaii. They are not any facility's rate or bill: compare your own rate class and supply contract."
       }
     },
     {
@@ -588,7 +601,8 @@
       "takeaway": {
         "commercial": "larger rise than the U.S. (+4.8%)",
         "industrial": "about the same as the U.S. (+3.0%)",
-        "ytd": "Year to date (January–June): commercial +4.2%, industrial −1.5%; U.S. +6.1% and +6.1%"
+        "ytd": "Year to date (January–June): commercial +4.2%, industrial −1.5%; U.S. +6.1% and +6.1%",
+        "warning": "These averages cover all commercial or all industrial customers in Idaho. They are not any facility's rate or bill: compare your own rate class and supply contract."
       }
     },
     {
@@ -629,7 +643,8 @@
       "takeaway": {
         "commercial": "larger rise than the U.S. (+4.8%)",
         "industrial": "larger rise than the U.S. (+3.0%)",
-        "ytd": "Year to date (January–June): commercial +8.6%, industrial +1.2%; U.S. +6.1% and +6.1%"
+        "ytd": "Year to date (January–June): commercial +8.6%, industrial +1.2%; U.S. +6.1% and +6.1%",
+        "warning": "These averages cover all commercial or all industrial customers in Illinois. They are not any facility's rate or bill: compare your own rate class and supply contract."
       }
     },
     {
@@ -670,7 +685,8 @@
       "takeaway": {
         "commercial": "smaller rise than the U.S. (+4.8%)",
         "industrial": "larger rise than the U.S. (+3.0%)",
-        "ytd": "Year to date (January–June): commercial +2.0%, industrial +5.3%; U.S. +6.1% and +6.1%"
+        "ytd": "Year to date (January–June): commercial +2.0%, industrial +5.3%; U.S. +6.1% and +6.1%",
+        "warning": "These averages cover all commercial or all industrial customers in Indiana. They are not any facility's rate or bill: compare your own rate class and supply contract."
       }
     },
     {
@@ -711,7 +727,8 @@
       "takeaway": {
         "commercial": "smaller rise than the U.S. (+4.8%)",
         "industrial": "smaller rise than the U.S. (+3.0%)",
-        "ytd": "Year to date (January–June): commercial +3.8%, industrial +3.6%; U.S. +6.1% and +6.1%"
+        "ytd": "Year to date (January–June): commercial +3.8%, industrial +3.6%; U.S. +6.1% and +6.1%",
+        "warning": "These averages cover all commercial or all industrial customers in Iowa. They are not any facility's rate or bill: compare your own rate class and supply contract."
       }
     },
     {
@@ -752,7 +769,8 @@
       "takeaway": {
         "commercial": "smaller rise than the U.S. (+4.8%)",
         "industrial": "smaller rise than the U.S. (+3.0%)",
-        "ytd": "Year to date (January–June): commercial +4.6%, industrial +4.4%; U.S. +6.1% and +6.1%"
+        "ytd": "Year to date (January–June): commercial +4.6%, industrial +4.4%; U.S. +6.1% and +6.1%",
+        "warning": "These averages cover all commercial or all industrial customers in Kansas. They are not any facility's rate or bill: compare your own rate class and supply contract."
       }
     },
     {
@@ -793,7 +811,8 @@
       "takeaway": {
         "commercial": "larger rise than the U.S. (+4.8%)",
         "industrial": "smaller rise than the U.S. (+3.0%)",
-        "ytd": "Year to date (January–June): commercial +8.4%, industrial +7.9%; U.S. +6.1% and +6.1%"
+        "ytd": "Year to date (January–June): commercial +8.4%, industrial +7.9%; U.S. +6.1% and +6.1%",
+        "warning": "These averages cover all commercial or all industrial customers in Kentucky. They are not any facility's rate or bill: compare your own rate class and supply contract."
       }
     },
     {
@@ -834,7 +853,8 @@
       "takeaway": {
         "commercial": "smaller rise than the U.S. (+4.8%)",
         "industrial": "larger rise than the U.S. (+3.0%)",
-        "ytd": "Year to date (January–June): commercial +6.3%, industrial +7.5%; U.S. +6.1% and +6.1%"
+        "ytd": "Year to date (January–June): commercial +6.3%, industrial +7.5%; U.S. +6.1% and +6.1%",
+        "warning": "These averages cover all commercial or all industrial customers in Louisiana. They are not any facility's rate or bill: compare your own rate class and supply contract."
       }
     },
     {
@@ -875,7 +895,8 @@
       "takeaway": {
         "commercial": "larger rise than the U.S. (+4.8%)",
         "industrial": "smaller rise than the U.S. (+3.0%)",
-        "ytd": "Year to date (January–June): commercial +12.2%, industrial +5.9%; U.S. +6.1% and +6.1%"
+        "ytd": "Year to date (January–June): commercial +12.2%, industrial +5.9%; U.S. +6.1% and +6.1%",
+        "warning": "These averages cover all commercial or all industrial customers in Maine. They are not any facility's rate or bill: compare your own rate class and supply contract."
       }
     },
     {
@@ -915,8 +936,9 @@
       },
       "takeaway": {
         "commercial": "larger rise than the U.S. (+4.8%)",
-        "industrial": "fell while the U.S. rose (+3.0%)",
-        "ytd": "Year to date (January–June): commercial +21.3%, industrial +25.9%; U.S. +6.1% and +6.1%"
+        "industrial": "U.S. rose 3.0%",
+        "ytd": "Year to date (January–June): commercial +21.3%, industrial +25.9%; U.S. +6.1% and +6.1%",
+        "warning": "These averages cover all commercial or all industrial customers in Maryland. They are not any facility's rate or bill: compare your own rate class and supply contract."
       }
     },
     {
@@ -956,8 +978,9 @@
       },
       "takeaway": {
         "commercial": "larger rise than the U.S. (+4.8%)",
-        "industrial": "fell while the U.S. rose (+3.0%)",
-        "ytd": "Year to date (January–June): commercial +7.7%, industrial +2.5%; U.S. +6.1% and +6.1%"
+        "industrial": "U.S. rose 3.0%",
+        "ytd": "Year to date (January–June): commercial +7.7%, industrial +2.5%; U.S. +6.1% and +6.1%",
+        "warning": "These averages cover all commercial or all industrial customers in Massachusetts. They are not any facility's rate or bill: compare your own rate class and supply contract."
       }
     },
     {
@@ -998,7 +1021,8 @@
       "takeaway": {
         "commercial": "larger rise than the U.S. (+4.8%)",
         "industrial": "larger rise than the U.S. (+3.0%)",
-        "ytd": "Year to date (January–June): commercial +8.2%, industrial +7.4%; U.S. +6.1% and +6.1%"
+        "ytd": "Year to date (January–June): commercial +8.2%, industrial +7.4%; U.S. +6.1% and +6.1%",
+        "warning": "These averages cover all commercial or all industrial customers in Michigan. They are not any facility's rate or bill: compare your own rate class and supply contract."
       }
     },
     {
@@ -1039,7 +1063,8 @@
       "takeaway": {
         "commercial": "smaller rise than the U.S. (+4.8%)",
         "industrial": "larger rise than the U.S. (+3.0%)",
-        "ytd": "Year to date (January–June): commercial +2.2%, industrial +5.4%; U.S. +6.1% and +6.1%"
+        "ytd": "Year to date (January–June): commercial +2.2%, industrial +5.4%; U.S. +6.1% and +6.1%",
+        "warning": "These averages cover all commercial or all industrial customers in Minnesota. They are not any facility's rate or bill: compare your own rate class and supply contract."
       }
     },
     {
@@ -1080,7 +1105,8 @@
       "takeaway": {
         "commercial": "larger rise than the U.S. (+4.8%)",
         "industrial": "larger rise than the U.S. (+3.0%)",
-        "ytd": "Year to date (January–June): commercial +8.8%, industrial +5.1%; U.S. +6.1% and +6.1%"
+        "ytd": "Year to date (January–June): commercial +8.8%, industrial +5.1%; U.S. +6.1% and +6.1%",
+        "warning": "These averages cover all commercial or all industrial customers in Mississippi. They are not any facility's rate or bill: compare your own rate class and supply contract."
       }
     },
     {
@@ -1121,7 +1147,8 @@
       "takeaway": {
         "commercial": "smaller rise than the U.S. (+4.8%)",
         "industrial": "smaller rise than the U.S. (+3.0%)",
-        "ytd": "Year to date (January–June): commercial +5.2%, industrial +4.0%; U.S. +6.1% and +6.1%"
+        "ytd": "Year to date (January–June): commercial +5.2%, industrial +4.0%; U.S. +6.1% and +6.1%",
+        "warning": "These averages cover all commercial or all industrial customers in Missouri. They are not any facility's rate or bill: compare your own rate class and supply contract."
       }
     },
     {
@@ -1161,8 +1188,9 @@
       },
       "takeaway": {
         "commercial": "smaller rise than the U.S. (+4.8%)",
-        "industrial": "fell while the U.S. rose (+3.0%)",
-        "ytd": "Year to date (January–June): commercial +11.2%, industrial −3.6%; U.S. +6.1% and +6.1%"
+        "industrial": "U.S. rose 3.0%",
+        "ytd": "Year to date (January–June): commercial +11.2%, industrial −3.6%; U.S. +6.1% and +6.1%",
+        "warning": "These averages cover all commercial or all industrial customers in Montana. They are not any facility's rate or bill: compare your own rate class and supply contract."
       }
     },
     {
@@ -1201,9 +1229,10 @@
         }
       },
       "takeaway": {
-        "commercial": "fell while the U.S. rose (+4.8%)",
+        "commercial": "U.S. rose 4.8%",
         "industrial": "larger rise than the U.S. (+3.0%)",
-        "ytd": "Year to date (January–June): commercial +4.0%, industrial +4.6%; U.S. +6.1% and +6.1%"
+        "ytd": "Year to date (January–June): commercial +4.0%, industrial +4.6%; U.S. +6.1% and +6.1%",
+        "warning": "These averages cover all commercial or all industrial customers in Nebraska. They are not any facility's rate or bill: compare your own rate class and supply contract."
       }
     },
     {
@@ -1244,7 +1273,8 @@
       "takeaway": {
         "commercial": "larger rise than the U.S. (+4.8%)",
         "industrial": "larger rise than the U.S. (+3.0%)",
-        "ytd": "Year to date (January–June): commercial +1.8%, industrial +10.1%; U.S. +6.1% and +6.1%"
+        "ytd": "Year to date (January–June): commercial +1.8%, industrial +10.1%; U.S. +6.1% and +6.1%",
+        "warning": "These averages cover all commercial or all industrial customers in Nevada. They are not any facility's rate or bill: compare your own rate class and supply contract."
       }
     },
     {
@@ -1285,7 +1315,8 @@
       "takeaway": {
         "commercial": "larger rise than the U.S. (+4.8%)",
         "industrial": "larger rise than the U.S. (+3.0%)",
-        "ytd": "Year to date (January–June): commercial +8.8%, industrial +7.7%; U.S. +6.1% and +6.1%"
+        "ytd": "Year to date (January–June): commercial +8.8%, industrial +7.7%; U.S. +6.1% and +6.1%",
+        "warning": "These averages cover all commercial or all industrial customers in New Hampshire. They are not any facility's rate or bill: compare your own rate class and supply contract."
       }
     },
     {
@@ -1326,7 +1357,8 @@
       "takeaway": {
         "commercial": "smaller rise than the U.S. (+4.8%)",
         "industrial": "smaller rise than the U.S. (+3.0%)",
-        "ytd": "Year to date (January–June): commercial +9.2%, industrial +12.2%; U.S. +6.1% and +6.1%"
+        "ytd": "Year to date (January–June): commercial +9.2%, industrial +12.2%; U.S. +6.1% and +6.1%",
+        "warning": "These averages cover all commercial or all industrial customers in New Jersey. They are not any facility's rate or bill: compare your own rate class and supply contract."
       }
     },
     {
@@ -1365,9 +1397,10 @@
         }
       },
       "takeaway": {
-        "commercial": "fell while the U.S. rose (+4.8%)",
-        "industrial": "fell while the U.S. rose (+3.0%)",
-        "ytd": "Year to date (January–June): commercial −3.2%, industrial −10.9%; U.S. +6.1% and +6.1%"
+        "commercial": "U.S. rose 4.8%",
+        "industrial": "U.S. rose 3.0%",
+        "ytd": "Year to date (January–June): commercial −3.2%, industrial −10.9%; U.S. +6.1% and +6.1%",
+        "warning": "These averages cover all commercial or all industrial customers in New Mexico. They are not any facility's rate or bill: compare your own rate class and supply contract."
       }
     },
     {
@@ -1408,7 +1441,8 @@
       "takeaway": {
         "commercial": "larger rise than the U.S. (+4.8%)",
         "industrial": "larger rise than the U.S. (+3.0%)",
-        "ytd": "Year to date (January–June): commercial +10.9%, industrial +7.0%; U.S. +6.1% and +6.1%"
+        "ytd": "Year to date (January–June): commercial +10.9%, industrial +7.0%; U.S. +6.1% and +6.1%",
+        "warning": "These averages cover all commercial or all industrial customers in New York. They are not any facility's rate or bill: compare your own rate class and supply contract."
       }
     },
     {
@@ -1449,7 +1483,8 @@
       "takeaway": {
         "commercial": "larger rise than the U.S. (+4.8%)",
         "industrial": "smaller rise than the U.S. (+3.0%)",
-        "ytd": "Year to date (January–June): commercial +3.3%, industrial +0.3%; U.S. +6.1% and +6.1%"
+        "ytd": "Year to date (January–June): commercial +3.3%, industrial +0.3%; U.S. +6.1% and +6.1%",
+        "warning": "These averages cover all commercial or all industrial customers in North Carolina. They are not any facility's rate or bill: compare your own rate class and supply contract."
       }
     },
     {
@@ -1488,9 +1523,10 @@
         }
       },
       "takeaway": {
-        "commercial": "fell while the U.S. rose (+4.8%)",
+        "commercial": "U.S. rose 4.8%",
         "industrial": "larger rise than the U.S. (+3.0%)",
-        "ytd": "Year to date (January–June): commercial +2.8%, industrial +9.7%; U.S. +6.1% and +6.1%"
+        "ytd": "Year to date (January–June): commercial +2.8%, industrial +9.7%; U.S. +6.1% and +6.1%",
+        "warning": "These averages cover all commercial or all industrial customers in North Dakota. They are not any facility's rate or bill: compare your own rate class and supply contract."
       }
     },
     {
@@ -1531,7 +1567,8 @@
       "takeaway": {
         "commercial": "larger rise than the U.S. (+4.8%)",
         "industrial": "larger rise than the U.S. (+3.0%)",
-        "ytd": "Year to date (January–June): commercial +24.5%, industrial +27.6%; U.S. +6.1% and +6.1%"
+        "ytd": "Year to date (January–June): commercial +24.5%, industrial +27.6%; U.S. +6.1% and +6.1%",
+        "warning": "These averages cover all commercial or all industrial customers in Ohio. They are not any facility's rate or bill: compare your own rate class and supply contract."
       }
     },
     {
@@ -1572,7 +1609,8 @@
       "takeaway": {
         "commercial": "smaller rise than the U.S. (+4.8%)",
         "industrial": "larger rise than the U.S. (+3.0%)",
-        "ytd": "Year to date (January–June): commercial +2.1%, industrial +9.5%; U.S. +6.1% and +6.1%"
+        "ytd": "Year to date (January–June): commercial +2.1%, industrial +9.5%; U.S. +6.1% and +6.1%",
+        "warning": "These averages cover all commercial or all industrial customers in Oklahoma. They are not any facility's rate or bill: compare your own rate class and supply contract."
       }
     },
     {
@@ -1611,9 +1649,10 @@
         }
       },
       "takeaway": {
-        "commercial": "fell while the U.S. rose (+4.8%)",
+        "commercial": "U.S. rose 4.8%",
         "industrial": "about the same as the U.S. (+3.0%)",
-        "ytd": "Year to date (January–June): commercial −0.2%, industrial +0.5%; U.S. +6.1% and +6.1%"
+        "ytd": "Year to date (January–June): commercial −0.2%, industrial +0.5%; U.S. +6.1% and +6.1%",
+        "warning": "These averages cover all commercial or all industrial customers in Oregon. They are not any facility's rate or bill: compare your own rate class and supply contract."
       }
     },
     {
@@ -1654,7 +1693,8 @@
       "takeaway": {
         "commercial": "larger rise than the U.S. (+4.8%)",
         "industrial": "larger rise than the U.S. (+3.0%)",
-        "ytd": "Year to date (January–June): commercial +16.4%, industrial +23.0%; U.S. +6.1% and +6.1%"
+        "ytd": "Year to date (January–June): commercial +16.4%, industrial +23.0%; U.S. +6.1% and +6.1%",
+        "warning": "These averages cover all commercial or all industrial customers in Pennsylvania. They are not any facility's rate or bill: compare your own rate class and supply contract."
       }
     },
     {
@@ -1695,7 +1735,8 @@
       "takeaway": {
         "commercial": "smaller rise than the U.S. (+4.8%)",
         "industrial": "larger rise than the U.S. (+3.0%)",
-        "ytd": "Year to date (January–June): commercial −1.0%, industrial −2.1%; U.S. +6.1% and +6.1%"
+        "ytd": "Year to date (January–June): commercial −1.0%, industrial −2.1%; U.S. +6.1% and +6.1%",
+        "warning": "These averages cover all commercial or all industrial customers in Rhode Island. They are not any facility's rate or bill: compare your own rate class and supply contract."
       }
     },
     {
@@ -1736,7 +1777,8 @@
       "takeaway": {
         "commercial": "about the same as the U.S. (+4.8%)",
         "industrial": "larger rise than the U.S. (+3.0%)",
-        "ytd": "Year to date (January–June): commercial +8.3%, industrial +12.3%; U.S. +6.1% and +6.1%"
+        "ytd": "Year to date (January–June): commercial +8.3%, industrial +12.3%; U.S. +6.1% and +6.1%",
+        "warning": "These averages cover all commercial or all industrial customers in South Carolina. They are not any facility's rate or bill: compare your own rate class and supply contract."
       }
     },
     {
@@ -1777,7 +1819,8 @@
       "takeaway": {
         "commercial": "smaller rise than the U.S. (+4.8%)",
         "industrial": "larger rise than the U.S. (+3.0%)",
-        "ytd": "Year to date (January–June): commercial +8.1%, industrial +9.7%; U.S. +6.1% and +6.1%"
+        "ytd": "Year to date (January–June): commercial +8.1%, industrial +9.7%; U.S. +6.1% and +6.1%",
+        "warning": "These averages cover all commercial or all industrial customers in South Dakota. They are not any facility's rate or bill: compare your own rate class and supply contract."
       }
     },
     {
@@ -1817,8 +1860,9 @@
       },
       "takeaway": {
         "commercial": "smaller rise than the U.S. (+4.8%)",
-        "industrial": "fell while the U.S. rose (+3.0%)",
-        "ytd": "Year to date (January–June): commercial +5.1%, industrial −0.4%; U.S. +6.1% and +6.1%"
+        "industrial": "U.S. rose 3.0%",
+        "ytd": "Year to date (January–June): commercial +5.1%, industrial −0.4%; U.S. +6.1% and +6.1%",
+        "warning": "These averages cover all commercial or all industrial customers in Tennessee. They are not any facility's rate or bill: compare your own rate class and supply contract."
       }
     },
     {
@@ -1859,7 +1903,8 @@
       "takeaway": {
         "commercial": "smaller rise than the U.S. (+4.8%)",
         "industrial": "about the same as the U.S. (+3.0%)",
-        "ytd": "Year to date (January–June): commercial +0.4%, industrial +3.1%; U.S. +6.1% and +6.1%"
+        "ytd": "Year to date (January–June): commercial +0.4%, industrial +3.1%; U.S. +6.1% and +6.1%",
+        "warning": "These averages cover all commercial or all industrial customers in Texas. They are not any facility's rate or bill: compare your own rate class and supply contract."
       }
     },
     {
@@ -1900,7 +1945,8 @@
       "takeaway": {
         "commercial": "smaller rise than the U.S. (+4.8%)",
         "industrial": "larger rise than the U.S. (+3.0%)",
-        "ytd": "Year to date (January–June): commercial +5.8%, industrial +6.0%; U.S. +6.1% and +6.1%"
+        "ytd": "Year to date (January–June): commercial +5.8%, industrial +6.0%; U.S. +6.1% and +6.1%",
+        "warning": "These averages cover all commercial or all industrial customers in Utah. They are not any facility's rate or bill: compare your own rate class and supply contract."
       }
     },
     {
@@ -1941,7 +1987,8 @@
       "takeaway": {
         "commercial": "larger rise than the U.S. (+4.8%)",
         "industrial": "larger rise than the U.S. (+3.0%)",
-        "ytd": "Year to date (January–June): commercial +7.0%, industrial +5.3%; U.S. +6.1% and +6.1%"
+        "ytd": "Year to date (January–June): commercial +7.0%, industrial +5.3%; U.S. +6.1% and +6.1%",
+        "warning": "These averages cover all commercial or all industrial customers in Vermont. They are not any facility's rate or bill: compare your own rate class and supply contract."
       }
     },
     {
@@ -1981,8 +2028,9 @@
       },
       "takeaway": {
         "commercial": "larger rise than the U.S. (+4.8%)",
-        "industrial": "fell while the U.S. rose (+3.0%)",
-        "ytd": "Year to date (January–June): commercial +22.8%, industrial +9.8%; U.S. +6.1% and +6.1%"
+        "industrial": "U.S. rose 3.0%",
+        "ytd": "Year to date (January–June): commercial +22.8%, industrial +9.8%; U.S. +6.1% and +6.1%",
+        "warning": "These averages cover all commercial or all industrial customers in Virginia. They are not any facility's rate or bill: compare your own rate class and supply contract."
       }
     },
     {
@@ -2023,7 +2071,8 @@
       "takeaway": {
         "commercial": "larger rise than the U.S. (+4.8%)",
         "industrial": "larger rise than the U.S. (+3.0%)",
-        "ytd": "Year to date (January–June): commercial +11.1%, industrial +4.7%; U.S. +6.1% and +6.1%"
+        "ytd": "Year to date (January–June): commercial +11.1%, industrial +4.7%; U.S. +6.1% and +6.1%",
+        "warning": "These averages cover all commercial or all industrial customers in Washington. They are not any facility's rate or bill: compare your own rate class and supply contract."
       }
     },
     {
@@ -2062,9 +2111,10 @@
         }
       },
       "takeaway": {
-        "commercial": "fell while the U.S. rose (+4.8%)",
-        "industrial": "fell while the U.S. rose (+3.0%)",
-        "ytd": "Year to date (January–June): commercial −1.5%, industrial +5.9%; U.S. +6.1% and +6.1%"
+        "commercial": "U.S. rose 4.8%",
+        "industrial": "U.S. rose 3.0%",
+        "ytd": "Year to date (January–June): commercial −1.5%, industrial +5.9%; U.S. +6.1% and +6.1%",
+        "warning": "These averages cover all commercial or all industrial customers in West Virginia. They are not any facility's rate or bill: compare your own rate class and supply contract."
       }
     },
     {
@@ -2105,7 +2155,8 @@
       "takeaway": {
         "commercial": "about the same as the U.S. (+4.8%)",
         "industrial": "about the same as the U.S. (+3.0%)",
-        "ytd": "Year to date (January–June): commercial +5.0%, industrial +5.4%; U.S. +6.1% and +6.1%"
+        "ytd": "Year to date (January–June): commercial +5.0%, industrial +5.4%; U.S. +6.1% and +6.1%",
+        "warning": "These averages cover all commercial or all industrial customers in Wisconsin. They are not any facility's rate or bill: compare your own rate class and supply contract."
       }
     },
     {
@@ -2145,8 +2196,9 @@
       },
       "takeaway": {
         "commercial": "smaller rise than the U.S. (+4.8%)",
-        "industrial": "fell while the U.S. rose (+3.0%)",
-        "ytd": "Year to date (January–June): commercial +2.8%, industrial +2.2%; U.S. +6.1% and +6.1%"
+        "industrial": "U.S. rose 3.0%",
+        "ytd": "Year to date (January–June): commercial +2.8%, industrial +2.2%; U.S. +6.1% and +6.1%",
+        "warning": "These averages cover all commercial or all industrial customers in Wyoming. They are not any facility's rate or bill: compare your own rate class and supply contract."
       }
     }
   ],

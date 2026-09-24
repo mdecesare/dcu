@@ -38,8 +38,7 @@ const label = { commercial: 'Commercial', industrial: 'Industrial' };
       ))}
       <li class="pp-y" data-pp="ytd">{us.takeaway.ytd}</li>
     </ul>
-    <p class="pp-warn">These are statewide (or national) averages for all commercial or all industrial customers. They are not any
-      facility's price or bill: compare your own rate class and supply contract.</p>
+    <p class="pp-warn" data-pp="warning">{us.takeaway.warning}</p>
   </div>
 
   <h3>Largest measured movements, {source.current_label} compared with {source.prior_label}</h3>
@@ -98,7 +97,7 @@ const label = { commercial: 'Commercial', industrial: 'Industrial' };
   type Sector = 'commercial' | 'industrial';
   type Figures = { current: number; prior: number; change_pct: number; rank_label?: string };
   type Place = { code?: string; name?: string; commercial: Figures; industrial: Figures;
-    takeaway: { commercial?: string; industrial?: string; ytd: string } };
+    takeaway: { commercial?: string; industrial?: string; ytd: string; warning: string } };
 
   const data = JSON.parse(document.getElementById('pp-data')!.textContent || '{}') as
     { us: Place; states: Place[] };
@@ -118,11 +117,12 @@ const label = { commercial: 'Commercial', industrial: 'Industrial' };
       field(`${sector}-change`).textContent = pct(f.change_pct);
       const verdict = field(`${sector}-verdict`);
       verdict.hidden = isUS;
-      verdict.textContent = isUS ? '' : p.takeaway[sector] ?? '';
+      verdict.textContent = isUS ? '' : `· ${p.takeaway[sector] ?? ''}`;
       field(`${sector}-detail`).textContent =
         `${cents(f.current)} per kWh, from ${cents(f.prior)}${isUS ? '' : ` · ${f.rank_label}`}`;
     });
     field('ytd').textContent = p.takeaway.ytd;
+    field('warning').textContent = p.takeaway.warning;
     if (remember) {
       try { localStorage.setItem(KEY, select.value); } catch { /* private mode: nothing to remember */ }
       const url = new URL(location.href);
