@@ -1,0 +1,134 @@
+---
+// /power/next-mw: what the public record shows for adding roughly 1-5 MW at an existing site.
+// Evidence, gaps and excluded sources: dcu-intelligence docs/source-records/next-mw-evidence.md.
+// Every figure below was checked against an archived original on 24 September 2026.
+import Base from '../../layouts/Base.astro';
+import SourceMark from '../../components/SourceMark.astro';
+
+type Letter = 'R' | 'P' | 'V' | 'G' | 'O';
+type Fact = { text: string; src?: { type: Letter; label: string; url: string; date: string } };
+type Path = { id: string; title: string; facts: Fact[]; gap?: string; ask: string };
+
+const terrapin = { type: 'P' as const, label: 'Terrapin', url: 'https://terrapincg.com/news/switchgear-transformer-generator-lead-times-2026', date: '10 June 2026' };
+const dominion = { type: 'V' as const, label: 'Dominion Energy Virginia', url: 'https://www.dominionenergy.com/virginia/large-business-services/data-center-requests', date: 'page retrieved 24 September 2026' };
+const cbre = { type: 'R' as const, label: 'CBRE, North America Data Center Trends H1 2026', url: 'https://www.cbre.com/insights/books/north-america-data-center-trends-h1-2026', date: '27 August 2026' };
+
+const paths: Path[] = [
+  {
+    id: 'free-capacity', title: 'Free up capacity at the existing site',
+    facts: [{ text: 'No public figure applies: what can be released depends on your own load, cooling and electrical limits.' }],
+    ask: 'Compare measured peak demand with your utility service capacity and your UPS and cooling limits. The smallest margin is your real headroom.',
+  },
+  {
+    id: 'utility', title: 'Phased utility service',
+    facts: [
+      { text: 'Dominion says data centers under 50 MW "can frequently be connected by utilizing existing electric distribution infrastructure" and "typically require 1-2 years" from initial planning, with service provided in stages. Scope: new data centers in its Virginia territory.', src: dominion },
+      { text: 'Pad-mount transformers up to 5 MVA: 40–65 weeks from order to delivery.', src: terrapin },
+      { text: 'Dominion’s large-load rate class (GS-5, from 1 January 2027) applies to customers demanding 25 MW or more.', src: { type: 'G', label: 'Virginia SCC order', url: 'https://www.scc.virginia.gov/about-the-scc/newsreleases/release/scc-issues-order-on-dev-biennial-review-2025/scc-rules-in-dev-biennial-review-case.html', date: '25 November 2025' } },
+      { text: 'Texas’s large-load interconnection standards apply in ERCOT where the total load at a single site would exceed 75 MW, unless regulators set a lower threshold.', src: { type: 'G', label: 'Texas SB 6', url: 'https://capitol.texas.gov/tlodocs/89R/billtext/html/SB00006F.htm', date: '2025' } },
+    ],
+    ask: 'Ask your utility for a staged service plan and timeline in writing, and who supplies each transformer and switchgear item.',
+  },
+  {
+    id: 'rental', title: 'Temporary rental power',
+    facts: [{ text: 'Sunbelt Rentals lists generators from 500 kW up to 2,000 kW. A listing is not a reservation.', src: { type: 'V', label: 'Sunbelt Rentals', url: 'https://www.sunbeltrentals.com/equipment-rental/generators-and-accessories/generators-500kw-and-larger/', date: 'retrieved 24 September 2026' } }],
+    gap: 'No current public price.',
+    ask: 'Ask for reservation terms, fuel supply and switchgear connection, and whether running continuously needs an air permit where you are.',
+  },
+  {
+    id: 'elsewhere', title: 'Put the added load somewhere else',
+    facts: [
+      { text: 'Primary-market colocation vacancy was 1.4%. Average rental rates rose 7.9% for 500 kW–3 MW and 8.3% for 3–10 MW deployments in the first half of 2026.', src: cbre },
+      { text: 'Fit-out dates are "expanding from weeks to several months."', src: cbre },
+    ],
+    gap: 'No public price per kW for 1–5 MW requirements.',
+    ask: 'Get a ready-for-service date in writing, not just a price.',
+  },
+  {
+    id: 'gas', title: 'Continuous natural gas generation',
+    facts: [
+      { text: 'Natural gas generators of 1,000–3,000 kW: 54–78 weeks from order to delivery.', src: terrapin },
+      { text: 'Texas’s streamlined permit for natural gas engines limits each engine to 400 hours of operation per rolling 12 months, so it is not a route to continuous power.', src: { type: 'G', label: 'TCEQ standard permit', url: 'https://www.tceq.texas.gov/permitting/air/newsourcereview/combustion/ng-egu-sp', date: 'effective 30 January 2025' } },
+    ],
+    gap: 'No current public installed cost at this size. Permit routes for continuous operation not yet covered.',
+    ask: 'Ask your air regulator which authorization continuous operation needs, and your gas utility whether the supply is there.',
+  },
+  {
+    id: 'fuel-cells', title: 'Fuel cells',
+    facts: [
+      { text: 'Vendor claim: FuelCell Energy lists 1.25 MW, 2.5 MW and 12.5 MW block systems.', src: { type: 'V', label: 'FuelCell Energy', url: 'https://www.fuelcellenergy.com/fuelcell-energy-block-1-25', date: 'retrieved 24 September 2026' } },
+      { text: 'Vendor claim: Bloom says "available in as little as 90 days"; its data center systems are "purpose built from 20MW to 500MW."', src: { type: 'V', label: 'Bloom Energy', url: 'https://www.bloomenergy.com/industries/data-center-power/', date: 'retrieved 24 September 2026' } },
+    ],
+    gap: 'No public prices. Delivery claims do not include gas supply, permits or connection.',
+    ask: 'Ask when the system would carry your load, not when it would ship.',
+  },
+  {
+    id: 'storage', title: 'Storage, with something to charge it',
+    facts: [{ text: 'A battery adds capacity only while something with spare capacity, such as the grid off-peak or on-site generation, can recharge it.' }],
+    gap: 'No current public cost for 1–5 MW systems: the published benchmarks we found are dated or utility-scale.',
+    ask: 'Size the charging source first; the battery covers only the hours it can refill.',
+  },
+];
+---
+<Base title="Powering the next MW" description="For an enterprise data center that needs roughly 1–5 MW more: what the public record shows for each path, dated and sourced, and where it shows nothing.">
+  <section class="page-head">
+    <div class="wrap">
+      <p class="nm-kicker"><a href="/power">Power</a></p>
+      <h1>Powering the next MW</h1>
+      <p class="lede">For an existing enterprise data center that needs roughly 1–5 MW more: what the public record shows
+        for each path, with dates, and where it shows nothing.</p>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="panel panel-reading nm">
+      <ul class="nm-rules">
+        <li><strong>Delivery is not power.</strong> Lead times end when equipment arrives, not when it carries load.</li>
+        <li><strong>No path wins by default.</strong> These figures measure different things and are not comparable across paths.</li>
+        <li><strong>A gap means we looked.</strong> We found no current public figure we could keep up to date.</li>
+      </ul>
+
+      <ol class="nm-paths">
+        {paths.map((p, i) => (
+          <li class="nm-path" id={p.id}>
+            <h2><span class="nm-n">{i + 1}</span>{p.title}</h2>
+            <ul class="nm-facts">
+              {p.facts.map((f) => (
+                <li>
+                  {f.text}
+                  {f.src && <span class="nm-src"><SourceMark type={f.src.type} /><a href={f.src.url}>{f.src.label}</a>, {f.src.date}</span>}
+                </li>
+              ))}
+            </ul>
+            {p.gap && <p class="nm-gap"><strong>Gap:</strong> {p.gap}</p>}
+            <p class="nm-ask"><strong>Ask:</strong> {p.ask}</p>
+          </li>
+        ))}
+      </ol>
+
+      <p class="nm-foot">Checked against archived originals on 24 September 2026, and reviewed when a tracked source
+        changes. Vendor figures are the vendor's own claims.</p>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .nm-kicker { font-size: 12px; letter-spacing: .09em; text-transform: uppercase; font-weight: 600; margin-bottom: 8px; }
+  .nm-kicker a { color: #8fb6de; }
+  .nm-rules { list-style: none; padding: 0; margin: 0 0 22px; display: grid; gap: 8px; }
+  .nm-rules li { font-size: 14.5px; line-height: 1.5; color: var(--ink-2); padding-left: 12px; border-left: 3px solid var(--line); }
+  .nm-rules strong { color: var(--ink); }
+  .nm-paths { list-style: none; padding: 0; margin: 0; }
+  .nm-path { border-top: 1px solid var(--line); padding: 16px 0 14px; }
+  .nm-path h2 { display: flex; align-items: baseline; gap: 10px; font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+  .nm-n { flex: none; width: 24px; height: 24px; border-radius: 50%; background: var(--blue-lt); color: var(--blue-dk); font-size: 13px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; }
+  .nm-facts { list-style: disc; padding-left: 20px; margin: 0; }
+  .nm-facts li { font-size: 15px; line-height: 1.55; margin-bottom: 6px; }
+  .nm-src { display: block; font-size: 12.5px; color: var(--ink-2); margin-top: 2px; }
+  .nm-src a { color: var(--blue); text-decoration: underline; text-underline-offset: 2px; }
+  .nm-gap, .nm-ask { font-size: 14px; line-height: 1.5; margin-top: 6px; }
+  .nm-gap { color: var(--amber); }
+  .nm-gap strong, .nm-ask strong { font-weight: 600; }
+  .nm-ask { color: var(--ink); }
+  .nm-foot { font-size: 13px; color: var(--ink-2); border-top: 1px solid var(--line); padding-top: 12px; margin-top: 4px; }
+</style>

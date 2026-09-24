@@ -16,6 +16,8 @@ import { pjm } from '../../lib/power';
 
   <div class="wrap">
     <ThisWeek section="power" />
+    <p class="nm-link"><strong>Adding 1–5 MW at an existing site?</strong> <a href="/power/next-mw">Powering the next MW</a>:
+      seven paths, with dated sources and the gaps.</p>
     <div class="panel panel-reading prose">
 
       <!-- Signal 1: PJM capacity and reserves -->
@@ -95,6 +97,9 @@ import { pjm } from '../../lib/power';
 </Base>
 
 <style is:global>
+  .nm-link { max-width: 780px; margin: 12px 0 0; font-size: 14.5px; background: var(--card); border: 1px solid var(--line);
+    border-radius: 6px; padding: 10px 14px; }
+  .nm-link a { color: var(--blue-dk); text-decoration: underline; text-underline-offset: 2px; }
   .signal + .signal { margin-top: 2.2em; padding-top: 1.6em; border-top: 1px solid var(--line); }
   .sig-k { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; margin-bottom: .3em !important; }
   .signal h2 { font-size: 22px; line-height: 1.3; margin: 0 0 .5em; padding: 0; border: 0; }
