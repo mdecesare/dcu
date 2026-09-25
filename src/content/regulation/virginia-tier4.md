@@ -7,7 +7,7 @@ status: "In effect"
 summary: "For data center air permit applications submitted to DEQ on or after 1 July 2026, DEQ cannot issue the permit unless the emission limit established for each gen-set under that permit is equal to or lower than the emissions achieved by a Tier 4-equivalent gen-set. That is a performance standard, not an equipment mandate. The statute does not itself create a permit requirement — it governs permits that are already required."
 citation: "Va. Code § 10.1-1322.6 (HB 507, 2026)"
 sourceType: G
-order: 1
+order: 2
 ---
 
 **Status:** In effect · **Applies to:** applications submitted on or after 1 July 2026
