@@ -4,7 +4,7 @@ headline: "Texas governor directs TCEQ to pause data center permits"
 jurisdiction: "Texas"
 jurisdictionType: state
 status: "Directed"
-summary: "On 21 September 2026 the governor directed TCEQ to pause the issuance of all permits related to data center projects until ERCOT completes its review. The directive sets no size threshold and does not define a data center project. TCEQ has not said publicly whether the pause reaches supporting infrastructure for an existing facility's expansion of a few megawatts, or whether applications can still be filed and processed."
+summary: "On 21 September 2026 the governor directed TCEQ to pause the issuance of all permits related to data center projects until ERCOT completes its review. The directive sets no size threshold and does not define a data center project. TCEQ has not said publicly whether the pause reaches air or water authorizations for infrastructure supporting an existing facility's expansion of a few megawatts, or whether applications can still be filed and processed."
 citation: "Governor's letter to TCEQ, 21 September 2026"
 sourceType: G
 order: 1
@@ -13,9 +13,9 @@ order: 1
 **Status:** Directed, 21 September 2026 · **TCEQ update to the governor due:** 19 October 2026 · **Checked:** 25 September 2026
 
 > **Open question for a 1–5 MW expansion.** TCEQ has not said publicly whether the pause
-> reaches supporting infrastructure, such as generators or electrical equipment, for an
-> existing facility's expansion of a few megawatts. We are not treating smaller projects as
-> either exempt or covered until TCEQ says so.
+> reaches air or water authorizations for infrastructure supporting an existing facility's
+> expansion of a few megawatts. We are not treating smaller projects as either exempt or
+> covered until TCEQ says so.
 
 ## What changed
 
@@ -56,8 +56,8 @@ Neither date is a date on which TCEQ permits restart.
 
 TCEQ has not said publicly:
 
-- whether the pause reaches supporting infrastructure for an existing facility's expansion of
-  a few megawatts;
+- whether the pause reaches air or water authorizations for infrastructure supporting an
+  existing facility's expansion of a few megawatts;
 - whether applications can still be filed and reviewed while issuance is paused;
 - whether any size threshold applies;
 - when the pause ends. The governor's letter ties it to ERCOT completing its review, not to
