@@ -1,29 +1,33 @@
 ---
 // /power/next-mw: what the public record shows for adding roughly 1-5 MW at an existing site.
 // Evidence, gaps and excluded sources: dcu-intelligence docs/source-records/next-mw-evidence.md.
-// Every figure below was checked against an archived original on 24 September 2026.
+// Every figure below was checked against an archived original (24-25 September 2026).
 import Base from '../../layouts/Base.astro';
 import SourceMark from '../../components/SourceMark.astro';
 
 type Letter = 'R' | 'P' | 'V' | 'G' | 'O';
-type Fact = { text: string; src?: { type: Letter; label: string; url: string; date: string } };
-type Path = { id: string; title: string; facts: Fact[]; gap?: string; ask: string };
+type Source = { type: Letter; label: string; url: string; date: string };
+type Fact = { text: string; tag?: string; src?: Source; more?: { label: string; href: string } };
+type Path = { id: string; title: string; gist: string; facts: Fact[]; gap?: string; ask: string };
 
-const terrapin = { type: 'P' as const, label: 'Terrapin', url: 'https://terrapincg.com/news/switchgear-transformer-generator-lead-times-2026', date: '10 June 2026' };
-const dominion = { type: 'V' as const, label: 'Dominion Energy Virginia', url: 'https://www.dominionenergy.com/virginia/large-business-services/data-center-requests', date: 'page retrieved 24 September 2026' };
-const cbre = { type: 'R' as const, label: 'CBRE, North America Data Center Trends H1 2026', url: 'https://www.cbre.com/insights/books/north-america-data-center-trends-h1-2026', date: '27 August 2026' };
+const DELIVERY = 'Equipment delivery, not usable power';
+const terrapin: Source = { type: 'P', label: 'Terrapin', url: 'https://terrapincg.com/news/switchgear-transformer-generator-lead-times-2026', date: '10 June 2026' };
+const dominion: Source = { type: 'V', label: 'Dominion Energy Virginia', url: 'https://www.dominionenergy.com/virginia/large-business-services/data-center-requests', date: 'page retrieved 24 September 2026' };
+const cbre: Source = { type: 'R', label: 'CBRE, North America Data Center Trends H1 2026', url: 'https://www.cbre.com/insights/books/north-america-data-center-trends-h1-2026', date: '27 August 2026' };
 
 const paths: Path[] = [
   {
     id: 'free-capacity', title: 'Free up capacity at the existing site',
-    facts: [{ text: 'No public figure applies: what can be released depends on your own load, cooling and electrical limits.' }],
-    ask: 'Compare measured peak demand with your utility service capacity and your UPS and cooling limits. The smallest margin is your real headroom.',
+    gist: 'Depends on your own site. No public benchmark applies.',
+    facts: [{ text: 'What can be released depends on your own load, cooling and electrical limits. We found no public figure that applies.' }],
+    ask: 'Compare measured peak demand with your utility service capacity, UPS capacity and cooling capacity.',
   },
   {
     id: 'utility', title: 'Phased utility service',
+    gist: 'Utility-led. Dominion cites 1–2 years for new data centers under 50 MW in Virginia.',
     facts: [
-      { text: 'Dominion says data centers under 50 MW "can frequently be connected by utilizing existing electric distribution infrastructure" and "typically require 1-2 years" from initial planning, with service provided in stages. Scope: new data centers in its Virginia territory.', src: dominion },
-      { text: 'Pad-mount transformers up to 5 MVA: 40–65 weeks from order to delivery.', src: terrapin },
+      { text: 'For new data centers in its Virginia territory, Dominion says those under 50 MW "can frequently be connected by utilizing existing electric distribution infrastructure" and "typically require 1-2 years" from initial planning, with service provided in stages.', src: dominion },
+      { tag: DELIVERY, text: 'pad-mount transformers up to 5 MVA take 40–65 weeks from order to delivery.', src: terrapin },
       { text: 'Dominion’s large-load rate class (GS-5, from 1 January 2027) applies to customers demanding 25 MW or more.', src: { type: 'G', label: 'Virginia SCC order', url: 'https://www.scc.virginia.gov/about-the-scc/newsreleases/release/scc-issues-order-on-dev-biennial-review-2025/scc-rules-in-dev-biennial-review-case.html', date: '25 November 2025' } },
       { text: 'Texas’s large-load interconnection standards apply in ERCOT where the total load at a single site would exceed 75 MW, unless regulators set a lower threshold.', src: { type: 'G', label: 'Texas SB 6', url: 'https://capitol.texas.gov/tlodocs/89R/billtext/html/SB00006F.htm', date: '2025' } },
     ],
@@ -31,12 +35,14 @@ const paths: Path[] = [
   },
   {
     id: 'rental', title: 'Temporary rental power',
+    gist: 'Units up to 2 MW are listed. Price and reservation need a quote.',
     facts: [{ text: 'Sunbelt Rentals lists generators from 500 kW up to 2,000 kW. A listing is not a reservation.', src: { type: 'V', label: 'Sunbelt Rentals', url: 'https://www.sunbeltrentals.com/equipment-rental/generators-and-accessories/generators-500kw-and-larger/', date: 'retrieved 24 September 2026' } }],
     gap: 'No current public price.',
     ask: 'Ask for reservation terms, fuel supply and switchgear connection, and whether running continuously needs an air permit where you are.',
   },
   {
     id: 'elsewhere', title: 'Put the added load somewhere else',
+    gist: 'Colocation is scarce: 1.4% vacancy, rates rising.',
     facts: [
       { text: 'Primary-market colocation vacancy was 1.4%. Average rental rates rose 7.9% for 500 kW–3 MW and 8.3% for 3–10 MW deployments in the first half of 2026.', src: cbre },
       { text: 'Fit-out dates are "expanding from weeks to several months."', src: cbre },
@@ -46,24 +52,28 @@ const paths: Path[] = [
   },
   {
     id: 'gas', title: 'Continuous natural gas generation',
+    gist: 'Generators take 54–78 weeks to deliver. Permits decide whether they can run continuously.',
     facts: [
-      { text: 'Natural gas generators of 1,000–3,000 kW: 54–78 weeks from order to delivery.', src: terrapin },
+      { tag: DELIVERY, text: 'natural gas generators of 1,000–3,000 kW take 54–78 weeks from order to delivery.', src: terrapin },
       { text: 'Texas’s streamlined permit for natural gas engines limits each engine to 400 hours of operation per rolling 12 months, so it is not a route to continuous power.', src: { type: 'G', label: 'TCEQ standard permit', url: 'https://www.tceq.texas.gov/permitting/air/newsourcereview/combustion/ng-egu-sp', date: 'effective 30 January 2025' } },
+      { text: 'On 21 September 2026 the governor directed TCEQ to pause issuing permits related to data center projects, and TCEQ says it has paused air and water permits and authorizations for infrastructure directly supporting data centers. TCEQ has not said publicly whether that covers engines or other equipment for an existing facility’s expansion.', src: { type: 'G', label: 'Governor’s letter to TCEQ', url: 'https://gov.texas.gov/uploads/files/press/TCEQ_Data_Center.pdf', date: '21 September 2026' }, more: { label: 'What to check in Texas', href: '/regulation/texas-data-center-permit-pause' } },
     ],
-    gap: 'No current public installed cost at this size. Permit routes for continuous operation not yet covered.',
+    gap: 'No current public installed cost at this size. Permit routes for continuous operation are not yet covered.',
     ask: 'Ask your air regulator which authorization continuous operation needs, and your gas utility whether the supply is there.',
   },
   {
     id: 'fuel-cells', title: 'Fuel cells',
+    gist: 'Vendor claims only. Smaller blocks are sold at 1.25 and 2.5 MW.',
     facts: [
-      { text: 'Vendor claim: FuelCell Energy lists 1.25 MW, 2.5 MW and 12.5 MW block systems.', src: { type: 'V', label: 'FuelCell Energy', url: 'https://www.fuelcellenergy.com/fuelcell-energy-block-1-25', date: 'retrieved 24 September 2026' } },
-      { text: 'Vendor claim: Bloom says "available in as little as 90 days"; its data center systems are "purpose built from 20MW to 500MW."', src: { type: 'V', label: 'Bloom Energy', url: 'https://www.bloomenergy.com/industries/data-center-power/', date: 'retrieved 24 September 2026' } },
+      { text: 'Vendor claim: FuelCell Energy lists 1.25 MW and 2.5 MW block systems, sizes within a 1–5 MW addition, as well as a 12.5 MW block.', src: { type: 'V', label: 'FuelCell Energy', url: 'https://www.fuelcellenergy.com/fuelcell-energy-block-1-25', date: 'retrieved 24 September 2026' } },
+      { text: 'Vendor claim: Bloom markets its data center systems as "purpose built from 20MW to 500MW," above this range, and says they are "available in as little as 90 days."', src: { type: 'V', label: 'Bloom Energy', url: 'https://www.bloomenergy.com/industries/data-center-power/', date: 'retrieved 24 September 2026' } },
     ],
-    gap: 'No public prices. Delivery claims do not include gas supply, permits or connection.',
+    gap: 'No public prices. "Available" is not the same as carrying load: gas supply, permits and connection come on top.',
     ask: 'Ask when the system would carry your load, not when it would ship.',
   },
   {
     id: 'storage', title: 'Storage, with something to charge it',
+    gist: 'Adds capacity only with a charging source. No current public cost.',
     facts: [{ text: 'A battery adds capacity only while something with spare capacity, such as the grid off-peak or on-site generation, can recharge it.' }],
     gap: 'No current public cost for 1–5 MW systems: the published benchmarks we found are dated or utility-scale.',
     ask: 'Size the charging source first; the battery covers only the hours it can refill.',
@@ -83,20 +93,28 @@ const paths: Path[] = [
   <div class="wrap">
     <div class="panel panel-reading nm">
       <ul class="nm-rules">
-        <li><strong>Delivery is not power.</strong> Lead times end when equipment arrives, not when it carries load.</li>
+        <li><strong>Equipment delivery is not usable power.</strong> Lead times end when equipment arrives, not when it carries load.</li>
         <li><strong>No path wins by default.</strong> These figures measure different things and are not comparable across paths.</li>
         <li><strong>A gap means we looked.</strong> We found no current public figure we could keep up to date.</li>
       </ul>
+
+      <h2 class="nm-h">Seven paths at a glance</h2>
+      <ol class="nm-glance">
+        {paths.map((p, i) => (
+          <li><a href={`#${p.id}`}><span class="nm-n">{i + 1}</span><span class="nm-gt">{p.title}</span></a><span class="nm-gg">{p.gist}</span></li>
+        ))}
+      </ol>
 
       <ol class="nm-paths">
         {paths.map((p, i) => (
           <li class="nm-path" id={p.id}>
             <h2><span class="nm-n">{i + 1}</span>{p.title}</h2>
+            <p class="nm-gist">{p.gist}</p>
             <ul class="nm-facts">
               {p.facts.map((f) => (
                 <li>
-                  {f.text}
-                  {f.src && <span class="nm-src"><SourceMark type={f.src.type} /><a href={f.src.url}>{f.src.label}</a>, {f.src.date}</span>}
+                  {f.tag && <strong class="nm-tag">{f.tag}:</strong>} {f.text}
+                  {f.src && <span class="nm-src"><SourceMark type={f.src.type} /><a href={f.src.url}>{f.src.label}</a>, {f.src.date}{f.more && <> · <a href={f.more.href}>{f.more.label}</a></>}</span>}
                 </li>
               ))}
             </ul>
@@ -106,7 +124,7 @@ const paths: Path[] = [
         ))}
       </ol>
 
-      <p class="nm-foot">Checked against archived originals on 24 September 2026, and reviewed when a tracked source
+      <p class="nm-foot">Checked against archived originals on 24–25 September 2026, and reviewed when a tracked source
         changes. Vendor figures are the vendor's own claims.</p>
     </div>
   </div>
@@ -115,15 +133,27 @@ const paths: Path[] = [
 <style>
   .nm-kicker { font-size: 12px; letter-spacing: .09em; text-transform: uppercase; font-weight: 600; margin-bottom: 8px; }
   .nm-kicker a { color: #8fb6de; }
-  .nm-rules { list-style: none; padding: 0; margin: 0 0 22px; display: grid; gap: 8px; }
+  .nm-rules { list-style: none; padding: 0; margin: 0 0 20px; display: grid; gap: 8px; }
   .nm-rules li { font-size: 14.5px; line-height: 1.5; color: var(--ink-2); padding-left: 12px; border-left: 3px solid var(--line); }
   .nm-rules strong { color: var(--ink); }
+
+  .nm-h { font-size: 15px; font-weight: 600; margin: 0 0 8px; color: var(--ink-2); text-transform: uppercase; letter-spacing: .06em; }
+  .nm-glance { list-style: none; padding: 0; margin: 0 0 22px; border: 1px solid var(--line); border-radius: 8px; }
+  .nm-glance li { display: grid; grid-template-columns: minmax(0, 15em) minmax(0, 1fr); gap: 4px 14px; align-items: baseline;
+    padding: 9px 12px; border-top: 1px solid var(--line-2); }
+  .nm-glance li:first-child { border-top: 0; }
+  .nm-glance a { display: flex; align-items: baseline; gap: 8px; color: var(--blue-dk); font-weight: 600; font-size: 14.5px; }
+  .nm-glance a:hover .nm-gt { text-decoration: underline; }
+  .nm-gg { font-size: 14px; color: var(--ink-2); }
+
   .nm-paths { list-style: none; padding: 0; margin: 0; }
-  .nm-path { border-top: 1px solid var(--line); padding: 16px 0 14px; }
-  .nm-path h2 { display: flex; align-items: baseline; gap: 10px; font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+  .nm-path { border-top: 1px solid var(--line); padding: 16px 0 14px; scroll-margin-top: 12px; }
+  .nm-path h2 { display: flex; align-items: baseline; gap: 10px; font-size: 18px; font-weight: 600; margin-bottom: 4px; }
   .nm-n { flex: none; width: 24px; height: 24px; border-radius: 50%; background: var(--blue-lt); color: var(--blue-dk); font-size: 13px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; }
+  .nm-gist { font-size: 15px; font-weight: 600; color: var(--ink); margin: 0 0 8px 34px; }
   .nm-facts { list-style: disc; padding-left: 20px; margin: 0; }
   .nm-facts li { font-size: 15px; line-height: 1.55; margin-bottom: 6px; }
+  .nm-tag { font-weight: 600; }
   .nm-src { display: block; font-size: 12.5px; color: var(--ink-2); margin-top: 2px; }
   .nm-src a { color: var(--blue); text-decoration: underline; text-underline-offset: 2px; }
   .nm-gap, .nm-ask { font-size: 14px; line-height: 1.5; margin-top: 6px; }
@@ -131,4 +161,10 @@ const paths: Path[] = [
   .nm-gap strong, .nm-ask strong { font-weight: 600; }
   .nm-ask { color: var(--ink); }
   .nm-foot { font-size: 13px; color: var(--ink-2); border-top: 1px solid var(--line); padding-top: 12px; margin-top: 4px; }
+
+  @media (max-width: 639px) {
+    .nm-glance li { grid-template-columns: 1fr; }
+    .nm-gg { padding-left: 32px; }
+    .nm-gist { margin-left: 0; }
+  }
 </style>

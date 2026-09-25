@@ -20,7 +20,10 @@ import { pjm } from '../../lib/power';
       seven paths, with dated sources and the gaps.</p>
     <div class="panel panel-reading prose">
 
-      <!-- Signal 1: PJM capacity and reserves -->
+      <!-- Signal 1: Power prices by state (EIA), the reader's own state first -->
+      <PowerPrices />
+
+      <!-- Signal 2: PJM capacity and reserves -->
       <section class="signal" id="pjm-capacity">
         <p class="sig-k">Grid supply &middot; PJM region, including Virginia and Ohio</p>
         <h2>The PJM grid secured less capacity than its reliability requirement for 2028/29</h2>
@@ -89,8 +92,6 @@ import { pjm } from '../../lib/power';
           sections 7.4&ndash;7.5.</span></p>
       </section>
 
-      <!-- Signal 2: Power prices by state (EIA) -->
-      <PowerPrices />
 
     </div>
   </div>
