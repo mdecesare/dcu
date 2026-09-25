@@ -136,6 +136,10 @@ a.cls:hover { text-decoration: none; box-shadow: 0 0 0 3px var(--blue-lt); }
   padding: 11px 15px; font-size: 15px; color: var(--ink-2);
 }
 .prose .reg-facts strong { color: var(--ink); }
+/* A callout for the question a reader most needs answered (used sparingly in Regulation items) */
+.prose blockquote { margin: 0 0 1.2em; padding: 10px 14px; background: var(--amber-bg); border: 1px solid var(--amber-ln);
+  border-left: 3px solid var(--amber); border-radius: 0 6px 6px 0; font-size: 15.5px; }
+.prose blockquote p { margin: 0; }
 .prose .reg-source {
   margin-top: 2em; background: #f6f9fc; border: 1px solid var(--line); border-radius: 7px;
   padding: 2px 16px 12px; font-size: 15px;

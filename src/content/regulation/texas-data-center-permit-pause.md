@@ -1,16 +1,21 @@
 ---
-title: "Texas: TCEQ pauses permit issuance for data center projects pending ERCOT's review"
-headline: "TCEQ pauses permit issuance for data center projects pending ERCOT's review"
+title: "Texas governor directs TCEQ to pause data center permits"
+headline: "Texas governor directs TCEQ to pause data center permits"
 jurisdiction: "Texas"
 jurisdictionType: state
-status: "In effect"
-summary: "On 21 September 2026 the governor directed TCEQ to pause the issuance of all permits related to data center projects until ERCOT completes its review. The directive sets no size threshold and does not define a data center project. TCEQ has not said publicly whether applications can still be filed and processed, or how the pause treats an existing facility's expansion."
+status: "Directed"
+summary: "On 21 September 2026 the governor directed TCEQ to pause the issuance of all permits related to data center projects until ERCOT completes its review. The directive sets no size threshold and does not define a data center project. TCEQ has not said publicly whether the pause reaches supporting infrastructure for an existing facility's expansion of a few megawatts, or whether applications can still be filed and processed."
 citation: "Governor's letter to TCEQ, 21 September 2026"
 sourceType: G
 order: 1
 ---
 
-**Status:** In effect since 21 September 2026 · **TCEQ update to the governor due:** 19 October 2026 · **Checked:** 25 September 2026
+**Status:** Directed, 21 September 2026 · **TCEQ update to the governor due:** 19 October 2026 · **Checked:** 25 September 2026
+
+> **Open question for a 1–5 MW expansion.** TCEQ has not said publicly whether the pause
+> reaches supporting infrastructure, such as generators or electrical equipment, for an
+> existing facility's expansion of a few megawatts. We are not treating smaller projects as
+> either exempt or covered until TCEQ says so.
 
 ## What changed
 
@@ -19,10 +24,10 @@ issuance of all permits related to data center projects until ERCOT completes it
 The letter sets no size threshold, does not define a data center project, and names no
 permit types.
 
-TCEQ has not published an implementation notice. A TCEQ spokesperson told [Houston Public
-Media](https://www.houstonpublicmedia.org/articles/news/energy-environment/2026/09/21/562389/gov-abbott-orders-tceq-to-pause-environmental-permits-for-ai-crytocurrency-data-centers-until-audit-is-complete/)
-the agency "has paused the issuance of all air and water permits and authorizations related to
-the construction or development of infrastructure directly supporting data centers."
+A TCEQ spokesperson told [Houston Public Media](https://www.houstonpublicmedia.org/articles/news/energy-environment/2026/09/21/562389/gov-abbott-orders-tceq-to-pause-environmental-permits-for-ai-crytocurrency-data-centers-until-audit-is-complete/)
+that the agency "has paused the issuance of all air and water permits and authorizations
+related to the construction or development of infrastructure directly supporting data
+centers." TCEQ has not published an implementation notice.
 
 ## Separate from ERCOT's actions
 
@@ -51,14 +56,12 @@ Neither date is a date on which TCEQ permits restart.
 
 TCEQ has not said publicly:
 
+- whether the pause reaches supporting infrastructure for an existing facility's expansion of
+  a few megawatts;
 - whether applications can still be filed and reviewed while issuance is paused;
-- whether the pause reaches supporting infrastructure, such as generators or electrical
-  equipment, for an existing facility's expansion of a few megawatts;
 - whether any size threshold applies;
 - when the pause ends. The governor's letter ties it to ERCOT completing its review, not to
   a date.
-
-We are not treating smaller projects as either exempt or covered until TCEQ says so.
 
 ## Primary source
 
