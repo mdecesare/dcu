@@ -35,7 +35,6 @@ export const siteSettings = {
   // exists. Keep this short — the homepage is a front door, not a copy of the edition.
   homepageFigures: [
     { section: 'Transformers', class: 'Substation, 5–25 MVA' },
-    { section: 'Transformers', class: 'Pad-mount, 0–5 MVA' },
     { section: 'Generators', class: '1,500–2,000 kW diesel' },
     { section: 'Medium-voltage switchgear', class: 'Standard configurations' },
   ],

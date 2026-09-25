@@ -11,7 +11,7 @@ import { parsePulseSections, parsePulseDisclosures } from '../lib/pulse-sections
 import { SOURCE_TYPES } from '../lib/source-types.mjs';
 import { smartQuotes } from '../lib/typography';
 import { formatDate } from '../lib/dates';
-import { pjm, eiaPrices, eiaReleased, eiaYtdLabel, eiaTableUrls, pct } from '../lib/power';
+import { pjm, eiaPrices, eiaReleased, eiaTableUrls, pct } from '../lib/power';
 
 // The homepage is a front door, not a second copy of the Procurement page: it shows a few
 // figures chosen in src/site-settings.ts and links to the editions that hold the rest.
@@ -47,10 +47,9 @@ const figures = siteSettings.homepageFigures.map(({ section: title, class: cls }
 const disclosures = parsePulseDisclosures(latest.body).filter((d) =>
   figures.some((figure) => figure.source.startsWith(d.source)));
 
-// The front door shows the edition, the day DCU published it, and how many observations and sources
-// it holds. Each figure's own publication date stays on the edition page.
+// The front door names the edition and how many observations and sources it holds. Dates, for the
+// edition and for each figure, stay on the edition page.
 const [observations, , sourceCount] = latest.data.standfirst.split('·').map((s) => s.trim());
-const editionPublished = formatDate(latest.data.published);
 
 const regItems = await getRegulationItems();
 // The newest published Regulation entry in "What changed", so the card's date is always a real editorial change.
@@ -71,8 +70,9 @@ const docIcon = '<path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8z"
 const boltIcon = '<path d="M13 2L4.5 13H12l-1 9 8.5-11H12z"/>';
 const eyeIcon = '<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/>';
 const checkIcon = '<path d="M20 6L9 17l-5-5"/>';
-// One concise national comparison for the homepage. If the two sectors ever differ, both are shown.
-const [comChange, indChange] = (['commercial', 'industrial'] as const).map((s) => eiaPrices.us.ytd[s].change_pct);
+// The latest month against the same month a year earlier leads; year to date stays on /power.
+// If the two sectors ever match, one figure is shown.
+const [comChange, indChange] = (['commercial', 'industrial'] as const).map((s) => eiaPrices.us[s].change_pct);
 const homeEiaChange = comChange === indChange ? pct(comChange) : `${pct(comChange)} / ${pct(indChange)}`;
 const arrowIcon = '<path d="M5 12h14M13 6l6 6-6 6"/>';
 ---
@@ -119,7 +119,7 @@ const arrowIcon = '<path d="M5 12h14M13 6l6 6-6 6"/>';
             <div>
               <h2>Equipment lead times</h2>
               <p class="fc-sub">Lead times by equipment class, each with its source</p>
-              <p class="fc-ed">{latest.data.edition} edition, published {editionPublished} &middot; {observations} &middot; {sourceCount}</p>
+              <p class="fc-ed">{latest.data.edition} edition &middot; {observations} &middot; {sourceCount}</p>
             </div>
           </div>
 
@@ -181,21 +181,13 @@ const arrowIcon = '<path d="M5 12h14M13 6l6 6-6 6"/>';
           </div>
 
           <ul class="figs">
-            <li title={`EIA Electric Power Monthly, Table 5.6.B, data through ${eiaPrices.source.data_month}, released ${eiaReleased}. Preliminary.`}>
-              <div class="fig-l">
-                <a class="fig-cls" href="/power#power-prices">U.S. average electricity price, commercial / industrial, vs a year earlier</a>
-                <span class="fig-src"><SourceMark type="G" /><a href={eiaTableUrls.ytd}>EIA</a></span>
-                <span class="fig-sec">{eiaYtdLabel}</span>
-              </div>
-              <span class="fig-n">{homeEiaChange}</span>
-            </li>
             <li title={`EIA Electric Power Monthly, Table 5.6.A, ${eiaPrices.source.current_label} against ${eiaPrices.source.prior_label}, released ${eiaReleased}. Preliminary.`}>
               <div class="fig-l">
-                <a class="fig-cls" href="/power#power-prices">Same comparison, {eiaPrices.source.current_label} alone</a>
+                <a class="fig-cls" href="/power#power-prices">U.S. average electricity price, commercial / industrial, vs a year earlier</a>
                 <span class="fig-src"><SourceMark type="G" /><a href={eiaTableUrls.monthly}>EIA</a></span>
                 <span class="fig-sec">{eiaPrices.source.current_label} vs {eiaPrices.source.prior_label}</span>
               </div>
-              <span class="fig-n">{pct(eiaPrices.us.commercial.change_pct)} / {pct(eiaPrices.us.industrial.change_pct)}</span>
+              <span class="fig-n">{homeEiaChange}</span>
             </li>
             <li title={`PJM ${pjm.reportTitle}, ${pjm.reportDate}.`}>
               <div class="fig-l">
