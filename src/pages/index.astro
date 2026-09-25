@@ -10,11 +10,14 @@ import { getRegulationItems } from '../lib/regulation';
 import { parsePulseSections, parsePulseDisclosures } from '../lib/pulse-sections';
 import { SOURCE_TYPES } from '../lib/source-types.mjs';
 import { smartQuotes } from '../lib/typography';
-import { pjm, eiaPrices, eiaYtdLabel, eiaTableUrls, pct } from '../lib/power';
+import { formatDate } from '../lib/dates';
+import { pjm, eiaPrices, eiaReleased, eiaYtdLabel, eiaTableUrls, pct } from '../lib/power';
 
 // The homepage is a front door, not a second copy of the Procurement page: it shows a few
 // figures chosen in src/site-settings.ts and links to the editions that hold the rest.
 const [latest] = await getEditions();
+// Same rule as Astro's heading ids, so /procurement#generators lands on "## Generators".
+const slugify = (s: string) => s.toLowerCase().trim().replace(/[^\p{L}\p{N}\s-]/gu, '').replace(/\s+/g, '-');
 const pulseSections = parsePulseSections(latest.body);
 const equipmentClassCount = pulseSections.filter((s) => s.rows.length > 0).length;
 
@@ -33,7 +36,10 @@ const figures = siteSettings.homepageFigures.map(({ section: title, class: cls }
       `Procurement Pulse does not have. Available classes: ${section.rows.map((r) => `"${r.cls}"`).join(', ')}.`
     );
   }
-  return { ...row, section: title };
+  // The homepage row names the source and links to it. Its date, and everything else about the
+  // figure, stay on the edition page: the class links there, and desktop shows the full label on hover.
+  const [nameHtml] = row.sourceHtml.split(' · ');
+  return { ...row, section: title, nameHtml, href: `/procurement#${slugify(title)}` };
 });
 
 // A source disclosure (how JLL's chart values were read, say) travels with that source's
@@ -41,10 +47,16 @@ const figures = siteSettings.homepageFigures.map(({ section: title, class: cls }
 const disclosures = parsePulseDisclosures(latest.body).filter((d) =>
   figures.some((figure) => figure.source.startsWith(d.source)));
 
-// The standfirst carries counts and then compilation dates; the front door shows the counts.
-const counts = latest.data.standfirst.split('·').slice(0, 3).join('·').trim();
+// The front door shows the edition, the day DCU published it, and how many observations and sources
+// it holds. Each figure's own publication date stays on the edition page.
+const [observations, , sourceCount] = latest.data.standfirst.split('·').map((s) => s.trim());
+const editionPublished = formatDate(latest.data.published);
 
 const regItems = await getRegulationItems();
+// The newest published Regulation entry in "What changed", so the card's date is always a real editorial change.
+const [latestRegChange] = (await getCollection('changes'))
+  .filter((c) => c.data.section === 'regulation')
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 const byOrder = (a: { data: { order: number } }, b: { data: { order: number } }) => a.data.order - b.data.order;
 const powerItems = (await getCollection('power')).sort(byOrder);
 const watchingItems = (await getCollection('watching')).sort(byOrder);
@@ -106,16 +118,17 @@ const arrowIcon = '<path d="M5 12h14M13 6l6 6-6 6"/>';
             <svg class="ico ico-l" viewBox="0 0 24 24" aria-hidden="true" set:html={boxIcon} />
             <div>
               <h2>Equipment lead times</h2>
-              <p class="fc-sub">{latest.data.edition} &middot; {counts}</p>
+              <p class="fc-sub">Lead times by equipment class, each with its source</p>
+              <p class="fc-ed">{latest.data.edition} edition, published {editionPublished} &middot; {observations} &middot; {sourceCount}</p>
             </div>
           </div>
 
           <ul class="figs">
             {figures.map((figure) => (
-              <li>
+              <li title={`${figure.cls}: ${figure.figure}. ${figure.source}`}>
                 <div class="fig-l">
-                  <span class="fig-cls">{figure.cls}</span>
-                  <span class="fig-src"><SourceMark type={figure.sourceType} /><span set:html={figure.sourceHtml} /></span>
+                  <a class="fig-cls" href={figure.href}>{figure.cls}</a>
+                  <span class="fig-src"><SourceMark type={figure.sourceType} /><span set:html={figure.nameHtml} /></span>
                   <span class="fig-sec">{figure.section}</span>
                 </div>
                 <span class="fig-n">{figure.figure}</span>
@@ -137,6 +150,7 @@ const arrowIcon = '<path d="M5 12h14M13 6l6 6-6 6"/>';
             <div>
               <h2>Regulation</h2>
               <p class="fc-sub">Developments affecting where and how data centers get built</p>
+              {latestRegChange && <p class="fc-ed">Latest change published {formatDate(latestRegChange.data.date)}</p>}
             </div>
           </div>
 
@@ -161,40 +175,40 @@ const arrowIcon = '<path d="M5 12h14M13 6l6 6-6 6"/>';
             <svg class="ico ico-l" viewBox="0 0 24 24" aria-hidden="true" set:html={boltIcon} />
             <div>
               <h2>Power</h2>
-              <p class="fc-sub">Grid supply and electricity cost for facilities already running</p>
+              <p class="fc-sub">Electricity cost and grid supply for facilities already running</p>
+              <p class="fc-ed">EIA edition released {eiaReleased} &middot; data through {eiaPrices.source.data_month}, preliminary</p>
             </div>
           </div>
 
           <ul class="figs">
-            <li>
+            <li title={`EIA Electric Power Monthly, Table 5.6.B, data through ${eiaPrices.source.data_month}, released ${eiaReleased}. Preliminary.`}>
               <div class="fig-l">
-                <span class="fig-cls">Capacity below PJM's reliability requirement</span>
-                <span class="fig-src"><SourceMark type="O" /><a href={pjm.reportUrl}>PJM auction results</a>, {pjm.reportDate}</span>
-                <span class="fig-sec">PJM {pjm.deliveryYear} &middot; incl. Virginia and Ohio</span>
-              </div>
-              <span class="fig-n">{pjm.shortfallMw} MW</span>
-            </li>
-            <li>
-              <div class="fig-l">
-                <span class="fig-cls">Estimated reserve margin, against a {pjm.targetReserveMargin} target</span>
-                <span class="fig-src"><SourceMark type="O" /><a href={pjm.reportUrl}>PJM auction results</a>, {pjm.reportDate}</span>
-                <span class="fig-sec">PJM {pjm.deliveryYear}</span>
-              </div>
-              <span class="fig-n">{pjm.totalReserveMargin}</span>
-            </li>
-            <li>
-              <div class="fig-l">
-                <span class="fig-cls">U.S. average electricity price, commercial and industrial, vs a year earlier</span>
-                <span class="fig-src"><SourceMark type="G" /><a href={eiaTableUrls.ytd}>EIA</a>, preliminary, data through {eiaPrices.source.data_month}</span>
+                <a class="fig-cls" href="/power#power-prices">U.S. average electricity price, commercial / industrial, vs a year earlier</a>
+                <span class="fig-src"><SourceMark type="G" /><a href={eiaTableUrls.ytd}>EIA</a></span>
                 <span class="fig-sec">{eiaYtdLabel}</span>
               </div>
               <span class="fig-n">{homeEiaChange}</span>
             </li>
+            <li title={`EIA Electric Power Monthly, Table 5.6.A, ${eiaPrices.source.current_label} against ${eiaPrices.source.prior_label}, released ${eiaReleased}. Preliminary.`}>
+              <div class="fig-l">
+                <a class="fig-cls" href="/power#power-prices">Same comparison, {eiaPrices.source.current_label} alone</a>
+                <span class="fig-src"><SourceMark type="G" /><a href={eiaTableUrls.monthly}>EIA</a></span>
+                <span class="fig-sec">{eiaPrices.source.current_label} vs {eiaPrices.source.prior_label}</span>
+              </div>
+              <span class="fig-n">{pct(eiaPrices.us.commercial.change_pct)} / {pct(eiaPrices.us.industrial.change_pct)}</span>
+            </li>
+            <li title={`PJM ${pjm.reportTitle}, ${pjm.reportDate}.`}>
+              <div class="fig-l">
+                <a class="fig-cls" href="/power#pjm-capacity">Context: capacity PJM secured below its reliability requirement</a>
+                <span class="fig-src"><SourceMark type="O" /><a href={pjm.reportUrl}>PJM auction results</a></span>
+                <span class="fig-sec">{pjm.deliveryYear} delivery year &middot; incl. Virginia and Ohio</span>
+              </div>
+              <span class="fig-n">{pjm.shortfallMw} MW</span>
+            </li>
           </ul>
 
-          <p class="fc-note"><strong>For a facility in PJM:</strong> what is your peak load contribution, how is it
-            calculated in your utility zone, and how do capacity charges reach your bill under your supply arrangement?</p>
-          <p class="fc-note">EIA figures are national averages, not a facility tariff.</p>
+          <p class="fc-note">EIA figures are national averages, not a facility tariff. <strong>For a facility in PJM:</strong>
+            what is your peak load contribution, and how do capacity charges reach your bill?</p>
           <p class="fc-note fc-teaser"><strong>Adding 1–5 MW?</strong> <a href="/power/next-mw">Powering the next MW</a>
             sets out seven paths, what the public record shows for each, and where it shows nothing.</p>
 
@@ -299,6 +313,8 @@ const arrowIcon = '<path d="M5 12h14M13 6l6 6-6 6"/>';
   .fc-h svg { color: var(--blue); margin-top: 1px; }
   .fc-h h2 { font-size: 18px; font-weight: 600; letter-spacing: -.2px; }
   .fc-sub { font-size: 13px; color: var(--ink-2); margin-top: 2px; }
+  /* The card's freshness line: the edition or change date as published, never a figure's own date */
+  .fc-ed { font-size: 12.5px; color: var(--ink-3); margin-top: 3px; }
 
   /* Figures: class and source on the left, the number on the right */
   .figs, .regs { list-style: none; }
@@ -306,6 +322,7 @@ const arrowIcon = '<path d="M5 12h14M13 6l6 6-6 6"/>';
   .figs li:first-child, .regs li:first-child { padding-top: 0; }
   .fig-l { min-width: 0; }
   .fig-cls { display: block; font-size: 14.5px; color: var(--ink); overflow-wrap: anywhere; }
+  a.fig-cls:hover { color: var(--blue); text-decoration: underline; }
   .fig-src { display: block; font-size: 12.5px; color: var(--ink-2); margin-top: 2px; }
   .fig-src :global(a) { color: var(--blue); text-decoration: underline; text-underline-offset: 2px; }
   .fig-sec { display: block; font-size: 11.5px; color: var(--ink-3); text-transform: uppercase; letter-spacing: .06em; margin-top: 3px; }
