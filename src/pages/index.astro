@@ -191,9 +191,9 @@ const arrowIcon = '<path d="M5 12h14M13 6l6 6-6 6"/>';
             </li>
             <li title={`PJM ${pjm.reportTitle}, ${pjm.reportDate}.`}>
               <div class="fig-l">
-                <a class="fig-cls" href="/power#pjm-capacity">Context: capacity PJM secured below its reliability requirement</a>
+                <a class="fig-cls" href="/power#pjm-capacity">Regional grid serving Virginia and Ohio: capacity below its {pjm.deliveryYear} reliability requirement</a>
                 <span class="fig-src"><SourceMark type="O" /><a href={pjm.reportUrl}>PJM auction results</a></span>
-                <span class="fig-sec">{pjm.deliveryYear} delivery year &middot; incl. Virginia and Ohio</span>
+                <span class="fig-sec">Context &middot; {pjm.deliveryYear} delivery year</span>
               </div>
               <span class="fig-n">{pjm.shortfallMw} MW</span>
             </li>
