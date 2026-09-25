@@ -54,7 +54,7 @@ const regulation = defineCollection({
     status: z.string(),
     summary: z.string(),
     citation: z.string(),
-    sourceType: z.enum(['R', 'P', 'V', 'G', 'O']).default('G'),
+    sourceType: z.enum(['R', 'P', 'V', 'G', 'O', 'U']).default('G'),
     order: z.number(),
   }),
 });
@@ -66,7 +66,7 @@ const briefItem = z.object({
   title: z.string(),
   summary: z.string(),
   citation: z.string().optional(),
-  sourceType: z.enum(['R', 'P', 'V', 'G', 'O']).optional(),
+  sourceType: z.enum(['R', 'P', 'V', 'G', 'O', 'U']).optional(),
   order: z.number(),
 });
 const power = defineCollection({ type: 'content', schema: briefItem });

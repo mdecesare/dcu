@@ -40,6 +40,9 @@ Government agencies, regulators, legislatures, and other official public bodies.
 **O — Grid operator**
 Regional transmission organizations and independent system operators, such as PJM, that plan and operate the high-voltage grid and run wholesale electricity markets under federal regulatory oversight. They are not government bodies. These sources are authoritative for what their own market results, planning parameters, and rules say.
 
+**U — Utility**
+Electric and gas utilities that serve customers under regulated tariffs, such as Dominion Energy Virginia. These sources are authoritative for what a utility says about its own service processes and timelines. Those statements are not regulatory orders and do not guarantee the outcome for a particular project.
+
 These classifications describe **what kind of source something is, not how trustworthy it is.**
 
 Different sources have different perspectives, methodologies, visibility, and commercial or institutional interests. The purpose of the classification is to make that context visible, not to rank one type of source above another.

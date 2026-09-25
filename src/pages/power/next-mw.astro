@@ -5,14 +5,14 @@
 import Base from '../../layouts/Base.astro';
 import SourceMark from '../../components/SourceMark.astro';
 
-type Letter = 'R' | 'P' | 'V' | 'G' | 'O';
+type Letter = 'R' | 'P' | 'V' | 'G' | 'O' | 'U';
 type Source = { type: Letter; label: string; url: string; date: string };
 type Fact = { text: string; tag?: string; src?: Source; more?: { label: string; href: string } };
 type Path = { id: string; title: string; gist: string; facts: Fact[]; gap?: string; ask: string };
 
 const DELIVERY = 'Equipment delivery, not usable power';
 const terrapin: Source = { type: 'P', label: 'Terrapin', url: 'https://terrapincg.com/news/switchgear-transformer-generator-lead-times-2026', date: '10 June 2026' };
-const dominion: Source = { type: 'V', label: 'Dominion Energy Virginia', url: 'https://www.dominionenergy.com/virginia/large-business-services/data-center-requests', date: 'page retrieved 24 September 2026' };
+const dominion: Source = { type: 'U', label: 'Dominion Energy Virginia', url: 'https://www.dominionenergy.com/virginia/large-business-services/data-center-requests', date: 'page retrieved 24 September 2026' };
 const cbre: Source = { type: 'R', label: 'CBRE, North America Data Center Trends H1 2026', url: 'https://www.cbre.com/insights/books/north-america-data-center-trends-h1-2026', date: '27 August 2026' };
 
 const paths: Path[] = [
@@ -56,16 +56,16 @@ const paths: Path[] = [
     facts: [
       { tag: DELIVERY, text: 'natural gas generators of 1,000–3,000 kW take 54–78 weeks from order to delivery.', src: terrapin },
       { text: 'Texas’s streamlined permit for natural gas engines limits each engine to 400 hours of operation per rolling 12 months, so it is not a route to continuous power.', src: { type: 'G', label: 'TCEQ standard permit', url: 'https://www.tceq.texas.gov/permitting/air/newsourcereview/combustion/ng-egu-sp', date: 'effective 30 January 2025' } },
-      { text: 'On 21 September 2026 the governor directed TCEQ to pause issuing permits related to data center projects, and TCEQ says it has paused air and water permits and authorizations for infrastructure directly supporting data centers. TCEQ has not said publicly whether that covers engines or other equipment for an existing facility’s expansion.', src: { type: 'G', label: 'Governor’s letter to TCEQ', url: 'https://gov.texas.gov/uploads/files/press/TCEQ_Data_Center.pdf', date: '21 September 2026' }, more: { label: 'What to check in Texas', href: '/regulation/texas-data-center-permit-pause' } },
+      { text: 'On 21 September 2026 the governor directed TCEQ to pause issuing permits related to data center projects, and a TCEQ spokesperson told Houston Public Media that the agency has paused air and water permits and authorizations for infrastructure directly supporting data centers. TCEQ has not said publicly whether that covers engines or other equipment for an existing facility’s expansion.', src: { type: 'G', label: 'Governor’s letter to TCEQ', url: 'https://gov.texas.gov/uploads/files/press/TCEQ_Data_Center.pdf', date: '21 September 2026' }, more: { label: 'What to check in Texas', href: '/regulation/texas-data-center-permit-pause' } },
     ],
     gap: 'No current public installed cost at this size. Permit routes for continuous operation are not yet covered.',
     ask: 'Ask your air regulator which authorization continuous operation needs, and your gas utility whether the supply is there.',
   },
   {
     id: 'fuel-cells', title: 'Fuel cells',
-    gist: 'Vendor claims only. Smaller blocks are sold at 1.25 and 2.5 MW.',
+    gist: 'Vendor claims only. Published product sizes include 1.25 and 2.5 MW blocks.',
     facts: [
-      { text: 'Vendor claim: FuelCell Energy lists 1.25 MW and 2.5 MW block systems, sizes within a 1–5 MW addition, as well as a 12.5 MW block.', src: { type: 'V', label: 'FuelCell Energy', url: 'https://www.fuelcellenergy.com/fuelcell-energy-block-1-25', date: 'retrieved 24 September 2026' } },
+      { text: 'Vendor claim: FuelCell Energy’s published product sizes include 1.25 MW and 2.5 MW block systems, and a 12.5 MW block. A published size is not an assessment of fit for a particular project.', src: { type: 'V', label: 'FuelCell Energy', url: 'https://www.fuelcellenergy.com/fuelcell-energy-block-1-25', date: 'retrieved 24 September 2026' } },
       { text: 'Vendor claim: Bloom markets its data center systems as "purpose built from 20MW to 500MW," above this range, and says they are "available in as little as 90 days."', src: { type: 'V', label: 'Bloom Energy', url: 'https://www.bloomenergy.com/industries/data-center-power/', date: 'retrieved 24 September 2026' } },
     ],
     gap: 'No public prices. "Available" is not the same as carrying load: gas supply, permits and connection come on top.',

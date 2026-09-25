@@ -210,7 +210,7 @@ const arrowIcon = '<path d="M5 12h14M13 6l6 6-6 6"/>';
   <section class="wrap strip">
     <p class="strip-t">Every figure keeps its source, its date, and the population it measured.</p>
     <ul class="strip-legend">
-      {(Object.keys(SOURCE_TYPES) as Array<'R' | 'P' | 'V' | 'G' | 'O'>).map((letter) => (
+      {(Object.keys(SOURCE_TYPES) as Array<'R' | 'P' | 'V' | 'G' | 'O' | 'U'>).map((letter) => (
         <li><SourceMark type={letter} /><span>{SOURCE_TYPES[letter].name}</span></li>
       ))}
     </ul>
