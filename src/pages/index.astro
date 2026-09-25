@@ -260,6 +260,8 @@ const arrowIcon = '<path d="M5 12h14M13 6l6 6-6 6"/>';
           <input type="email" name="email" placeholder="you@company.com" aria-label="Email address" autocomplete="email" required />
           <input type="hidden" name="embed" value="1" />
           <button class="btn" type="submit">Subscribe</button>
+          <p class="form-note">Free. We&rsquo;ll email you a confirmation link; your subscription starts only when you click it.
+            Unsubscribe any time. <a href="/privacy">Privacy</a></p>
         </form>
       </div>
     </section>
@@ -350,6 +352,8 @@ const arrowIcon = '<path d="M5 12h14M13 6l6 6-6 6"/>';
   .sub-band h2 { font-size: 21px; margin-bottom: 5px; font-weight: 600; }
   .sub-band p { color: #bfd2e5; font-size: 14px; }
   .form { display: flex; gap: 9px; flex-wrap: wrap; }
+  .form-note { flex-basis: 100%; font-size: 12.5px; line-height: 1.5; color: #9fb8cf; }
+  .form-note a { color: #cfe0ef; text-decoration: underline; }
   .form input { flex: 1 1 210px; padding: 12px 14px; border: 1px solid #3d5c7c; border-radius: 5px; font-size: 16px; background: #fff; color: var(--ink); min-width: 0; font-family: inherit; }
 
   @media (min-width: 640px) {
