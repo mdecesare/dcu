@@ -78,7 +78,7 @@ export function parsePulseSections(markdown: string): PulseSection[] {
         cols = { cls: lower.indexOf('class'), figure: lower.findIndex((c) => c.includes('lead time')), source: lower.indexOf('source') };
         continue;
       }
-      const source = cells[cols.source]?.match(/^\*\*([RPVGO])\*\*\s+(.+)$/);
+      const source = cells[cols.source]?.match(/^\*\*([RPVGOU])\*\*\s+(.+)$/);
       if (!source) {
         throw new Error(`Procurement Pulse row "${cells[cols.cls]}" under "## ${current.title}" has no **R**, **P**, **V** or **G** source letter.`);
       }

@@ -33,7 +33,7 @@ function walk(node) {
 
       if (value && SOURCE_TYPES[value] && value.length === 1) return marker(value);
 
-      const def = value?.match(/^([RPVGO]) — (.+)$/);
+      const def = value?.match(/^([RPVGOU]) — (.+)$/);
       if (def && node.tagName === 'p') {
         const [, letter, name] = def;
         node.properties = { ...node.properties, id: `source-type-${letter.toLowerCase()}`, className: ['source-def'] };
