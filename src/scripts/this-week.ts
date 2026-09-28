@@ -1,49 +1,52 @@
 // Recounts "This week" in the reader's browser, so a page built earlier still shows the
-// current Monday-Sunday week in Eastern time. Without JavaScript, the build-time counts stay.
-const TZ = 'America/New_York';
-const iso = (d: Date) => d.toISOString().slice(0, 10);
+// current Monday-Sunday week in Eastern time. Without JavaScript, the build-time state stays,
+// and it is always one consistent state. The week rule is src/lib/weeks.ts, shared with the build.
+import { easternWeek, weekLabel, weekView, within } from '../lib/weeks';
 
-function easternWeek(now = new Date()) {
-  const today = new Intl.DateTimeFormat('en-CA', { timeZone: TZ, year: 'numeric', month: '2-digit', day: '2-digit' }).format(now);
-  const day = new Date(`${today}T00:00:00Z`);
-  const start = new Date(day);
-  start.setUTCDate(day.getUTCDate() - ((day.getUTCDay() + 6) % 7));
-  const end = new Date(start);
-  end.setUTCDate(start.getUTCDate() + 6);
-  return { start: iso(start), end: iso(end) };
-}
-
-function label({ start, end }: { start: string; end: string }) {
-  const f = (s: string, opts: Intl.DateTimeFormatOptions) =>
-    new Date(`${s}T12:00:00Z`).toLocaleDateString('en-GB', { ...opts, timeZone: 'UTC' });
-  return start.slice(0, 7) === end.slice(0, 7)
-    ? `${f(start, { day: 'numeric' })}–${f(end, { day: 'numeric', month: 'long', year: 'numeric' })}`
-    : `${f(start, { day: 'numeric', month: 'long' })} – ${f(end, { day: 'numeric', month: 'long', year: 'numeric' })}`;
-}
-
-const week = easternWeek();
-const within = (d: string) => d >= week.start && d <= week.end;
-
-document.querySelectorAll<HTMLElement>('[data-week-label]').forEach((el) => { el.textContent = label(week); });
+const now = new Date();
+const week = easternWeek(now);
 
 // Homepage strip: each count holds the dates of every entry in its section, and the link
 // wording follows the count ("See updates" when there are any, "View section" when there are none).
+document.querySelectorAll<HTMLElement>('[data-week-label]').forEach((el) => { el.textContent = weekLabel(week); });
 document.querySelectorAll<HTMLElement>('[data-week-count]').forEach((el) => {
   const dates = (el.dataset.weekCount || '').split(' ').filter(Boolean);
-  const count = dates.filter(within).length;
+  const count = dates.filter((d) => within(d, week)).length;
   el.textContent = String(count);
   const link = el.closest('a')?.querySelector<HTMLElement>('[data-week-link]');
   if (link) link.textContent = count > 0 ? 'See updates' : 'View section';
 });
 
-// Section pages: show only this week's entries, or the empty message.
+// Section pages: redraw the box for the reader's week, by the same rule the build used.
+type Entry = { date: string; day: string; kind: string; kindClass: string; title: string; href: string };
+
 document.querySelectorAll<HTMLElement>('[data-week-list]').forEach((box) => {
-  let shown = 0;
-  box.querySelectorAll<HTMLElement>('[data-date]').forEach((li) => {
-    const show = within(li.dataset.date || '');
-    li.hidden = !show;
-    if (show) shown++;
-  });
-  box.querySelectorAll<HTMLElement>('[data-week-empty]').forEach((p) => { p.hidden = shown > 0; });
-  box.querySelectorAll<HTMLElement>('[data-week-items]').forEach((ul) => { ul.hidden = shown === 0; });
+  const data = box.querySelector<HTMLScriptElement>('[data-week-entries]');
+  const list = box.querySelector<HTMLElement>('[data-week-items]');
+  const status = box.querySelector<HTMLElement>('[data-week-status]');
+  if (!data || !status) return;
+
+  const entries: Entry[] = JSON.parse(data.textContent || '[]');
+  const view = weekView(entries.map((e) => e.date), now);
+
+  status.textContent = view.mode === 'latest'
+    ? `Nothing new yet this week (${weekLabel(view.current)}). Latest changes, ${weekLabel(view.week)}:`
+    : `${weekLabel(view.week)} · Monday to Sunday, Eastern time`;
+
+  // A section with no published entries has no list, only the empty message, which stays true.
+  if (!list) return;
+  list.replaceChildren(...entries.filter((e) => within(e.date, view.week)).map((e) => {
+    const li = document.createElement('li');
+    const time = document.createElement('time');
+    time.dateTime = e.date;
+    time.textContent = e.day;
+    const kind = document.createElement('span');
+    kind.className = `tw-k ${e.kindClass}`;
+    kind.textContent = e.kind;
+    const link = document.createElement('a');
+    link.href = e.href;
+    link.textContent = e.title;
+    li.append(time, kind, link);
+    return li;
+  }));
 });

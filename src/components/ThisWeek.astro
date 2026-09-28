@@ -1,34 +1,55 @@
 ---
-// "What changed this week" at the top of a section page. Lists that section's entries from
-// src/content/changes for the current Monday-Sunday week (Eastern time); older entries stay
-// in the page hidden so the browser can recount if the page was built in an earlier week.
-import { getChanges, easternWeek, weekLabel, inWeek, changeDate, SECTION_LABELS, type Section } from '../lib/changes';
+// "What changed this week" at the top of a section page, from src/content/changes.
+// It shows the reader's current Monday-Sunday week (Eastern time). If nothing has been published
+// yet this week, it shows the most recent earlier week, labelled with its dates, rather than
+// claiming there are no updates. The "no updates" message appears only when the section has no
+// published entries at all.
+//
+// Only the week on show is written into the page, so text-only readers and link previews never
+// see two contradictory states. Every entry also travels as data (data-week-entries), and
+// src/scripts/this-week.ts redraws the box with the same rule (src/lib/weeks.ts) when a page
+// built in an earlier week is read in a later one.
+import { getChanges, weekView, weekLabel, within, changeDate, SECTION_LABELS, type Section } from '../lib/changes';
 
 interface Props { section: Section }
 const { section } = Astro.props;
 
-const week = easternWeek();
-const entries = await getChanges(section);
-const shown = entries.filter((c) => inWeek(c, week)).length;
 const kindLabel = { new: 'New', update: 'Update', correction: 'Correction' } as const;
-const day = (c: (typeof entries)[number]) =>
-  c.data.date.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'long', timeZone: 'UTC' });
+const entries = (await getChanges(section)).map((c) => ({
+  date: changeDate(c),
+  day: c.data.date.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'long', timeZone: 'UTC' }),
+  kind: kindLabel[c.data.kind],
+  kindClass: `tw-${c.data.kind}`,
+  title: c.data.title,
+  href: c.data.href,
+}));
+const view = weekView(entries.map((e) => e.date));
+const shown = entries.filter((e) => within(e.date, view.week));
+const sectionLabel = SECTION_LABELS[section];
 ---
 <section class="tw" id="this-week" data-week-list aria-labelledby="tw-title">
   <div class="tw-h">
     <h2 id="tw-title">What changed this week</h2>
-    <p><span data-week-label>{weekLabel(week)}</span> · Monday to Sunday, Eastern time</p>
+    <p data-week-status>
+      {view.mode === 'latest'
+        ? <Fragment>Nothing new yet this week ({weekLabel(view.current)}). Latest changes, {weekLabel(view.week)}:</Fragment>
+        : <Fragment>{weekLabel(view.week)} · Monday to Sunday, Eastern time</Fragment>}
+    </p>
   </div>
-  <ul data-week-items hidden={shown === 0}>
-    {entries.map((c) => (
-      <li data-date={changeDate(c)} hidden={!inWeek(c, week)}>
-        <time datetime={changeDate(c)}>{day(c)}</time>
-        <span class={`tw-k tw-${c.data.kind}`}>{kindLabel[c.data.kind]}</span>
-        <a href={c.data.href}>{c.data.title}</a>
-      </li>
-    ))}
-  </ul>
-  <p class="tw-empty" data-week-empty hidden={shown > 0}><strong>No editorial updates to {SECTION_LABELS[section]} this week.</strong> The regular page content follows below.</p>
+  {entries.length > 0 ? (
+    <ul data-week-items>
+      {shown.map((e) => (
+        <li>
+          <time datetime={e.date}>{e.day}</time>
+          <span class={`tw-k ${e.kindClass}`}>{e.kind}</span>
+          <a href={e.href}>{e.title}</a>
+        </li>
+      ))}
+    </ul>
+  ) : (
+    <p class="tw-empty"><strong>No editorial updates to {sectionLabel} this week.</strong> The regular page content follows below.</p>
+  )}
+  <script type="application/json" data-week-entries set:html={JSON.stringify(entries).replace(/</g, '\\u003c')} />
 </section>
 
 <script>
@@ -41,13 +62,13 @@ const day = (c: (typeof entries)[number]) =>
   .tw-h h2 { font-size: 15px; font-weight: 600; }
   .tw-h p { font-size: 12.5px; color: var(--ink-2); }
   .tw ul { list-style: none; margin-top: 8px; }
-  .tw li { display: grid; grid-template-columns: auto auto minmax(0, 1fr); gap: 10px; align-items: baseline; padding: 6px 0; border-top: 1px solid var(--line-2); font-size: 14px; }
-  .tw li[hidden] { display: none; }
-  .tw time { font-size: 12.5px; color: var(--ink-2); white-space: nowrap; font-variant-numeric: tabular-nums; }
-  .tw-k { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-2); }
-  .tw-correction { color: var(--red); }
-  .tw a { color: var(--blue-dk); }
-  .tw a:hover { text-decoration: underline; }
+  /* :global so rows redrawn in the browser (src/scripts/this-week.ts) get the same styles */
+  .tw :global(li) { display: grid; grid-template-columns: auto auto minmax(0, 1fr); gap: 10px; align-items: baseline; padding: 6px 0; border-top: 1px solid var(--line-2); font-size: 14px; }
+  .tw :global(time) { font-size: 12.5px; color: var(--ink-2); white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .tw :global(.tw-k) { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-2); }
+  .tw :global(.tw-correction) { color: var(--red); }
+  .tw :global(a) { color: var(--blue-dk); }
+  .tw :global(a:hover) { text-decoration: underline; }
   .tw-empty { font-size: 14px; color: var(--ink-2); margin-top: 6px; }
   .tw-empty strong { color: var(--ink); font-weight: 600; }
 </style>
