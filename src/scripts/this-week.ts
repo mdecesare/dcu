@@ -1,20 +1,29 @@
-// Recounts "This week" in the reader's browser, so a page built earlier still shows the
-// current Monday-Sunday week in Eastern time. Without JavaScript, the build-time state stays,
-// and it is always one consistent state. The week rule is src/lib/weeks.ts, shared with the build.
-import { easternWeek, weekLabel, weekView, within } from '../lib/weeks';
+// Recounts the homepage strip (rolling 30 days) and the section "What changed this week" boxes in
+// the reader's browser, so a page built earlier still shows the reader's own dates (Eastern time).
+// Without JavaScript the build-time state stays, and it is always one consistent state.
+// The rules are in src/lib/weeks.ts, shared with the build.
+import { weekLabel, weekView, rollingView, rollingText, within } from '../lib/weeks';
 
 const now = new Date();
-const week = easternWeek(now);
 
-// Homepage strip: each count holds the dates of every entry in its section, and the link
-// wording follows the count ("See updates" when there are any, "View section" when there are none).
-document.querySelectorAll<HTMLElement>('[data-week-label]').forEach((el) => { el.textContent = weekLabel(week); });
-document.querySelectorAll<HTMLElement>('[data-week-count]').forEach((el) => {
-  const dates = (el.dataset.weekCount || '').split(' ').filter(Boolean);
-  const count = dates.filter((d) => within(d, week)).length;
-  el.textContent = String(count);
-  const link = el.closest('a')?.querySelector<HTMLElement>('[data-week-link]');
-  if (link) link.textContent = count > 0 ? 'See updates' : 'View section';
+// Homepage strip: a rolling 30-day tally. Each count holds every entry date for its section; the
+// window, the fallback to the most recent period with changes, and the wording all come from the
+// same rule the build used (src/lib/weeks.ts).
+document.querySelectorAll<HTMLElement>('[data-rolling]').forEach((strip) => {
+  const counts = [...strip.querySelectorAll<HTMLElement>('[data-roll-count]')];
+  const datesOf = (el: HTMLElement) => (el.dataset.rollCount || '').split(' ').filter(Boolean);
+  const view = rollingView(counts.flatMap(datesOf), now);
+  const text = rollingText(view);
+  const set = (sel: string, value: string) => strip.querySelectorAll<HTMLElement>(sel).forEach((el) => { el.textContent = value; });
+  set('[data-roll-title]', text.title);
+  set('[data-roll-dates]', text.dates);
+  set('[data-roll-note]', text.note);
+  counts.forEach((el) => {
+    const count = datesOf(el).filter((d) => within(d, view.window)).length;
+    el.textContent = String(count);
+    const link = el.closest('a')?.querySelector<HTMLElement>('[data-roll-link]');
+    if (link) link.textContent = count > 0 ? 'See updates' : 'View section';
+  });
 });
 
 // Section pages: redraw the box for the reader's week, by the same rule the build used.

@@ -1,39 +1,39 @@
 ---
-// Homepage "This week" strip: how many meaningful editorial items each section published
-// in the current Monday-Sunday week (Eastern time). Entries live in src/content/changes.
-// One box per section; add a section to the list below and the grid rebalances itself.
-import { getChanges, easternWeek, weekLabel, inWeek, changeDate, SECTION_LABELS, type Section } from '../lib/changes';
+// Homepage activity strip: how many published editorial changes (src/content/changes) each section
+// has had in the past 30 days, by Eastern calendar date. If no section has any in that window, it
+// counts the most recent 30 days that did have changes and labels them with their dates, so an
+// older period is never presented as current activity. Rule and wording: src/lib/weeks.ts.
+// src/scripts/this-week.ts recounts in the reader's browser, so a page built earlier stays current.
+// Section pages keep their own "What changed this week" box (ThisWeek.astro).
+import { getChanges, changeDate, SECTION_LABELS, type Section } from '../lib/changes';
+import { rollingView, rollingText, within } from '../lib/weeks';
 
-const week = easternWeek();
 const all = await getChanges();
+const view = rollingView(all.map(changeDate));
+const text = rollingText(view);
 const sections = (['procurement', 'regulation', 'power'] as Section[]).map((section) => {
-  const entries = all.filter((c) => c.data.section === section);
-  return {
-    section,
-    label: SECTION_LABELS[section],
-    count: entries.filter((c) => inWeek(c, week)).length,
-    dates: entries.map(changeDate).join(' '),
-  };
+  const dates = all.filter((c) => c.data.section === section).map(changeDate);
+  return { section, label: SECTION_LABELS[section], dates, count: dates.filter((d) => within(d, view.window)).length };
 });
 
 // Even rows on wide screens, at most five boxes per row: 3 -> 3, 6 -> 3+3, 8 -> 4+4, 10 -> 5+5.
 const n = sections.length;
 const cols = Math.ceil(n / Math.ceil(n / 5));
 ---
-<section class="wk" id="this-week" aria-labelledby="wk-title">
+<section class="wk" id="this-week" data-rolling aria-labelledby="wk-title">
   <div class="wrap">
     <p class="wk-h">
-      <span class="wk-tt" id="wk-title">This week</span>
-      <span class="wk-d" data-week-label>{weekLabel(week)}</span>
-      <span class="wk-def">New or changed editorial items &middot; Monday to Sunday, Eastern time</span>
+      <span class="wk-tt" id="wk-title" data-roll-title>{text.title}</span>
+      <span class="wk-d" data-roll-dates>{text.dates}</span>
+      <span class="wk-def" data-roll-note>{text.note}</span>
     </p>
     <ul class={`wk-g${n === 3 ? ' wk-3' : ''}`} style={`--cols:${cols}`}>
       {sections.map((s) => (
         <li>
           <a href={`/${s.section}#this-week`}>
-            <span class="wk-n" data-week-count={s.dates}>{s.count}</span>
+            <span class="wk-n" data-roll-count={s.dates.join(' ')}>{s.count}</span>
             <span class="wk-l">{s.label}</span>
-            <span class="wk-go"><span data-week-link>{s.count > 0 ? 'See updates' : 'View section'}</span><span aria-hidden="true"> &rarr;</span></span>
+            <span class="wk-go"><span data-roll-link>{s.count > 0 ? 'See updates' : 'View section'}</span><span aria-hidden="true"> &rarr;</span></span>
           </a>
         </li>
       ))}
