@@ -87,4 +87,29 @@ const changes = defineCollection({
   }),
 });
 
-export const collections = { articles, pages, procurement, regulation, power, watching, changes };
+// Briefs: one finding from a primary source each. The file name is the address:
+// digital-realty-q2-2026-leases.md -> /briefs/digital-realty-q2-2026-leases
+//   cardTitle  short title for the homepage picture card (60 characters at most, so it fits two lines)
+//   dek        one line under the card title: what the figure is, and what it isn't
+//   reviewBy   when the next thing that could change the finding arrives (a release, a deadline).
+//              After it, update the brief, mark it a dated record, or take it off the homepage.
+//   feature    1-4 puts it in the homepage row, in that order; leave out to list only on /briefs
+//   image      square image in public/images/briefs/, 800 x 800
+const briefs = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    cardTitle: z.string().max(60),
+    section: z.enum(['Colocation', 'Procurement', 'Regulation', 'Power', 'Operations', 'Water', 'Standards']),
+    published: z.coerce.date(),
+    reviewBy: z.coerce.date(),
+    dek: z.string(),
+    sourceType: z.enum(['R', 'P', 'V', 'G', 'O', 'U']),
+    source: z.string(),
+    image: z.string().startsWith('/images/briefs/'),
+    imageAlt: z.string(),
+    feature: z.number().int().min(1).max(4).optional(),
+  }),
+});
+
+export const collections = { articles, pages, procurement, regulation, power, watching, changes, briefs };

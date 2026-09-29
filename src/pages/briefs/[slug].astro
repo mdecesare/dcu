@@ -1,0 +1,37 @@
+---
+import ContentPage from '../../layouts/ContentPage.astro';
+import { getBriefs } from '../../lib/briefs';
+import { formatDate } from '../../lib/dates';
+
+export async function getStaticPaths() {
+  const briefs = await getBriefs();
+  return briefs.map((brief) => ({ params: { slug: brief.slug }, props: { brief } }));
+}
+
+const { brief } = Astro.props;
+const { Content } = await brief.render();
+const { title, dek, section, published, reviewBy } = brief.data;
+---
+<ContentPage title={title} description={dek} lede={dek}>
+  <p slot="kicker" class="brief-kicker">
+    <span>Brief · {section}</span>
+    <span>{formatDate(published)}</span>
+    <span class="brief-review">Review by {formatDate(reviewBy)}</span>
+  </p>
+
+  <Content />
+
+  <p class="back-link"><a href="/briefs">&larr; All briefs</a></p>
+</ContentPage>
+
+<style>
+  .brief-kicker {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; margin-bottom: 12px;
+    font-size: 12px; letter-spacing: .09em; text-transform: uppercase; color: #8fb6de; font-weight: 600;
+  }
+  .brief-review {
+    letter-spacing: 0; text-transform: none; font-size: 12.5px; color: #fff;
+    background: rgba(255, 255, 255, .12); border: 1px solid rgba(255, 255, 255, .28);
+    padding: 2px 9px; border-radius: 3px;
+  }
+</style>
