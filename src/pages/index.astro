@@ -89,27 +89,16 @@ const arrowIcon = '<path d="M5 12h14M13 6l6 6-6 6"/>';
         <h1>What's changing in the enterprise data center market?</h1>
         <p class="lede">Equipment lead times, regulation, and grid power that affect your facility and your next project — with the source behind every number.</p>
         <div class="hero-btns">
-          <a class="btn" href="#this-week">See the latest</a>
+          <a class="btn" href="#latest">See the latest</a>
           <a class="btn btn-ghost" href="/methodology">How we source this</a>
         </div>
       </div>
-      <div class="claims">
-        <h2>Why another data center site?</h2>
-        <ul>
-          <li><svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true" set:html={checkIcon} /><span><b>Enterprise scale.</b> Most published figures describe hyperscale campuses.</span></li>
-          <li><svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true" set:html={checkIcon} /><span><b>Source shown.</b> Who said it, when, and what they measured.</span></li>
-          <li><svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true" set:html={checkIcon} /><span><b>Original sources.</b> Primary records wherever available.</span></li>
-          <li><svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true" set:html={checkIcon} /><span><b>Independent.</b> DCU does not sell the equipment it covers.</span></li>
-        </ul>
-      </div>
+      <WeekStrip variant="hero" />
     </div>
   </section>
 
-  <!-- This week: counts of editorial items per section, from src/content/changes -->
-  <WeekStrip />
-
   <!-- Front door: a few sourced figures, the current developments, and the way through to both -->
-  <section class="band">
+  <section class="band" id="latest">
     <div class="wrap">
       <div class="front">
 
@@ -292,12 +281,6 @@ const arrowIcon = '<path d="M5 12h14M13 6l6 6-6 6"/>';
   .hero h1 { font-size: 31px; line-height: 1.2; margin-bottom: 15px; font-weight: 600; max-width: 19ch; letter-spacing: -.4px; }
   .lede { color: #bfd2e5; max-width: 56ch; margin-bottom: 24px; font-size: 16.5px; }
   .hero-btns { display: flex; gap: 10px; flex-wrap: wrap; }
-  .claims { background: rgba(255, 255, 255, .055); border: 1px solid rgba(255, 255, 255, .13); border-radius: 8px; padding: 19px 21px; }
-  .claims h2 { font-size: 16px; margin-bottom: 12px; font-weight: 600; }
-  .claims ul { list-style: none; }
-  .claims li { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; color: #cfe0ef; padding: 6px 0; }
-  .claims li svg { color: #5da9f0; margin-top: 3px; }
-  .claims li b { color: #fff; font-weight: 600; }
 
   /* Front door: three cards of equal weight, side by side only when each has room */
   .band { background: var(--page); border-bottom: 1px solid var(--line); padding: 26px 0; }
@@ -373,7 +356,7 @@ const arrowIcon = '<path d="M5 12h14M13 6l6 6-6 6"/>';
   }
   @media (min-width: 900px) {
     .hero h1 { font-size: 40px; }
-    .hero-grid { grid-template-columns: 1.5fr 1fr; align-items: center; }
+    .hero-grid { grid-template-columns: 1.15fr 1fr; align-items: center; gap: 40px; }
     .lower { grid-template-columns: repeat(var(--cols), minmax(0, 1fr)); }
     .sub-in { grid-template-columns: 1.3fr 1fr; }
   }
