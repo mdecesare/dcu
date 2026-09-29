@@ -258,6 +258,13 @@ const arrowIcon = '<path d="M5 12h14M13 6l6 6-6 6"/>';
           <p class="form-note">Free. We&rsquo;ll email you a confirmation link; your subscription starts only when you click it.
             Unsubscribe any time. <a href="/privacy">Privacy</a></p>
         </form>
+        <!-- What DCU promises a subscriber: the four points that used to sit in the hero -->
+        <ul class="sub-why" aria-label="What you get">
+          <li><svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true" set:html={checkIcon} /><span><b>Enterprise scale.</b> Not another hyperscale feed.</span></li>
+          <li><svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true" set:html={checkIcon} /><span><b>Source shown.</b> Who said it, when, and what they measured.</span></li>
+          <li><svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true" set:html={checkIcon} /><span><b>Original sources.</b> Primary records wherever they exist.</span></li>
+          <li><svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true" set:html={checkIcon} /><span><b>Independent.</b> We don&rsquo;t sell the equipment we cover.</span></li>
+        </ul>
       </div>
     </section>
   )}
@@ -346,6 +353,10 @@ const arrowIcon = '<path d="M5 12h14M13 6l6 6-6 6"/>';
   .form { display: flex; gap: 9px; flex-wrap: wrap; }
   .form-note { flex-basis: 100%; font-size: 12.5px; line-height: 1.5; color: #9fb8cf; }
   .form-note a { color: #cfe0ef; text-decoration: underline; }
+  .sub-why { list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 18px; border-top: 1px solid rgba(255, 255, 255, .14); padding-top: 18px; }
+  .sub-why li { display: flex; gap: 9px; align-items: flex-start; font-size: 13px; line-height: 1.45; color: #bfd2e5; }
+  .sub-why li svg { color: #5da9f0; margin-top: 2px; }
+  .sub-why li b { color: #fff; font-weight: 600; display: block; }
   .form input { flex: 1 1 210px; padding: 12px 14px; border: 1px solid #3d5c7c; border-radius: 5px; font-size: 16px; background: #fff; color: var(--ink); min-width: 0; font-family: inherit; }
 
   @media (min-width: 640px) {
@@ -359,5 +370,6 @@ const arrowIcon = '<path d="M5 12h14M13 6l6 6-6 6"/>';
     .hero-grid { grid-template-columns: 1.15fr 1fr; align-items: center; gap: 40px; }
     .lower { grid-template-columns: repeat(var(--cols), minmax(0, 1fr)); }
     .sub-in { grid-template-columns: 1.3fr 1fr; }
+    .sub-why { grid-column: 1 / -1; grid-template-columns: repeat(4, minmax(0, 1fr)); }
   }
 </style>
