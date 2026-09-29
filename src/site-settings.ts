@@ -36,6 +36,6 @@ export const siteSettings = {
   homepageFigures: [
     { section: 'Transformers', class: 'Substation, 5–25 MVA' },
     { section: 'Generators', class: '1,500–2,000 kW diesel' },
-    { section: 'Medium-voltage switchgear', class: 'Standard configurations' },
+    { section: 'Medium-voltage switchgear', class: '5 kV / 15 kV metal-enclosed' },
   ],
 };

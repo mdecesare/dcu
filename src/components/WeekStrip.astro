@@ -6,22 +6,34 @@
 // src/scripts/this-week.ts recounts in the reader's browser, so a page built earlier stays current.
 // Section pages keep their own "What changed this week" box (ThisWeek.astro).
 import { getChanges, changeDate, SECTION_LABELS, type Section } from '../lib/changes';
-import { rollingView, rollingText, within } from '../lib/weeks';
+import { rollingView, rollingText, within, tileLinkText } from '../lib/weeks';
+
+// 'band': its own full-width navy band. 'hero': a panel inside the homepage hero's right column.
+interface Props { variant?: 'band' | 'hero' }
+const { variant = 'band' } = Astro.props;
 
 const all = await getChanges();
 const view = rollingView(all.map(changeDate));
 const text = rollingText(view);
-const sections = (['procurement', 'regulation', 'power'] as Section[]).map((section) => {
-  const dates = all.filter((c) => c.data.section === section).map(changeDate);
-  return { section, label: SECTION_LABELS[section], dates, count: dates.filter((d) => within(d, view.window)).length };
+// One tile per top-level section, in the order SECTION_LABELS lists them (src/lib/changes.ts),
+// so a new section gets its tile, count and link without touching this file.
+const sections = (Object.keys(SECTION_LABELS) as Section[]).map((section) => {
+  // Each entry travels as "date:kind", so the browser can recount and reword the link by the same rule.
+  const entries = all.filter((c) => c.data.section === section).map((c) => ({ date: changeDate(c), kind: c.data.kind }));
+  const inWindow = entries.filter((e) => within(e.date, view.window));
+  return { section, label: SECTION_LABELS[section], entries, dates: entries.map((e) => e.date), count: inWindow.length, link: tileLinkText(inWindow.map((e) => e.kind)) };
 });
 
-// Even rows on wide screens, at most five boxes per row: 3 -> 3, 6 -> 3+3, 8 -> 4+4, 10 -> 5+5.
+// Columns. Full-width band: even rows, at most five per row (3 -> 3, 6 -> 3+3, 8 -> 4+4, 10 -> 5+5).
+// Hero panel (half the width, and a phone's full width): at most three per row so the numbers stay
+// large: 1-3 -> one row, 4 -> 2+2, 5 -> 3+2, 6 -> 3+3, 7+ -> rows of three.
 const n = sections.length;
-const cols = Math.ceil(n / Math.ceil(n / 5));
+const cols = variant === 'hero'
+  ? (n <= 3 ? n : n === 4 ? 2 : 3)
+  : Math.ceil(n / Math.ceil(n / 5));
 ---
-<section class="wk" id="this-week" data-rolling aria-labelledby="wk-title">
-  <div class="wrap">
+<section class={`wk wk-${variant}`} id="this-week" data-rolling aria-labelledby="wk-title">
+  <div class={variant === 'band' ? 'wrap' : undefined}>
     <p class="wk-h">
       <span class="wk-tt" id="wk-title" data-roll-title>{text.title}</span>
       <span class="wk-d" data-roll-dates>{text.dates}</span>
@@ -31,9 +43,9 @@ const cols = Math.ceil(n / Math.ceil(n / 5));
       {sections.map((s) => (
         <li>
           <a href={`/${s.section}#this-week`}>
-            <span class="wk-n" data-roll-count={s.dates.join(' ')}>{s.count}</span>
+            <span class="wk-n" data-roll-count={s.entries.map((e) => `${e.date}:${e.kind}`).join(' ')}>{s.count}</span>
             <span class="wk-l">{s.label}</span>
-            <span class="wk-go"><span data-roll-link>{s.count > 0 ? 'See updates' : 'View section'}</span><span aria-hidden="true"> &rarr;</span></span>
+            <span class="wk-go"><span data-roll-link>{s.link}</span><span aria-hidden="true"> &rarr;</span></span>
           </a>
         </li>
       ))}
@@ -62,11 +74,28 @@ const cols = Math.ceil(n / Math.ceil(n / 5));
   .wk-go { margin-top: 6px; font-size: 12px; color: #5da9f0; }
   .wk-g a:hover .wk-go { text-decoration: underline; }
 
+  /* Hero variant: a translucent panel on the hero's own navy, numbers kept large */
+  .wk-hero { background: rgba(255, 255, 255, .055); border: 1px solid rgba(255, 255, 255, .13); border-top-color: rgba(255, 255, 255, .13); border-radius: 10px; padding: 18px 18px 16px; }
+  .wk-hero .wk-h { flex-direction: column; align-items: flex-start; gap: 2px; margin-bottom: 14px; }
+  .wk-hero .wk-d { font-size: 15px; }
+  .wk-hero .wk-def { font-size: 12.5px; }
+  .wk-hero .wk-g, .wk-hero .wk-g.wk-3 { grid-template-columns: repeat(var(--cols), minmax(0, 1fr)); }
+  /* Phone: tighter panel and tiles so each link fits on one line */
+  .wk-hero { padding: 14px 14px 12px; }
+  .wk-hero .wk-g { gap: 8px; }
+  .wk-hero .wk-g a { padding: 12px 8px 10px; }
+  .wk-hero .wk-go { font-size: 11px; white-space: nowrap; }
+
   @media (min-width: 640px) {
     .wk-g { grid-template-columns: repeat(var(--cols), minmax(0, 1fr)); gap: 14px; }
     .wk-g a { padding: 18px 20px 16px; }
     .wk-n { font-size: 52px; }
     .wk-l { font-size: 12.5px; letter-spacing: .12em; }
     .wk-go { margin-top: 8px; font-size: 13px; }
+    .wk-hero { padding: 18px 18px 16px; }
+    .wk-hero .wk-g { gap: 10px; }
+    .wk-hero .wk-g a { padding: 16px 14px 14px; }
+    .wk-hero .wk-go { font-size: 13px; }
+    .wk-hero .wk-l { font-size: 11.5px; letter-spacing: .08em; }
   }
 </style>
