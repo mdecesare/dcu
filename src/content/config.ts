@@ -1,4 +1,5 @@
 import { defineCollection, z } from 'astro:content';
+import { regStatusNames } from '../lib/reg-status';
 
 const articles = defineCollection({
   type: 'content',
@@ -51,7 +52,7 @@ const regulation = defineCollection({
     headline: z.string(),
     jurisdiction: z.string(),
     jurisdictionType: z.enum(['state', 'federal']),
-    status: z.string(),
+    status: z.enum(regStatusNames),
     summary: z.string(),
     citation: z.string(),
     sourceType: z.enum(['R', 'P', 'V', 'G', 'O', 'U']).default('G'),

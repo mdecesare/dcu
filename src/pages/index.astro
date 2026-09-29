@@ -10,6 +10,7 @@ import { getRegulationItems } from '../lib/regulation';
 import { parsePulseSections, parsePulseDisclosures } from '../lib/pulse-sections';
 import { SOURCE_TYPES } from '../lib/source-types.mjs';
 import { smartQuotes } from '../lib/typography';
+import { regStatusClass } from '../lib/reg-status';
 import { formatDate } from '../lib/dates';
 import { pjm, eiaPrices, eiaReleased, eiaTableUrls, pct } from '../lib/power';
 
@@ -150,7 +151,7 @@ const arrowIcon = '<path d="M5 12h14M13 6l6 6-6 6"/>';
                   <span class="reg-j">{item.data.jurisdiction}</span>
                   <a href={`/regulation/${item.slug}`}>{smartQuotes(item.data.headline)}</a>
                 </div>
-                <span class="reg-s">{item.data.status}</span>
+                <span class={`reg-s ${regStatusClass(item.data.status)}`}>{item.data.status}</span>
               </li>
             ))}
           </ul>
@@ -307,7 +308,7 @@ const arrowIcon = '<path d="M5 12h14M13 6l6 6-6 6"/>';
   .fig-cls { display: block; font-size: 14.5px; color: var(--ink); overflow-wrap: anywhere; }
   a.fig-cls:hover { color: var(--blue); text-decoration: underline; }
   .fig-src { display: block; font-size: 12.5px; color: var(--ink-2); margin-top: 2px; }
-  .fig-src :global(a) { color: var(--blue); text-decoration: underline; text-underline-offset: 2px; }
+  .fig-src :global(a:not(.cls)) { color: var(--blue); text-decoration: underline; text-underline-offset: 2px; }
   .fig-sec { display: block; font-size: 11.5px; color: var(--ink-3); text-transform: uppercase; letter-spacing: .06em; margin-top: 3px; }
   .fig-n { font-size: 16px; font-weight: 600; white-space: nowrap; font-variant-numeric: tabular-nums; }
 
@@ -317,7 +318,8 @@ const arrowIcon = '<path d="M5 12h14M13 6l6 6-6 6"/>';
   .reg-j { display: block; font-size: 11.5px; color: var(--ink-3); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 2px; }
   .reg-l a { font-size: 14.5px; color: var(--ink); }
   .reg-l a:hover { color: var(--blue); text-decoration: underline; }
-  .reg-s { font-size: 12px; font-weight: 600; color: var(--ink-2); background: var(--page); border: 1px solid var(--line); border-radius: 20px; padding: 3px 10px; white-space: nowrap; }
+  /* Colour comes from the status's .st-* class in global.css */
+  .reg-s { font-size: 12px; font-weight: 600; border-width: 1px; border-style: solid; border-radius: 20px; padding: 3px 10px; white-space: nowrap; }
 
   .fc-note { font-size: 12.5px; line-height: 1.55; color: var(--ink-2); margin-top: 12px; }
   .fc-note :global(strong) { color: var(--ink); font-weight: 600; }

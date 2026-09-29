@@ -3,6 +3,7 @@
 import type { CollectionEntry } from 'astro:content';
 import SourceMark from './SourceMark.astro';
 import { smartQuotes } from '../lib/typography';
+import { regStatusClass } from '../lib/reg-status';
 
 interface Props {
   item: CollectionEntry<'regulation'>;
@@ -24,7 +25,7 @@ const Heading = headingLevel;
       )}
       {jurisdiction}
     </span>
-    <span class="reg-dt">{status}</span>
+    <span class={`reg-dt ${regStatusClass(status)}`}>{status}</span>
   </div>
   <Heading class="reg-h"><a href={href}>{smartQuotes(headline)}</a></Heading>
   <p class="reg-sum">{smartQuotes(summary)}</p>
@@ -38,7 +39,8 @@ const Heading = headingLevel;
   .reg-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 6px; }
   .reg-st { display: flex; align-items: center; gap: 7px; font-size: 14.5px; font-weight: 600; }
   .ico { width: 15px; height: 15px; stroke: var(--ink-3); fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; flex: none; }
-  .reg-dt { font-size: 12px; color: var(--ink-2); white-space: nowrap; background: #f2f5f8; padding: 2px 8px; border-radius: 3px; }
+  /* Colour comes from the status's .st-* class in global.css */
+  .reg-dt { font-size: 12px; font-weight: 600; white-space: nowrap; border-width: 1px; border-style: solid; padding: 2px 8px; border-radius: 3px; }
   .reg-h { font-size: 16px; line-height: 1.35; font-weight: 600; margin-bottom: 5px; }
   .reg-h a { color: var(--blue-dk); }
   .reg-h a:hover { text-decoration: underline; }
