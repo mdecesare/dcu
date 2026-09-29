@@ -15,14 +15,20 @@ const { variant = 'band' } = Astro.props;
 const all = await getChanges();
 const view = rollingView(all.map(changeDate));
 const text = rollingText(view);
-const sections = (['procurement', 'regulation', 'power'] as Section[]).map((section) => {
+// One tile per top-level section, in the order SECTION_LABELS lists them (src/lib/changes.ts),
+// so a new section gets its tile, count and link without touching this file.
+const sections = (Object.keys(SECTION_LABELS) as Section[]).map((section) => {
   const dates = all.filter((c) => c.data.section === section).map(changeDate);
   return { section, label: SECTION_LABELS[section], dates, count: dates.filter((d) => within(d, view.window)).length };
 });
 
-// Even rows on wide screens, at most five boxes per row: 3 -> 3, 6 -> 3+3, 8 -> 4+4, 10 -> 5+5.
+// Columns. Full-width band: even rows, at most five per row (3 -> 3, 6 -> 3+3, 8 -> 4+4, 10 -> 5+5).
+// Hero panel (half the width, and a phone's full width): at most three per row so the numbers stay
+// large: 1-3 -> one row, 4 -> 2+2, 5 -> 3+2, 6 -> 3+3, 7+ -> rows of three.
 const n = sections.length;
-const cols = Math.ceil(n / Math.ceil(n / 5));
+const cols = variant === 'hero'
+  ? (n <= 3 ? n : n === 4 ? 2 : 3)
+  : Math.ceil(n / Math.ceil(n / 5));
 ---
 <section class={`wk wk-${variant}`} id="this-week" data-rolling aria-labelledby="wk-title">
   <div class={variant === 'band' ? 'wrap' : undefined}>
