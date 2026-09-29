@@ -6,7 +6,7 @@
 // src/scripts/this-week.ts recounts in the reader's browser, so a page built earlier stays current.
 // Section pages keep their own "What changed this week" box (ThisWeek.astro).
 import { getChanges, changeDate, SECTION_LABELS, type Section } from '../lib/changes';
-import { rollingView, rollingText, within } from '../lib/weeks';
+import { rollingView, rollingText, within, tileLinkText } from '../lib/weeks';
 
 // 'band': its own full-width navy band. 'hero': a panel inside the homepage hero's right column.
 interface Props { variant?: 'band' | 'hero' }
@@ -18,8 +18,10 @@ const text = rollingText(view);
 // One tile per top-level section, in the order SECTION_LABELS lists them (src/lib/changes.ts),
 // so a new section gets its tile, count and link without touching this file.
 const sections = (Object.keys(SECTION_LABELS) as Section[]).map((section) => {
-  const dates = all.filter((c) => c.data.section === section).map(changeDate);
-  return { section, label: SECTION_LABELS[section], dates, count: dates.filter((d) => within(d, view.window)).length };
+  // Each entry travels as "date:kind", so the browser can recount and reword the link by the same rule.
+  const entries = all.filter((c) => c.data.section === section).map((c) => ({ date: changeDate(c), kind: c.data.kind }));
+  const inWindow = entries.filter((e) => within(e.date, view.window));
+  return { section, label: SECTION_LABELS[section], entries, dates: entries.map((e) => e.date), count: inWindow.length, link: tileLinkText(inWindow.map((e) => e.kind)) };
 });
 
 // Columns. Full-width band: even rows, at most five per row (3 -> 3, 6 -> 3+3, 8 -> 4+4, 10 -> 5+5).
@@ -41,9 +43,9 @@ const cols = variant === 'hero'
       {sections.map((s) => (
         <li>
           <a href={`/${s.section}#this-week`}>
-            <span class="wk-n" data-roll-count={s.dates.join(' ')}>{s.count}</span>
+            <span class="wk-n" data-roll-count={s.entries.map((e) => `${e.date}:${e.kind}`).join(' ')}>{s.count}</span>
             <span class="wk-l">{s.label}</span>
-            <span class="wk-go"><span data-roll-link>{s.count > 0 ? 'See updates' : 'View section'}</span><span aria-hidden="true"> &rarr;</span></span>
+            <span class="wk-go"><span data-roll-link>{s.link}</span><span aria-hidden="true"> &rarr;</span></span>
           </a>
         </li>
       ))}

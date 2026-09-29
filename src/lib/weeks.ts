@@ -104,3 +104,14 @@ export function rollingText(view: RollingView) {
         note: 'Published editorial changes · Eastern time',
       };
 }
+
+/**
+ * Link wording on a homepage tile, from the kinds of change inside the window.
+ * No changes -> "View section". Every change a correction -> "See correction" (or "See corrections"
+ * for more than one). Any other kind in the window -> "See updates".
+ */
+export function tileLinkText(kinds: string[]) {
+  if (kinds.length === 0) return 'View section';
+  if (kinds.every((k) => k === 'correction')) return kinds.length === 1 ? 'See correction' : 'See corrections';
+  return 'See updates';
+}

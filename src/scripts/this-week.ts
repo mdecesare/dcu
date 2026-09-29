@@ -2,7 +2,7 @@
 // the reader's browser, so a page built earlier still shows the reader's own dates (Eastern time).
 // Without JavaScript the build-time state stays, and it is always one consistent state.
 // The rules are in src/lib/weeks.ts, shared with the build.
-import { weekLabel, weekView, rollingView, rollingText, within } from '../lib/weeks';
+import { weekLabel, weekView, rollingView, rollingText, within, tileLinkText } from '../lib/weeks';
 
 const now = new Date();
 
@@ -11,7 +11,9 @@ const now = new Date();
 // same rule the build used (src/lib/weeks.ts).
 document.querySelectorAll<HTMLElement>('[data-rolling]').forEach((strip) => {
   const counts = [...strip.querySelectorAll<HTMLElement>('[data-roll-count]')];
-  const datesOf = (el: HTMLElement) => (el.dataset.rollCount || '').split(' ').filter(Boolean);
+  // Each tile holds "date:kind" for every entry in its section.
+  const entriesOf = (el: HTMLElement) => (el.dataset.rollCount || '').split(' ').filter(Boolean).map((x) => { const [date, kind] = x.split(':'); return { date, kind }; });
+  const datesOf = (el: HTMLElement) => entriesOf(el).map((e) => e.date);
   const view = rollingView(counts.flatMap(datesOf), now);
   const text = rollingText(view);
   const set = (sel: string, value: string) => strip.querySelectorAll<HTMLElement>(sel).forEach((el) => { el.textContent = value; });
@@ -19,10 +21,10 @@ document.querySelectorAll<HTMLElement>('[data-rolling]').forEach((strip) => {
   set('[data-roll-dates]', text.dates);
   set('[data-roll-note]', text.note);
   counts.forEach((el) => {
-    const count = datesOf(el).filter((d) => within(d, view.window)).length;
-    el.textContent = String(count);
+    const inWindow = entriesOf(el).filter((e) => within(e.date, view.window));
+    el.textContent = String(inWindow.length);
     const link = el.closest('a')?.querySelector<HTMLElement>('[data-roll-link]');
-    if (link) link.textContent = count > 0 ? 'See updates' : 'View section';
+    if (link) link.textContent = tileLinkText(inWindow.map((e) => e.kind));
   });
 });
 
