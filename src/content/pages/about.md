@@ -5,11 +5,20 @@ description: "DataCenterUpdate is an independent market-intelligence publication
 
 DataCenterUpdate is an independent market-intelligence publication focused on the infrastructure decisions behind enterprise data centers.
 
-Much of the attention in the data center market goes to hyperscale development, real estate, cloud providers, and large AI campuses. Those markets matter, but they are not the whole industry.
+## Why another data center site?
 
-Many enterprises still own, operate, expand, modernize, or make strategic decisions about critical infrastructure of their own — banks, hospitals, universities, pharmaceutical companies, manufacturers, government organizations, and other businesses where data center infrastructure remains essential.
+Because most of what's written about data centers isn't written for the people who run most of them.
 
-Those teams often face a different set of questions.
+The coverage follows the money: hyperscale campuses, AI clusters, gigawatt announcements. That market matters, but it isn't the whole industry. Banks, hospitals, universities, pharmaceutical companies, manufacturers and government agencies still own and operate data centers of their own. They're the ones expanding a room, adding a few megawatts, or replacing equipment that's reached the end of its life.
+
+If that's you, you've probably gone looking for a lead time or a rule change and found a number with no date, no scope and no source. So we built DCU around four habits:
+
+- **We start at enterprise scale.** When a figure describes a hyperscale campus, we say so.
+- **We show the source.** Who said it, when, and what they actually measured.
+- **We go to the original.** Statutes, permits, filings and the report itself, wherever they exist.
+- **We stay independent.** DCU doesn't sell the equipment it covers.
+
+The questions we try to help with are practical ones:
 
 How long will critical equipment actually take to procure?
 
