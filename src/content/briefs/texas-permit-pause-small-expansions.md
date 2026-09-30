@@ -2,14 +2,14 @@
 title: "Texas permit pause: does it reach a few-MW expansion? TCEQ hasn't said"
 cardTitle: "Texas permit pause: does it reach a few-MW expansion?"
 section: Regulation
-published: 2026-09-29
-reviewBy: 2026-10-19
+status: draft
+sourcesChecked: 2026-09-29
+nextReview: 2026-10-19
 dek: "Directed 21 Sep. No size threshold, and TCEQ has not said whether small additions are covered."
 sourceType: G
-source: "Governor's letter to TCEQ, 21 September 2026"
+description: "Governor's letter to TCEQ, 21 September 2026"
 image: /images/briefs/texas-permit-pause-small-expansions.webp
 imageAlt: "Illustration: an existing enterprise building with an expansion pad and generator enclosures"
-feature: 3
 ---
 
 **Finding, 21 September 2026:** the governor directed the Texas Commission on Environmental

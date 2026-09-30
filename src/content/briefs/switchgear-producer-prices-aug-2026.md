@@ -2,14 +2,14 @@
 title: "Switchgear makers' prices up 13.3% in a year"
 cardTitle: "Switchgear makers' prices up 13.3% in a year"
 section: Procurement
-published: 2026-09-29
-reviewBy: 2026-10-20
+status: draft
+sourcesChecked: 2026-09-29
+nextReview: 2026-10-20
 dek: "BLS industry price index, August 2026, preliminary. A price trend, not a quote or lead time."
 sourceType: G
-source: "U.S. Bureau of Labor Statistics, Producer Price Index, August 2026"
+description: "U.S. Bureau of Labor Statistics, Producer Price Index, August 2026"
 image: /images/briefs/switchgear-producer-prices-aug-2026.webp
 imageAlt: "Illustration: a lineup of medium-voltage switchgear with its doors closed"
-feature: 2
 ---
 
 **Finding, August 2026 (preliminary):** the producer price index for switchgear and switchboard

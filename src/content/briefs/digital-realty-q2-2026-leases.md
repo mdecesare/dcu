@@ -2,14 +2,14 @@
 title: "Digital Realty's Q2 2026 signed leases: $293 per kW under 1 MW, $156 above"
 cardTitle: "Digital Realty Q2: $293 per kW under 1 MW, $156 above"
 section: Colocation
-published: 2026-09-29
-reviewBy: 2026-10-31
+status: draft
+sourcesChecked: 2026-09-29
+nextReview: 2026-10-31
 dek: "One landlord's new Americas leases, at GAAP rent. Not market asking rent."
 sourceType: V
-source: "Digital Realty, Form 8-K, Exhibit 99.1, filed 23 July 2026"
+description: "Digital Realty, Form 8-K, Exhibit 99.1, filed 23 July 2026"
 image: /images/briefs/digital-realty-q2-2026-leases.webp
 imageAlt: "Illustration: a colocation suite with caged, half-filled racks"
-feature: 1
 ---
 
 **Finding, Q2 2026:** Digital Realty's new leases signed in the Americas were priced at

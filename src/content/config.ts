@@ -87,28 +87,36 @@ const changes = defineCollection({
   }),
 });
 
-// Briefs: one finding from a primary source each. The file name is the address:
-// digital-realty-q2-2026-leases.md -> /briefs/digital-realty-q2-2026-leases
-//   cardTitle  short title for the homepage picture card (60 characters at most, so it fits two lines)
-//   dek        one line under the card title: what the figure is, and what it isn't
-//   reviewBy   when the next thing that could change the finding arrives (a release, a deadline).
-//              After it, update the brief, mark it a dated record, or take it off the homepage.
-//   feature    1-4 puts it in the homepage row, in that order; leave out to list only on /briefs
-//   image      square image in public/images/briefs/, 800 x 800
+// Briefs: the full page is the "brief"; its homepage picture is the "card".
+// The file name is the address: next-1-5-mw.md -> /briefs/next-1-5-mw
+//   status         draft until approved. Drafts are never built for the live site; they show only in
+//                  a preview build (DCU_PREVIEW=1 npm run build).
+//   published      the day it actually went live. Set it at publication and never change it
+//                  afterwards; moving a card on or off the homepage does not change it.
+//   sourcesChecked the day the sources were last checked. Shown on the brief.
+//   nextReview     internal reminder to recheck sources and relevance. Never shown, never removes anything.
+//   cardTitle      title on the card (60 characters at most, so it fits two lines)
+//   dek            one line under the card title
+//   sourceType     optional: a single source-type letter for the card, when one source carries the brief
+//   image          square card image in public/images/briefs/, 800 x 800 WebP
+// Which briefs are on the homepage, and in what order, is set in src/site-settings.ts (featuredBriefs).
 const briefs = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
+    status: z.enum(['draft', 'published']),
     cardTitle: z.string().max(60),
-    section: z.enum(['Colocation', 'Procurement', 'Regulation', 'Power', 'Operations', 'Water', 'Standards']),
-    published: z.coerce.date(),
-    reviewBy: z.coerce.date(),
+    section: z.enum(['Power', 'Cooling', 'Water', 'Resilience', 'Colocation', 'Procurement', 'Regulation', 'Standards']),
+    published: z.coerce.date().optional(),
+    sourcesChecked: z.coerce.date(),
+    nextReview: z.coerce.date().optional(),
     dek: z.string(),
-    sourceType: z.enum(['R', 'P', 'V', 'G', 'O', 'U']),
-    source: z.string(),
+    description: z.string(),
+    sourceType: z.enum(['R', 'P', 'V', 'G', 'O', 'U']).optional(),
     image: z.string().startsWith('/images/briefs/'),
     imageAlt: z.string(),
-    feature: z.number().int().min(1).max(4).optional(),
+  }).refine((b) => b.status === 'draft' || b.published, {
+    message: 'A published brief needs its `published` date.',
   }),
 });
 

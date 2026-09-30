@@ -3,8 +3,8 @@
 // Used for the homepage row (featured briefs) and the /briefs list.
 import type { CollectionEntry } from 'astro:content';
 import { SOURCE_TYPES } from '../lib/source-types.mjs';
-import { formatDate } from '../lib/dates';
 import { smartQuotes } from '../lib/typography';
+import { readMinutes } from '../lib/briefs';
 
 interface Props {
   briefs: CollectionEntry<'briefs'>[];
@@ -21,9 +21,10 @@ const { briefs } = Astro.props;
         <span class="bc-t">{smartQuotes(b.data.cardTitle)}</span>
         <span class="bc-d">{smartQuotes(b.data.dek)}</span>
         <span class="bc-m">
-          {/* The card is one link, so the source marker here is a plain label, not its own link */}
-          <span class={`cls c-${b.data.sourceType.toLowerCase()}`} title={`${SOURCE_TYPES[b.data.sourceType].name} source`} aria-hidden="true">{b.data.sourceType}</span>
-          Brief &middot; {formatDate(b.data.published)}
+          {/* The card is one link, so a source marker here is a plain label, not its own link */}
+          {b.data.sourceType && <span class={`cls c-${b.data.sourceType.toLowerCase()}`} title={`${SOURCE_TYPES[b.data.sourceType].name} source`} aria-hidden="true">{b.data.sourceType}</span>}
+          Brief &middot; {readMinutes(b.body)} min read
+          {b.data.status === 'draft' && <span class="bc-draft">Draft</span>}
         </span>
       </div>
     </a>
@@ -39,7 +40,9 @@ const { briefs } = Astro.props;
   .bc-k { font-size: 11.5px; color: var(--ink-3); text-transform: uppercase; letter-spacing: .06em; }
   .bc-t { font-size: 15.5px; font-weight: 600; line-height: 1.3; letter-spacing: -.1px; }
   .bc-d { font-size: 13px; color: var(--ink-2); line-height: 1.5; }
-  .bc-m { display: flex; align-items: center; font-size: 12.5px; color: var(--ink-3); margin-top: auto; padding-top: 6px; }
+  .bc-m { display: flex; align-items: center; gap: 0 6px; font-size: 12.5px; color: var(--ink-3); margin-top: auto; padding-top: 6px; }
+  .bc-m .cls { margin-right: 0; }
+  .bc-draft { margin-left: auto; font-size: 11.5px; font-weight: 600; color: var(--navy); background: #ffd98a; padding: 1px 7px; border-radius: 3px; }
   @media (min-width: 640px) { .bc-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   @media (min-width: 1080px) { .bc-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; } }
 </style>

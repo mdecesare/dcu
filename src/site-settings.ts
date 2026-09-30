@@ -38,4 +38,16 @@ export const siteSettings = {
     { section: 'Generators', class: '1,500–2,000 kW diesel' },
     { section: 'Medium-voltage switchgear', class: '5 kV / 15 kV metal-enclosed' },
   ],
+
+  // The homepage "Featured briefs" row: four positions, in this order. Each entry is a brief's
+  // file name in src/content/briefs (without .md). To rotate, replace a name here; the brief
+  // that comes off stays published at its own address and in the /briefs list.
+  // The live row appears only when all four positions hold published briefs, so a half-built
+  // row can never go live. A preview build (DCU_PREVIEW=1) shows whatever is ready.
+  featuredBriefs: [
+    'next-1-5-mw',        // 1. Power
+    'liquid-cooling',     // 2. Cooling (to come)
+    'water',              // 3. Water (to come)
+    'resilience',         // 4. Resilience (to come)
+  ] as string[],
 };

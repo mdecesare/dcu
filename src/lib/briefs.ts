@@ -1,18 +1,28 @@
 import { getCollection } from 'astro:content';
+import { siteSettings } from '../site-settings';
 
-/** All briefs, newest first. Warns at build time about any brief past its review date. */
-export async function getBriefs() {
-  const briefs = (await getCollection('briefs')).sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf());
-  const today = new Date();
-  for (const b of briefs) {
-    if (b.data.reviewBy < today) {
-      console.warn(`[briefs] "${b.slug}" passed its review date (${b.data.reviewBy.toISOString().slice(0, 10)}): update it, mark it a dated record, or take it off the homepage.`);
-    }
-  }
-  return briefs;
+/** A preview build (DCU_PREVIEW=1 npm run build) shows drafts. The live build never does. */
+export const PREVIEW = process.env.DCU_PREVIEW === '1';
+
+/** Reading time from the brief's own text, at about 220 words a minute. */
+export function readMinutes(body: string) {
+  const words = body.replace(/<[^>]+>/g, ' ').replace(/[#*_>|\-[\]()]/g, ' ').split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.round(words / 220));
 }
 
-/** The homepage row: briefs with a `feature` number, in that order. Never padded with filler. */
+/** Briefs this build may show: published ones, plus drafts in a preview build. Newest first. */
+export async function getBriefs() {
+  const briefs = await getCollection('briefs', (b) => b.data.status === 'published' || PREVIEW);
+  return briefs.sort((a, b) => (b.data.published ?? b.data.sourcesChecked).valueOf() - (a.data.published ?? a.data.sourcesChecked).valueOf());
+}
+
+/**
+ * The homepage row, in the order set in site-settings. The live site shows it only when all
+ * four positions hold published briefs; a preview shows whatever is ready.
+ */
 export async function getFeaturedBriefs() {
-  return (await getBriefs()).filter((b) => b.data.feature).sort((a, b) => a.data.feature! - b.data.feature!);
+  const bySlug = new Map((await getBriefs()).map((b) => [b.slug, b]));
+  const ready = siteSettings.featuredBriefs.map((slug) => bySlug.get(slug)).filter((b) => b !== undefined);
+  if (!PREVIEW && ready.length < 4) return [];
+  return ready;
 }

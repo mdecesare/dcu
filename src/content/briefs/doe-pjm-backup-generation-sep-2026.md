@@ -2,14 +2,14 @@
 title: "17–18 September: PJM was authorized to call on backup generators"
 cardTitle: "17–18 Sep: PJM was authorized to call on backup generators"
 section: Power
-published: 2026-09-29
-reviewBy: 2026-10-18
+status: draft
+sourcesChecked: 2026-09-29
+nextReview: 2026-10-18
 dek: "DOE Order 202-26-45 expired 18 Sep. An authorization, not a record that any site ran."
 sourceType: G
-source: "U.S. Department of Energy, Order No. 202-26-45, 17 September 2026"
+description: "U.S. Department of Energy, Order No. 202-26-45, 17 September 2026"
 image: /images/briefs/doe-pjm-backup-generation-sep-2026.webp
 imageAlt: "Illustration: a row of standby generator enclosures beside an enterprise facility at dusk"
-feature: 4
 ---
 
 **Finding, 17 September 2026:** an emergency order from the U.S. Department of Energy authorized

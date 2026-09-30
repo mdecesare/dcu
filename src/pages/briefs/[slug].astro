@@ -1,6 +1,6 @@
 ---
 import ContentPage from '../../layouts/ContentPage.astro';
-import { getBriefs } from '../../lib/briefs';
+import { getBriefs, readMinutes } from '../../lib/briefs';
 import { formatDate } from '../../lib/dates';
 
 export async function getStaticPaths() {
@@ -10,13 +10,15 @@ export async function getStaticPaths() {
 
 const { brief } = Astro.props;
 const { Content } = await brief.render();
-const { title, dek, section, published, reviewBy } = brief.data;
+const { title, description, section, published, status } = brief.data;
+const minutes = readMinutes(brief.body);
 ---
-<ContentPage title={title} description={dek} lede={dek}>
+<ContentPage title={title} description={description}>
   <p slot="kicker" class="brief-kicker">
     <span>Brief · {section}</span>
-    <span>{formatDate(published)}</span>
-    <span class="brief-review">Review by {formatDate(reviewBy)}</span>
+    {published && <span>{formatDate(published)}</span>}
+    <span class="brief-time">{minutes} min read</span>
+    {status === 'draft' && <span class="brief-draft">Draft · preview only</span>}
   </p>
 
   <Content />
@@ -29,9 +31,45 @@ const { title, dek, section, published, reviewBy } = brief.data;
     display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; margin-bottom: 12px;
     font-size: 12px; letter-spacing: .09em; text-transform: uppercase; color: #8fb6de; font-weight: 600;
   }
-  .brief-review {
-    letter-spacing: 0; text-transform: none; font-size: 12.5px; color: #fff;
-    background: rgba(255, 255, 255, .12); border: 1px solid rgba(255, 255, 255, .28);
-    padding: 2px 9px; border-radius: 3px;
+  .brief-time { letter-spacing: 0; text-transform: none; font-size: 13px; font-weight: 400; color: #bfd2e5; }
+  .brief-draft {
+    letter-spacing: 0; text-transform: none; font-size: 12.5px; color: var(--navy);
+    background: #ffd98a; padding: 2px 9px; border-radius: 3px;
+  }
+</style>
+
+<style is:global>
+  /* Brief body parts, written as HTML inside the brief's markdown (global: they sit inside the layout's panel) */
+  .prose sup:has(a[href^="#source-"]) { font-size: 11px; line-height: 0; margin-left: 2px; }
+  .prose sup a[href^="#source-"] { text-decoration: none; font-weight: 600; }
+
+  .prose .bf-figure { margin: 28px 0; background: #edf4fa; border: 1px solid #dce7f0; border-radius: 8px; overflow: hidden; }
+  .prose .bf-figure-head { padding: 18px 20px 0; }
+  .prose .bf-eyebrow { font-size: 11.5px; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; color: var(--blue); }
+  .prose .bf-figure-head h2 { font-size: 19px; line-height: 1.3; margin: 3px 0 0; padding: 0; border: 0; }
+  .prose .bf-figure svg { display: block; width: 100%; height: auto; }
+  .prose .bf-roles { display: grid; grid-template-columns: minmax(0, 1fr); background: var(--card); padding: 4px 16px; }
+  .prose .bf-roles > div { padding: 12px 0; }
+  .prose .bf-roles > div + div { border-top: 1px solid var(--line); }
+  .prose .bf-roles h3 { font-size: 15.5px; line-height: 1.3; margin: 0 0 2px; }
+  .prose .bf-roles p { font-size: 13.5px; font-weight: 600; color: var(--blue-dk); margin: 0 0 3px; }
+  .prose .bf-roles span { display: block; font-size: 13px; line-height: 1.5; color: var(--ink-2); }
+  .prose .bf-figure figcaption { font-size: 12.5px; line-height: 1.55; color: var(--ink-2); padding: 10px 20px; background: #f6f9fc; border-top: 1px solid var(--line); }
+
+  .prose .bf-closing { margin-top: 26px; padding-top: 22px; border-top: 1px solid var(--line-2); }
+  .prose .bf-related { margin-top: 22px; padding: 14px 16px; background: var(--page); border: 1px solid var(--line); border-radius: 6px; font-size: 14.5px; }
+  .prose .bf-related p { margin: 0; }
+
+  .prose .bf-sources { margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--line-2); font-size: 14px; }
+  .prose .bf-sources h2 { font-size: 18px; margin: 0 0 4px; padding: 0; border: 0; }
+  .prose .bf-sources > p { margin: 0 0 10px; color: var(--ink-2); font-size: 13.5px; }
+  .prose .bf-sources ol { margin: 0; padding-left: 22px; }
+  .prose .bf-sources li { margin-bottom: 7px; scroll-margin-top: 16px; }
+  .prose .bf-sources li:target { background: var(--blue-lt); }
+
+  @media (min-width: 700px) {
+    .prose .bf-roles { grid-template-columns: repeat(3, minmax(0, 1fr)); padding: 16px 6px; }
+    .prose .bf-roles > div { padding: 0 14px; }
+    .prose .bf-roles > div + div { border-top: 0; border-left: 1px solid var(--line); }
   }
 </style>

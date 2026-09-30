@@ -1,0 +1,28 @@
+---
+import Base from '../../layouts/Base.astro';
+import BriefCards from '../../components/BriefCards.astro';
+import { getBriefs } from '../../lib/briefs';
+
+// Built at /briefs only once there is a brief to list, so the live site never shows an empty page.
+export async function getStaticPaths() {
+  const briefs = await getBriefs();
+  return briefs.length > 0 ? [{ params: { list: undefined }, props: { briefs } }] : [];
+}
+
+const { briefs } = Astro.props;
+---
+<Base title="Briefs" description="Short planning briefs for enterprise data center owners: one question each, what to evaluate, and the sources behind it.">
+  <section class="page-head">
+    <div class="wrap">
+      <h1>Briefs</h1>
+      <p class="lede">Short planning briefs for enterprise data center owners: one question each, what to evaluate, and the sources behind it.</p>
+    </div>
+  </section>
+  <div class="wrap briefs-list">
+    <BriefCards briefs={briefs} />
+  </div>
+</Base>
+
+<style>
+  .briefs-list { padding-top: 26px; padding-bottom: 30px; }
+</style>
