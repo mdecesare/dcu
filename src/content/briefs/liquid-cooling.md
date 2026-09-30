@@ -1,6 +1,7 @@
 ---
 title: "Liquid cooling is no longer just a hyperscale issue"
-status: draft
+status: published
+published: 2026-09-30
 cardTitle: "Liquid cooling is no longer just a hyperscale issue"
 section: Cooling
 sourcesChecked: 2026-09-30

@@ -13,7 +13,13 @@ export function readMinutes(body: string) {
 /** Briefs this build may show: published ones, plus drafts in a preview build. Newest first. */
 export async function getBriefs() {
   const briefs = await getCollection('briefs', (b) => b.data.status === 'published' || PREVIEW);
-  return briefs.sort((a, b) => (b.data.published ?? b.data.sourcesChecked).valueOf() - (a.data.published ?? a.data.sourcesChecked).valueOf());
+  // Same-day briefs keep the homepage order, so /briefs and the homepage row agree at launch.
+  const position = (slug: string) => {
+    const i = siteSettings.featuredBriefs.indexOf(slug);
+    return i === -1 ? siteSettings.featuredBriefs.length : i;
+  };
+  const day = (b: (typeof briefs)[number]) => (b.data.published ?? b.data.sourcesChecked).valueOf();
+  return briefs.sort((a, b) => day(b) - day(a) || position(a.slug) - position(b.slug));
 }
 
 /**

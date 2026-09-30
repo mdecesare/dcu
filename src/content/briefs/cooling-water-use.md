@@ -1,7 +1,8 @@
 ---
-title: "Liquid cooling doesn't have to mean more water use"
-status: draft
-cardTitle: "Liquid cooling doesn't have to mean more water use"
+title: "More computing doesn't have to mean more water"
+status: published
+published: 2026-09-30
+cardTitle: "More computing doesn't have to mean more water"
 section: Water
 sourcesChecked: 2026-09-30
 dek: "What warmer coolant can mean for water use, operating cost and reliability."

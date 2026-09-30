@@ -1,6 +1,7 @@
 ---
 title: "Million-dollar outages make resilience a business decision"
-status: draft
+status: published
+published: 2026-09-30
 cardTitle: "Million-dollar outages make resilience a business decision"
 section: Resilience
 sourcesChecked: 2026-09-30

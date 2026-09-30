@@ -53,7 +53,7 @@ export const siteSettings = {
 
   // Set to true at the first publication of the row. After launch, a brief withdrawn for a
   // correction simply drops out and the others stay visible.
-  featuredBriefsLaunched: false,
+  featuredBriefsLaunched: true,
 
   // Shape of the card picture, width / height. 1 / 1 is square; 4 / 3, 3 / 2 and 2 / 1 are
   // a quarter, a third and a half shorter. Card images are cropped to fit, centred.

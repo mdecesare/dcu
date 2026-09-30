@@ -1,6 +1,7 @@
 ---
 title: "Need another 1–5 MW before the utility can deliver?"
-status: draft
+status: published
+published: 2026-09-30
 cardTitle: "Need another 1–5 MW before the utility can deliver?"
 section: Power
 sourcesChecked: 2026-09-30
