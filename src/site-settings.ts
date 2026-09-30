@@ -46,9 +46,9 @@ export const siteSettings = {
   // a half-built row can never go live. A preview build (DCU_PREVIEW=1) shows whatever is ready.
   featuredBriefs: [
     'next-1-5-mw',        // 1. Power
-    'liquid-cooling',     // 2. Cooling (to come)
+    'liquid-cooling',     // 2. Cooling
     'water',              // 3. Water (to come)
-    'resilience',         // 4. Resilience (to come)
+    'resilience-business-decision', // 4. Resilience
   ] as string[],
 
   // Set to true at the first publication of the row. After launch, a brief withdrawn for a

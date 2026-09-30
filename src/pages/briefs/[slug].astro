@@ -40,7 +40,7 @@ const minutes = readMinutes(brief.body);
 
 <style is:global>
   /* Brief body parts, written as HTML inside the brief's markdown (global: they sit inside the layout's panel) */
-  .prose sup:has(a[href^="#source-"]) { font-size: 11px; line-height: 0; margin-left: 2px; }
+  .prose sup:has(a[href^="#source-"]) { font-size: 11px; line-height: 0; margin-left: 2px; white-space: nowrap; }
   .prose sup a[href^="#source-"] { text-decoration: none; font-weight: 600; }
 
   .prose .bf-figure { margin: 28px 0; background: #edf4fa; border: 1px solid #dce7f0; border-radius: 8px; overflow: hidden; }

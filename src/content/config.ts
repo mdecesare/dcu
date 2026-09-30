@@ -1,5 +1,6 @@
 import { defineCollection, z } from 'astro:content';
 import { regStatusNames } from '../lib/reg-status';
+import { briefTopicNames } from '../lib/brief-topics';
 
 const articles = defineCollection({
   type: 'content',
@@ -100,6 +101,8 @@ const changes = defineCollection({
 //   lede           optional line under the brief's own title
 //   sourceType     optional: a single source-type letter for the card, when one source carries the brief
 //   image          square card image in public/images/briefs/, 800 x 800 WebP
+//   imagePosition  optional focus when the card crops the image, e.g. 'center 30%' to keep a face in frame
+//   section        the topic pill on the card (src/lib/brief-topics.ts)
 // Which briefs are on the homepage, and in what order, is set in src/site-settings.ts (featuredBriefs).
 const briefs = defineCollection({
   type: 'content',
@@ -107,7 +110,7 @@ const briefs = defineCollection({
     title: z.string(),
     status: z.enum(['draft', 'published']),
     cardTitle: z.string().max(60),
-    section: z.enum(['Power', 'Cooling', 'Water', 'Resilience', 'Colocation', 'Procurement', 'Regulation', 'Standards']),
+    section: z.enum(briefTopicNames),
     published: z.coerce.date().optional(),
     sourcesChecked: z.coerce.date(),
     nextReview: z.coerce.date().optional(),
@@ -117,6 +120,7 @@ const briefs = defineCollection({
     sourceType: z.enum(['R', 'P', 'V', 'G', 'O', 'U']).optional(),
     image: z.string().startsWith('/images/briefs/'),
     imageAlt: z.string(),
+    imagePosition: z.string().default('center'),
   }).refine((b) => b.status === 'draft' || b.published, {
     message: 'A published brief needs its `published` date.',
   }),
