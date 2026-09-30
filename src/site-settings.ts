@@ -42,12 +42,20 @@ export const siteSettings = {
   // The homepage "Featured briefs" row: four positions, in this order. Each entry is a brief's
   // file name in src/content/briefs (without .md). To rotate, replace a name here; the brief
   // that comes off stays published at its own address and in the /briefs list.
-  // The live row appears only when all four positions hold published briefs, so a half-built
-  // row can never go live. A preview build (DCU_PREVIEW=1) shows whatever is ready.
+  // Before launch, the live row appears only when all four positions hold published briefs, so
+  // a half-built row can never go live. A preview build (DCU_PREVIEW=1) shows whatever is ready.
   featuredBriefs: [
     'next-1-5-mw',        // 1. Power
     'liquid-cooling',     // 2. Cooling (to come)
     'water',              // 3. Water (to come)
     'resilience',         // 4. Resilience (to come)
   ] as string[],
+
+  // Set to true at the first publication of the row. After launch, a brief withdrawn for a
+  // correction simply drops out and the others stay visible.
+  featuredBriefsLaunched: false,
+
+  // Shape of the card picture, width / height. 1 / 1 is square; 4 / 3, 3 / 2 and 2 / 1 are
+  // a quarter, a third and a half shorter. Card images are cropped to fit, centred.
+  briefCardImageRatio: '3 / 2',
 };

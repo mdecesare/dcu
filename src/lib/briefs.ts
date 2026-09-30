@@ -17,12 +17,13 @@ export async function getBriefs() {
 }
 
 /**
- * The homepage row, in the order set in site-settings. The live site shows it only when all
- * four positions hold published briefs; a preview shows whatever is ready.
+ * The homepage row, in the order set in site-settings. Before launch the live site shows it
+ * only when all four positions hold published briefs; after launch it shows whichever are
+ * published. A preview shows whatever is ready.
  */
 export async function getFeaturedBriefs() {
   const bySlug = new Map((await getBriefs()).map((b) => [b.slug, b]));
   const ready = siteSettings.featuredBriefs.map((slug) => bySlug.get(slug)).filter((b) => b !== undefined);
-  if (!PREVIEW && ready.length < 4) return [];
+  if (!PREVIEW && !siteSettings.featuredBriefsLaunched && ready.length < 4) return [];
   return ready;
 }

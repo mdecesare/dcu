@@ -97,6 +97,7 @@ const changes = defineCollection({
 //   nextReview     internal reminder to recheck sources and relevance. Never shown, never removes anything.
 //   cardTitle      title on the card (60 characters at most, so it fits two lines)
 //   dek            one line under the card title
+//   lede           optional line under the brief's own title
 //   sourceType     optional: a single source-type letter for the card, when one source carries the brief
 //   image          square card image in public/images/briefs/, 800 x 800 WebP
 // Which briefs are on the homepage, and in what order, is set in src/site-settings.ts (featuredBriefs).
@@ -111,6 +112,7 @@ const briefs = defineCollection({
     sourcesChecked: z.coerce.date(),
     nextReview: z.coerce.date().optional(),
     dek: z.string(),
+    lede: z.string().optional(),
     description: z.string(),
     sourceType: z.enum(['R', 'P', 'V', 'G', 'O', 'U']).optional(),
     image: z.string().startsWith('/images/briefs/'),

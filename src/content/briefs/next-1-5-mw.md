@@ -110,9 +110,11 @@ facility load, including cooling, and whether that demand runs continuously or o
 certain hours.
 
 **Generator systems can provide sustained power when selected for the intended duty.**
-Manufacturers rate the same generator differently for standby, prime and continuous duty:
-Caterpillar, for example, defines standby around limited annual hours, and prime and continuous
-around unlimited hours at varying and steady loads.<sup><a href="#source-1" aria-label="Source 1">1</a></sup>
+Manufacturers rate the same generator differently depending on its duty, and each rating carries
+load limits. In Caterpillar's gas ratings, for example, prime power allows unlimited hours at a
+varying load averaging 70% of the prime rating, continuous power assumes a steady load, and
+standby assumes limited annual hours. Match the rating to how the facility will actually run the
+equipment.<sup><a href="#source-1" aria-label="Source 1">1</a></sup>
 Gas-fired systems also depend on adequate gas service. Existing emergency generators should not
 be assumed suitable or authorized for everyday operation; their ratings and operating
 restrictions need checking.<sup><a href="#source-2" aria-label="Source 2">2</a></sup>

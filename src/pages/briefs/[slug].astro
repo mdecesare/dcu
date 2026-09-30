@@ -10,10 +10,10 @@ export async function getStaticPaths() {
 
 const { brief } = Astro.props;
 const { Content } = await brief.render();
-const { title, description, section, published, status } = brief.data;
+const { title, description, lede, section, published, status } = brief.data;
 const minutes = readMinutes(brief.body);
 ---
-<ContentPage title={title} description={description}>
+<ContentPage title={title} description={description} lede={lede}>
   <p slot="kicker" class="brief-kicker">
     <span>Brief · {section}</span>
     {published && <span>{formatDate(published)}</span>}

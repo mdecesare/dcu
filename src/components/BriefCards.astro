@@ -5,14 +5,17 @@ import type { CollectionEntry } from 'astro:content';
 import { SOURCE_TYPES } from '../lib/source-types.mjs';
 import { smartQuotes } from '../lib/typography';
 import { readMinutes } from '../lib/briefs';
+import { siteSettings } from '../site-settings';
 
 interface Props {
   briefs: CollectionEntry<'briefs'>[];
+  /** Desktop columns. Four unless a launched homepage row has fewer published briefs. */
+  columns?: number;
 }
 
-const { briefs } = Astro.props;
+const { briefs, columns = 4 } = Astro.props;
 ---
-<div class="bc-grid">
+<div class="bc-grid" style={`--bc-cols:${columns};--bc-ratio:${siteSettings.briefCardImageRatio}`}>
   {briefs.map((b) => (
     <a class="bc" href={`/briefs/${b.slug}`}>
       <img class="bc-img" src={b.data.image} alt={b.data.imageAlt} width="800" height="800" loading="lazy" decoding="async" />
@@ -35,7 +38,7 @@ const { briefs } = Astro.props;
   .bc-grid { display: grid; gap: 16px; grid-template-columns: minmax(0, 1fr); }
   .bc { background: var(--card); border: 1px solid var(--line); border-radius: 8px; box-shadow: var(--sh); overflow: hidden; display: flex; flex-direction: column; color: var(--ink); }
   .bc:hover .bc-t { color: var(--blue); text-decoration: underline; }
-  .bc-img { display: block; width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover; background: var(--navy); }
+  .bc-img { display: block; width: 100%; height: auto; aspect-ratio: var(--bc-ratio); object-fit: cover; object-position: center; background: var(--navy); }
   .bc-body { padding: 14px 16px 15px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
   .bc-k { font-size: 11.5px; color: var(--ink-3); text-transform: uppercase; letter-spacing: .06em; }
   .bc-t { font-size: 15.5px; font-weight: 600; line-height: 1.3; letter-spacing: -.1px; }
@@ -44,5 +47,5 @@ const { briefs } = Astro.props;
   .bc-m .cls { margin-right: 0; }
   .bc-draft { margin-left: auto; font-size: 11.5px; font-weight: 600; color: var(--navy); background: #ffd98a; padding: 1px 7px; border-radius: 3px; }
   @media (min-width: 640px) { .bc-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-  @media (min-width: 1080px) { .bc-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; } }
+  @media (min-width: 1080px) { .bc-grid { grid-template-columns: repeat(var(--bc-cols), minmax(0, 1fr)); gap: 20px; } }
 </style>

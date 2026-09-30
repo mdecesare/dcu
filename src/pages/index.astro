@@ -252,7 +252,8 @@ const arrowIcon = '<path d="M5 12h14M13 6l6 6-6 6"/>';
           <h2 id="briefs-title">Featured briefs</h2>
           <a href="/briefs">All briefs <svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true" set:html={arrowIcon} /></a>
         </div>
-        <BriefCards briefs={featuredBriefs} />
+        {/* Four across; after launch, if a brief is withdrawn, the remaining ones share the row (never fewer than three columns) */}
+        <BriefCards briefs={featuredBriefs} columns={siteSettings.featuredBriefsLaunched ? Math.max(3, featuredBriefs.length) : 4} />
       </div>
     </section>
   )}
