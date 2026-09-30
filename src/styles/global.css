@@ -97,6 +97,13 @@ img { max-width: 100%; display: block; }
   text-decoration: none;
 }
 a.cls:hover { text-decoration: none; box-shadow: 0 0 0 3px var(--blue-lt); }
+a.cls, a.cls:visited { color: #fff; }
+
+/* ---------- Regulatory Watch status colours (see src/lib/reg-status.ts) ---------- */
+.st-proposed  { background: var(--amber-bg); color: var(--amber);   border-color: var(--amber-ln); }
+.st-directed  { background: var(--red-bg);   color: var(--red);     border-color: #f3cfcb; }
+.st-enacted   { background: var(--blue-lt);  color: var(--blue-dk); border-color: #cddcf0; }
+.st-in-effect { background: var(--green-bg); color: var(--green);   border-color: #cde5d4; }
 .c-r { background: var(--src-r); }
 .c-p { background: var(--src-p); }
 .c-v { background: var(--src-v); }

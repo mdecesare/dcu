@@ -1,4 +1,6 @@
 import { defineCollection, z } from 'astro:content';
+import { regStatusNames } from '../lib/reg-status';
+import { briefTopicNames } from '../lib/brief-topics';
 
 const articles = defineCollection({
   type: 'content',
@@ -51,7 +53,7 @@ const regulation = defineCollection({
     headline: z.string(),
     jurisdiction: z.string(),
     jurisdictionType: z.enum(['state', 'federal']),
-    status: z.string(),
+    status: z.enum(regStatusNames),
     summary: z.string(),
     citation: z.string(),
     sourceType: z.enum(['R', 'P', 'V', 'G', 'O', 'U']).default('G'),
@@ -86,4 +88,42 @@ const changes = defineCollection({
   }),
 });
 
-export const collections = { articles, pages, procurement, regulation, power, watching, changes };
+// Briefs: the full page is the "brief"; its homepage picture is the "card".
+// The file name is the address: next-1-5-mw.md -> /briefs/next-1-5-mw
+//   status         draft until approved. Drafts are never built for the live site; they show only in
+//                  a preview build (DCU_PREVIEW=1 npm run build).
+//   published      the day it actually went live. Set it at publication and never change it
+//                  afterwards; moving a card on or off the homepage does not change it.
+//   sourcesChecked the day the sources were last checked. Shown on the brief.
+//   nextReview     internal reminder to recheck sources and relevance. Never shown, never removes anything.
+//   cardTitle      title on the card (60 characters at most, so it fits two lines)
+//   dek            one line under the card title
+//   lede           optional line under the brief's own title
+//   sourceType     optional: a single source-type letter for the card, when one source carries the brief
+//   image          square card image in public/images/briefs/, 800 x 800 WebP
+//   imagePosition  optional focus when the card crops the image, e.g. 'center 30%' to keep a face in frame
+//   section        the topic pill on the card (src/lib/brief-topics.ts)
+// Which briefs are on the homepage, and in what order, is set in src/site-settings.ts (featuredBriefs).
+const briefs = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    status: z.enum(['draft', 'published']),
+    cardTitle: z.string().max(60),
+    section: z.enum(briefTopicNames),
+    published: z.coerce.date().optional(),
+    sourcesChecked: z.coerce.date(),
+    nextReview: z.coerce.date().optional(),
+    dek: z.string(),
+    lede: z.string().optional(),
+    description: z.string(),
+    sourceType: z.enum(['R', 'P', 'V', 'G', 'O', 'U']).optional(),
+    image: z.string().startsWith('/images/briefs/'),
+    imageAlt: z.string(),
+    imagePosition: z.string().default('center'),
+  }).refine((b) => b.status === 'draft' || b.published, {
+    message: 'A published brief needs its `published` date.',
+  }),
+});
+
+export const collections = { articles, pages, procurement, regulation, power, watching, changes, briefs };
