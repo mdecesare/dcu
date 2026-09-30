@@ -47,7 +47,7 @@ export const siteSettings = {
   featuredBriefs: [
     'next-1-5-mw',        // 1. Power
     'liquid-cooling',     // 2. Cooling
-    'water',              // 3. Water (to come)
+    'cooling-water-use',  // 3. Water
     'resilience-business-decision', // 4. Resilience
   ] as string[],
 
