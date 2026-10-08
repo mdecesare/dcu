@@ -5,13 +5,13 @@ jurisdiction: "Baltimore, Maryland"
 jurisdictionType: local
 state: "Maryland"
 status: "In effect"
-summary: "Ordinance 26-128, signed 16 June 2026, took effect 30 days after enactment and prohibits data centers in all of Baltimore's zoning districts for one year from then, until about mid-July 2027. It defines a data center as a facility, or portion of one, used primarily for the remote storage, processing and distribution of data and capable of using 10 megawatts or more. A pending bill, 26-0217, would lower the threshold to 5 megawatts."
+summary: "Ordinance 26-128, signed 16 June 2026, prohibits data centers in all of Baltimore's zoning districts; it took effect 16 July 2026, 30 days after enactment, with a one-year duration. It defines a data center as a facility, or portion of one, used primarily for the remote storage, processing and distribution of data and capable of using 10 megawatts or more. A pending bill, 26-0217, would lower the threshold to 5 megawatts."
 citation: "Baltimore City Ordinance 26-128 (Bill 26-0158); Bill 26-0217"
 sourceType: G
 order: 2
 ---
 
-**Status:** In effect (Ordinance 26-128, signed 16 June 2026; effective 30 days after enactment, for one year) · **Pending:** Bill 26-0217, 5 MW threshold, in the Land Use and Transportation Committee · **Checked:** 8 October 2026
+**Status:** In effect (Ordinance 26-128, signed 16 June 2026; effective 16 July 2026, with a one-year duration) · **Pending:** Bill 26-0217, 5 MW threshold, in the Land Use and Transportation Committee · **Checked:** 8 October 2026
 
 > **For an existing enterprise facility.** The prohibition reaches a "facility or portion of a
 > facility" capable of using 10 MW or more. Bill 26-0217 would bring that down to 5 MW, which is within
@@ -23,10 +23,10 @@ order: 2
 Ordinance 26-128 adds "data centers" to the list of uses prohibited in all zoning districts of the City,
 alongside crude oil terminals and incinerators. It also excludes data centers from the "office",
 "research and development facility" and "telecommunications facility" uses, so a data center cannot
-be approved under those labels. The prohibition is temporary: as amended in committee, the ordinance
-"takes effect 30 days after it is enacted" and remains in effect "for a period of 1 year following the
-effective date," after which it lapses without further Council action. With enactment on 16 June 2026,
-that runs to about mid-July 2027. It also directs the Department of Planning to study data centers' effects on energy
+be approved under those labels. The prohibition is temporary. Under committee Amendment No. 5 the
+ordinance "takes effect 30 days after it is enacted," which with enactment on 16 June 2026 is 16 July 2026;
+under Amendment No. 4 it remains in effect "for a period of 1 year following the effective date," after
+which it lapses without further Council action. It also directs the Department of Planning to study data centers' effects on energy
 infrastructure and ratepayers, water use, diesel backup generator air quality and noise, and to recommend
 a definition and conditional-use standards within nine months.
 
