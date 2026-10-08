@@ -1,6 +1,7 @@
 import { defineCollection, z } from 'astro:content';
 import { regStatusNames } from '../lib/reg-status';
 import { briefTopicNames } from '../lib/brief-topics';
+import { standardStatusNames } from '../lib/standard-status';
 
 const articles = defineCollection({
   type: 'content',
@@ -128,4 +129,30 @@ const briefs = defineCollection({
   }),
 });
 
-export const collections = { articles, pages, procurement, regulation, power, watching, changes, briefs };
+// Standards & Guidance: codes, standards and technical guidance that could affect an enterprise facility.
+// Each entry says what decision it could affect, where it stands, and what to check.
+//   body      the standards body (NFPA, ASHRAE, IEEE, TIA, BICSI...)
+//   document  the document and edition, e.g. "NFPA 110 (2025 edition)"
+//   decision  the facility decision it could affect, in plain words
+//   check     what the reader should confirm, and with whom
+//   keyDate / keyDateLabel  the next date that matters (comment deadline, next draft)
+//   order     position on the list and the homepage card (1 first)
+const standards = defineCollection({
+  type: 'content',
+  schema: z.object({
+    headline: z.string(),
+    body: z.string(),
+    document: z.string(),
+    status: z.enum(standardStatusNames),
+    decision: z.string(),
+    check: z.string(),
+    keyDate: z.coerce.date().optional(),
+    keyDateLabel: z.string().optional(),
+    source: z.string().url(),
+    sourceLabel: z.string(),
+    checked: z.coerce.date(),
+    order: z.number(),
+  }),
+});
+
+export const collections = { articles, pages, procurement, regulation, power, watching, changes, briefs, standards };

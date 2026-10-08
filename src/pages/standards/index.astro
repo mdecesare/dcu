@@ -1,0 +1,62 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+import { standardStatusClass } from '../../lib/standard-status';
+import { formatDate } from '../../lib/dates';
+import { smartQuotes } from '../../lib/typography';
+
+const entries = await Promise.all(
+  (await getCollection('standards')).sort((a, b) => a.data.order - b.data.order)
+    .map(async (e) => ({ e, Content: (await e.render()).Content })),
+);
+---
+<Base title="Standards & Guidance" description="Codes, standards and technical guidance that could affect an enterprise data center: what changed, where it stands, and what to check.">
+  <section class="page-head">
+    <div class="wrap">
+      <h1>Standards &amp; Guidance</h1>
+      <p class="lede">Codes, standards and technical guidance that could affect an enterprise facility: what decision each one touches, where it stands, and what to check.</p>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="panel panel-reading">
+      {entries.map(({ e, Content }) => (
+        <article class="sg" id={e.slug}>
+          <div class="sg-top">
+            <span class="sg-body">{e.data.body}</span>
+            <span class={`sg-st ${standardStatusClass(e.data.status)}`}>{e.data.status}</span>
+          </div>
+          <h2 class="sg-h">{smartQuotes(e.data.headline)}</h2>
+          <p class="sg-doc">{e.data.document}{e.data.keyDate && <> · <b>{e.data.keyDateLabel}: {formatDate(e.data.keyDate)}</b></>}</p>
+          <dl class="sg-dl">
+            <div><dt>Could affect</dt><dd>{smartQuotes(e.data.decision)}</dd></div>
+            <div><dt>What to check</dt><dd>{smartQuotes(e.data.check)}</dd></div>
+          </dl>
+          <div class="prose sg-more"><Content /></div>
+          <p class="sg-src">Source: <a href={e.data.source}>{e.data.sourceLabel}</a> · checked {formatDate(e.data.checked)}</p>
+        </article>
+      ))}
+      <p class="sg-note">Standards bodies publish editions on their own cycles; whether an edition applies to your project depends on what your state, local authority, insurer or contract adopts. We report the status at the standards body and say what to confirm.</p>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .sg { padding: 18px 0; border-bottom: 1px solid var(--line-2); }
+  .sg:first-child { padding-top: 0; }
+  .sg-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 6px; }
+  .sg-body { font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); }
+  .sg-st { font-size: 12px; font-weight: 600; white-space: nowrap; border-width: 1px; border-style: solid; padding: 2px 9px; border-radius: 20px; }
+  .sg-h { font-size: 18px; line-height: 1.35; font-weight: 600; color: var(--blue-dk); margin-bottom: 4px; scroll-margin-top: 16px; }
+  .sg-doc { font-size: 13px; color: var(--ink-2); }
+  .sg-doc b { color: var(--ink); font-weight: 600; }
+  .sg-dl { display: grid; gap: 8px; margin: 12px 0; }
+  .sg-dl div { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2px; background: var(--page); border: 1px solid var(--line); border-radius: 6px; padding: 9px 12px; }
+  .sg-dl dt { font-size: 11.5px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); }
+  .sg-dl dd { font-size: 14.5px; color: var(--ink); }
+  .sg-more { font-size: 15px; }
+  .sg-src { font-size: 13px; color: var(--ink-2); margin-top: 8px; }
+  .sg-src a { color: var(--blue); text-decoration: underline; }
+  .sg-note { font-size: 13.5px; color: var(--ink-2); margin-top: 16px; }
+  @media (min-width: 700px) { .sg-dl div { grid-template-columns: 130px minmax(0, 1fr); align-items: baseline; } }
+</style>
