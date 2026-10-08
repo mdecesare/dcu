@@ -1,17 +1,17 @@
 ---
-title: "Columbus: city utility ordered to propose new charges for large water, sewer and power users, including data centers"
-headline: "Columbus orders its utility to propose new charges for large users, data centers included"
+title: "Columbus: city utility ordered to propose new charges for large water and sewer users, including data centers"
+headline: "Columbus orders its utility to propose new charges for large water users, data centers included"
 jurisdiction: "Columbus, Ohio"
 jurisdictionType: local
 state: "Ohio"
 status: "Enacted"
-summary: "Ordinance 2560-2026, passed 28 September and signed 1 October 2026, directs Columbus Water and Power to propose by 26 October 2026 a new rate structure or class for 'large load/high-volume peak users' of its water, sewer and power services. The definition is deliberately broad and names data centers and colocation facilities. The ordinance sets no rates itself."
+summary: "Ordinance 2560-2026, approved 28 September and signed 1 October 2026, directs Columbus Water and Power to propose by 26 October 2026 a new rate structure or class for 'large load/high-volume peak users'. The definition covers water, sewer and power demand and names data centers and colocation facilities, but the detailed requirements concern water costs. The ordinance sets no rates itself."
 citation: "City of Columbus Ordinance 2560-2026"
 sourceType: G
-order: 7
+order: 3
 ---
 
-**Status:** Enacted, signed 1 October 2026 · **Proposal due:** 26 October 2026 · **Checked:** 8 October 2026
+**Status:** Enacted, signed 1 October 2026; in force "from and after the earliest period allowed by law" · **Proposal due:** 26 October 2026 · **Checked:** 8 October 2026
 
 > **For an existing enterprise facility.** This applies to customers of the City's own utility,
 > Columbus Water and Power, not to every Central Ohio site. No thresholds or rates exist yet; the
@@ -24,7 +24,9 @@ recommend a new rate structure or classification so that "large load/high-volume
 reflecting both their use and the infrastructure built to serve them. The ordinance says it does not
 itself rewrite the rate structure.
 
-The proposal must consider tiered volumetric charges, a monthly capacity or demand charge, a minimum
+Its detailed requirements are about water: the new structure must recover the cost of water service and
+of water infrastructure built for these users, and account for the variability of data center water
+demand. The proposal must consider tiered volumetric charges, a monthly capacity or demand charge, a minimum
 bill or minimum-take obligation, a connection or infrastructure charge, and seasonal or time-of-use
 pricing. It must also state the criteria that define the class and the number of customers likely
 affected.
@@ -38,7 +40,7 @@ chip fabrication, breweries and beverage or food manufacturers, and agricultural
 
 ## If your facility is a Columbus Water and Power customer, check
 
-1. Which of your services (water, sewer, power) come from the City utility.
+1. Which of your services come from the City utility. Water and sewer are the focus of the ordinance.
 2. Your peak-day and monthly demand, against the class criteria when the proposal is published.
 3. Whether a capacity charge, minimum take or connection charge would apply to existing service, or
    only to new or expanded connections.
