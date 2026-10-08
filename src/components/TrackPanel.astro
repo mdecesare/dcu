@@ -1,0 +1,156 @@
+---
+// Hero panel: "What we're watching for your facility".
+// Three coverage tiles (what DCU tracks, with the date each set of data last changed), then
+// "Check your state": the visitor picks a state and sees its electricity prices and any tracked
+// regulatory development there. Every number is read from the site's own data; nothing is typed in.
+import { getCollection } from 'astro:content';
+import { getEditions } from '../lib/procurement';
+import { getRegulationItems } from '../lib/regulation';
+import { parsePulseSections } from '../lib/pulse-sections';
+import { eiaPrices } from '../lib/power';
+import { regStatusClass } from '../lib/reg-status';
+import { smartQuotes } from '../lib/typography';
+import { siteSettings } from '../site-settings';
+
+const [latest] = await getEditions();
+const classCount = parsePulseSections(latest.body).filter((s) => s.rows.length > 0).length;
+const observations = Number(latest.data.standfirst.match(/(\d+)\s+published observations/)?.[1]);
+const regItems = await getRegulationItems();
+const changes = await getCollection('changes');
+const lastChange = (section: string) => {
+  const dates = changes.filter((c) => c.data.section === section).map((c) => c.data.date.getTime());
+  return dates.length ? new Date(Math.max(...dates)).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' }) : null;
+};
+const { source, states, us } = eiaPrices;
+
+// What the state picker needs, in the page as data; the browser only looks things up.
+const stateData = states.map((s) => ({
+  code: s.code, name: s.name,
+  c: [s.commercial.current, s.commercial.change_pct, s.commercial.rank_label],
+  i: [s.industrial.current, s.industrial.change_pct, s.industrial.rank_label],
+}));
+const regData = regItems.map((r) => ({
+  where: r.data.jurisdiction, headline: smartQuotes(r.data.headline), status: r.data.status,
+  cls: regStatusClass(r.data.status), href: `/regulation/${r.slug}`,
+}));
+const payload = JSON.stringify({ states: stateData, regs: regData,
+  us: { c: [us.commercial.current, us.commercial.change_pct], i: [us.industrial.current, us.industrial.change_pct] },
+  period: `${source.current_label} vs ${source.prior_label}` }).replace(/</g, '\\u003c');
+---
+<section class="tp" aria-labelledby="tp-title">
+  <div class="tp-h">
+    <h2 id="tp-title">What we're watching for your facility</h2>
+    <p>{siteSettings.sourcePagesChecked} source pages checked for changes every weekday</p>
+  </div>
+
+  <div class="tp-tiles">
+    <a class="tp-tile" href="/procurement">
+      <span class="tp-n">{observations}</span>
+      <span class="tp-l">lead-time observations across {classCount} equipment classes</span>
+      <span class="tp-d">Data updated {lastChange('procurement')}</span>
+    </a>
+    <a class="tp-tile" href="/power">
+      <span class="tp-n">50<small> + DC</small></span>
+      <span class="tp-l">states with commercial and industrial electricity prices</span>
+      <span class="tp-d">EIA data through {source.data_month}</span>
+    </a>
+    <a class="tp-tile" href="/regulation">
+      <span class="tp-n">{regItems.length}</span>
+      <span class="tp-l">regulatory developments tracked, with status</span>
+      <span class="tp-d">Data updated {lastChange('regulation')}</span>
+    </a>
+  </div>
+
+  <div class="tp-check">
+    <label for="tp-state">Check your state</label>
+    <select id="tp-state">
+      <option value="">Choose a state…</option>
+      {states.map((s) => <option value={s.code}>{s.name}</option>)}
+    </select>
+    <div class="tp-out" id="tp-out" aria-live="polite">
+      <p class="tp-hint">Electricity prices for your state, how they moved in a year, and anything we track there.</p>
+    </div>
+  </div>
+  <script type="application/json" id="tp-data" set:html={payload} />
+</section>
+
+<script>
+  const data = JSON.parse(document.getElementById('tp-data')!.textContent || '{}');
+  const select = document.getElementById('tp-state') as HTMLSelectElement;
+  const out = document.getElementById('tp-out')!;
+  const sign = (p: number) => (p > 0 ? '+' : p < 0 ? '−' : '') + Math.abs(p).toFixed(1) + '%';
+  const esc = (s: string) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]!);
+
+  function show(code: string) {
+    const s = data.states.find((x: { code: string }) => x.code === code);
+    if (!s) {
+      out.innerHTML = '<p class="tp-hint">Electricity prices for your state, how they moved in a year, and anything we track there.</p>';
+      return;
+    }
+    const row = (label: string, v: [number, number, string], u: [number, number]) =>
+      `<div class="tp-row"><span class="tp-k">${label}</span><span class="tp-v">${v[0].toFixed(2)}¢<small>/kWh</small></span>` +
+      `<span class="tp-c ${v[1] > 0 ? 'up' : 'down'}">${sign(v[1])}</span>` +
+      `<span class="tp-r">${esc(v[2])} · U.S. ${sign(u[1])}</span></div>`;
+    const local = data.regs.filter((r: { where: string }) => r.where === s.name);
+    const federal = data.regs.filter((r: { where: string }) => r.where === 'Federal');
+    const regLine = (r: { href: string; headline: string; status: string; cls: string; where: string }) =>
+      `<a class="tp-reg" href="${r.href}"><span class="tp-pill ${r.cls}">${esc(r.status)}</span>${esc(r.where)}: ${esc(r.headline)}</a>`;
+    out.innerHTML =
+      `<p class="tp-sub">${esc(s.name)} · average price, ${esc(data.period)} (EIA, preliminary)</p>` +
+      row('Commercial', s.c, data.us.c) + row('Industrial', s.i, data.us.i) +
+      `<p class="tp-sub tp-sub2">${local.length ? 'Tracked in ' + esc(s.name) : 'Nothing state-specific tracked yet · federal'}</p>` +
+      (local.length ? local : federal).map(regLine).join('') +
+      `<p class="tp-note">State averages, not your tariff. <a href="/power">Every state on the Power page →</a></p>`;
+  }
+
+  select.addEventListener('change', () => {
+    show(select.value);
+    try { localStorage.setItem('dcu-state', select.value); } catch { /* private window: no memory, still works */ }
+  });
+  const fromHash = location.hash.match(/state=([A-Z]{2})/)?.[1];
+  let saved = '';
+  try { saved = localStorage.getItem('dcu-state') || ''; } catch { /* ignore */ }
+  const start = fromHash || saved;
+  if (start) { select.value = start; show(start); }
+</script>
+
+<style>
+  .tp { background: rgba(255, 255, 255, .055); border: 1px solid rgba(255, 255, 255, .13); border-radius: 10px; padding: 18px; color: #fff; }
+  .tp-h h2 { font-size: 12.5px; letter-spacing: .09em; text-transform: uppercase; color: #8fb6de; font-weight: 600; }
+  .tp-h p { font-size: 12.5px; color: #bfd2e5; margin-top: 3px; }
+  .tp-tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 14px; }
+  .tp-tile { display: flex; flex-direction: column; gap: 4px; background: rgba(255, 255, 255, .06); border: 1px solid rgba(255, 255, 255, .12); border-radius: 8px; padding: 12px; color: #fff; }
+  .tp-tile:hover { background: rgba(255, 255, 255, .1); }
+  .tp-n { font-size: 30px; font-weight: 600; line-height: 1; letter-spacing: -.5px; }
+  .tp-n small { font-size: 15px; font-weight: 600; color: #bfd2e5; }
+  .tp-l { font-size: 12.5px; line-height: 1.35; color: #dbe7f3; }
+  .tp-d { font-size: 11.5px; color: #8fb6de; margin-top: auto; padding-top: 4px; }
+  .tp-check { margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(255, 255, 255, .13); }
+  .tp-check label { display: block; font-size: 15px; font-weight: 600; margin-bottom: 7px; }
+  .tp-check select { width: 100%; font: inherit; font-size: 15px; padding: 9px 11px; border-radius: 6px; border: 1px solid #3d5c7c; background: #fff; color: var(--ink); }
+  .tp-out { margin-top: 10px; min-height: 40px; }
+  .tp-out :global(.tp-hint) { font-size: 13px; color: #bfd2e5; }
+  .tp-out :global(.tp-sub) { font-size: 12px; color: #8fb6de; margin-bottom: 6px; }
+  .tp-out :global(.tp-sub2) { margin-top: 10px; }
+  .tp-out :global(.tp-row) { display: grid; grid-template-columns: 82px auto auto 1fr; align-items: baseline; column-gap: 10px; padding: 6px 0; border-bottom: 1px solid rgba(255, 255, 255, .08); }
+  .tp-out :global(.tp-k) { font-size: 13px; color: #dbe7f3; }
+  .tp-out :global(.tp-v) { font-size: 18px; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .tp-out :global(.tp-v small) { font-size: 11.5px; font-weight: 400; color: #bfd2e5; }
+  .tp-out :global(.tp-c) { font-size: 14px; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .tp-out :global(.tp-c.up) { color: #ffb38a; }
+  .tp-out :global(.tp-c.down) { color: #8fe0b0; }
+  .tp-out :global(.tp-r) { font-size: 11.5px; color: #8fb6de; text-align: right; }
+  .tp-out :global(.tp-reg) { display: flex; gap: 8px; align-items: baseline; font-size: 13px; color: #fff; padding: 4px 0; line-height: 1.4; }
+  .tp-out :global(.tp-reg:hover) { text-decoration: underline; }
+  .tp-out :global(.tp-pill) { flex: none; font-size: 11px; font-weight: 600; padding: 1px 8px; border-radius: 20px; border: 1px solid; }
+  .tp-out :global(.tp-note) { font-size: 12px; color: #bfd2e5; margin-top: 8px; }
+  .tp-out :global(.tp-note a) { color: #8fc7f5; }
+  @media (max-width: 520px) {
+    .tp-tiles { grid-template-columns: minmax(0, 1fr); }
+    .tp-tile { flex-direction: row; flex-wrap: wrap; align-items: baseline; column-gap: 10px; }
+    .tp-l { flex: 1 1 60%; }
+    .tp-d { width: 100%; padding-top: 0; }
+    .tp-out :global(.tp-row) { grid-template-columns: 76px auto auto; }
+    .tp-out :global(.tp-r) { grid-column: 1 / -1; text-align: left; }
+  }
+</style>
