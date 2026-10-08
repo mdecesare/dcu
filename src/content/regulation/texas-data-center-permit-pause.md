@@ -7,7 +7,7 @@ status: "Directed"
 summary: "On 21 September 2026 the governor directed TCEQ to pause the issuance of all permits related to data center projects until ERCOT completes its review. The directive sets no size threshold and does not define a data center project. TCEQ has not said publicly whether the pause reaches air or water authorizations for infrastructure supporting an existing facility's expansion of a few megawatts, or whether applications can still be filed and processed."
 citation: "Governor's letter to TCEQ, 21 September 2026"
 sourceType: G
-order: 1
+order: 4
 ---
 
 **Status:** Directed, 21 September 2026 · **TCEQ update to the governor due:** 19 October 2026 · **Checked:** 25 September 2026

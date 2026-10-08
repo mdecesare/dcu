@@ -1,0 +1,71 @@
+---
+// Hero panel: "What we're watching for your facility". Three compact coverage figures, each with
+// the date its data last changed. Every number is read from the site's own data; nothing is typed in.
+// The "Check your state" lookup sits below the hero (StateCheck.astro).
+import { getCollection } from 'astro:content';
+import { getEditions } from '../lib/procurement';
+import { getRegulationItems } from '../lib/regulation';
+import { parsePulseSections } from '../lib/pulse-sections';
+import { eiaPrices } from '../lib/power';
+import { siteSettings } from '../site-settings';
+
+const [latest] = await getEditions();
+const classCount = parsePulseSections(latest.body).filter((s) => s.rows.length > 0).length;
+const observations = Number(latest.data.standfirst.match(/(\d+)\s+published observations/)?.[1]);
+// The levels Regulatory Watch covers. "Local" appears only once a verified local item is published.
+const regLevels = new Set((await getRegulationItems()).map((r) => r.data.jurisdictionType));
+const levels = ['federal', 'state', 'local'].filter((l) => regLevels.has(l as never));
+const levelText = levels.map((l, i) => (i === 0 ? l[0].toUpperCase() + l.slice(1) : l)).join(', ').replace(/, ([^,]*)$/, ' & $1');
+const changes = await getCollection('changes');
+const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+const short = (d: Date) => `${d.getUTCDate()} ${MONTHS[d.getUTCMonth()]} ${d.getUTCFullYear()}`;
+const lastChange = (section: string) => {
+  const dates = changes.filter((c) => c.data.section === section).map((c) => c.data.date.getTime());
+  return dates.length ? short(new Date(Math.max(...dates))) : null;
+};
+const stateCount = eiaPrices.states.filter((s) => s.code !== 'DC').length;
+---
+<section class="tp" aria-labelledby="tp-title">
+  <h2 id="tp-title">What we're watching for your facility</h2>
+  <p class="tp-sub">{siteSettings.sourcePagesChecked} source pages checked for changes every weekday</p>
+  <div class="tp-tiles">
+    <a class="tp-tile" href="/procurement">
+      <span class="tp-n">{observations}</span>
+      <span class="tp-l">published lead-time observations, {classCount} equipment classes</span>
+      <span class="tp-d">Updated {lastChange('procurement')}</span>
+    </a>
+    <a class="tp-tile" href="/power">
+      <span class="tp-n">{stateCount}<small> + DC</small></span>
+      <span class="tp-l">states' business electricity prices</span>
+      <span class="tp-d">EIA data through {eiaPrices.source.data_month}</span>
+    </a>
+    <a class="tp-tile" href="/regulation">
+      <span class="tp-n tp-n-sm">{levelText}</span>
+      <span class="tp-l">Rules and decisions that could affect your facility</span>
+      <span class="tp-d">Updated {lastChange('regulation')}</span>
+    </a>
+  </div>
+  <a class="tp-go" href="#check-state">Check your state &darr;</a>
+</section>
+
+<style>
+  .tp { background: rgba(255, 255, 255, .055); border: 1px solid rgba(255, 255, 255, .13); border-radius: 10px; padding: 18px 18px 14px; color: #fff; }
+  .tp h2 { font-size: 12.5px; letter-spacing: .09em; text-transform: uppercase; color: #8fb6de; font-weight: 600; }
+  .tp-sub { font-size: 12.5px; color: #bfd2e5; margin-top: 3px; }
+  .tp-tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 14px; }
+  .tp-tile { display: flex; flex-direction: column; gap: 4px; background: rgba(255, 255, 255, .06); border: 1px solid rgba(255, 255, 255, .12); border-radius: 8px; padding: 12px; color: #fff; }
+  .tp-tile:hover { background: rgba(255, 255, 255, .1); }
+  .tp-n { font-size: 30px; font-weight: 600; line-height: 1; letter-spacing: -.5px; }
+  .tp-n small { font-size: 15px; color: #bfd2e5; }
+  .tp-n-sm { font-size: 22px; line-height: 1.15; }
+  .tp-l { font-size: 12.5px; line-height: 1.35; color: #dbe7f3; }
+  .tp-d { font-size: 11.5px; color: #8fb6de; margin-top: auto; padding-top: 4px; }
+  .tp-go { display: inline-block; margin-top: 12px; font-size: 13.5px; font-weight: 600; color: #8fc7f5; }
+  .tp-go:hover { text-decoration: underline; }
+  @media (max-width: 520px) {
+    .tp-tiles { grid-template-columns: minmax(0, 1fr); }
+    .tp-tile { flex-direction: row; flex-wrap: wrap; align-items: baseline; column-gap: 10px; }
+    .tp-l { flex: 1 1 60%; }
+    .tp-d { width: 100%; padding-top: 0; }
+  }
+</style>

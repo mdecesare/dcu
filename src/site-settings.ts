@@ -55,6 +55,14 @@ export const siteSettings = {
   // correction simply drops out and the others stay visible.
   featuredBriefsLaunched: true,
 
+  // How many Regulatory Watch items the homepage card shows, in list order (`order` in each item).
+  // The full list is on /regulation, and every item reaches "Check your state".
+  homepageRegulationItems: 4,
+
+  // Hero panel line: how many source pages the private 9 a.m. weekday job checks for changes.
+  // Match it to the watcher's count (python -m watch reports "N sources checked").
+  sourcePagesChecked: 22,
+
   // Shape of the card picture, width / height. 1 / 1 is square; 4 / 3, 3 / 2 and 2 / 1 are
   // a quarter, a third and a half shorter. Card images are cropped to fit, centred.
   briefCardImageRatio: '3 / 2',

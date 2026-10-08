@@ -52,7 +52,9 @@ const regulation = defineCollection({
     title: z.string(),
     headline: z.string(),
     jurisdiction: z.string(),
-    jurisdictionType: z.enum(['state', 'federal']),
+    jurisdictionType: z.enum(['state', 'federal', 'local']),
+    // Local items name their state, so "Check your state" can show them (e.g. Columbus under Ohio).
+    state: z.string().optional(),
     status: z.enum(regStatusNames),
     summary: z.string(),
     citation: z.string(),

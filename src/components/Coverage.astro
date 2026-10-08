@@ -1,0 +1,37 @@
+---
+// "Where we watch" on Regulatory Watch: the levels covered and the places followed, with their limits.
+// Local places come from src/data/local-coverage.json (confirmed places only), generated from the private
+// collector's configuration. Nothing here claims nationwide coverage.
+import coverage from '../data/local-coverage.json';
+
+const byState = new Map<string, string[]>();
+for (const p of coverage.places) byState.set(p.state, [...(byState.get(p.state) ?? []), p.name]);
+const since = new Date(`${coverage.since}T00:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+---
+<section class="cov" id="where-we-watch" aria-labelledby="cov-title">
+  <h2 id="cov-title">Where we watch</h2>
+  <ul class="cov-levels">
+    <li><b>Federal.</b> Every document published in the Federal Register is screened each weekday for actions that could affect data center facilities.</li>
+    <li><b>State.</b> The statutes, agencies and grid operators behind the state items above are checked for changes each weekday.</li>
+    <li><b>Local.</b> The {coverage.places.length} cities and counties below are connected, and each one's identity is confirmed by an official government link. Their published council and planning agendas are screened each weekday, including the text of ordinances on zoning, utilities and moratoria. Collection began {since} and is still establishing a reliable track record for each place.</li>
+  </ul>
+  <p class="cov-limit">This is not every place in the country. We add cities and counties in batches as we confirm their official agenda systems. A screened agenda item is a lead: we read the original before publishing it here.</p>
+  <dl class="cov-places">
+    {[...byState].map(([state, names]) => (
+      <div><dt>{state}</dt><dd>{names.join(' · ')}</dd></div>
+    ))}
+  </dl>
+</section>
+
+<style>
+  .cov { margin-top: 26px; }
+  .cov h2 { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+  .cov-levels { list-style: none; display: grid; gap: 6px; font-size: 14.5px; color: var(--ink); }
+  .cov-levels b { font-weight: 600; }
+  .cov-limit { font-size: 13.5px; color: var(--ink-2); margin: 10px 0 12px; }
+  .cov-places { display: grid; grid-template-columns: minmax(0, 1fr); gap: 4px 18px; font-size: 13.5px; }
+  .cov-places div { display: flex; gap: 8px; padding: 4px 0; border-top: 1px solid var(--line-2); }
+  .cov-places dt { flex: none; width: 34px; font-weight: 600; color: var(--ink-2); }
+  .cov-places dd { color: var(--ink); }
+  @media (min-width: 900px) { .cov-places { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+</style>

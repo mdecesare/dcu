@@ -2,7 +2,8 @@
 import Base from '../layouts/Base.astro';
 import SourceMark from '../components/SourceMark.astro';
 import BriefItem from '../components/BriefItem.astro';
-import WeekStrip from '../components/WeekStrip.astro';
+import TrackPanel from '../components/TrackPanel.astro';
+import StateCheck from '../components/StateCheck.astro';
 import { getCollection } from 'astro:content';
 import { siteSettings } from '../site-settings';
 import { getEditions } from '../lib/procurement';
@@ -97,13 +98,14 @@ const arrowIcon = '<path d="M5 12h14M13 6l6 6-6 6"/>';
           <a class="btn btn-ghost" href="/methodology">How we source this</a>
         </div>
       </div>
-      <WeekStrip variant="hero" />
+      <TrackPanel />
     </div>
   </section>
 
   <!-- Front door: a few sourced figures, the current developments, and the way through to both -->
   <section class="band" id="latest">
     <div class="wrap">
+      <StateCheck />
       <div class="front">
 
         <article class="fc">
@@ -148,7 +150,7 @@ const arrowIcon = '<path d="M5 12h14M13 6l6 6-6 6"/>';
           </div>
 
           <ul class="regs">
-            {regItems.map((item) => (
+            {regItems.slice(0, siteSettings.homepageRegulationItems).map((item) => (
               <li>
                 <div class="reg-l">
                   <span class="reg-j">{item.data.jurisdiction}</span>
