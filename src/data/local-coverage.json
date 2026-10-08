@@ -1,0 +1,186 @@
+{
+ "since": "2026-10-08",
+ "note": "Confirmed places only; generated from dcu-intelligence localwatch/sources.toml",
+ "places": [
+  {
+   "name": "Goodyear",
+   "state": "AZ"
+  },
+  {
+   "name": "Maricopa",
+   "state": "AZ"
+  },
+  {
+   "name": "Mesa",
+   "state": "AZ"
+  },
+  {
+   "name": "Phoenix",
+   "state": "AZ"
+  },
+  {
+   "name": "Fresno",
+   "state": "CA"
+  },
+  {
+   "name": "Oakland",
+   "state": "CA"
+  },
+  {
+   "name": "Sacramento",
+   "state": "CA"
+  },
+  {
+   "name": "San Jose",
+   "state": "CA"
+  },
+  {
+   "name": "Santa Clara",
+   "state": "CA"
+  },
+  {
+   "name": "Denver",
+   "state": "CO"
+  },
+  {
+   "name": "Douglas County",
+   "state": "CO"
+  },
+  {
+   "name": "Miami",
+   "state": "FL"
+  },
+  {
+   "name": "Atlanta",
+   "state": "GA"
+  },
+  {
+   "name": "DeKalb County",
+   "state": "GA"
+  },
+  {
+   "name": "Fulton County",
+   "state": "GA"
+  },
+  {
+   "name": "DuPage County",
+   "state": "IL"
+  },
+  {
+   "name": "Naperville",
+   "state": "IL"
+  },
+  {
+   "name": "Louisville",
+   "state": "KY"
+  },
+  {
+   "name": "Boston",
+   "state": "MA"
+  },
+  {
+   "name": "Baltimore",
+   "state": "MD"
+  },
+  {
+   "name": "Montgomery County",
+   "state": "MD"
+  },
+  {
+   "name": "Detroit",
+   "state": "MI"
+  },
+  {
+   "name": "Minneapolis",
+   "state": "MN"
+  },
+  {
+   "name": "Saint Paul",
+   "state": "MN"
+  },
+  {
+   "name": "Kansas City",
+   "state": "MO"
+  },
+  {
+   "name": "Charlotte",
+   "state": "NC"
+  },
+  {
+   "name": "Mecklenburg County",
+   "state": "NC"
+  },
+  {
+   "name": "Newark",
+   "state": "NJ"
+  },
+  {
+   "name": "Clark County",
+   "state": "NV"
+  },
+  {
+   "name": "Cincinnati",
+   "state": "OH"
+  },
+  {
+   "name": "Columbus",
+   "state": "OH"
+  },
+  {
+   "name": "Toledo",
+   "state": "OH"
+  },
+  {
+   "name": "Pittsburgh",
+   "state": "PA"
+  },
+  {
+   "name": "Nashville",
+   "state": "TN"
+  },
+  {
+   "name": "Harris County",
+   "state": "TX"
+  },
+  {
+   "name": "Plano",
+   "state": "TX"
+  },
+  {
+   "name": "Round Rock",
+   "state": "TX"
+  },
+  {
+   "name": "San Antonio",
+   "state": "TX"
+  },
+  {
+   "name": "Alexandria",
+   "state": "VA"
+  },
+  {
+   "name": "Loudoun County",
+   "state": "VA"
+  },
+  {
+   "name": "Norfolk",
+   "state": "VA"
+  },
+  {
+   "name": "Richmond",
+   "state": "VA"
+  },
+  {
+   "name": "King County",
+   "state": "WA"
+  },
+  {
+   "name": "Seattle",
+   "state": "WA"
+  },
+  {
+   "name": "Milwaukee",
+   "state": "WI"
+  }
+ ]
+}

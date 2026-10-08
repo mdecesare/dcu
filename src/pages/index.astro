@@ -151,7 +151,7 @@ const arrowIcon = '<path d="M5 12h14M13 6l6 6-6 6"/>';
           </div>
 
           <ul class="regs">
-            {regItems.map((item) => (
+            {regItems.slice(0, siteSettings.homepageRegulationItems).map((item) => (
               <li>
                 <div class="reg-l">
                   <span class="reg-j">{item.data.jurisdiction}</span>
