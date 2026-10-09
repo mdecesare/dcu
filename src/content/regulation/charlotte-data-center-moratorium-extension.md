@@ -1,6 +1,6 @@
 ---
-title: "Charlotte: hearing on extending the pause on new data center applications"
-headline: "Planning a data center in Charlotte? The city may extend its pause on new applications"
+title: "Charlotte may extend its pause on new data center applications"
+headline: "Charlotte may extend its pause on new data center applications"
 jurisdiction: "Charlotte, North Carolina"
 jurisdictionType: local
 state: "North Carolina"
@@ -11,11 +11,10 @@ sourceType: G
 order: 2
 ---
 
-**Status:** In effect · public hearing on an extension, **12 October 2026** (6:30 p.m. session) · **Next:** Council vote on the extension, 26 October 2026 · **Checked:** 9 October 2026
+**Status:** Current pause in effect · Extension proposed · public hearing, **12 October 2026** (6:30 p.m. session) · **Next:** Council vote on the extension, 26 October 2026 · **Checked:** 9 October 2026
 
 > **If you are planning a data center in Charlotte.** A new application of any size cannot be
-> accepted or approved while the pause lasts, and the city is moving to extend it beyond
-> 5 November. The agenda does not say how long the extension would be, or whether adding to an
+> accepted or approved while the pause lasts, and the city is considering an extension. The agenda does not say how long the extension would be, or whether adding to an
 > existing facility counts as a new application.
 
 ## What is happening
@@ -43,7 +42,7 @@ districts. Property and projects exempt under N.C.G.S. 160D-107(c) are not cover
 
 1. Whether your project is a new application or a change to an approved one, and whether it is exempt
    under N.C.G.S. 160D-107(c).
-2. How long the extension adopted on 26 October lasts.
+2. Whether Council approves an extension on 26 October, and how long it would last.
 3. What permanent standards the city proposes for capacity, monitoring and cooling.
 
 ## Primary source
