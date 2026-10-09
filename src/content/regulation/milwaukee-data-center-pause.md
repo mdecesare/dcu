@@ -8,7 +8,7 @@ status: "Proposed"
 summary: "A substitute ordinance would prohibit establishing new data centers or enlarging existing ones in Milwaukee for one year, or until the zoning code is amended to regulate them. It excludes a computer server room or a facility serving another principal use on the same premises, and does not apply in planned development districts; it would end early if zoning rules for data centers are adopted. Recommended for passage by the Zoning, Neighborhoods & Development Committee on 6 October 2026; the full Common Council has not yet voted."
 citation: "City of Milwaukee, File 251924 (substitute 2)"
 sourceType: G
-order: 1
+order: 4
 ---
 
 **Status:** Proposed · substituted and recommended for passage by the Zoning, Neighborhoods & Development Committee, 6 October 2026 · **Next:** Common Council vote · **Checked:** 8 October 2026
