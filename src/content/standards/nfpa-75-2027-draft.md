@@ -15,7 +15,8 @@ order: 2
 
 NFPA 75 covers protecting IT equipment and IT equipment areas from fire and its effects: smoke,
 corrosion, heat and water. The current edition is 2024. For the next edition, NFPA posted the First Draft
-Report on 18 September 2026; public comments on it close on 6 January 2027, and the Second Draft is due
-on 6 October 2027.
+Report on 18 September 2026; public comments on it close on 6 January 2027.
 
 We have not yet reviewed the draft's specific changes. This entry will be updated when we have.
+
+**Standards process:** the Second Draft is due 6 October 2027.

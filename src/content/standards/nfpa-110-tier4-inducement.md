@@ -1,5 +1,6 @@
 ---
-headline: "Tier 4 generators on life-safety emergency power: an NFPA 110 change is open for comment until 14 October"
+headline: "Could an emissions fault shut down your emergency generator? NFPA is considering a change"
+scope: "For Level 1 emergency power"
 body: "NFPA"
 document: "NFPA 110, Standard for Emergency and Standby Power Systems (2025 edition), proposed TIA No. 1950"
 status: "Open for comment"
@@ -19,12 +20,12 @@ certified engines with SCR shall be prohibited." It extends to the 2025 edition 
 to the 2022 edition; identical language has been accepted for the 2028 edition. It was submitted by
 Cummins.
 
+NFPA 110 reserves Level 1 for the most critical systems, where a failure could put lives at risk. Many
+data center backup systems are classified differently, so this matters most where a facility's generators
+also serve life-safety loads, or where a hospital, 911 center or similar operation shares the plant.
+
 **A related question in Virginia.** Virginia now requires data center generator permits to meet
 Tier 4-equivalent emission limits, and its definition of "Tier 4 equivalent" includes selective catalytic
 reduction (SCR) "or equivalent." That is an emissions requirement, not a Level 1 rule, and it does not
 by itself mean a site's engines are Tier 4 certified or subject to inducement shutdowns. Where both apply,
 owners should ask their generator supplier how emissions-control faults are handled on emergency loads.
-
-NFPA 110 reserves Level 1 for the most critical systems, where a failure could put lives at risk. Many
-data center backup systems are classified differently, so this matters most where a facility's generators
-also serve life-safety loads, or where a hospital, 911 center or similar operation shares the plant.

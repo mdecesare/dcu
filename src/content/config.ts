@@ -146,6 +146,8 @@ const standards = defineCollection({
     status: z.enum(standardStatusNames),
     decision: z.string(),
     check: z.string(),
+    // Short scope line shown under the headline, before the key date (e.g. "For Level 1 emergency power").
+    scope: z.string().optional(),
     keyDate: z.coerce.date().optional(),
     keyDateLabel: z.string().optional(),
     source: z.string().url(),
