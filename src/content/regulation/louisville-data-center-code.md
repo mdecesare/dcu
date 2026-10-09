@@ -1,5 +1,5 @@
 ---
-title: "Louisville: proposed data center rules, including generator limits for company server rooms"
+title: "Louisville may limit how company server rooms use and test backup generators"
 headline: "Louisville may limit how company server rooms use and test backup generators"
 jurisdiction: "Louisville Metro, Kentucky"
 jurisdictionType: local
@@ -13,12 +13,12 @@ order: 1
 
 **Status:** Proposed · recommended by the Planning Commission; held in the Metro Council's Planning and Zoning Committee, 6 October 2026 · **Next:** committee, listed for 20 October 2026 · **Checked:** 9 October 2026
 
-> **For a company server room or data hall in Louisville.** Your backup generators would be limited
-> in fuel or emissions tier, in when you can test them outdoors, and to emergency use only. As
-> written, the emergency-only rule does not appear to allow running generators for utility demand
-> response or peak shaving; that is our reading, so confirm it with Louisville Metro Planning. Server
-> space above 25,000 square feet, or above 49.9% of the building's main use, would bring the full
-> data center rules.
+> **Have a company server room in Louisville, or plans to expand one?** Proposed rules would restrict
+> backup generator types, outdoor testing schedules and non-emergency use. They could also bring larger
+> server rooms under Louisville Metro's full data center requirements.
+>
+> The emergency-only wording appears to exclude demand response and peak shaving. That is our
+> interpretation; confirm it with Louisville Metro Planning.
 
 ## What it would do for an accessory data center
 
@@ -42,9 +42,8 @@ The Planning Director may approve another generator type or testing time if neig
 adversely affected. A server room that does not meet these conditions is treated as a standalone data
 center.
 
-The noise limits, quarter-mile separations, closed-loop water and will-serve requirements below are
-**not** among these conditions; they apply to standalone data centers, and to a server room only if it
-fails the conditions above.
+The proposal's additional noise, separation, cooling-water and utility-letter requirements would not
+apply to qualifying accessory server rooms. Other existing requirements may still apply.
 
 ## What it would do for standalone data centers
 
