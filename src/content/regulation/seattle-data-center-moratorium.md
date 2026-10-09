@@ -1,11 +1,11 @@
 ---
-title: "Seattle: one-year pause on data centers over 20 MVA, and contract terms for big new data center loads"
-headline: "Seattle pauses large data centers for a year; existing sites can still add up to 20 MVA"
+title: "Seattle leaves room for existing data centers to expand, while tightening rules for larger projects"
+headline: "Seattle leaves room for existing data centers to expand, while tightening rules for larger projects"
 jurisdiction: "Seattle, Washington"
 jurisdictionType: local
 state: "Washington"
 status: "In effect"
-summary: "Two separate city actions. A zoning moratorium in effect since 11 June 2026 stops applications to build or expand data centers over 20 MVA, including those inside larger projects, for 365 days; a facility already operating may add up to 20 MVA. Separately, Seattle City Light will serve any new or expanded data center installation of 10 MVA or more installed after 1 January 2027 only under a contract that makes the customer pay upfront for grid upgrades and new power, with a 300% charge on demand above the contracted amount."
+summary: "Two separate city actions. A zoning moratorium in effect since 11 June 2026 stops applications to build or expand data centers over 20 megavolt-amperes (MVA), including those inside larger projects; it is scheduled to run 365 days unless ended sooner or extended. A facility operating when the pause began may apply to add up to 20 MVA. Separately, Seattle City Light requires special contracts, with upfront grid upgrade costs, for qualifying new or expanded data center loads of 10 MVA or more installed after 1 January 2027; whether it covers a company's own facility needs confirmation with the utility."
 citation: "City of Seattle, Ordinance 127447 (CB 121214) and Ordinance 127473 (CB 121231)"
 sourceType: G
 order: 3
@@ -13,11 +13,13 @@ order: 3
 
 **Status:** In effect · moratorium effective 11 June 2026 for 365 days; City Light rules enacted July 2026 · **Next:** Seattle Public Utilities water proposal due 30 October 2026; permanent zoning rules expected early 2027 · **Checked:** 9 October 2026
 
-> **If you operate or plan a data center in Seattle.** An existing facility can still apply to add
-> up to 20 MVA. A new facility over 20 MVA, or a larger expansion, waits at least until June 2027.
-> If you add 10 MVA or more of new service capacity after 1 January 2027, City Light would serve it
-> only by contract, with the grid upgrade costs paid upfront by you. Most enterprise server rooms are
-> below both thresholds.
+> **Planning a data center expansion in Seattle?** Facilities operating when the pause began have an
+> exception for adding up to 20 megavolt-amperes (MVA). Larger projects may face the zoning pause,
+> currently scheduled to run into June 2027 unless ended sooner or extended.
+>
+> A separate City Light rule introduces special contracts and upfront grid upgrade costs for qualifying
+> new loads of 10 MVA or more. Whether it covers your company's own facility needs confirmation with
+> the utility.
 
 ## 1. The zoning moratorium (Ordinance 127447)
 
