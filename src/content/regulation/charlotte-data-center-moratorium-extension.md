@@ -8,7 +8,7 @@ status: "In effect"
 summary: "Since 8 June 2026 Charlotte has not accepted, processed or approved applications for new telecommunications and data storage facilities, of any size, in the city and its extraterritorial jurisdiction. The pause ends no later than 5 November 2026. City Council holds a public hearing on extending it on 12 October 2026 and is scheduled to vote on 26 October."
 citation: "City of Charlotte, City Council agenda 12 October 2026, item 11 (15-26825)"
 sourceType: G
-order: 1
+order: 2
 ---
 
 **Status:** In effect · public hearing on an extension, **12 October 2026** (6:30 p.m. session) · **Next:** Council vote on the extension, 26 October 2026 · **Checked:** 9 October 2026
