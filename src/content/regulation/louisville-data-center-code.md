@@ -11,7 +11,7 @@ sourceType: G
 order: 1
 ---
 
-**Status:** Proposed · recommended by the Planning Commission; held in the Metro Council's Planning and Zoning Committee, 6 October 2026 · **Next:** committee, listed for 20 October 2026 · **Checked:** 9 October 2026
+**Status:** Proposed · recommended by the Planning Commission; held in the Metro Council's Planning and Zoning Committee, 6 October 2026 · **Next:** committee, listed for 20 October 2026 · **Checked:** 12 October 2026
 
 > **Have a company server room in Louisville, or plans to expand one?** Proposed rules would restrict
 > backup generator types, outdoor testing schedules and non-emergency use. They could also bring larger

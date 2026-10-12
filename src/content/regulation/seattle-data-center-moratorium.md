@@ -11,7 +11,7 @@ sourceType: G
 order: 3
 ---
 
-**Status:** In effect · moratorium effective 11 June 2026 for 365 days; City Light rules enacted July 2026 · **Next:** Seattle Public Utilities water proposal due 30 October 2026; permanent zoning rules expected early 2027 · **Checked:** 9 October 2026
+**Status:** In effect · moratorium effective 11 June 2026 for 365 days; City Light rules enacted July 2026 · **Next:** Seattle Public Utilities water proposal due 30 October 2026; permanent zoning rules expected early 2027 · **Checked:** 12 October 2026
 
 > **Planning a data center expansion in Seattle?** Facilities operating when the pause began have an
 > exception for adding up to 20 megavolt-amperes (MVA). Larger projects may face the zoning pause,
