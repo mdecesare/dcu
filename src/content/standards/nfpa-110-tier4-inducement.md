@@ -10,7 +10,7 @@ keyDate: 2026-10-14
 keyDateLabel: "Comments close"
 source: "https://docinfofiles.nfpa.org/files/AboutTheCodes/110/NFPA_110_Proposed_TIA_1950.pdf"
 sourceLabel: "NFPA 110 proposed TIA No. 1950 (PDF)"
-checked: 2026-10-08
+checked: 2026-10-12
 order: 1
 ---
 

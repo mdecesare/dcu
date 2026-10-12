@@ -63,6 +63,11 @@ export const siteSettings = {
   // Match it to the watcher's count (python -m watch reports "N sources checked").
   sourcePagesChecked: 22,
 
+  // Standards & Guidance: the bodies whose public standards-development pages DCU follows. List a body
+  // only while it is really followed: the 9 a.m. check (dcu-intelligence watch/sources.toml) or, for
+  // bodies whose terms forbid automated access (UL, ICC), their own update emails once subscribed.
+  standardsBodiesWatched: ['NFPA', 'IEEE', 'ASHRAE', 'TIA', 'BICSI', 'Uptime Institute'],
+
   // Shape of the card picture, width / height. 1 / 1 is square; 4 / 3, 3 / 2 and 2 / 1 are
   // a quarter, a third and a half shorter. Card images are cropped to fit, centred.
   briefCardImageRatio: '3 / 2',

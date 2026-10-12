@@ -218,7 +218,7 @@ const arrowIcon = '<path d="M5 12h14M13 6l6 6-6 6"/>';
           </div>
 
           <ul class="regs">
-            {standards.slice(0, 4).map((s) => (
+            {standards.slice(0, 3).map((s) => (
               <li>
                 <div class="reg-l">
                   <span class="reg-j">{s.data.body}{s.data.keyDate && ` · ${s.data.keyDateLabel} ${formatDate(s.data.keyDate)}`}</span>
@@ -228,6 +228,8 @@ const arrowIcon = '<path d="M5 12h14M13 6l6 6-6 6"/>';
               </li>
             ))}
           </ul>
+
+          <p class="fc-note fc-bodies"><strong>Bodies we watch:</strong> {siteSettings.standardsBodiesWatched.join(' · ')}</p>
 
           <p class="fc-go"><a href="/standards">Standards &amp; Guidance &mdash; every entry <svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true" set:html={arrowIcon} /></a></p>
         </article>
