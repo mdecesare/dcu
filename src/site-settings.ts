@@ -66,8 +66,8 @@ export const siteSettings = {
   // Standards & Guidance: "Standards sources we follow" — the bodies whose public standards-development pages DCU follows. List a body
   // only while it is really followed: the 9 a.m. check (dcu-intelligence watch/sources.toml) or, for
   // bodies whose terms forbid automated access (UL, ICC), their own update emails once subscribed.
-  // MOCKUP 13 Oct: UL and ICC included to show eight. Before publishing, keep them only if Michael has
-  // confirmed the UL and ICC email sign-ups (datacentreupdate@gmail.com).
+  // UL and ICC are followed through their own update emails to datacentreupdate@gmail.com (Michael's
+  // sign-ups, 13 Oct 2026); the other six by the 9 a.m. check. The homepage counts this list.
   standardsBodiesWatched: ['NFPA', 'IEEE', 'ASHRAE', 'UL', 'ICC', 'TIA', 'BICSI', 'Uptime Institute'],
 
   // Shape of the card picture, width / height. 1 / 1 is square; 4 / 3, 3 / 2 and 2 / 1 are
