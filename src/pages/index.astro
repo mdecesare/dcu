@@ -228,7 +228,12 @@ const arrowIcon = '<path d="M5 12h14M13 6l6 6-6 6"/>';
             ))}
           </ul>
 
-          <p class="fc-note fc-bodies"><strong>Standards sources we follow:</strong> {siteSettings.standardsBodiesWatched.join(' · ')}</p>
+          <div class="sg-bodies">
+            <p class="sg-bodies-h">We follow {siteSettings.standardsBodiesWatched.length} standards bodies for changes that could affect your data center</p>
+            <ul class="sg-bodies-l">
+              {siteSettings.standardsBodiesWatched.map((b) => <li>{b}</li>)}
+            </ul>
+          </div>
 
           <p class="fc-go"><a href="/standards">Standards &amp; Guidance &mdash; every entry <svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true" set:html={arrowIcon} /></a></p>
         </article>
@@ -370,6 +375,10 @@ const arrowIcon = '<path d="M5 12h14M13 6l6 6-6 6"/>';
   /* Colour comes from the status's .st-* class in global.css */
   .reg-s { font-size: 12px; font-weight: 600; border-width: 1px; border-style: solid; border-radius: 20px; padding: 3px 10px; white-space: nowrap; }
 
+  .sg-bodies { margin-top: 14px; padding: 11px 13px 12px; background: var(--page); border: 1px solid var(--line); border-radius: 6px; }
+  .sg-bodies-h { font-size: 13px; font-weight: 600; color: var(--ink); line-height: 1.4; }
+  .sg-bodies-l { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 0; padding: 0; list-style: none; }
+  .sg-bodies-l li { font-size: 12px; font-weight: 600; color: var(--blue-dk); background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 2px 9px; }
   .fc-note { font-size: 12.5px; line-height: 1.55; color: var(--ink-2); margin-top: 12px; }
   .fc-note :global(strong) { color: var(--ink); font-weight: 600; }
   .fc-note :global(a) { color: var(--blue); text-decoration: underline; }
