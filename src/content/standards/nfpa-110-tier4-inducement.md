@@ -1,5 +1,5 @@
 ---
-headline: "Could an emissions fault shut down your emergency generator? NFPA is considering a change"
+headline: "Could emissions controls shut down your emergency generator? NFPA is considering a change"
 scope: "For Level 1 emergency power"
 body: "NFPA"
 document: "NFPA 110, Standard for Emergency and Standby Power Systems (2025 edition), proposed TIA No. 1950"

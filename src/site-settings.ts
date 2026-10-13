@@ -63,7 +63,7 @@ export const siteSettings = {
   // Match it to the watcher's count (python -m watch reports "N sources checked").
   sourcePagesChecked: 22,
 
-  // Standards & Guidance: the bodies whose public standards-development pages DCU follows. List a body
+  // Standards & Guidance: "Standards sources we follow" — the bodies whose public standards-development pages DCU follows. List a body
   // only while it is really followed: the 9 a.m. check (dcu-intelligence watch/sources.toml) or, for
   // bodies whose terms forbid automated access (UL, ICC), their own update emails once subscribed.
   standardsBodiesWatched: ['NFPA', 'IEEE', 'ASHRAE', 'TIA', 'BICSI', 'Uptime Institute'],

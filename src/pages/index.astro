@@ -59,7 +59,6 @@ const [observations, , sourceCount] = latest.data.standfirst.split('·').map((s)
 const regItems = await getRegulationItems();
 const featuredBriefs = await getFeaturedBriefs();
 const standards = (await getCollection('standards')).sort((a, b) => a.data.order - b.data.order);
-const standardsChecked = formatDate(new Date(Math.max(...standards.map((s) => s.data.checked.getTime()))));
 const shieldIcon = '<path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/>';
 // The newest published Regulation entry in "What changed", so the card's date is always a real editorial change.
 const [latestRegChange] = (await getCollection('changes'))
@@ -213,7 +212,7 @@ const arrowIcon = '<path d="M5 12h14M13 6l6 6-6 6"/>';
             <div>
               <h2>Standards &amp; Guidance</h2>
               <p class="fc-sub">Codes and standards that could affect your facility, and where each one stands</p>
-              <p class="fc-ed">Checked {standardsChecked}</p>
+              <p class="fc-ed">Selected standards sources reviewed regularly</p>
             </div>
           </div>
 
@@ -229,7 +228,7 @@ const arrowIcon = '<path d="M5 12h14M13 6l6 6-6 6"/>';
             ))}
           </ul>
 
-          <p class="fc-note fc-bodies"><strong>Bodies we watch:</strong> {siteSettings.standardsBodiesWatched.join(' · ')}</p>
+          <p class="fc-note fc-bodies"><strong>Standards sources we follow:</strong> {siteSettings.standardsBodiesWatched.join(' · ')}</p>
 
           <p class="fc-go"><a href="/standards">Standards &amp; Guidance &mdash; every entry <svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true" set:html={arrowIcon} /></a></p>
         </article>

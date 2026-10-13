@@ -17,7 +17,7 @@ const entries = await Promise.all(
       <h1>Standards &amp; Guidance</h1>
       <p class="lede">A new edition doesn't automatically change the rules for your facility. Here's what's being revised, and what to confirm before buying equipment, renovating or expanding.</p>
       <p class="sg-intro">Whether an edition applies to your project depends on what your state, local authority, insurer or contract adopts. We report the status at the standards body and say what to confirm.</p>
-      <p class="sg-intro"><b>Bodies we watch:</b> {siteSettings.standardsBodiesWatched.join(' · ')}</p>
+      <p class="sg-intro"><b>Standards sources we follow:</b> {siteSettings.standardsBodiesWatched.join(' · ')}</p>
     </div>
   </section>
 
@@ -37,7 +37,7 @@ const entries = await Promise.all(
             <div><dt>What to check</dt><dd>{smartQuotes(e.data.check)}</dd></div>
           </dl>
           <div class="prose sg-more"><Content /></div>
-          <p class="sg-src">Source: <a href={e.data.source}>{e.data.sourceLabel}</a> · checked {formatDate(e.data.checked)}</p>
+          <p class="sg-src">Source: <a href={e.data.source}>{e.data.sourceLabel}</a> · last verified {formatDate(e.data.checked)}</p>
         </article>
       ))}
     </div>
