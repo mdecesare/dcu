@@ -11,7 +11,7 @@ sourceType: G
 order: 2
 ---
 
-**Status:** Current pause in effect · Extension proposed · public hearing scheduled **12 October 2026** · **Next:** Council vote on the extension, 26 October 2026 · **Checked:** 12 October 2026
+**Status:** Current pause in effect · Extension proposed · public hearing scheduled **12 October 2026** · **Next:** Council vote on the extension, 26 October 2026 · **Checked:** 13 October 2026
 
 > **If you are planning a data center in Charlotte.** A new application of any size cannot be
 > accepted or approved while the pause lasts, and the city is considering an extension. The agenda does not say how long the extension would be, or whether adding to an
