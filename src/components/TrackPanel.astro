@@ -1,4 +1,5 @@
 ---
+import localCoverage from '../data/local-coverage.json';
 // Hero panel: "What we're watching for your facility". Three compact coverage figures, each with
 // the date its data last changed. Every number is read from the site's own data; nothing is typed in.
 // The "Check your state" lookup sits below the hero (StateCheck.astro).
@@ -27,7 +28,7 @@ const stateCount = eiaPrices.states.filter((s) => s.code !== 'DC').length;
 ---
 <section class="tp" aria-labelledby="tp-title">
   <h2 id="tp-title">What we're watching for your facility</h2>
-  <p class="tp-sub">{siteSettings.sourcePagesChecked} source pages checked for changes every weekday</p>
+  <p class="tp-sub">{siteSettings.sourcePagesChecked} source pages and {localCoverage.places.length} city and county governments checked every weekday</p>
   <div class="tp-tiles">
     <a class="tp-tile" href="/procurement">
       <span class="tp-n">{observations}</span>

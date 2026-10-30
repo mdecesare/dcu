@@ -61,7 +61,7 @@ export const siteSettings = {
 
   // Hero panel line: how many source pages the private 9 a.m. weekday job checks for changes.
   // Match it to the watcher's count (python -m watch reports "N sources checked").
-  sourcePagesChecked: 22,
+  sourcePagesChecked: 37,
 
   // Standards & Guidance: "Standards sources we follow" — the bodies whose public standards-development pages DCU follows. List a body
   // only while it is really followed: the 9 a.m. check (dcu-intelligence watch/sources.toml) or, for
