@@ -8,10 +8,10 @@ status: "Proposed"
 summary: "A proposed Land Development Code amendment would regulate data centers in Louisville Metro, including server rooms that serve a business on its own site. Their backup generators would have to run on gas, propane, fuel cells or batteries or meet EPA Tier IV, could be tested outdoors only once a week on weekday working hours, and could be used only in an emergency. Standalone data centers would face size limits, quarter-mile separations, noise limits and closed-loop water cooling. Held in the Planning and Zoning Committee on 6 October 2026."
 citation: "Louisville Metro Council, O-251-26 (case 25-LDC-0014)"
 sourceType: G
-order: 2
+order: 5
 ---
 
-**Status:** Proposed · recommended by the Planning Commission; held in the Metro Council's Planning and Zoning Committee, 6 October 2026 · **Next:** committee, listed for 20 October 2026 · **Checked:** 12 October 2026
+**Status:** Proposed · recommended by the Planning Commission; held in the Metro Council's Planning and Zoning Committee on 6, 20 and 27 October and 3 November 2026 · **Next:** committee; special discussions on accessory data centers held · **Checked:** 13 November 2026
 
 > **Have a company server room in Louisville, or plans to expand one?** Proposed rules would restrict
 > backup generator types, outdoor testing schedules and non-emergency use. They could also bring larger

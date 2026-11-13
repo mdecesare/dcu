@@ -8,10 +8,10 @@ status: "In effect"
 summary: "Ordinance 26-128, signed 16 June 2026, prohibits data centers in all of Baltimore's zoning districts; it took effect 16 July 2026, 30 days after enactment, with a one-year duration. It defines a data center as a facility, or portion of one, used primarily for the remote storage, processing and distribution of data and capable of using 10 megawatts or more. A pending bill, 26-0217, would lower the threshold to 5 megawatts."
 citation: "Baltimore City Ordinance 26-128 (Bill 26-0158); Bill 26-0217"
 sourceType: G
-order: 5
+order: 7
 ---
 
-**Status:** In effect (Ordinance 26-128, signed 16 June 2026; effective 16 July 2026, with a one-year duration) · **Pending:** Bill 26-0217, 5 MW threshold, in the Land Use and Transportation Committee · **Checked:** 8 October 2026
+**Status:** In effect (Ordinance 26-128, signed 16 June 2026; effective 16 July 2026, with a one-year duration) · **Pending:** Bill 26-0217, 5 MW threshold, in the Land Use and Transportation Committee, no action since July · **Checked:** 13 November 2026
 
 > **For an existing enterprise facility.** The prohibition reaches a "facility or portion of a
 > facility" capable of using 10 MW or more. Bill 26-0217 would bring that down to 5 MW, which is within

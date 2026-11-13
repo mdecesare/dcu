@@ -8,10 +8,10 @@ status: "Enacted"
 summary: "Ordinance 2560-2026, approved 28 September and signed 1 October 2026, directs Columbus Water and Power to propose by 26 October 2026 a new rate structure or class for 'large load/high-volume peak users'. The definition covers water, sewer and power demand and names data centers and colocation facilities, but the detailed requirements concern water costs. The ordinance sets no rates itself."
 citation: "City of Columbus Ordinance 2560-2026"
 sourceType: G
-order: 6
+order: 8
 ---
 
-**Status:** Enacted, signed 1 October 2026; in force "from and after the earliest period allowed by law" · **Proposal due:** 26 October 2026 · **Checked:** 8 October 2026
+**Status:** Enacted, signed 1 October 2026; in force "from and after the earliest period allowed by law" · **Proposal:** was due 26 October 2026; not yet in the city's legislative record when we checked · **Checked:** 13 November 2026
 
 > **For an existing enterprise facility.** This applies to customers of the City's own utility,
 > Columbus Water and Power, not to every Central Ohio site. No thresholds or rates exist yet; the

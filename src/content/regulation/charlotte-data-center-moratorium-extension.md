@@ -8,7 +8,7 @@ status: "In effect"
 summary: "On 26 October 2026 Charlotte City Council unanimously extended its pause on applications for new telecommunications and data storage facilities, in the city and its extraterritorial jurisdiction, to 18 October 2027. The extension starts on 6 November. It does not apply to facilities whose primary purpose is supporting the internal operations of an institution, government entity, healthcare provider, telecommunications provider or other permitted principal use, as long as their data processing is not offered as a primary service to off-site users."
 citation: "City of Charlotte, ordinance extending the temporary moratorium (15-26877), approved 26 October 2026"
 sourceType: G
-order: 1
+order: 4
 ---
 
 **Status:** In effect · extension approved unanimously 26 October 2026; runs 6 November 2026 to 18 October 2027 at the latest · **Next:** proposed permanent data center standards · **Checked:** 30 October 2026

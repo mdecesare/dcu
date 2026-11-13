@@ -1,21 +1,23 @@
 ---
-title: "Texas governor directs TCEQ to pause data center permits"
-headline: "Texas governor directs TCEQ to pause data center permits"
+title: "Texas pauses data center permits, and now checks every construction stormwater application for a data center link"
+headline: "Building in Texas? Construction stormwater permits now wait for a data center check"
 jurisdiction: "Texas"
 jurisdictionType: state
 status: "Directed"
-summary: "On 21 September 2026 the governor directed TCEQ to pause the issuance of all permits related to data center projects until ERCOT completes its review. The directive sets no size threshold and does not define a data center project. TCEQ has not said publicly whether the pause reaches air or water authorizations for infrastructure supporting an existing facility's expansion of a few megawatts, or whether applications can still be filed and processed."
+summary: "On 21 September 2026 the governor directed TCEQ to pause the issuance of all permits related to data center projects until ERCOT completes its review. The directive sets no size threshold and does not define a data center project. TCEQ has not said publicly whether the pause reaches air or water authorizations for infrastructure supporting an existing facility's expansion of a few megawatts, or whether applications can still be filed and processed. TCEQ now says applications for its construction, industrial and concrete general stormwater permits are no longer approved automatically and get no provisional coverage: staff review each one for a data center link before authorization."
 citation: "Governor's letter to TCEQ, 21 September 2026"
 sourceType: G
-order: 7
+order: 2
 ---
 
-**Status:** Directed, 21 September 2026 · **TCEQ update to the governor due:** 19 October 2026 · **Checked:** 25 September 2026
+**Status:** Directed, 21 September 2026 · TCEQ screening construction stormwater applications · **Next:** ERCOT and PUC report due by 10 December 2026 · **Checked:** 13 November 2026
 
-> **Open question for a 1–5 MW expansion.** TCEQ has not said publicly whether the pause
-> reaches air or water authorizations for infrastructure supporting an existing facility's
-> expansion of a few megawatts. We are not treating smaller projects as either exempt or
-> covered until TCEQ says so.
+> **If you are building or expanding in Texas.** Most site work that disturbs an acre or more
+> needs TCEQ's construction stormwater permit. TCEQ says those applications are no longer
+> approved automatically and get no provisional coverage: staff first check whether each one is
+> related to a data center. Allow for that review in your schedule, even if your project is not a
+> data center. TCEQ still has not said whether a small expansion of an existing facility counts as
+> a data center project.
 
 ## What changed
 
@@ -27,7 +29,21 @@ permit types.
 A TCEQ spokesperson told [Houston Public Media](https://www.houstonpublicmedia.org/articles/news/energy-environment/2026/09/21/562389/gov-abbott-orders-tceq-to-pause-environmental-permits-for-ai-crytocurrency-data-centers-until-audit-is-complete/)
 that the agency "has paused the issuance of all air and water permits and authorizations
 related to the construction or development of infrastructure directly supporting data
-centers." TCEQ has not published an implementation notice.
+centers."
+
+## How TCEQ is applying it (checked 13 November 2026)
+
+TCEQ's construction stormwater page now says that applications for the Construction General
+Permit (TXR150000), the Multi-Sector General Permit (TXR050000) and the Concrete Production General
+Permit (TXG110000) "will not be automatically approved as in the past and will not have provisional
+coverage. All applications will be reviewed by agency staff before authorization is issued to
+determine if they are related to data centers." The Construction General Permit covers construction
+that disturbs an acre or more of soil and discharges stormwater.
+
+TCEQ shut down its electronic filing system for a time to add this review. It extended the
+Multi-Sector General Permit renewal deadline to 28 December 2026 and allowed email filing from
+28 October to 9 November, when the system reopened. We have not found TCEQ's 19 October update to
+the governor published.
 
 ## Separate from ERCOT's actions
 
@@ -50,7 +66,9 @@ Neither date is a date on which TCEQ permits restart.
    Ask TCEQ in writing whether each is on hold.
 2. **Where your site's load sits against ERCOT's 75 MW and 25 MW thresholds.** Your
    transmission or distribution utility reports your load to ERCOT.
-3. **TCEQ's 19 October update to the governor,** which may say more about scope.
+3. **How long TCEQ's staff review takes** for your stormwater application, and whether your project
+   could be read as data-center related. Ask TCEQ before you schedule site work.
+4. **The ERCOT and PUC report due by 10 December 2026,** which may lead to the pause ending.
 
 ## What we can and cannot conclude yet
 
@@ -58,7 +76,7 @@ TCEQ has not said publicly:
 
 - whether the pause reaches air or water authorizations for infrastructure supporting an
   existing facility's expansion of a few megawatts;
-- whether applications can still be filed and reviewed while issuance is paused;
+- what makes a project "related to" a data center for its stormwater review;
 - whether any size threshold applies;
 - when the pause ends. The governor's letter ties it to ERCOT completing its review, not to
   a date.
@@ -67,6 +85,10 @@ TCEQ has not said publicly:
 
 **G** [Governor's letter to TCEQ Executive Director Kelly Keel](https://gov.texas.gov/uploads/files/press/TCEQ_Data_Center.pdf),
 21 September 2026 (PDF), and the [governor's announcement](https://gov.texas.gov/news/post/governor-abbott-directs-tceq-to-halt-data-center-permits).
+
+**G** TCEQ, [Stormwater Permits](https://www.tceq.texas.gov/permitting/stormwater) and
+[Construction Stormwater](https://www.tceq.texas.gov/permitting/stormwater/construction) pages,
+notices on the governor's directive, checked 13 November 2026.
 
 Supporting: **O** [ERCOT's filing at the PUC](https://interchange.puc.texas.gov/Documents/58317_27_1672569.PDF),
 10 August 2026 (PDF, energization pause and 75 MW definition); **O** [ERCOT presentation to
